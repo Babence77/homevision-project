@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeVision AI — Lakberendező tervező</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f3a63'/%3E%3Ctext x='16' y='24' font-size='21' text-anchor='middle' fill='white'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand"><span class="logo">✦</span> HomeVision <span class="ai">AI</span></div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button id="langBtn" class="themebtn" title="Nyelv / Language" style="font-size:12px;font-weight:800;">EN</button>
+      <button id="themeBtn" class="themebtn" title="Sötét / világos mód" aria-label="Sötét mód">🌙</button>
+      <a class="cta" href="#" data-i18n="try">BB7 album
+        
+      </a>
+    </div>
+  </nav>
+  <div class="wrap">
+    <span class="kicker"><span class="dot"></span> <span data-i18n="kicker">Interaktív tervező · valódi árak</span></span>
+    <h1><span class="hl" id="styleName">Modern</span> <span id="roomName">nappali</span> <span id="plannerWord">tervező</span></h1>
+    <p class="sub" data-i18n-html="sub">Válassz szobatípust és stílust, méretet, falszínt, keretet. A bútoroknál <strong>valódi alternatívák</strong> közül választhatsz (◀ ▶), az alaprajzon <strong>áthúzhatod</strong> a bútorokat, végül <strong>ajánlatot</strong> exportálhatsz ügyfélnek. Minden ár valódi, kattintható linkkel.</p>
+
+    <div class="herobadges">
+      <span data-i18n="b1">🛋️ 6 szobatípus</span><span data-i18n="b2">🎨 6 stílus</span><span data-i18n="b3">🏬 4 bolt</span><span data-i18n="b4">📐 méretre szabva</span><span data-i18n="b5">💰 büdzsére</span><span data-i18n="b6">🧾 PDF-ajánlat</span>
+    </div>
+
+    <div class="selectors">
+      <div class="selgroup"><div class="sglabel" data-i18n="selRoom">Szobatípus</div><div class="tabs" id="roomtabs"></div></div>
+      <div class="selgroup"><div class="sglabel" data-i18n="selStyle">Stílus</div><div class="tabs" id="styletabs"></div></div>
+    </div>
+
+    <div class="cardbox">
+      <div class="chead"><span class="ic">📐</span><div><h3 data-i18n="sizeH">Szoba mérete</h3><p data-i18n="sizeP">A két oldal hossza és a belmagasság (méterben).</p></div></div>
+      <div class="fields">
+        <div class="field"><label for="len" data-i18n="len">Hossz (m)</label><input id="len" type="number" min="1" step="0.1" value="4.0"></div>
+        <span class="times">×</span>
+        <div class="field"><label for="wid" data-i18n="wid">Szélesség (m)</label><input id="wid" type="number" min="1" step="0.1" value="5.0"></div>
+        <div class="field"><label for="hei" data-i18n="hei">Belmagasság (m)</label><input id="hei" type="number" min="2" step="0.1" value="2.7"></div>
+        <div class="presets">
+          <button class="preset" data-l="2.5" data-w="3" data-i18n="pSmall">Kicsi · 2,5×3</button>
+          <button class="preset" data-l="4" data-w="5" data-i18n="pMed">Közepes · 4×5</button>
+          <button class="preset" data-l="5" data-w="6" data-i18n="pLarge">Nagy · 5×6</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <div class="cardbox" style="margin-top:0;">
+          <div class="chead"><span class="ic">🗺️</span><div><h3 data-i18n="planH">Alaprajz (felülnézet)</h3><p data-i18n="planP">Húzd át a bútorokat! A be nem férő, kikapcsolt darabok nem látszanak.</p></div></div>
+          <div class="planwrap"><div id="plan"></div></div>
+          <div class="plantools">
+            <button class="minibtn" id="resetLayout" data-i18n="reset">↺ Elrendezés visszaállítása</button>
+            <button class="minibtn" id="view3dBtn" data-i18n="view3d">🧊 3D nézet</button>
+            <button class="minibtn dark" id="exportBtn2" data-i18n="exportBtn">🧾 Ajánlat (PDF)</button>
+            <span class="planhint" data-i18n="planHint">Fogd meg és húzd a bútort.</span>
+          </div>
+          <div class="planlegend">
+            <span><span class="swatchdot" style="background:#9aa6b2"></span> <span data-i18n="legFurn">Bútor</span></span>
+            <span><span class="swatchdot" style="background:#e7ded0"></span> <span data-i18n="legRug">Szőnyeg</span></span>
+            <span><span class="swatchdot" id="wallDot" style="background:#eee"></span> <span data-i18n="legWall">Falszín</span></span>
+          </div>
+        </div>
+        <div class="cardbox">
+          <div class="chead"><span class="ic">🎨</span><div><h3 data-i18n="paintH">Falszín (Héra Prémium beltéri falfesték)</h3><p data-i18n="paintP">Válassz színt — kiszámoljuk, hány doboz kell és mennyibe kerül.</p></div></div>
+          <div class="palette" id="palette"></div>
+          <div class="paintcalc" id="paintcalc"></div>
+        </div>
+        <div class="cardbox">
+          <div class="chead"><span class="ic">💰</span><div><h3 data-i18n="budgetH">Büdzsé</h3><p data-i18n="budgetP">Állítsd be a keretet — jelezzük, belefér-e, és egy kattintással hozzáigazítjuk.</p></div></div>
+          <div class="fields" style="align-items:center;gap:18px;">
+            <input id="budgetRange" type="range" min="100000" max="1200000" step="10000" value="600000" style="flex:1;min-width:180px;accent-color:var(--accent);">
+            <div class="field"><label for="budgetNum" data-i18n="budgetField">Keret (Ft)</label><input id="budgetNum" type="number" min="0" step="10000" value="600000" style="width:130px;"></div>
+            <button class="preset" id="autofit" data-i18n="autofit" style="background:#0f172a;color:#fff;border-color:#0f172a;">✨ Igazítás a kerethez</button>
+          </div>
+          <div class="note" id="budgetHint" style="margin-top:10px;font-size:13px;"></div>
+        </div>
+        <div class="cardbox">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+            <input id="searchBox" class="searchbox" data-i18n-ph="searchPh" placeholder="Keresés a bútorok közt…">
+            <span class="flabel" data-i18n="storesLabel">Boltok:</span>
+            <div id="storechips" class="storechips"></div>
+            <button class="minibtn" id="cheapAll" data-i18n="cheapAll" style="margin-left:auto;">⤓ Legolcsóbb mindenhol</button>
+          </div>
+        </div>
+        <div class="list-head">
+          <div><div class="section-label" data-i18n="listLabel">Bútorlista</div><h2 data-i18n="listH">Az összeállítás elemei</h2></div>
+          <div class="count-pill" id="countPill">—</div>
+        </div>
+        <div id="list"></div>
+      </div>
+      <aside>
+        <div class="summary">
+          <div class="lbl" data-i18n="sumLabel">Becsült összköltség</div>
+          <div class="total"><span id="grand">—</span><small>Ft</small></div>
+          <div class="brk"><span data-i18n="brkFurn">Bútorok</span><span id="furnTotal">—</span></div>
+          <div class="brk"><span data-i18n="brkPaint">Falfesték</span><span id="paintTotal">—</span></div>
+          <div class="divider"></div>
+          <div class="meter-top"><span><span data-i18n="budgetWord">Keret:</span> <b id="budgetVal">—</b></span><span class="state" id="budgetState">—</span></div>
+          <div class="meter"><div class="bar" id="budgetBar" style="width:0%"></div></div>
+          <div class="divider"></div>
+          <div class="lbl" style="margin-bottom:10px;" data-i18n="fillLabel">Mennyire tölti ki a szobát</div>
+          <div class="meter-top"><span id="fillPct">—</span><span class="state" id="fillState">—</span></div>
+          <div class="meter"><div class="bar" id="fillBar" style="width:0%"></div></div>
+          <div class="divider"></div>
+          <button class="exportbtn" id="exportBtn" data-i18n="exportFull">🧾 Ajánlat letöltése (PDF)</button>
+          <button class="exportbtn" id="shopBtn" data-i18n="shoppingBtn" style="background:var(--card);color:var(--ink);border:1px solid var(--line);margin-top:8px;">🛒 Bevásárlólista</button>
+          <button class="exportbtn" id="saveRoomBtn" data-i18n="saveRoomBtn" style="background:var(--accent);color:#fff;margin-top:8px;">💾 Mentés a házamba</button>
+          <button class="exportbtn" id="houseBtn" style="background:var(--card);color:var(--ink);border:1px solid var(--line);margin-top:8px;">🏠 Házam</button>
+          <div class="note" style="margin-top:12px;" data-i18n-html="note">Az árak <strong>2026. július 17-i</strong> tájékoztató árak. A pontos árat a termék oldalán ellenőrizd.</div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="disclaimer"><span>💡</span>
+      <div data-i18n-html="tips">Tippek…</div>
+    </div>
+    <div class="foot"><span data-i18n="footL">© 2026 HomeVision AI — Lakberendező tervező</span><span data-i18n="footR">Árak: ikea.com/hu, jysk.hu · 2026-07-17</span></div>
+  </div>
+
+  <div id="slOverlay" class="sloverlay" style="display:none"></div>
+  <div id="d3Overlay" class="sloverlay" style="display:none"></div>
+  <div id="houseOverlay" class="sloverlay" style="display:none"></div>
+  <div id="printArea"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

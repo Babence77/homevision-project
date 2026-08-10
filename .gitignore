@@ -1,0 +1,9 @@
+# Rendszer- és szerkesztő-fájlok
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# Node (ha később csomagokat használunk)
+node_modules/
+dist/
