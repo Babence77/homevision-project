@@ -351,7 +351,7 @@
       tips:'<strong>Tippek:</strong> a ◀ ▶ nyilakkal válts a valódi alternatívák között (a „legolcsóbb" jelzés segít); az alaprajzon <strong>húzd</strong> a bútorokat a helyükre; a méret, festék és büdzsé mind automatikusan követi a választásod; végül a <strong>🧾 Ajánlat</strong> gombbal PDF-et menthetsz az ügyfélnek.',
       footL:'© 2026 HomeVision AI — Lakberendező tervező',footR:'Árak: ikea.com/hu, jysk.hu · 2026-07-17',
       exTitle:'Berendezési ajánlat — HomeVision AI',exStyle:'stílus',exWall:'falszín',exNone:'nincs',exDate:'dátum',exCat:'Kategória',exProd:'Termék',exStore:'Bolt',exPrice:'Ár',exFurn:'Bútorok',exPaint:'Falfesték',exTotal:'Végösszeg',exNote:'Az árak tájékoztató jellegűek (2026-07-17), a boltok oldalán ellenőrizhetők. Készült a HomeVision AI tervezővel.',
-      noneItem:'Nincs festés',belm:'belmagasság',shoppingBtn:'🛒 Bevásárlólista',slTitle:'Bevásárlólista — bolt szerint',slItems:'tétel',slTotal:'Végösszeg',slOpen:'Megnézem →',slPrint:'🖨️ Nyomtatás / PDF',slClose:'Bezárás',view3d:'🧊 3D nézet',d3Title:'3D nézet',d3Hint:'Húzd az egérrel a forgatáshoz · görgő = nagyítás',d3NoLib:'A 3D nézethez internet szükséges.',houseBtn:'🏠 Házam',saveRoomBtn:'💾 Mentés a házamba',houseTitle:'A házam — mentett szobák',houseEmpty:'Még nincs mentett szoba. Állíts össze egy szobát, és mentsd el a szobatípus nevével!',load:'Betöltés',del:'Törlés',houseTotal:'Teljes ház összesen',houseShop:'🛒 Teljes ház – bevásárlólista'},
+      noneItem:'Nincs festés',belm:'belmagasság',shoppingBtn:'🛒 Bevásárlólista',slTitle:'Bevásárlólista — bolt szerint',slItems:'tétel',slTotal:'Végösszeg',slOpen:'Megnézem →',slPrint:'🖨️ Nyomtatás / PDF',slClose:'Bezárás',view3d:'🧊 3D nézet',d3Title:'3D nézet',d3Hint:'Húzd az egérrel a forgatáshoz · görgő = nagyítás',d3NoLib:'A 3D nézethez internet szükséges.',houseBtn:'🏠 Házam',saveRoomBtn:'💾 Mentés a házamba',houseTitle:'A házam — mentett szobák',houseEmpty:'Még nincs mentett szoba. Állíts össze egy szobát, és mentsd el a szobatípus nevével!',load:'Betöltés',del:'Törlés',houseTotal:'Teljes ház összesen',houseShop:'🛒 Teljes ház – bevásárlólista',shareBtn:'🔗 Megosztás linkkel',shareCopied:'✔ Link a vágólapon!',shareFail:'Másold ki a linket:'},
     en:{try:'Try it',kicker:'Interactive planner · real prices',planner:'planner',
       sub:'Pick a room type and style, size, wall colour, budget. For every item you can choose from <strong>real alternatives</strong> (◀ ▶), <strong>drag</strong> the furniture on the floor plan, and export an <strong>offer</strong> for your client. Every price is real, with a clickable link.',
       b1:'🛋️ 6 room types',b2:'🎨 6 styles',b3:'🏬 4 stores',b4:'📐 fits your room',b5:'💰 fits your budget',b6:'🧾 PDF offer',
@@ -374,7 +374,7 @@
       tips:'<strong>Tips:</strong> use the ◀ ▶ arrows to switch between real alternatives (the “cheapest” tag helps); <strong>drag</strong> the furniture on the plan; size, paint and budget all update automatically; finally use the <strong>🧾 Offer</strong> button to save a PDF for your client.',
       footL:'© 2026 HomeVision AI — Interior planner',footR:'Prices: ikea.com/hu, jysk.hu · 2026-07-17',
       exTitle:'Furnishing offer — HomeVision AI',exStyle:'style',exWall:'wall',exNone:'none',exDate:'date',exCat:'Category',exProd:'Product',exStore:'Store',exPrice:'Price',exFurn:'Furniture',exPaint:'Wall paint',exTotal:'Total',exNote:'Prices are indicative (2026-07-17), verify on the store pages. Made with the HomeVision AI planner.',
-      noneItem:'No paint',belm:'ceiling',shoppingBtn:'🛒 Shopping list',slTitle:'Shopping list — by store',slItems:'items',slTotal:'Total',slOpen:'Open →',slPrint:'🖨️ Print / PDF',slClose:'Close',view3d:'🧊 3D view',d3Title:'3D view',d3Hint:'Drag to rotate · scroll = zoom',d3NoLib:'The 3D view needs an internet connection.',houseBtn:'🏠 My house',saveRoomBtn:'💾 Save to my house',houseTitle:'My house — saved rooms',houseEmpty:'No saved rooms yet. Design a room and save it under its room-type name!',load:'Load',del:'Delete',houseTotal:'Whole house total',houseShop:'🛒 Whole-house shopping list'},
+      noneItem:'No paint',belm:'ceiling',shoppingBtn:'🛒 Shopping list',slTitle:'Shopping list — by store',slItems:'items',slTotal:'Total',slOpen:'Open →',slPrint:'🖨️ Print / PDF',slClose:'Close',view3d:'🧊 3D view',d3Title:'3D view',d3Hint:'Drag to rotate · scroll = zoom',d3NoLib:'The 3D view needs an internet connection.',houseBtn:'🏠 My house',saveRoomBtn:'💾 Save to my house',houseTitle:'My house — saved rooms',houseEmpty:'No saved rooms yet. Design a room and save it under its room-type name!',load:'Load',del:'Delete',houseTotal:'Whole house total',houseShop:'🛒 Whole-house shopping list',shareBtn:'🔗 Share link',shareCopied:'✔ Link copied!',shareFail:'Copy this link:'},
   };
   const t=k=>T[state.lang][k];
   const CAT_EN={sofa:'Sofa',chair:'Armchair',coffee:'Coffee table',tv:'TV unit',rug:'Rug',lamp:'Floor lamp',curtain:'Curtain',cushion:'Cushion',vase:'Decor',bed:'Bed',nightstand:'Nightstand',wardrobe:'Wardrobe',bedding:'Bedding',dtable:'Dining table',dchair:'Dining chair',sideboard:'Sideboard',island:'Kitchen island',barstool:'Bar stool',kcabinet:'Storage cabinet',fridge:'Fridge',desk:'Desk',ochair:'Office chair',shelf:'Bookcase',kbed:'Kids bed',kdesk:'Kids desk'};
@@ -809,7 +809,35 @@
   }
   document.getElementById('saveRoomBtn').addEventListener('click',saveRoom);
   document.getElementById('houseBtn').addEventListener('click',openHouse);
+
+  // ---- MEGOSZTHATÓ LINK (a szoba állapota a URL #c= részébe kódolva) ----
+  function currentConfig(){
+    // Ugyanaz a config objektum, mint a saveRoom-ban — egy formátum, több felhasználás.
+    return {room:state.room,style:state.style,len:len(),wid:wid(),hei:hei(),color:state.color,budget:state.budget,
+      sel:JSON.parse(JSON.stringify(state.sel)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos))};
+  }
+  function makeShareLink(){
+    const encoded=LZString.compressToEncodedURIComponent(JSON.stringify(currentConfig()));
+    return location.origin+location.pathname+'#c='+encoded;
+  }
+  function shareRoom(){
+    if(typeof LZString==='undefined'){ alert(t('d3NoLib')); return; } // CDN nem töltött be (nincs net)
+    const link=makeShareLink(), btn=document.getElementById('shareBtn');
+    const done=()=>{ btn.textContent=t('shareCopied'); setTimeout(()=>{ btn.textContent=t('shareBtn'); },1800); };
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(done,()=>prompt(t('shareFail'),link));
+    else prompt(t('shareFail'),link); // régi böngésző: kézzel másolható ablak
+  }
+  function loadFromHash(){
+    const m=location.hash.match(/^#c=(.+)$/); if(!m||typeof LZString==='undefined') return;
+    try{
+      const c=JSON.parse(LZString.decompressFromEncodedURIComponent(m[1]));
+      if(c&&c.room&&c.style) loadRoom({config:c}); // a meglévő betöltő újrahasznosítva
+    }catch(e){} // hibás/csonka link: az app simán alaphelyzetből indul
+  }
+  document.getElementById('shareBtn').addEventListener('click',shareRoom);
+
   loadHouse();
+  loadFromHash();
   document.getElementById('themeBtn').addEventListener('click',()=>{
     const dark=document.body.classList.toggle('dark');
     document.getElementById('themeBtn').textContent=dark?'☀️':'🌙';
