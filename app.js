@@ -701,7 +701,7 @@
     else if(state.room==='konyha'){ const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80; anchors={island:[(roomW-iw)/2,(roomH-ih)/2-20],kcabinet:[12,10],fridge:[roomW-66,10],lamp:[12,roomH-52]}; order=['kcabinet','island','barstools','fridge','lamp']; }
     else if(state.room==='dolgozo'){ const dk=drawn.find(x=>x.plan==='desk'); const dw=dk?dk.w:120, dd=dk?dk.d:60; anchors={desk:[(roomW-dw)/2,10],ochair:[(roomW-70)/2,10+dd+14],shelf:[12,roomH-40-10],lamp:[roomW-42,10]}; order=['rug','desk','ochair','shelf','lamp']; }
     else { const kd=drawn.find(x=>x.plan==='kdesk'); const kw=kd?kd.w:96; anchors={kbed:[12,12],kdesk:[roomW-kw-12,12],wardrobe:[roomW-130,roomH-55-10],shelf:[12,roomH-40-10],lamp:[(roomW-30)/2,(roomH-40)/2]}; order=['rug','kbed','kdesk','wardrobe','shelf','lamp']; }
-    const out=[]; const push=(id,x,y,w,d)=>{ x=cX(x,w); y=cY(y,d); out.push({cx:x+w/2,cy:y+d/2,w,d,h:(H3[id]||60),rug:(META[id]&&META[id].floor==='rug')}); };
+    const out=[]; const push=(id,x,y,w,d)=>{ x=cX(x,w); y=cY(y,d); out.push({kind:id,cx:x+w/2,cy:y+d/2,w,d,h:(H3[id]||60),rug:(META[id]&&META[id].floor==='rug')}); };
     order.forEach(key=>{ const it=drawn.find(x=>x.plan===key); if(!it) return;
       if(key==='nightstands'){ const bed=drawn.find(x=>x.plan==='bed'); const bw=bed?bed.w:160; const bp=state.pos[keyOf('bed')]; const bx=bp?bp.x:(roomW-bw)/2, by=bp?bp.y:12; [bx-43,bx+bw+8].forEach(nx=>push('nightstand',nx,by,35,40)); return; }
       if(key==='dchairs'){ const dt=drawn.find(x=>x.plan==='dtable'); const tw=dt?dt.w:140, th=dt?dt.d:85; const tp=state.pos[keyOf('dtable')]; const tx=tp?tp.x:(roomW-tw)/2, ty=tp?tp.y:(roomH-th)/2; [tx+tw*0.22-22,tx+tw*0.78-22].forEach(cx=>{ push('dchair',cx,ty-50,44,46); push('dchair',cx,ty+th+4,44,46); }); return; }
@@ -725,6 +725,15 @@
   }
   function init3D(){
     const cont=document.getElementById('d3canvas');
+    // Ha a Three.js modul betöltött (viewer3d.js), a valódi 3D nézetet használjuk.
+    // Ha nem (pl. nincs internet), automatikusan a régi, beépített canvas-nézet fut.
+    if(window.HV3D){
+      const L=len(),Wd=wid(),Hh=hei();
+      const dispose=window.HV3D.mount(cont,{ roomW:Math.max(L,Wd), roomD:Math.min(L,Wd), roomH:Hh,
+        wallColor:wallHex(), floorColor:'#cbb48d', items:placements3D(L,Wd,drawnList()) });
+      R3={stop:dispose};
+      return;
+    }
     const Wc=cont.clientWidth||700, Hc=cont.clientHeight||440, dpr=Math.min(window.devicePixelRatio||1,2);
     const cv=document.createElement('canvas'); cv.width=Wc*dpr; cv.height=Hc*dpr; cv.style.width='100%'; cv.style.height='100%'; cv.style.cursor='grab'; cont.appendChild(cv);
     const ctx=cv.getContext('2d'); ctx.scale(dpr,dpr);

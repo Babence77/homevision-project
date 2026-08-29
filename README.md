@@ -10,7 +10,8 @@ Egy weboldal általában három részből áll — mi is így bontottuk szét:
 
 - **`index.html`** — a **szerkezet** (a „csontváz”): milyen elemek vannak az oldalon (gombok, dobozok, szövegek).
 - **`styles.css`** — a **megjelenés** (a „ruha”): színek, méretek, elrendezés, hogy szép legyen.
-- **`app.js`** — a **működés** (az „agy”): a logika — az árak, a szűrők, az alaprajz, a 3D, minden interaktív dolog.
+- **`app.js`** — a **működés** (az „agy”): a logika — az árak, a szűrők, az alaprajz, minden interaktív dolog.
+- **`viewer3d.js`** — a **valódi 3D nézet** (Three.js): betölti a `models/` mappa 3D-bútormodelljeit és felépíti a szobát.
 
 A `README.md` (ez a fájl) pedig a leírás magának a projektnek.
 
@@ -57,15 +58,16 @@ Ezt majd együtt végigcsináljuk, ha eljutunk odáig.
 
 ## 🔜 Következő lépések (ötletek)
 
-- Valódi 3D-bútormodellek (a mostani „dobozos” 3D helyett).
-- Megosztható link (az összeállítást linken elküldeni az ügyfélnek).
+- ~~Valódi 3D-bútormodellek~~ ✅ Kész (Three.js + Kenney-modellek, `viewer3d.js` + `models/`).
+- ~~Megosztható link~~ ✅ Kész (a 🔗 gomb a teljes összeállítást a linkbe kódolja).
 - **Backend (szerver) — ehhez kell:** valódi AI-látványterv, élő/frissülő árak, valódi felhasználói fiókok és felhő-mentés.
 - Név és logó véglegesítése (a szín már megvan: fehér / szürke / sötétkék).
 
 ## Jó tudni
 
 - Az árak tájékoztató jellegűek (2026-07-17), a linkek a boltok oldalaira visznek.
-- A „3D nézet” beépített, nem kell hozzá internet.
+- A „3D nézet” valódi 3D-modelleket tölt be (Three.js, internet kell hozzá) — internet nélkül automatikusan a beépített, egyszerű 3D-re vált.
+- A 3D-bútormodellek a [Kenney Furniture Kit](https://kenney.nl/assets/furniture-kit)-ből valók (CC0, szabadon felhasználható) — lásd `models/LICENSE.txt`.
 - A „Házam” mentés a böngésződben tárolódik (a valódi felhő-mentés a backend-fázisban jön).
 
 Készült Bencével, lépésről lépésre. 💙
