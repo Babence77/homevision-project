@@ -65,7 +65,7 @@ Ezt majd együtt végigcsináljuk, ha eljutunk odáig.
 
 ## Jó tudni
 
-- Az árak tájékoztató jellegűek (2026-07-17), a linkek a boltok oldalaira visznek.
+- Az árak tájékoztató jellegűek (legutóbbi árellenőrzés: **2026-08-29**), a linkek a boltok oldalaira visznek.
 - A „3D nézet” valódi 3D-modelleket tölt be (Three.js, internet kell hozzá) — internet nélkül automatikusan a beépített, egyszerű 3D-re vált.
 - A 3D-bútormodellek a [Kenney Furniture Kit](https://kenney.nl/assets/furniture-kit)-ből valók (CC0, szabadon felhasználható) — lásd `models/LICENSE.txt`.
 - A „Házam” mentés a böngésződben tárolódik (a valódi felhő-mentés a backend-fázisban jön).
