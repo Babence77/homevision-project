@@ -4,8 +4,8 @@
 // és az app pontosan úgy működik, mint eddig (csak localStorage).
 
 // ⬇️ IDE kell a Supabase projekt két adata (Project Settings → API):
-const SUPABASE_URL = '';      // pl. 'https://xxxx.supabase.co'
-const SUPABASE_ANON_KEY = ''; // az "anon / public" kulcs (publikus, mehet a kódba)
+const SUPABASE_URL = 'https://bawqlphksmkgmwnmbcqi.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_oyzo5ne7tJxXUfRIeMQKsA_u1IRtL6W'; // publikus kulcs (a biztonságot az RLS adja)
 
 (function(){
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY || typeof supabase === 'undefined') return; // konfig nélkül: alvó mód
