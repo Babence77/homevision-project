@@ -1,4 +1,4 @@
--- HomeVision AI — felhő-mentés adatbázis (Supabase SQL Editor-ban futtatandó)
+Sikerü-- HomeVision AI — felhő-mentés adatbázis (Supabase SQL Editor-ban futtatandó)
 --
 -- Egy tábla, felhasználónként EGY sor: a teljes "Házam" lista JSON-ként.
 -- Ez a legegyszerűbb modell: pontosan az kerül a felhőbe, ami eddig a

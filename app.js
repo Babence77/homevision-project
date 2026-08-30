@@ -26,8 +26,8 @@
     kdesk:{cat:'Gyerek íróasztal',icon:'✏️',floor:'furniture',plan:'kdesk'},
   };
   const P_ = (key,name,store,price,w,d,url)=>({key,name,store,price,w,d,url});
-  const PRICE_DATE='2026-08-29'; // az árellenőrzés dátuma — frissítéskor csak ezt kell átírni
-  const PRICE_DATE_HU='2026. augusztus 29-i', PRICE_DATE_EN='29 August 2026';
+  let PRICE_DATE='2026-08-29'; // az árellenőrzés dátuma — a prices.json betöltése automatikusan frissíti
+  let PRICE_DATE_HU='2026. augusztus 29-i', PRICE_DATE_EN='29 August 2026';
   // ---- NAPPALI poolok ----
   const POOL={
     sofa:[
@@ -918,3 +918,32 @@
   });
 
   render();
+
+  // ---- ÉLŐ ÁRAK (prices.json — naponta frissíti a GitHub Actions robot) ----
+  const HU_MONTHS=['január','február','március','április','május','június','július','augusztus','szeptember','október','november','december'];
+  const EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function refreshDateTexts(){
+    // A T-beli szövegek betöltéskor épülnek — új dátumnál újraírjuk őket
+    T.hu.note='Az árak <strong>'+PRICE_DATE_HU+'</strong> tájékoztató árak. A pontos árat a termék oldalán ellenőrizd.';
+    T.en.note='Prices are indicative, as of <strong>'+PRICE_DATE_EN+'</strong>. Check the exact price on the product page.';
+    T.hu.footR='Árak: ikea.com/hu, jysk.hu · '+PRICE_DATE;
+    T.en.footR='Prices: ikea.com/hu, jysk.hu · '+PRICE_DATE;
+    T.hu.exNote='Az árak tájékoztató jellegűek ('+PRICE_DATE+'), a boltok oldalán ellenőrizhetők. Készült a HomeVision AI tervezővel.';
+    T.en.exNote='Prices are indicative ('+PRICE_DATE+'), verify on the store pages. Made with the HomeVision AI planner.';
+  }
+  function applyLivePrices(data){
+    if(!data||!data.prices) return;
+    // Minden terméklistán végigmegyünk; az URL a termék egyedi azonosítója
+    const lists=[...Object.values(POOL),Object.values(CURTAIN),Object.values(CUSHION),Object.values(VASE),[NIGHTSTAND],Object.values(BEDDING)];
+    let n=0;
+    lists.forEach(arr=>arr.forEach(p=>{ const np=data.prices[p.url]; if(np&&np!==p.price){ p.price=np; n++; } }));
+    if(data.date&&/^\d{4}-\d{2}-\d{2}$/.test(data.date)){
+      const [y,mo,d]=data.date.split('-').map(Number);
+      PRICE_DATE=data.date;
+      PRICE_DATE_HU=y+'. '+HU_MONTHS[mo-1]+' '+d+'-i';
+      PRICE_DATE_EN=d+' '+EN_MONTHS[mo-1]+' '+y;
+      refreshDateTexts();
+    }
+    if(n||data.date) render(); // friss árakkal/dátummal újrarajzolás
+  }
+  fetch('prices.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(applyLivePrices).catch(()=>{}); // ha nincs még prices.json, marad minden a beépített áron
