@@ -57,7 +57,7 @@ function mount(container, opts) {
   const camera = new THREE.PerspectiveCamera(55, W / H, 0.05, 100);
   camera.position.set(roomW * 0.9, roomH * 1.6, roomD * 1.6);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true }); // preserve: kell a képmentéshez (snapshot)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(W, H);
   renderer.shadowMap.enabled = true;
@@ -124,8 +124,19 @@ function mount(container, opts) {
 
   renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
 
+  // Pillanatkép az AI-látványtervhez: lekicsinyítve (max 768px), JPEG-ként,
+  // hogy a feltöltendő adat kicsi maradjon (~100 KB).
+  window.HV3D.snapshot = function () {
+    const src = renderer.domElement;
+    const w = Math.min(768, src.width), h = Math.round(w * src.height / src.width);
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    c.getContext('2d').drawImage(src, 0, 0, w, h);
+    return c.toDataURL('image/jpeg', 0.82);
+  };
+
   return function dispose() {
     disposed = true;
+    window.HV3D.snapshot = null;
     renderer.setAnimationLoop(null);
     controls.dispose();
     renderer.dispose();
@@ -133,4 +144,4 @@ function mount(container, opts) {
   };
 }
 
-window.HV3D = { mount };
+window.HV3D = { mount, snapshot: null };

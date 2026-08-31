@@ -44,6 +44,23 @@ const SUPABASE_ANON_KEY = 'sb_publishable_oyzo5ne7tJxXUfRIeMQKsA_u1IRtL6W'; // p
     saveTimer = setTimeout(() => pushHouse(houseArr), 800);
   }
 
+  // --- AI-látványterv: a szerveroldali Edge Function hívása ---
+  // A Replicate-kulcs a szerveren van; innen csak a bejelentkezett
+  // felhasználó tokenjével lehet kérni (ezt a szerver ellenőrzi is).
+  async function aiRender(image, prompt) {
+    const { data: { session } } = await client.auth.getSession();
+    if (!session) return { error: 'auth' };
+    try {
+      const res = await fetch(SUPABASE_URL + '/functions/v1/render', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + session.access_token },
+        body: JSON.stringify({ image, prompt })
+      });
+      return await res.json();
+    } catch (e) { return { error: 'network' }; }
+  }
+
   // --- Bejelentkezés-figyelés: az app.js-t a callbackeken át értesítjük ---
   client.auth.onAuthStateChange((_event, session) => {
     user = session ? session.user : null;
@@ -52,7 +69,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_oyzo5ne7tJxXUfRIeMQKsA_u1IRtL6W'; // p
 
   window.HVCloud = {
     enabled: true,
-    signIn, signOut, fetchHouse, pushHouse, scheduleSave,
+    signIn, signOut, fetchHouse, pushHouse, scheduleSave, aiRender,
     getUser: () => user,
     onAuthChange: null // az app.js állítja be
   };

@@ -376,7 +376,8 @@
       footL:'© 2026 HomeVision AI — Lakberendező tervező',footR:'Árak: ikea.com/hu, jysk.hu · '+PRICE_DATE,
       exTitle:'Berendezési ajánlat — HomeVision AI',exStyle:'stílus',exWall:'falszín',exNone:'nincs',exDate:'dátum',exCat:'Kategória',exProd:'Termék',exStore:'Bolt',exPrice:'Ár',exFurn:'Bútorok',exPaint:'Falfesték',exTotal:'Végösszeg',exNote:'Az árak tájékoztató jellegűek ('+PRICE_DATE+'), a boltok oldalán ellenőrizhetők. Készült a HomeVision AI tervezővel.',
       noneItem:'Nincs festés',belm:'belmagasság',shoppingBtn:'🛒 Bevásárlólista',slTitle:'Bevásárlólista — bolt szerint',slItems:'tétel',slTotal:'Végösszeg',slOpen:'Megnézem →',slPrint:'🖨️ Nyomtatás / PDF',slClose:'Bezárás',view3d:'🧊 3D nézet',d3Title:'3D nézet',d3Hint:'Húzd az egérrel a forgatáshoz · görgő = nagyítás',d3NoLib:'A 3D nézethez internet szükséges.',houseBtn:'🏠 Házam',saveRoomBtn:'💾 Mentés a házamba',houseTitle:'A házam — mentett szobák',houseEmpty:'Még nincs mentett szoba. Állíts össze egy szobát, és mentsd el a szobatípus nevével!',load:'Betöltés',del:'Törlés',houseTotal:'Teljes ház összesen',houseShop:'🛒 Teljes ház – bevásárlólista',shareBtn:'🔗 Megosztás linkkel',shareCopied:'✔ Link a vágólapon!',shareFail:'Másold ki a linket:',
-      accSignIn:'Add meg az e-mail címed — belépő linket küldünk:',accSent:'✉️ Elküldve! Nyisd meg az e-mailben kapott linket.',accSignedIn:'Bejelentkezve:',accSignOut:'Kijelentkezés',accSynced:'☁ A Házam mentések mostantól a fiókodba is mentődnek.',accUpload:'Van {n} helyi mentésed. Feltöltsük a fiókodba?'},
+      accSignIn:'Add meg az e-mail címed — belépő linket küldünk:',accSent:'✉️ Elküldve! Nyisd meg az e-mailben kapott linket.',accSignedIn:'Bejelentkezve:',accSignOut:'Kijelentkezés',accSynced:'☁ A Házam mentések mostantól a fiókodba is mentődnek.',accUpload:'Van {n} helyi mentésed. Feltöltsük a fiókodba?',
+      aiBtn:'✨ AI látványterv',aiWorking:'⏳ Készül… (kb. fél perc)',aiLogin:'Az AI-látványtervhez jelentkezz be a 👤 gombbal!',aiLimit:'Mára elfogyott az AI-képkereted (5 kép/nap). Holnap újra próbálhatod!',aiErr:'Hiba történt a kép készítése közben. Próbáld újra!',aiLeft:'Hátralévő képek ma:'},
     en:{try:'Try it',kicker:'Interactive planner · real prices',planner:'planner',
       sub:'Pick a room type and style, size, wall colour, budget. For every item you can choose from <strong>real alternatives</strong> (◀ ▶), <strong>drag</strong> the furniture on the floor plan, and export an <strong>offer</strong> for your client. Every price is real, with a clickable link.',
       b1:'🛋️ 6 room types',b2:'🎨 6 styles',b3:'🏬 4 stores',b4:'📐 fits your room',b5:'💰 fits your budget',b6:'🧾 PDF offer',
@@ -400,7 +401,8 @@
       footL:'© 2026 HomeVision AI — Interior planner',footR:'Prices: ikea.com/hu, jysk.hu · '+PRICE_DATE,
       exTitle:'Furnishing offer — HomeVision AI',exStyle:'style',exWall:'wall',exNone:'none',exDate:'date',exCat:'Category',exProd:'Product',exStore:'Store',exPrice:'Price',exFurn:'Furniture',exPaint:'Wall paint',exTotal:'Total',exNote:'Prices are indicative ('+PRICE_DATE+'), verify on the store pages. Made with the HomeVision AI planner.',
       noneItem:'No paint',belm:'ceiling',shoppingBtn:'🛒 Shopping list',slTitle:'Shopping list — by store',slItems:'items',slTotal:'Total',slOpen:'Open →',slPrint:'🖨️ Print / PDF',slClose:'Close',view3d:'🧊 3D view',d3Title:'3D view',d3Hint:'Drag to rotate · scroll = zoom',d3NoLib:'The 3D view needs an internet connection.',houseBtn:'🏠 My house',saveRoomBtn:'💾 Save to my house',houseTitle:'My house — saved rooms',houseEmpty:'No saved rooms yet. Design a room and save it under its room-type name!',load:'Load',del:'Delete',houseTotal:'Whole house total',houseShop:'🛒 Whole-house shopping list',shareBtn:'🔗 Share link',shareCopied:'✔ Link copied!',shareFail:'Copy this link:',
-      accSignIn:'Enter your email — we will send a sign-in link:',accSent:'✉️ Sent! Open the link in the email.',accSignedIn:'Signed in:',accSignOut:'Sign out',accSynced:'☁ Your saved rooms now sync to your account.',accUpload:'You have {n} local saves. Upload them to your account?'},
+      accSignIn:'Enter your email — we will send a sign-in link:',accSent:'✉️ Sent! Open the link in the email.',accSignedIn:'Signed in:',accSignOut:'Sign out',accSynced:'☁ Your saved rooms now sync to your account.',accUpload:'You have {n} local saves. Upload them to your account?',
+      aiBtn:'✨ AI visualization',aiWorking:'⏳ Rendering… (about 30s)',aiLogin:'Sign in with the 👤 button to use AI visualization!',aiLimit:'You used up today\'s AI quota (5 images/day). Try again tomorrow!',aiErr:'Something went wrong while rendering. Please try again!',aiLeft:'Images left today:'},
   };
   const t=k=>T[state.lang][k];
   const CAT_EN={sofa:'Sofa',chair:'Armchair',coffee:'Coffee table',tv:'TV unit',rug:'Rug',lamp:'Floor lamp',curtain:'Curtain',cushion:'Cushion',vase:'Decor',bed:'Bed',nightstand:'Nightstand',wardrobe:'Wardrobe',bedding:'Bedding',dtable:'Dining table',dchair:'Dining chair',sideboard:'Sideboard',island:'Kitchen island',barstool:'Bar stool',kcabinet:'Storage cabinet',fridge:'Fridge',desk:'Desk',ochair:'Office chair',shelf:'Bookcase',kbed:'Kids bed',kdesk:'Kids desk'};
@@ -743,10 +745,29 @@
   function close3D(){ if(R3.stop)R3.stop(); if(R3.dom&&R3.onwheel)R3.dom.removeEventListener('wheel',R3.onwheel); R3={}; document.getElementById('d3Overlay').style.display='none'; }
   function open3D(){
     const ov=document.getElementById('d3Overlay');
-    ov.innerHTML=`<div class="slbox" style="max-width:760px;"><div class="slhead"><h3>${t('d3Title')}</h3><button class="slclose" id="d3X">✕</button></div><div id="d3canvas" style="width:100%;height:440px;border-radius:14px;overflow:hidden;background:${document.body.classList.contains('dark')?'#12151b':'#eef1f5'};touch-action:none;"></div><div style="font-size:12.5px;color:var(--muted);margin-top:10px;">${t('d3Hint')}</div><div class="slbtns"><button class="cl" id="d3X2">${t('slClose')}</button></div></div>`;
+    ov.innerHTML=`<div class="slbox" style="max-width:760px;"><div class="slhead"><h3>${t('d3Title')}</h3><button class="slclose" id="d3X">✕</button></div><div id="d3canvas" style="width:100%;height:440px;border-radius:14px;overflow:hidden;background:${document.body.classList.contains('dark')?'#12151b':'#eef1f5'};touch-action:none;"></div><div style="font-size:12.5px;color:var(--muted);margin-top:10px;">${t('d3Hint')}</div><div id="aiResult"></div><div class="slbtns">${(window.HVCloud&&window.HVCloud.enabled)?`<button class="pr" id="aiBtn">${t('aiBtn')}</button>`:''}<button class="cl" id="d3X2">${t('slClose')}</button></div></div>`;
     ov.style.display='flex';
     document.getElementById('d3X').onclick=close3D; document.getElementById('d3X2').onclick=close3D;
     ov.onclick=e=>{ if(e.target===ov) close3D(); };
+    const ab=document.getElementById('aiBtn');
+    if(ab) ab.onclick=async()=>{
+      if(!window.HVCloud.getUser()){ alert(t('aiLogin')); return; }
+      if(!window.HV3D||!window.HV3D.snapshot){ alert(t('d3NoLib')); return; }
+      ab.disabled=true; ab.textContent=t('aiWorking');
+      try{
+        // A 3D nézet aktuális képe + angol prompt a beállításokból
+        const img=window.HV3D.snapshot();
+        const prompt=`${STYLE_LABEL[state.style][1]} style ${ROOM_LABEL[state.room][1].toLowerCase()}, wall color ${wallHex()}, photorealistic interior design photo, natural light, high quality, detailed furniture`;
+        const res=await window.HVCloud.aiRender(img,prompt);
+        if(res&&res.url){
+          document.getElementById('aiResult').innerHTML=`<img src="${res.url}" style="width:100%;border-radius:14px;margin-top:12px;" alt="AI render">`+(res.remaining!=null?`<div style="font-size:12px;color:var(--muted);margin-top:6px;">${t('aiLeft')} ${res.remaining}</div>`:'');
+        }
+        else if(res&&res.error==='limit') alert(t('aiLimit'));
+        else if(res&&res.error==='auth') alert(t('aiLogin'));
+        else alert(t('aiErr'));
+      }catch(e){ alert(t('aiErr')); }
+      ab.disabled=false; ab.textContent=t('aiBtn');
+    };
     init3D();
   }
   function init3D(){
