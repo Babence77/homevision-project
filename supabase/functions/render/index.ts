@@ -40,34 +40,31 @@ Deno.serve(async (req) => {
       .select("count").eq("user_id", user.id).eq("day", day).maybeSingle();
     const used = row?.count ?? 0;
     if (used >= DAILY_LIMIT) return json({ error: "limit", limit: DAILY_LIMIT }, 429);
-    await admin.from("ai_renders").upsert({ user_id: user.id, day, count: used + 1 });
 
     // 3) Bemenet: a 3D nézet képe (data URL) + az angol nyelvű prompt
     const { image, prompt } = await req.json();
-    if (!image || !prompt || String(image).length > 400_000) return json({ error: "input" }, 400);
+    if (!image || !prompt || String(image).length > 2_500_000) return json({ error: "input" }, 400);
 
-    // 4) Replicate hívás — a modell legfrissebb verzióját kérdezzük le
+    // 4) Replicate hívás — FLUX Kontext Pro: utasítás-alapú képszerkesztő,
+    // a 3D-nézet elrendezését és arányait megtartva fotórealisztikussá alakítja.
     const token = Deno.env.get("REPLICATE_API_TOKEN");
     if (!token) return json({ error: "config" }, 500);
     const auth = { Authorization: "Bearer " + token };
 
-    const model = await fetch("https://api.replicate.com/v1/models/adirik/interior-design", { headers: auth })
-      .then((r) => r.json());
-    const version = model.latest_version?.id;
-    if (!version) return json({ error: "model" }, 502);
-
-    let pred = await fetch("https://api.replicate.com/v1/predictions", {
+    let pred = await fetch("https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions", {
       method: "POST",
       headers: { ...auth, "Content-Type": "application/json", Prefer: "wait=60" },
       body: JSON.stringify({
-        version,
         input: {
-          image, prompt,
-          negative_prompt: "lowres, watermark, text, blurry, deformed, ugly",
-          guidance_scale: 15, prompt_strength: 0.8, num_inference_steps: 30,
+          prompt,
+          input_image: image,
+          aspect_ratio: "match_input_image",
+          output_format: "jpg",
+          safety_tolerance: 2,
         },
       }),
     }).then((r) => r.json());
+    if (!pred.id) return json({ error: "render", detail: JSON.stringify(pred).slice(0, 300) }, 502);
 
     // 5) Ha 60 mp alatt nem lett kész, kétmásodpercenként rákérdezünk
     let tries = 0;
@@ -80,6 +77,8 @@ Deno.serve(async (req) => {
     if (pred.status !== "succeeded") return json({ error: "render", detail: pred.error ?? pred.status }, 502);
 
     const url = Array.isArray(pred.output) ? pred.output[0] : pred.output;
+    // Csak sikeres render után számoljuk a napi limitbe
+    await admin.from("ai_renders").upsert({ user_id: user.id, day, count: used + 1 });
     return json({ url, remaining: DAILY_LIMIT - used - 1 });
   } catch (e) {
     return json({ error: "server", detail: String(e) }, 500);

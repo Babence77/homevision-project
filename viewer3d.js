@@ -124,14 +124,14 @@ function mount(container, opts) {
 
   renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
 
-  // Pillanatkép az AI-látványtervhez: lekicsinyítve (max 768px), JPEG-ként,
-  // hogy a feltöltendő adat kicsi maradjon (~100 KB).
+  // Pillanatkép az AI-látványtervhez: max 1024px, JPEG-ként. Az arány
+  // (szélesség:magasság) pontosan megmarad, így a kép méretarányos lesz.
   window.HV3D.snapshot = function () {
     const src = renderer.domElement;
-    const w = Math.min(768, src.width), h = Math.round(w * src.height / src.width);
+    const w = Math.min(1024, src.width), h = Math.round(w * src.height / src.width);
     const c = document.createElement('canvas'); c.width = w; c.height = h;
     c.getContext('2d').drawImage(src, 0, 0, w, h);
-    return c.toDataURL('image/jpeg', 0.82);
+    return c.toDataURL('image/jpeg', 0.9);
   };
 
   return function dispose() {

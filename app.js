@@ -757,7 +757,7 @@
       try{
         // A 3D nézet aktuális képe + angol prompt a beállításokból
         const img=window.HV3D.snapshot();
-        const prompt=`${STYLE_LABEL[state.style][1]} style ${ROOM_LABEL[state.room][1].toLowerCase()}, wall color ${wallHex()}, photorealistic interior design photo, natural light, high quality, detailed furniture`;
+        const prompt=`Turn this 3D room render into a photorealistic interior design photograph of a ${STYLE_LABEL[state.style][1]} style ${ROOM_LABEL[state.room][1].toLowerCase()}. Keep the exact same camera angle, room shape, wall and floor layout, and keep every piece of furniture in exactly the same position, size and proportion. Do not add, remove, move or resize any object. Walls colour ${wallHex()}. Realistic materials, soft natural daylight, sharp details, high quality.`;
         const res=await window.HVCloud.aiRender(img,prompt);
         if(res&&res.url){
           document.getElementById('aiResult').innerHTML=`<img src="${res.url}" style="width:100%;border-radius:14px;margin-top:12px;" alt="AI render">`+(res.remaining!=null?`<div style="font-size:12px;color:var(--muted);margin-top:6px;">${t('aiLeft')} ${res.remaining}</div>`:'');
