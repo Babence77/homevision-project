@@ -764,8 +764,8 @@
         }
         else if(res&&res.error==='limit') alert(t('aiLimit'));
         else if(res&&res.error==='auth') alert(t('aiLogin'));
-        else alert(t('aiErr'));
-      }catch(e){ alert(t('aiErr')); }
+        else alert(t('aiErr')+(res&&res.error?' ['+res.error+(res.detail?': '+String(res.detail).slice(0,300):'')+']':''));
+      }catch(e){ alert(t('aiErr')+' ['+e+']'); }
       ab.disabled=false; ab.textContent=t('aiBtn');
     };
     init3D();
