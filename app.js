@@ -377,7 +377,7 @@
       exTitle:'Berendezési ajánlat — HomeVision AI',exStyle:'stílus',exWall:'falszín',exNone:'nincs',exDate:'dátum',exCat:'Kategória',exProd:'Termék',exStore:'Bolt',exPrice:'Ár',exFurn:'Bútorok',exPaint:'Falfesték',exTotal:'Végösszeg',exNote:'Az árak tájékoztató jellegűek ('+PRICE_DATE+'), a boltok oldalán ellenőrizhetők. Készült a HomeVision AI tervezővel.',
       noneItem:'Nincs festés',belm:'belmagasság',shoppingBtn:'🛒 Bevásárlólista',slTitle:'Bevásárlólista — bolt szerint',slItems:'tétel',slTotal:'Végösszeg',slOpen:'Megnézem →',slPrint:'🖨️ Nyomtatás / PDF',slClose:'Bezárás',view3d:'🧊 3D nézet',d3Title:'3D nézet',d3Hint:'Húzd az egérrel a forgatáshoz · görgő = nagyítás',d3NoLib:'A 3D nézethez internet szükséges.',houseBtn:'🏠 Házam',saveRoomBtn:'💾 Mentés a házamba',houseTitle:'A házam — mentett szobák',houseEmpty:'Még nincs mentett szoba. Állíts össze egy szobát, és mentsd el a szobatípus nevével!',load:'Betöltés',del:'Törlés',houseTotal:'Teljes ház összesen',houseShop:'🛒 Teljes ház – bevásárlólista',shareBtn:'🔗 Megosztás linkkel',shareCopied:'✔ Link a vágólapon!',shareFail:'Másold ki a linket:',
       accSignIn:'Add meg az e-mail címed — belépő linket küldünk:',accSent:'✉️ Elküldve! Nyisd meg az e-mailben kapott linket.',accSignedIn:'Bejelentkezve:',accSignOut:'Kijelentkezés',accSynced:'☁ A Házam mentések mostantól a fiókodba is mentődnek.',accUpload:'Van {n} helyi mentésed. Feltöltsük a fiókodba?',
-      aiBtn:'✨ AI látványterv',aiWorking:'⏳ Készül… (kb. fél perc)',aiLogin:'Az AI-látványtervhez jelentkezz be a 👤 gombbal!',aiLimit:'Mára elfogyott az AI-képkereted (5 kép/nap). Holnap újra próbálhatod!',aiErr:'Hiba történt a kép készítése közben. Próbáld újra!',aiLeft:'Hátralévő képek ma:'},
+      aiBtn:'✨ AI látványterv',authWelcome:'Üdvözöljük',authSub:'Jelentkezzen be a mentett szobáihoz',authCreate:'Fiók létrehozása',authCreateSub:'Mentse el terveit, bármely eszközön',authGoogle:'Folytatás Google-lel',authOr:'vagy',authName:'Név',authEmail:'E-mail cím',authPass:'Jelszó',authSignIn:'Belépés',authSignUp:'Regisztráció',authNew:'Még nincs fiókja?',authHave:'Már van fiókja?',authMagic:'Belépés jelszó nélkül, e-mailes linkkel',authFill:'Kérjük, töltse ki az e-mailt és a jelszót.',authShort:'A jelszó legalább 6 karakter legyen.',authConfirm:'Megerősítő e-mailt küldtünk — nyissa meg a levélben lévő linket.',aiWorking:'⏳ Készül… (kb. fél perc)',aiLogin:'Az AI-látványtervhez jelentkezz be a 👤 gombbal!',aiLimit:'Mára elfogyott az AI-képkereted (5 kép/nap). Holnap újra próbálhatod!',aiErr:'Hiba történt a kép készítése közben. Próbáld újra!',aiLeft:'Hátralévő képek ma:'},
     en:{try:'Try it',kicker:'Interactive planner · real prices',planner:'planner',
       sub:'Pick a room type and style, size, wall colour, budget. For every item you can choose from <strong>real alternatives</strong> (◀ ▶), <strong>drag</strong> the furniture on the floor plan, and export an <strong>offer</strong> for your client. Every price is real, with a clickable link.',
       b1:'🛋️ 6 room types',b2:'🎨 6 styles',b3:'🏬 4 stores',b4:'📐 fits your room',b5:'💰 fits your budget',b6:'🧾 PDF offer',
@@ -402,7 +402,7 @@
       exTitle:'Furnishing offer — HomeVision AI',exStyle:'style',exWall:'wall',exNone:'none',exDate:'date',exCat:'Category',exProd:'Product',exStore:'Store',exPrice:'Price',exFurn:'Furniture',exPaint:'Wall paint',exTotal:'Total',exNote:'Prices are indicative ('+PRICE_DATE+'), verify on the store pages. Made with the HomeVision AI planner.',
       noneItem:'No paint',belm:'ceiling',shoppingBtn:'🛒 Shopping list',slTitle:'Shopping list — by store',slItems:'items',slTotal:'Total',slOpen:'Open →',slPrint:'🖨️ Print / PDF',slClose:'Close',view3d:'🧊 3D view',d3Title:'3D view',d3Hint:'Drag to rotate · scroll = zoom',d3NoLib:'The 3D view needs an internet connection.',houseBtn:'🏠 My house',saveRoomBtn:'💾 Save to my house',houseTitle:'My house — saved rooms',houseEmpty:'No saved rooms yet. Design a room and save it under its room-type name!',load:'Load',del:'Delete',houseTotal:'Whole house total',houseShop:'🛒 Whole-house shopping list',shareBtn:'🔗 Share link',shareCopied:'✔ Link copied!',shareFail:'Copy this link:',
       accSignIn:'Enter your email — we will send a sign-in link:',accSent:'✉️ Sent! Open the link in the email.',accSignedIn:'Signed in:',accSignOut:'Sign out',accSynced:'☁ Your saved rooms now sync to your account.',accUpload:'You have {n} local saves. Upload them to your account?',
-      aiBtn:'✨ AI visualization',aiWorking:'⏳ Rendering… (about 30s)',aiLogin:'Sign in with the 👤 button to use AI visualization!',aiLimit:'You used up today\'s AI quota (5 images/day). Try again tomorrow!',aiErr:'Something went wrong while rendering. Please try again!',aiLeft:'Images left today:'},
+      aiBtn:'✨ AI visualization',authWelcome:'Welcome',authSub:'Sign in to your saved rooms',authCreate:'Create account',authCreateSub:'Keep your designs, on any device',authGoogle:'Continue with Google',authOr:'or',authName:'Name',authEmail:'Email address',authPass:'Password',authSignIn:'Sign in',authSignUp:'Sign up',authNew:'No account yet?',authHave:'Already have an account?',authMagic:'Sign in without a password, via email link',authFill:'Please enter your email and password.',authShort:'Password must be at least 6 characters.',authConfirm:'We sent a confirmation email — open the link inside.',aiWorking:'⏳ Rendering… (about 30s)',aiLogin:'Sign in with the 👤 button to use AI visualization!',aiLimit:'You used up today\'s AI quota (5 images/day). Try again tomorrow!',aiErr:'Something went wrong while rendering. Please try again!',aiLeft:'Images left today:'},
   };
   const t=k=>T[state.lang][k];
   const CAT_EN={sofa:'Sofa',chair:'Armchair',coffee:'Coffee table',tv:'TV unit',rug:'Rug',lamp:'Floor lamp',curtain:'Curtain',cushion:'Cushion',vase:'Decor',bed:'Bed',nightstand:'Nightstand',wardrobe:'Wardrobe',bedding:'Bedding',dtable:'Dining table',dchair:'Dining chair',sideboard:'Sideboard',island:'Kitchen island',barstool:'Bar stool',kcabinet:'Storage cabinet',fridge:'Fridge',desk:'Desk',ochair:'Office chair',shelf:'Bookcase',kbed:'Kids bed',kdesk:'Kids desk'};
@@ -899,14 +899,57 @@
     accBtn.style.display='';
     accBtn.addEventListener('click',async()=>{
       const u=window.HVCloud.getUser();
-      if(!u){
-        const email=prompt(t('accSignIn')); if(!email) return;
-        const err=await window.HVCloud.signIn(email.trim());
-        alert(err?('Hiba: '+err):t('accSent'));
-      } else {
-        if(confirm(t('accSignedIn')+' '+u.email+'\n\n'+t('accSignOut')+'?')) await window.HVCloud.signOut();
+      if(!u){ openAuth(); }
+      else{
+        const nm=(u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||'';
+        if(confirm(t('accSignedIn')+' '+(nm?nm+' · ':'')+u.email+'\n\n'+t('accSignOut')+'?')) await window.HVCloud.signOut();
       }
     });
+    // Minimal, luxus stílusú belépő ablak: Google, jelszó+regisztráció, vagy e-mailes link
+    function openAuth(){
+      const ov=document.getElementById('authOverlay'); let mode='in';
+      const draw=()=>{
+        const reg=mode==='up';
+        ov.innerHTML=`<div class="authbox"><button class="aclose" id="aX">✕</button>
+          <div class="abrand">HomeVision AI</div>
+          <h2>${reg?t('authCreate'):t('authWelcome')}</h2>
+          <div class="asub">${reg?t('authCreateSub'):t('authSub')}</div>
+          <button class="agoogle" id="aG"><svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.4 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.9-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.6l-7.4-5.7c-2 1.4-4.7 2.3-7.8 2.3-6.3 0-11.7-4-13.6-9.8l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>${t('authGoogle')}</button>
+          <div class="aor">${t('authOr')}</div>
+          ${reg?`<input id="aName" type="text" placeholder="${t('authName')}" autocomplete="name">`:''}
+          <input id="aMail" type="email" placeholder="${t('authEmail')}" autocomplete="email">
+          <input id="aPass" type="password" placeholder="${t('authPass')}" autocomplete="${reg?'new-password':'current-password'}">
+          <button class="asubmit" id="aGo">${reg?t('authSignUp'):t('authSignIn')}</button>
+          <div class="amsg" id="aMsg"></div>
+          ${reg?'':`<a class="amagic" id="aMagic">${t('authMagic')}</a>`}
+          <div class="aswitch">${reg?t('authHave'):t('authNew')} <a id="aSw">${reg?t('authSignIn'):t('authSignUp')}</a></div></div>`;
+        ov.style.display='flex';
+        const msg=(m,ok)=>{ const e=document.getElementById('aMsg'); e.textContent=m||''; e.className='amsg'+(ok?' ok':''); };
+        const close=()=>{ ov.style.display='none'; ov.innerHTML=''; };
+        document.getElementById('aX').onclick=close;
+        ov.onclick=e=>{ if(e.target===ov) close(); };
+        document.getElementById('aSw').onclick=()=>{ mode=reg?'in':'up'; draw(); };
+        document.getElementById('aG').onclick=async()=>{ const err=await window.HVCloud.signInGoogle(); if(err) msg(err); };
+        document.getElementById('aGo').onclick=async()=>{
+          const email=document.getElementById('aMail').value.trim(), pass=document.getElementById('aPass').value;
+          if(!email||!pass){ msg(t('authFill')); return; }
+          if(reg){
+            if(pass.length<6){ msg(t('authShort')); return; }
+            const r=await window.HVCloud.signUp(email,pass,document.getElementById('aName').value.trim());
+            if(r.error) msg(r.error); else if(r.needsConfirm) msg(t('authConfirm'),true); else close();
+          } else {
+            const err=await window.HVCloud.signInPassword(email,pass);
+            if(err) msg(err); else close();
+          }
+        };
+        const mg=document.getElementById('aMagic');
+        if(mg) mg.onclick=async()=>{
+          const email=document.getElementById('aMail').value.trim(); if(!email){ msg(t('authFill')); return; }
+          const err=await window.HVCloud.signIn(email); if(err) msg(err); else msg(t('accSent'),true);
+        };
+      };
+      draw();
+    }
     // Bejelentkezéskor: felhő és helyi mentések összefésülése
     window.HVCloud.onAuthChange=async(u)=>{
       accBtn.textContent=u?'☁':'👤'; accBtn.title=u?(t('accSignedIn')+' '+u.email):'Fiók';

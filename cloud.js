@@ -24,6 +24,28 @@ const SUPABASE_ANON_KEY = 'sb_publishable_oyzo5ne7tJxXUfRIeMQKsA_u1IRtL6W'; // p
   }
   async function signOut() { await client.auth.signOut(); }
 
+  // --- Google-belépés (OAuth): a böngésző átmegy a Google-höz, majd visszajön ---
+  async function signInGoogle() {
+    const { error } = await client.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: location.origin + location.pathname }
+    });
+    return error ? error.message : null;
+  }
+  // --- Regisztráció / belépés jelszóval; a név a profil része (user_metadata) ---
+  async function signUp(email, password, name) {
+    const { data, error } = await client.auth.signUp({
+      email, password,
+      options: { data: { full_name: name }, emailRedirectTo: location.origin + location.pathname }
+    });
+    if (error) return { error: error.message };
+    return { needsConfirm: !data.session }; // true = e-mailben meg kell erősíteni
+  }
+  async function signInPassword(email, password) {
+    const { error } = await client.auth.signInWithPassword({ email, password });
+    return error ? error.message : null;
+  }
+
   // --- Felhő-műveletek: a teljes "Házam" lista egyetlen JSON-ként ---
   async function fetchHouse() {
     const { data, error } = await client.from('houses').select('data').maybeSingle();
@@ -69,7 +91,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_oyzo5ne7tJxXUfRIeMQKsA_u1IRtL6W'; // p
 
   window.HVCloud = {
     enabled: true,
-    signIn, signOut, fetchHouse, pushHouse, scheduleSave, aiRender,
+    signIn, signOut, signInGoogle, signUp, signInPassword, fetchHouse, pushHouse, scheduleSave, aiRender,
     getUser: () => user,
     onAuthChange: null // az app.js állítja be
   };
