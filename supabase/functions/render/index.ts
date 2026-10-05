@@ -51,19 +51,26 @@ Deno.serve(async (req) => {
     if (!token) return json({ error: "config" }, 500);
     const auth = { Authorization: "Bearer " + token };
 
-    let pred = await fetch("https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions", {
-      method: "POST",
-      headers: { ...auth, "Content-Type": "application/json", Prefer: "wait=60" },
-      body: JSON.stringify({
-        input: {
-          prompt,
-          input_image: image,
-          aspect_ratio: "match_input_image",
-          output_format: "jpg",
-          safety_tolerance: 2,
-        },
-      }),
-    }).then((r) => r.json());
+    // Kevés kreditnél a Replicate szűk kérésszámot enged (429): a megadott
+    // várakozás után automatikusan újrapróbáljuk, legfeljebb 4-szer.
+    let pred: any;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      pred = await fetch("https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions", {
+        method: "POST",
+        headers: { ...auth, "Content-Type": "application/json", Prefer: "wait=60" },
+        body: JSON.stringify({
+          input: {
+            prompt,
+            input_image: image,
+            aspect_ratio: "match_input_image",
+            output_format: "jpg",
+            safety_tolerance: 2,
+          },
+        }),
+      }).then((r) => r.json());
+      if (pred.status !== 429) break;
+      await new Promise((r) => setTimeout(r, ((pred.retry_after ?? 2) + 1) * 1000));
+    }
     if (!pred.id) return json({ error: "render", detail: JSON.stringify(pred).slice(0, 300) }, 502);
 
     // 5) Ha 60 mp alatt nem lett kész, kétmásodpercenként rákérdezünk
