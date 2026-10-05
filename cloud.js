@@ -6,6 +6,7 @@
 // ⬇️ IDE kell a Supabase projekt két adata (Project Settings → API):
 const SUPABASE_URL = 'https://bawqlphksmkgmwnmbcqi.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_oyzo5ne7tJxXUfRIeMQKsA_u1IRtL6W'; // publikus kulcs (a biztonságot az RLS adja)
+const GOOGLE_LOGIN = false; // true-ra állítani, ha a Supabase-ben már be van állítva a Google provider
 
 (function(){
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY || typeof supabase === 'undefined') return; // konfig nélkül: alvó mód
@@ -90,7 +91,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_oyzo5ne7tJxXUfRIeMQKsA_u1IRtL6W'; // p
   });
 
   window.HVCloud = {
-    enabled: true,
+    enabled: true, google: GOOGLE_LOGIN,
     signIn, signOut, signInGoogle, signUp, signInPassword, fetchHouse, pushHouse, scheduleSave, aiRender,
     getUser: () => user,
     onAuthChange: null // az app.js állítja be
