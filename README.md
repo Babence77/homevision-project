@@ -94,3 +94,5 @@ A 3D nézet aktuális alaprajzból induló animált átmenetet kapott; az AI-gom
 - A többdarabos katalógusok (pl. 2-es/4-es csomag) ára belső egységárra van bontva, így nem számolódik duplán. Ez a tervbe kerülő darabok arányos költsége; a boltban a teljes csomag megvásárlása lehet szükséges.
 - A 3D mozgatás ugyanazt az ütközés- és falellenőrzést használja, mint a 2D. Érvénytelen mozgatásnál visszaáll az előző pozíció.
 - Nappali tervezés előtt kötelező TV-elhelyezést választani (bútoron / falon). A beállítás megjelenik 2D/3D nézetben, AI-promptban, mentésben és megosztható linkben.
+
+Publikáláskor az `index.html` saját CSS- és JavaScript-hivatkozásainak `v=` verziójelölését is frissítsük, ha ezeket módosítjuk. Így a korábban megnyitott GitHub Pages-oldal nem keveri az új HTML-t a gyorsítótárból betöltött régi programkóddal.
