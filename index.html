@@ -8,9 +8,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=dreamr-20261007">
+<link rel="stylesheet" href="styles.css?v=dreamr-v7">
 </head>
-<body>
+<body class="welcome-mode">
+  <main id="welcomePage" class="welcome-page" aria-labelledby="welcomeTitle">
+    <header class="welcome-header">
+      <a class="brand" href="#top" aria-label="DREAMR">
+        <span class="logo-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-word">DREAM<span class="brand-r">R</span></span>
+      </a>
+      <button id="welcomeLang" class="themebtn" type="button" aria-label="Nyelv / Language">EN</button>
+    </header>
+    <div class="welcome-copy">
+      <p class="welcome-eyebrow" data-i18n="welcomeEyebrow">A TÉR A TIÉD. AZ ÁLOM IS.</p>
+      <h1 id="welcomeTitle" data-i18n="welcomeTitle">Álmodd meg. Lakd meg.</h1>
+      <p data-i18n="welcomeSubtitle">Valódi bútorok. Személyes terek. Egy új kezdet.</p>
+    </div>
+    <section id="welcomeAuth" class="welcome-auth" aria-label="DREAMR bejelentkezés">
+      <p role="status" data-i18n="sessionLoading">Profil ellenőrzése…</p>
+    </section>
+    <button id="guestBtn" class="welcome-guest" type="button" data-i18n="guestContinue">Folytatás vendégként →</button>
+    <p class="welcome-promise" data-i18n="welcomePromise">A térből otthon lesz.</p>
+    <div id="welcomeStatus" role="status" aria-live="polite"></div>
+  </main>
   <nav class="nav">
     <a class="brand" href="#top" aria-label="DREAMR">
       <span class="logo-mark" aria-hidden="true"><span></span></span>
@@ -180,10 +200,10 @@
     "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 } }
 </script>
-<script type="module" src="viewer3d.js?v=dreamr-20261007"></script>
+<script type="module" src="viewer3d.js?v=dreamr-v7"></script>
 <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="cloud.js"></script>
-<script src="app.js?v=dreamr-20261007"></script>
+<script src="cloud.js?v=dreamr-v7"></script>
+<script src="app.js?v=dreamr-v7"></script>
 </body>
 </html>

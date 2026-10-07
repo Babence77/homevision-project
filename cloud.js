@@ -11,7 +11,9 @@ const GOOGLE_LOGIN = false; // true-ra állítani, ha a Supabase-ben már be van
 (function(){
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY || typeof supabase === 'undefined') return; // konfig nélkül: alvó mód
 
-  const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY,{
+    auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+  });
   let user = null;
   let saveTimer = null;
 
@@ -23,7 +25,11 @@ const GOOGLE_LOGIN = false; // true-ra állítani, ha a Supabase-ben már be van
     });
     return error ? error.message : null; // null = siker, e-mail elküldve
   }
-  async function signOut() { await client.auth.signOut(); }
+  async function signOut() {
+    clearTimeout(saveTimer);
+    const {error}=await client.auth.signOut();
+    if(error) throw error;
+  }
 
   // --- Google-belépés (OAuth): a böngésző átmegy a Google-höz, majd visszajön ---
   async function signInGoogle() {
@@ -50,21 +56,22 @@ const GOOGLE_LOGIN = false; // true-ra állítani, ha a Supabase-ben már be van
   // --- Felhő-műveletek: a teljes "Házam" lista egyetlen JSON-ként ---
   async function fetchHouse() {
     const { data, error } = await client.from('houses').select('data').maybeSingle();
-    if (error) return null;
+    if (error) throw error;
     return data ? data.data : null; // null = még nincs felhő-mentése
   }
   async function pushHouse(houseArr) {
     if (!user) return;
-    await client.from('houses').upsert({
+    const {error}=await client.from('houses').upsert({
       user_id: user.id, data: houseArr, updated_at: new Date().toISOString()
     });
+    if(error) throw error;
   }
   // Rövid késleltetéssel mentünk, hogy gyors kattintgatásnál ne menjen
   // minden egyes változásról külön kérés (ezt hívják "debounce"-nak).
   function scheduleSave(houseArr) {
     if (!user) return;
     clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => pushHouse(houseArr), 800);
+    saveTimer = setTimeout(() => pushHouse(houseArr).catch(reportError), 800);
   }
 
   // --- AI-látványterv: a szerveroldali Edge Function hívása ---
@@ -85,9 +92,17 @@ const GOOGLE_LOGIN = false; // true-ra állítani, ha a Supabase-ben már be van
   }
 
   // --- Bejelentkezés-figyelés: az app.js-t a callbackeken át értesítjük ---
+  function reportError(error){
+    console.error('DREAMR cloud:',error);
+    if(window.HVCloud.onError) window.HVCloud.onError(error);
+  }
   client.auth.onAuthStateChange((_event, session) => {
     user = session ? session.user : null;
-    if (window.HVCloud.onAuthChange) window.HVCloud.onAuthChange(user);
+    const currentUser=user;
+    // Supabase calls this while holding its auth lock; cloud queries must run afterwards.
+    setTimeout(()=>{
+      if(window.HVCloud.onAuthChange) Promise.resolve(window.HVCloud.onAuthChange(currentUser)).catch(reportError);
+    },0);
   });
 
   window.HVCloud = {
@@ -96,5 +111,10 @@ const GOOGLE_LOGIN = false; // true-ra állítani, ha a Supabase-ben már be van
     getUser: () => user,
     onAuthChange: null // az app.js állítja be
   };
+  window.HVCloud.ready=client.auth.getSession().then(({data,error})=>{
+    if(error) throw error;
+    user=data.session?data.session.user:null;
+    return user;
+  });
 })();
 if (!window.HVCloud) window.HVCloud = { enabled: false };

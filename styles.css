@@ -367,3 +367,49 @@ body.dark .tab.on,body.dark .nav-start,body.dark .hero-primary,body.dark .buy,bo
 .three-d-control>b{min-width:12px;text-align:center;}
 .three-d-control .qty-btn{width:24px;height:24px;}
 #threeDFurnitureControls{max-height:170px;overflow:auto;}
+
+.product-photo{position:relative;width:132px;height:106px;flex:0 0 132px;overflow:hidden;border-radius:12px;background:#fff;display:grid;place-items:center;border:1px solid var(--line);}
+.product-photo img{width:100%;height:100%;object-fit:contain;padding:6px;display:block;}
+.product-photo img[hidden],.photo-fallback[hidden]{display:none;}
+.photo-fallback{display:grid;place-items:center;gap:4px;font-size:28px;color:var(--muted);}
+.photo-fallback small{font-size:10px;padding:0 4px;text-align:center;}
+.photo-store-logo{position:absolute;right:5px;bottom:5px;padding:4px 6px;border-radius:4px;font-size:9px;font-weight:800;background:#fff;color:#111;box-shadow:0 1px 5px #0002;}
+.photo-store-logo.ikea{background:#ffda00;color:#0051a4;}
+.photo-store-logo.jysk{background:#0750a1;color:#fff;}
+.photo-store-logo.momax{background:#df001b;color:#fff;}
+.photo-store-logo.mobelix{background:#ed5b13;color:#fff;}
+
+.welcome-page{min-height:100svh;padding:32px 24px 24px;display:flex;flex-direction:column;align-items:center;background:radial-gradient(ellipse at 12% 15%,#e8dcc87a,transparent 50%),radial-gradient(ellipse at 90% 80%,#e8dcc855,transparent 45%),var(--dream-bg);}
+.welcome-page[hidden]{display:none;}
+.welcome-header{width:100%;max-width:1200px;display:flex;align-items:center;justify-content:space-between;}
+.welcome-copy{text-align:center;margin:46px 0 26px;}
+.welcome-eyebrow{font-size:10px;letter-spacing:3px;color:#8e795b;margin-bottom:16px;}
+.welcome-copy h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(42px,6vw,66px);font-weight:400;line-height:1.08;letter-spacing:-1px;}
+.welcome-copy>p:last-child{font-size:13px;color:var(--muted);margin-top:16px;line-height:1.7;}
+.welcome-auth{width:100%;max-width:420px;}
+.welcome-auth .authbox{width:100%;margin:0;padding:30px 32px;background:var(--dream-surface);border:1px solid var(--dream-line);border-radius:20px;box-shadow:0 16px 50px #30241708;}
+.welcome-auth .authbox h2{font-size:30px;margin-top:0;}
+.welcome-auth .authbox h2,.welcome-auth .authbox input{color:var(--ink);}
+.welcome-auth .authbox .asub,.welcome-auth .authbox .aswitch{color:var(--muted);}
+.welcome-auth .abrand{display:none;}
+.authbox form{margin-top:20px;}
+.authbox .auth-remember{font-size:11px;line-height:1.65;color:var(--muted);margin-top:13px;}
+.authbox .amagic,.authbox .aswitch button{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:4px;}
+.authbox .amagic{font-size:12px;line-height:1.65;margin-top:12px;}
+.authbox .aswitch button{color:#8e795b;}
+.authbox button:disabled{cursor:wait;opacity:.6;}
+.welcome-guest{background:none;border:0;border-bottom:1px solid #cbb99b;padding:6px 0;margin-top:24px;font:inherit;font-size:12px;color:var(--muted);cursor:pointer;}
+.welcome-promise{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:20px;color:var(--muted);margin-top:32px;}
+#welcomeStatus{max-width:420px;text-align:center;font-size:12px;color:var(--bad);line-height:1.6;margin-top:10px;}
+.welcome-mode>.nav,.welcome-mode>.wrap,.welcome-mode>#tvPlacementOverlay{display:none!important;}
+.welcome-mode .welcome-page{display:flex;}
+:focus-visible{outline:2px solid #a1845b;outline-offset:4px;}
+@media(max-width:620px){
+  .product-photo{width:96px;height:96px;flex-basis:96px;}
+  .item{flex-wrap:wrap;}
+  .item .info{min-width:140px;}
+  .item .right{margin-left:auto;}
+  .welcome-page{padding:24px 18px;}
+  .welcome-copy{margin:36px 0 22px;}
+  .welcome-auth .authbox{padding:25px 22px;}
+}

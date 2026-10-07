@@ -96,3 +96,13 @@ A 3D nézet aktuális alaprajzból induló animált átmenetet kapott; az AI-gom
 - Nappali tervezés előtt kötelező TV-elhelyezést választani (bútoron / falon). A beállítás megjelenik 2D/3D nézetben, AI-promptban, mentésben és megosztható linkben.
 
 Publikáláskor az `index.html` saját CSS- és JavaScript-hivatkozásainak `v=` verziójelölését is frissítsük, ha ezeket módosítjuk. Így a korábban megnyitott GitHub Pages-oldal nem keveri az új HTML-t a gyorsítótárból betöltött régi programkóddal.
+
+## V7 termékképek és DREAMR kezdőlap
+
+A `product-images.json` a kapott v7 csomag 95 termékoldalához tartozó külső képlinkeket tárolja. Külön áll a napi frissítésű `prices.json` fájltól, így az árrobot nem törli a képeket. A bútorlistában a termékfotó és a bolt felirata jelenik meg; hiányzó vagy elérhetetlen fotónál külön „Kép nem elérhető” jelzés látható. A fotó az eredeti terméket mutatja, a tervezőben kiválasztott látványtervi szín nem módosítja a bolti fotót. A képszolgáltatók elérhetősége és a felhasználási feltételeik külső függőségek.
+
+Az új nyitóképernyőn csak DREAMR logó, szlogenek, nyelvváltás, bejelentkezés / regisztráció és vendégbelépés található. Érvényes mentett bejelentkezés esetén az app automatikusan megnyitja a tervezőt. A megosztott szobakonfiguráció a vendégbelépés után is megmarad.
+
+A Supabase a munkamenetet a böngészőben tárolja (`persistSession`) és frissíti (`autoRefreshToken`). Jelszót az alkalmazás nem ment el. Induláskor megvárjuk a `getSession()` eredményét; a felhőlekérdezéseket az auth callback után indítjuk, nem annak belső zárolása alatt. Kijelentkezéskor visszatér a kezdőlap. A munkamenet nem közös a localhost és az élő oldal, más böngészők vagy eszközök között; privát mód, törölt böngészőadatok vagy lejárt/visszavont munkamenet esetén új belépés szükséges. Közös gépen mindig jelentkezz ki.
+
+Az e-mailes link kézbesítése továbbra is a Supabase SMTP-beállításaitól függ. A felület a kérés elfogadását jelzi, nem állítja, hogy a levél biztosan megérkezett.

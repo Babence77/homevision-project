@@ -347,9 +347,16 @@
   ];
   const MARGIN=40;
   const STORE_LABEL={ikea:'IKEA',jysk:'JYSK',momax:'MÖMAX',mobelix:'MÖBELIX'};
+  const PRODUCT_IMAGES={};
+  const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function productPhoto(it){
+    const image=PRODUCT_IMAGES[it.url],label=state.lang==='hu'?'Kép nem elérhető':'Image unavailable';
+    return `<div class="product-photo">${image?`<img src="${escapeHtml(image)}" alt="${escapeHtml(it.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">`:''}<span class="photo-fallback" ${image?'hidden':''}>${it.icon}<small>${label}</small></span><span class="photo-store-logo ${it.store}">${STORE_LABEL[it.store]}</span></div>`;
+  }
   const storeBadge=s=>`<span class="store ${s}">${STORE_LABEL[s]||s.toUpperCase()}</span>`;
   const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(['ikea','jysk','momax','mobelix']), search:'', house:[]};
   const fmt=n=>n.toLocaleString(state.lang==='hu'?'hu-HU':'en-US');
+  let guestMode=false;
 
   // ---- I18N ----
   const T={
@@ -404,6 +411,24 @@
       accSignIn:'Enter your email — we will send a sign-in link:',accSent:'✉️ Sent! Open the link in the email.',accSignedIn:'Signed in:',accSignOut:'Sign out',accSynced:'☁ Your saved rooms now sync to your account.',accUpload:'You have {n} local saves. Upload them to your account?',
       aiBtn:'✨ AI visualization',authWelcome:'Welcome',authSub:'Sign in to your saved rooms',authCreate:'Create account',authCreateSub:'Keep your designs, on any device',authGoogle:'Continue with Google',authOr:'or',authName:'Name',authEmail:'Email address',authPass:'Password',authSignIn:'Sign in',authSignUp:'Sign up',authNew:'No account yet?',authHave:'Already have an account?',authMagic:'Sign in without a password, via email link',authFill:'Please enter your email and password.',authShort:'Password must be at least 6 characters.',authConfirm:'We sent a confirmation email — open the link inside.',aiWorking:'⏳ Rendering… (about 30s)',aiLogin:'Sign in with the 👤 button to use AI visualization!',aiLimit:'You used up today\'s AI quota (5 images/day). Try again tomorrow!',aiErr:'Something went wrong while rendering. Please try again!',aiLeft:'Images left today:'},
   };
+  Object.assign(T.hu,{
+    welcomeEyebrow:'A TÉR A TIÉD. AZ ÁLOM IS.',welcomeTitle:'Álmodd meg. Lakd meg.',
+    welcomeSubtitle:'Valódi bútorok. Személyes terek. Egy új kezdet.',welcomePromise:'A térből otthon lesz.',
+    guestContinue:'Folytatás vendégként →',sessionLoading:'Profil ellenőrzése…',
+    authBusy:'Egy pillanat…',authRemember:'Ezen a böngészőn bejelentkezve maradsz, amíg ki nem jelentkezel.',
+    authEmailRequired:'Add meg az e-mail-címed.',authNetwork:'A kapcsolat megszakadt. Próbáld újra.',
+    authDelivery:'A belépőlink kérését fogadtuk. Nézd meg a Spam mappát is. Ha nem érkezik levél, a levélküldés beállítását kell ellenőrizni.',
+    authUnavailable:'A bejelentkezés nem elérhető. Vendégként tovább tervezhetsz.'
+  });
+  Object.assign(T.en,{
+    welcomeEyebrow:'YOUR SPACE. YOUR DREAM.',welcomeTitle:'Dream it. Live it.',
+    welcomeSubtitle:'Real furniture. Personal spaces. A fresh beginning.',welcomePromise:'A space becomes a home.',
+    guestContinue:'Continue as a guest →',sessionLoading:'Checking your profile…',
+    authBusy:'One moment…',authRemember:'You stay signed in on this browser until you sign out.',
+    authEmailRequired:'Enter your email address.',authNetwork:'Connection failed. Please try again.',
+    authDelivery:'Your sign-in link request was accepted. Check Spam too. If no email arrives, the email delivery settings need checking.',
+    authUnavailable:'Sign-in is unavailable. You can continue as a guest.'
+  });
   const t=k=>T[state.lang][k];
   const CAT_EN={sofa:'Sofa',chair:'Armchair',coffee:'Coffee table',tv:'TV unit',rug:'Rug',lamp:'Floor lamp',curtain:'Curtain',cushion:'Cushion',vase:'Decor',bed:'Bed',nightstand:'Nightstand',wardrobe:'Wardrobe',bedding:'Bedding',dtable:'Dining table',dchair:'Dining chair',sideboard:'Sideboard',island:'Kitchen island',barstool:'Bar stool',kcabinet:'Storage cabinet',fridge:'Fridge',desk:'Desk',ochair:'Office chair',shelf:'Bookcase',kbed:'Kids bed',kdesk:'Kids desk'};
   const catName=id=>state.lang==='hu'?META[id].cat:(CAT_EN[id]||META[id].cat);
@@ -622,7 +647,12 @@
       const itemColor=finishFor(it);
       const colorLabel=state.lang==='hu'?'Szín':'Color', quantityLabel=state.lang==='hu'?'Darab':'Qty';
       const controls=it.plan?`<div class="item-controls"><label class="item-color"><span>${colorLabel}</span><input class="furn-color" type="color" aria-label="${colorLabel}: ${it.name}" value="${itemColor}" data-id="${it.id}"></label><div class="quantity-control"><span>${quantityLabel}</span><button type="button" class="qty-btn" data-id="${it.id}" data-step="-1" aria-label="Kevesebb">−</button><b class="qty-value" data-qty-for="${it.id}">${qty}</b><button type="button" class="qty-btn" data-id="${it.id}" data-step="1" aria-label="Több">+</button></div></div>`:'';
-      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}"><div class="thumb">${it.icon}</div><div class="info"><div class="name">${it.name}</div><div class="meta"><span class="dims">${it.w} × ${it.d} cm</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${controls}${swap}${cmp}</div><div class="right"><div class="price" data-price-for="${it.id}">${fmt(unitPrice(it)*qty)} Ft</div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
+      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}">${productPhoto(it)}<div class="info"><div class="name">${it.name}</div><div class="meta"><span class="dims">${it.w} × ${it.d} cm</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${controls}${swap}${cmp}</div><div class="right"><div class="price" data-price-for="${it.id}">${fmt(unitPrice(it)*qty)} Ft</div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
+      el.querySelector('.product-photo img')?.addEventListener('error',e=>{
+        e.currentTarget.hidden=true;
+        el.querySelector('.photo-fallback').hidden=false;
+        console.warn('DREAMR product image unavailable:',it.url);
+      },{once:true});
       listEl.appendChild(el);
     });
     // Keep the visible plan, totals, and 3D scene in agreement when a complete
@@ -1008,6 +1038,29 @@
 
   document.getElementById('shareBtn').addEventListener('click',shareRoom);
 
+  function enterPlanner(){
+    document.body.classList.remove('welcome-mode');
+    document.getElementById('welcomePage').hidden=true;
+    document.getElementById('welcomeAuth').innerHTML='';
+    document.getElementById('authOverlay').style.display='none';
+    document.getElementById('authOverlay').innerHTML='';
+    render();
+  }
+  function showWelcome(){
+    guestMode=false;
+    close3D();closeHouse();
+    document.getElementById('authOverlay').style.display='none';
+    document.getElementById('authOverlay').innerHTML='';
+    document.body.classList.add('welcome-mode');
+    document.getElementById('welcomePage').hidden=false;
+    render();
+  }
+  document.getElementById('guestBtn').onclick=()=>{guestMode=true;enterPlanner();};
+  document.getElementById('welcomeLang').onclick=()=>{
+    state.lang=state.lang==='hu'?'en':'hu';render();
+    document.getElementById('welcomeLang').textContent=state.lang==='hu'?'EN':'HU';
+    if(window.HVCloud?.showWelcomeAuth) window.HVCloud.showWelcomeAuth();
+  };
   // ---- FIÓK + FELHŐ-MENTÉS (Supabase, lásd cloud.js) ----
   // Ha a cloud.js nincs konfigurálva, a gomb rejtve marad, minden megy localStorage-ból.
   if(window.HVCloud&&window.HVCloud.enabled){
@@ -1018,35 +1071,53 @@
       if(!u){ openAuth(); }
       else{
         const nm=(u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||'';
-        if(confirm(t('accSignedIn')+' '+(nm?nm+' · ':'')+u.email+'\n\n'+t('accSignOut')+'?')) await window.HVCloud.signOut();
+        if(confirm(t('accSignedIn')+' '+(nm?nm+' · ':'')+u.email+'\n\n'+t('accSignOut')+'?')){
+          try{await window.HVCloud.signOut();}catch(error){window.HVCloud.onError(error);}
+        }
       }
     });
     // Minimal, luxus stílusú belépő ablak: Google, jelszó+regisztráció, vagy e-mailes link
-    function openAuth(){
-      const ov=document.getElementById('authOverlay'); let mode='in';
+    function openAuth(embedded=false){
+      const ov=document.getElementById(embedded?'welcomeAuth':'authOverlay'); let mode='in';
       const draw=()=>{
         const reg=mode==='up';
-        ov.innerHTML=`<div class="authbox"><button class="aclose" id="aX">✕</button>
+        ov.innerHTML=`<div class="authbox">${embedded?'':'<button class="aclose" id="aX" type="button" aria-label="Close">✕</button>'}
           <div class="abrand">DREAMR</div>
           <h2>${reg?t('authCreate'):t('authWelcome')}</h2>
           <div class="asub">${reg?t('authCreateSub'):t('authSub')}</div>
           ${window.HVCloud.google?`<button class="agoogle" id="aG">`:`<button class="agoogle" id="aG" style="display:none">`}<svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.4 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.9-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.6l-7.4-5.7c-2 1.4-4.7 2.3-7.8 2.3-6.3 0-11.7-4-13.6-9.8l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>${t('authGoogle')}</button>
           ${window.HVCloud.google?`<div class="aor">${t('authOr')}</div>`:''}
-          ${reg?`<input id="aName" type="text" placeholder="${t('authName')}" autocomplete="name">`:''}
-          <input id="aMail" type="email" placeholder="${t('authEmail')}" autocomplete="email">
-          <input id="aPass" type="password" placeholder="${t('authPass')}" autocomplete="${reg?'new-password':'current-password'}">
-          <button class="asubmit" id="aGo">${reg?t('authSignUp'):t('authSignIn')}</button>
-          <div class="amsg" id="aMsg"></div>
-          ${reg?'':`<a class="amagic" id="aMagic">${t('authMagic')}</a>`}
-          <div class="aswitch">${reg?t('authHave'):t('authNew')} <a id="aSw">${reg?t('authSignIn'):t('authSignUp')}</a></div></div>`;
-        ov.style.display='flex';
+          <form id="authForm">
+          ${reg?`<input id="aName" type="text" aria-label="${t('authName')}" placeholder="${t('authName')}" autocomplete="name">`:''}
+          <input id="aMail" type="email" name="email" aria-label="${t('authEmail')}" placeholder="${t('authEmail')}" autocomplete="username" required>
+          <input id="aPass" type="password" name="password" aria-label="${t('authPass')}" placeholder="${t('authPass')}" autocomplete="${reg?'new-password':'current-password'}" required>
+          <button class="asubmit" id="aGo" type="submit">${reg?t('authSignUp'):t('authSignIn')}</button>
+          </form>
+          <p class="auth-remember">${t('authRemember')}</p>
+          <div class="amsg" id="aMsg" role="status" aria-live="polite"></div>
+          ${reg?'':`<button type="button" class="amagic" id="aMagic">${t('authMagic')}</button>`}
+          <div class="aswitch">${reg?t('authHave'):t('authNew')} <button type="button" id="aSw">${reg?t('authSignIn'):t('authSignUp')}</button></div></div>`;
+        if(!embedded) ov.style.display='flex';
         const msg=(m,ok)=>{ const e=document.getElementById('aMsg'); e.textContent=m||''; e.className='amsg'+(ok?' ok':''); };
-        const close=()=>{ ov.style.display='none'; ov.innerHTML=''; };
-        document.getElementById('aX').onclick=close;
-        ov.onclick=e=>{ if(e.target===ov) close(); };
+        const close=()=>{
+          if(embedded){enterPlanner();return;}
+          ov.style.display='none';ov.innerHTML='';
+          document.getElementById('accountBtn').focus();
+        };
+        const x=document.getElementById('aX');
+        if(x) x.onclick=close;
+        if(!embedded) ov.onclick=e=>{ if(e.target===ov) close(); };
         document.getElementById('aSw').onclick=()=>{ mode=reg?'in':'up'; draw(); };
-        document.getElementById('aG').onclick=async()=>{ const err=await window.HVCloud.signInGoogle(); if(err) msg(err); };
-        document.getElementById('aGo').onclick=async()=>{
+        const run=async(action)=>{
+          const buttons=[...ov.querySelectorAll('button')],submit=document.getElementById('aGo'),caption=submit.textContent;
+          buttons.forEach(b=>b.disabled=true);submit.textContent=t('authBusy');msg('');
+          try{await action();}catch(error){console.error('DREAMR sign-in:',error);if(ov.querySelector('#aMsg')) msg(error.message||t('authNetwork'));}
+          finally{buttons.forEach(b=>b.disabled=false);submit.textContent=caption;}
+        };
+        document.getElementById('aG').onclick=()=>run(async()=>{ const err=await window.HVCloud.signInGoogle(); if(err) msg(err); });
+        document.getElementById('authForm').onsubmit=e=>{
+          e.preventDefault();
+          return run(async()=>{
           const email=document.getElementById('aMail').value.trim(), pass=document.getElementById('aPass').value;
           if(!email||!pass){ msg(t('authFill')); return; }
           if(reg){
@@ -1057,20 +1128,38 @@
             const err=await window.HVCloud.signInPassword(email,pass);
             if(err) msg(err); else close();
           }
+          });
         };
         const mg=document.getElementById('aMagic');
-        if(mg) mg.onclick=async()=>{
-          const email=document.getElementById('aMail').value.trim(); if(!email){ msg(t('authFill')); return; }
-          const err=await window.HVCloud.signIn(email); if(err) msg(err); else msg(t('accSent'),true);
-        };
+        if(mg) mg.onclick=()=>run(async()=>{
+          const input=document.getElementById('aMail'),email=input.value.trim();
+          if(!email){msg(t('authEmailRequired'));return;}
+          if(!input.reportValidity()) return;
+          const err=await window.HVCloud.signIn(email); if(err) msg(err); else msg(t('authDelivery'),true);
+        });
       };
       draw();
     }
     // Bejelentkezéskor: felhő és helyi mentések összefésülése
+    let lastUserId;
+    window.HVCloud.onError=error=>{
+      const text=(state.lang==='hu'?'Fiók / felhő hiba: ':'Account / cloud error: ')+(error.message||t('authNetwork'));
+      document.getElementById('welcomeStatus').textContent=text;
+      document.getElementById('layoutStatus').textContent=text;
+    };
+    window.HVCloud.showWelcomeAuth=()=>openAuth(true);
     window.HVCloud.onAuthChange=async(u)=>{
-      accBtn.textContent=u?'☁':'👤'; accBtn.title=u?(t('accSignedIn')+' '+u.email):'Fiók';
+      const name=u?.user_metadata?.full_name||u?.user_metadata?.name||'';
+      accBtn.textContent=u?'☁':'👤';
+      accBtn.title=u?(t('accSignedIn')+' '+(name?name+' · ':'')+u.email):t('authSignIn');
+      const id=u?u.id:null;
+      if(id===lastUserId) return;
+      const previous=lastUserId;lastUserId=id;
+      if(u) enterPlanner();
+      else if(previous){showWelcome();openAuth(true);}
       if(!u) return;
       const cloud=await window.HVCloud.fetchHouse();
+      if(window.HVCloud.getUser()?.id!==u.id) return;
       if(cloud===null&&state.house.length){
         // Még nincs felhő-mentés, de van helyi: felajánljuk a feltöltést
         if(confirm(t('accUpload').replace('{n}',state.house.length))) await window.HVCloud.pushHouse(state.house);
@@ -1082,6 +1171,16 @@
         const hb=document.getElementById('houseBtn'); if(hb) hb.textContent=t('houseBtn')+' ('+state.house.length+')';
       }
     };
+    window.HVCloud.ready.then(u=>{
+      const notification=window.HVCloud.onAuthChange(u);
+      if(!u&&!guestMode) openAuth(true);
+      return notification;
+    }).catch(error=>{
+      window.HVCloud.onError(error);
+      if(document.body.classList.contains('welcome-mode')&&!document.querySelector('#welcomeAuth #aMail')) openAuth(true);
+    });
+  }else{
+    document.getElementById('welcomeAuth').innerHTML=`<p role="status" data-i18n="authUnavailable">${t('authUnavailable')}</p>`;
   }
 
   function updateTVUI(){
@@ -1089,7 +1188,7 @@
     const labels=['BEFORE PLANNING','Where should the TV go?','Used in the 2D, 3D and AI plan.','On a TV stand','On the first placed TV cabinet.','Wall mounted','The cabinet is optional.'];
     const nodes=ov.querySelectorAll('.section-label,h2,p:not(.section-label),button b,button small');
     nodes.forEach((n,i)=>{if(!n.dataset.hu) n.dataset.hu=n.textContent;n.textContent=state.lang==='hu'?n.dataset.hu:labels[i];});
-    const needsChoice=state.room==='nappali'&&!state.tvPlacement;
+    const needsChoice=!document.body.classList.contains('welcome-mode')&&state.room==='nappali'&&!state.tvPlacement;
     ov.style.display=needsChoice?'flex':'none'; if(needsChoice) ov.querySelector('button').focus();
     document.querySelectorAll('.nav,.wrap').forEach(el=>el.inert=needsChoice);
     const btn=document.getElementById('tvPlacementBtn');
@@ -1148,3 +1247,16 @@
     if(n||data.date) render(); // friss árakkal/dátummal újrarajzolás
   }
   fetch('prices.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(applyLivePrices).catch(()=>{}); // ha nincs még prices.json, marad minden a beépített áron
+  fetch('product-images.json',{cache:'no-cache'}).then(r=>{
+    if(!r.ok) throw new Error('Product images: HTTP '+r.status);
+    return r.json();
+  }).then(images=>{
+    Object.entries(images).forEach(([product,image])=>{
+      if(typeof image!=='string'||!image.startsWith('https://')) throw new Error('Invalid product image: '+product);
+    });
+    Object.assign(PRODUCT_IMAGES,images);
+    render();
+  }).catch(error=>{
+    console.error('DREAMR image catalog failed:',error);
+    document.getElementById('layoutStatus').textContent=state.lang==='hu'?'A termékképek nem tölthetők be. Frissítsd az oldalt.':'Product images could not load. Refresh the page.';
+  });
