@@ -28,10 +28,10 @@ function loadModel(kind) {
 }
 
 // Tartalék: szürke doboz, ha a modell nem tölthető be (pl. nincs net)
-function fallbackBox(w, h, d, rug) {
+function fallbackBox(w, h, d, rug, color) {
   const m = new THREE.Mesh(
     new THREE.BoxGeometry(w, h, d),
-    new THREE.MeshStandardMaterial({ color: rug ? 0xd8c6a0 : 0x9aa6b6 }));
+    new THREE.MeshStandardMaterial({ color: color || (rug ? 0xc6b28f : 0x9a9993) }));
   m.position.y = h / 2;
   const g = new THREE.Group(); g.add(m); return g;
 }
@@ -53,6 +53,7 @@ function mount(container, opts) {
   const W = container.clientWidth || 700, H = container.clientHeight || 440;
   const { roomW, roomD, roomH } = opts;
 
+  const ownedGeometry=[],ownedMaterials=[];
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, W / H, 0.05, 100);
   camera.position.set(roomW * 0.9, roomH * 1.6, roomD * 1.6);
@@ -78,6 +79,7 @@ function mount(container, opts) {
   const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(roomW, roomD),
     new THREE.MeshStandardMaterial({ color: opts.floorColor || '#cbb48d', roughness: 0.9 }));
+  ownedGeometry.push(floor.geometry);ownedMaterials.push(floor.material);
   floor.rotation.x = -Math.PI / 2;
   floor.receiveShadow = true;
   scene.add(floor);
@@ -89,12 +91,65 @@ function mount(container, opts) {
    [-roomW / 2, 0, Math.PI / 2, roomD], [roomW / 2, 0, -Math.PI / 2, roomD]].forEach(([x, z, ry, len]) => {
     const wall = new THREE.Mesh(new THREE.PlaneGeometry(len, roomH), wallMat);
     wall.position.set(x, roomH / 2, z); wall.rotation.y = ry;
+    ownedGeometry.push(wall.geometry);
     scene.add(wall);
   });
 
+  ownedMaterials.push(wallMat);
   // Bútorok elhelyezése a tervrajzi (cm) koordinátákból
   let disposed = false;
-  opts.items.forEach(it => {
+  const clonedMaterials = [];
+  const screen=opts.tvScreen;
+  let television=null;
+  if(screen){
+    television=new THREE.Mesh(new THREE.BoxGeometry(screen.w/100,screen.h/100,screen.d/100),new THREE.MeshStandardMaterial({color:0x202124,roughness:0.3}));
+    television.position.set((screen.cx-roomW*50)/100,(screen.bottom+screen.h/2)/100,(screen.cy-roomD*50)/100);
+    scene.add(television);
+  }
+  function syncTV(id,pos){
+    if(!television) return;if(screen.instanceId!==id) return;
+    television.position.x=pos.x;television.position.z=pos.z;
+  }
+  const furniture=[];
+  const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();
+  const floorPlane=new THREE.Plane(new THREE.Vector3(0,1,0),0);
+  const floorPoint=new THREE.Vector3();
+  let drag=null;
+  function cast(e){
+    const r=renderer.domElement.getBoundingClientRect();
+    pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
+    ray.setFromCamera(pointer,camera);
+    return ray.ray.intersectPlane(floorPlane,floorPoint);
+  }  function down(e){
+    if(e.button!==0) return;if(drag) return;if(!cast(e)) return;
+    const hit=ray.intersectObjects(furniture,true)[0];if(!hit) return;
+    let root=hit.object;while(root.parent!==scene) root=root.parent;
+    if(!root.userData.furnishing) return;
+    drag={root,id:e.pointerId,start:root.position.clone(),offset:root.position.clone().sub(floorPoint),item:root.userData.furnishing,moved:false,valid:true};
+    controls.enabled=false;renderer.domElement.setPointerCapture(e.pointerId);
+    e.stopImmediatePropagation();e.preventDefault();
+  }  function move(e){
+    if(!drag) return;if(e.pointerId!==drag.id) return;if(!cast(e)) return;
+    const pos=floorPoint.clone().add(drag.offset);
+    const cx=(pos.x+roomW/2)*100,cy=(pos.z+roomD/2)*100;
+    if(pos.distanceTo(drag.start)>0.005) drag.moved=true;
+    drag.valid=opts.canMove(drag.item.instanceId,cx,cy);
+    if(drag.valid){drag.root.position.set(pos.x,0,pos.z);syncTV(drag.item.instanceId,pos);}
+    e.stopImmediatePropagation();e.preventDefault();
+  }  function finish(e,cancel=false){
+    if(!drag) return;if(e.pointerId!==drag.id) return;
+    const d=drag;drag=null;let accepted=!cancel;
+    if(d.moved){
+      if(accepted) accepted=d.valid;
+      if(accepted) accepted=opts.onMove({...d.item,cx:(d.root.position.x+roomW/2)*100,cy:(d.root.position.z+roomD/2)*100});
+      if(!accepted){d.root.position.copy(d.start);syncTV(d.item.instanceId,d.start);if(!cancel) opts.onBlocked();}
+    }
+    controls.enabled=true;
+    if(renderer.domElement.hasPointerCapture(e.pointerId)) renderer.domElement.releasePointerCapture(e.pointerId);
+    e.stopImmediatePropagation();e.preventDefault();
+  }
+  const up=e=>finish(e),cancel=e=>finish(e,true);
+  const loading = opts.items.map(it => {
     const X = (it.cx - roomW * 100 / 2) / 100, Z = (it.cy - roomD * 100 / 2) / 100;
     let rotY = 0;
     if (!NO_FACE.has(it.kind)) { // forgatás a szoba közepe felé, 90°-ra kerekítve
@@ -104,14 +159,22 @@ function mount(container, opts) {
       if (disposed) return;
       obj.rotation.y = rotY;
       // a forgatás után igazítjuk a befoglaló méretet, mert 90°-nál cserélődik a szélesség/mélység
-      const swap = Math.abs(Math.round(rotY / (Math.PI / 2))) % 2 === 1;
-      const wrap = normalize(obj, (swap ? it.d : it.w) / 100, Math.max(it.h, 2) / 100, (swap ? it.w : it.d) / 100);
-      if (swap) { const s = wrap.scale; wrap.scale.set(s.z, s.y, s.x); } // visszaigazítás a világtengelyekhez
+      const wrap = normalize(obj, it.w / 100, Math.max(it.h, 2) / 100, it.d / 100);
       wrap.position.set(X, 0, Z);
-      wrap.traverse(o => { if (o.isMesh) { o.castShadow = !it.rug; o.receiveShadow = true; } });
+      wrap.traverse(o => { if (o.isMesh) {
+        o.castShadow = !it.rug; o.receiveShadow = true;
+        // Product tint is passed from the same catalog finish used by the 2D plan.
+        // Clone materials first so instances remain independent.
+        if (o.material) {
+          o.material = Array.isArray(o.material) ? o.material.map(m => m.clone()) : o.material.clone();
+          const tint = m => { clonedMaterials.push(m); if (m.color && it.color) m.color.set(it.color); m.roughness = Math.max(m.roughness || 0.7, 0.55); };
+          Array.isArray(o.material) ? o.material.forEach(tint) : tint(o.material);
+        }
+      } });
+      wrap.userData.furnishing={...it}; furniture.push(wrap);
       scene.add(wrap);
     };
-    loadModel(it.kind).then(place).catch(() => place(fallbackBox(it.w / 100, Math.max(it.h, 2) / 100, it.d / 100, it.rug)));
+    return loadModel(it.kind).then(place).catch(() => place(fallbackBox(it.w / 100, Math.max(it.h, 2) / 100, it.d / 100, it.rug, it.color)));
   });
 
   // Egérrel forgatás/zoom — ezt kapjuk "ingyen" az OrbitControls-tól
@@ -122,11 +185,22 @@ function mount(container, opts) {
   controls.minDistance = 1.2;
   controls.maxDistance = Math.max(roomW, roomD) * 4;
 
+  if(opts.view){camera.position.fromArray(opts.view.position);controls.target.fromArray(opts.view.target);controls.update();}
+  window.HV3D.getView=()=>({position:camera.position.toArray(),target:controls.target.toArray()});
+  if(opts.canMove){
+    renderer.domElement.addEventListener('pointerdown',down,true);
+    renderer.domElement.addEventListener('pointermove',move,true);
+    renderer.domElement.addEventListener('pointerup',up,true);
+    renderer.domElement.addEventListener('pointercancel',cancel,true);
+    renderer.domElement.addEventListener('lostpointercapture',cancel,true);
+  }
   renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
 
   // Pillanatkép az AI-látványtervhez: max 1024px, JPEG-ként. Az arány
-  // (szélesség:magasság) pontosan megmarad, így a kép méretarányos lesz.
+  // (szélesség:magasság) megmarad; ez önmagában nem garantálja az AI-kép geometriáját.
+  window.HV3D.ready = Promise.all(loading);
   window.HV3D.snapshot = function () {
+    renderer.render(scene, camera);
     const src = renderer.domElement;
     const w = Math.min(1024, src.width), h = Math.round(w * src.height / src.width);
     const c = document.createElement('canvas'); c.width = w; c.height = h;
@@ -136,9 +210,17 @@ function mount(container, opts) {
 
   return function dispose() {
     disposed = true;
-    window.HV3D.snapshot = null;
+    window.HV3D.snapshot = null; window.HV3D.getView=null;
     renderer.setAnimationLoop(null);
+    renderer.domElement.removeEventListener('pointerdown',down,true);
+    renderer.domElement.removeEventListener('pointermove',move,true);
+    renderer.domElement.removeEventListener('pointerup',up,true);
+    renderer.domElement.removeEventListener('pointercancel',cancel,true);
+    renderer.domElement.removeEventListener('lostpointercapture',cancel,true);
+    if(television){television.geometry.dispose();television.material.dispose();}
     controls.dispose();
+    clonedMaterials.forEach(material => material.dispose());
+    ownedGeometry.forEach(g=>g.dispose());ownedMaterials.forEach(m=>m.dispose());
     renderer.dispose();
     if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
   };

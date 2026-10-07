@@ -348,13 +348,13 @@
   const MARGIN=40;
   const STORE_LABEL={ikea:'IKEA',jysk:'JYSK',momax:'MÖMAX',mobelix:'MÖBELIX'};
   const storeBadge=s=>`<span class="store ${s}">${STORE_LABEL[s]||s.toUpperCase()}</span>`;
-  const state={room:'nappali', style:'modern', off:new Set(), color:'white', budget:600000, sel:{}, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(['ikea','jysk','momax','mobelix']), search:'', house:[]};
+  const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(['ikea','jysk','momax','mobelix']), search:'', house:[]};
   const fmt=n=>n.toLocaleString(state.lang==='hu'?'hu-HU':'en-US');
 
   // ---- I18N ----
   const T={
-    hu:{try:'Próbáld ki',kicker:'Interaktív tervező · valódi árak',planner:'tervező',
-      sub:'Válassz szobatípust és stílust, méretet, falszínt, keretet. A bútoroknál <strong>valódi alternatívák</strong> közül választhatsz (◀ ▶), az alaprajzon <strong>áthúzhatod</strong> a bútorokat, végül <strong>ajánlatot</strong> exportálhatsz ügyfélnek. Minden ár valódi, kattintható linkkel.',
+    hu:{precisionNote:'A szélesség és mélység katalógusadat; a magasság és szín részben becsült. Az ajtó-, ablak- és közlekedési helyigény nincs ellenőrizve. Az AI-kép illusztráció, nem méretezett terv.',layoutBlocked:'Ide nem helyezhető a bútor: fal vagy másik bútor akadályozza.',layoutOmitted:'Nincs szabad hely: {items}. Ezek nem szerepelnek az összegben.',transitionCaption:'A térből otthon lesz.',navPlanner:'Tervező',navFurniture:'Bútorok',navSummary:'Összegzés',startPlanning:'Kezdj tervezni',heroKicker:'AI lakberendezés · valódi termékek',heroProof:'✓ Valós árak · ✓ 3D nézet · ✓ PDF-ajánlat',heroBefore:'Előtte',heroAfter:'DREAMR terv',heroCompare:'Előtte–utána összehasonlítás',heroDemo:'Illusztráció · nem a jelenlegi szobaterv',plannerIntroTitle:'Építsd fel a szobád.',plannerIntroText:'Először a teret állítjuk be, utána jöhetnek a bútorok, a színek és a büdzsé.',try:'Próbáld ki',kicker:'Interaktív tervező · valódi árak',planner:'tervező',
+      sub:'Töltsd ki a szobád adatait, válassz stílust, és építsd fel az otthonod valódi bútorokból. <strong>Árak, alternatívák és vásárlási lista</strong> egy helyen.',
       b1:'🛋️ 6 szobatípus',b2:'🎨 6 stílus',b3:'🏬 4 bolt',b4:'📐 méretre szabva',b5:'💰 büdzsére',b6:'🧾 PDF-ajánlat',
       selRoom:'Szobatípus',selStyle:'Stílus',sizeH:'Szoba mérete',sizeP:'A két oldal hossza és a belmagasság (méterben).',
       len:'Hossz (m)',wid:'Szélesség (m)',hei:'Belmagasság (m)',pSmall:'Kicsi · 2,5×3',pMed:'Közepes · 4×5',pLarge:'Nagy · 5×6',
@@ -373,13 +373,13 @@
       note:'Az árak <strong>'+PRICE_DATE_HU+'</strong> tájékoztató árak. A pontos árat a termék oldalán ellenőrizd.',exportFull:'🧾 Ajánlat letöltése (PDF)',
       buy:'Megnézem a boltban →',cheapest:'✓ ez a legolcsóbb',cheaperPre:'legolcsóbb: ',prices:'💰 Árak',cmpSel:'kiválasztva',cmpCheap:'legolcsóbb',nofit:'Nem fér be',
       tips:'<strong>Tippek:</strong> a ◀ ▶ nyilakkal válts a valódi alternatívák között (a „legolcsóbb" jelzés segít); az alaprajzon <strong>húzd</strong> a bútorokat a helyükre; a méret, festék és büdzsé mind automatikusan követi a választásod; végül a <strong>🧾 Ajánlat</strong> gombbal PDF-et menthetsz az ügyfélnek.',
-      footL:'© 2026 HomeVision AI — Lakberendező tervező',footR:'Árak: ikea.com/hu, jysk.hu · '+PRICE_DATE,
-      exTitle:'Berendezési ajánlat — HomeVision AI',exStyle:'stílus',exWall:'falszín',exNone:'nincs',exDate:'dátum',exCat:'Kategória',exProd:'Termék',exStore:'Bolt',exPrice:'Ár',exFurn:'Bútorok',exPaint:'Falfesték',exTotal:'Végösszeg',exNote:'Az árak tájékoztató jellegűek ('+PRICE_DATE+'), a boltok oldalán ellenőrizhetők. Készült a HomeVision AI tervezővel.',
-      noneItem:'Nincs festés',belm:'belmagasság',shoppingBtn:'🛒 Bevásárlólista',slTitle:'Bevásárlólista — bolt szerint',slItems:'tétel',slTotal:'Végösszeg',slOpen:'Megnézem →',slPrint:'🖨️ Nyomtatás / PDF',slClose:'Bezárás',view3d:'🧊 3D nézet',d3Title:'3D nézet',d3Hint:'Húzd az egérrel a forgatáshoz · görgő = nagyítás',d3NoLib:'A 3D nézethez internet szükséges.',houseBtn:'🏠 Házam',saveRoomBtn:'💾 Mentés a házamba',houseTitle:'A házam — mentett szobák',houseEmpty:'Még nincs mentett szoba. Állíts össze egy szobát, és mentsd el a szobatípus nevével!',load:'Betöltés',del:'Törlés',houseTotal:'Teljes ház összesen',houseShop:'🛒 Teljes ház – bevásárlólista',shareBtn:'🔗 Megosztás linkkel',shareCopied:'✔ Link a vágólapon!',shareFail:'Másold ki a linket:',
+      footL:'© 2026 DREAMR — Lakberendező tervező',footR:'Árak: ikea.com/hu, jysk.hu · '+PRICE_DATE,
+      exTitle:'Berendezési ajánlat — DREAMR',exStyle:'stílus',exWall:'falszín',exNone:'nincs',exDate:'dátum',exCat:'Kategória',exProd:'Termék',exStore:'Bolt',exPrice:'Ár',exFurn:'Bútorok',exPaint:'Falfesték',exTotal:'Végösszeg',exNote:'Az árak tájékoztató jellegűek ('+PRICE_DATE+'), a boltok oldalán ellenőrizhetők. Készült a DREAMR tervezővel.',
+      noneItem:'Nincs festés',belm:'belmagasság',shoppingBtn:'🛒 Bevásárlólista',slTitle:'Bevásárlólista — bolt szerint',slItems:'tétel',slTotal:'Végösszeg',slOpen:'Megnézem →',slPrint:'🖨️ Nyomtatás / PDF',slClose:'Bezárás',view3d:'🧊 3D nézet',d3Title:'3D nézet',d3Hint:'Húzd a bútort a mozgatáshoz · az üres részt a forgatáshoz · görgő = nagyítás',d3NoLib:'A 3D nézethez internet szükséges.',houseBtn:'🏠 Házam',saveRoomBtn:'💾 Mentés a házamba',houseTitle:'A házam — mentett szobák',houseEmpty:'Még nincs mentett szoba. Állíts össze egy szobát, és mentsd el a szobatípus nevével!',load:'Betöltés',del:'Törlés',houseTotal:'Teljes ház összesen',houseShop:'🛒 Teljes ház – bevásárlólista',shareBtn:'🔗 Megosztás linkkel',shareCopied:'✔ Link a vágólapon!',shareFail:'Másold ki a linket:',
       accSignIn:'Add meg az e-mail címed — belépő linket küldünk:',accSent:'✉️ Elküldve! Nyisd meg az e-mailben kapott linket.',accSignedIn:'Bejelentkezve:',accSignOut:'Kijelentkezés',accSynced:'☁ A Házam mentések mostantól a fiókodba is mentődnek.',accUpload:'Van {n} helyi mentésed. Feltöltsük a fiókodba?',
       aiBtn:'✨ AI látványterv',authWelcome:'Üdvözöljük',authSub:'Jelentkezzen be a mentett szobáihoz',authCreate:'Fiók létrehozása',authCreateSub:'Mentse el terveit, bármely eszközön',authGoogle:'Folytatás Google-lel',authOr:'vagy',authName:'Név',authEmail:'E-mail cím',authPass:'Jelszó',authSignIn:'Belépés',authSignUp:'Regisztráció',authNew:'Még nincs fiókja?',authHave:'Már van fiókja?',authMagic:'Belépés jelszó nélkül, e-mailes linkkel',authFill:'Kérjük, töltse ki az e-mailt és a jelszót.',authShort:'A jelszó legalább 6 karakter legyen.',authConfirm:'Megerősítő e-mailt küldtünk — nyissa meg a levélben lévő linket.',aiWorking:'⏳ Készül… (kb. fél perc)',aiLogin:'Az AI-látványtervhez jelentkezz be a 👤 gombbal!',aiLimit:'Mára elfogyott az AI-képkereted (5 kép/nap). Holnap újra próbálhatod!',aiErr:'Hiba történt a kép készítése közben. Próbáld újra!',aiLeft:'Hátralévő képek ma:'},
-    en:{try:'Try it',kicker:'Interactive planner · real prices',planner:'planner',
-      sub:'Pick a room type and style, size, wall colour, budget. For every item you can choose from <strong>real alternatives</strong> (◀ ▶), <strong>drag</strong> the furniture on the floor plan, and export an <strong>offer</strong> for your client. Every price is real, with a clickable link.',
+    en:{precisionNote:'Width and depth use catalog data; height and colour are partly estimated. Door, window and circulation clearances are not checked. The AI image is an illustration, not a dimensioned plan.',layoutBlocked:'Cannot place furniture here: a wall or another item blocks it.',layoutOmitted:'No free space: {items}. These items are excluded from the total.',transitionCaption:'Turning your space into a home.',navPlanner:'Planner',navFurniture:'Furniture',navSummary:'Summary',startPlanning:'Start planning',heroKicker:'AI interior design · real products',heroProof:'✓ Real prices · ✓ 3D view · ✓ PDF offer',heroBefore:'Before',heroAfter:'DREAMR design',heroCompare:'Before and after comparison',heroDemo:'Illustration · not your current room design',plannerIntroTitle:'Build your room.',plannerIntroText:'Start with the space, then choose the furniture, colours and budget.',try:'Try it',kicker:'Interactive planner · real prices',planner:'planner',
+      sub:'Enter your room details, choose a style, and build your home with real furniture. <strong>Prices, alternatives and a shopping list</strong> in one place.',
       b1:'🛋️ 6 room types',b2:'🎨 6 styles',b3:'🏬 4 stores',b4:'📐 fits your room',b5:'💰 fits your budget',b6:'🧾 PDF offer',
       selRoom:'Room type',selStyle:'Style',sizeH:'Room size',sizeP:'Length of the two sides and the ceiling height (in metres).',
       len:'Length (m)',wid:'Width (m)',hei:'Ceiling (m)',pSmall:'Small · 2.5×3',pMed:'Medium · 4×5',pLarge:'Large · 5×6',
@@ -398,9 +398,9 @@
       note:'Prices are indicative, as of <strong>'+PRICE_DATE_EN+'</strong>. Check the exact price on the product page.',exportFull:'🧾 Download offer (PDF)',
       buy:'View in store →',cheapest:'✓ cheapest',cheaperPre:'cheapest: ',prices:'💰 Prices',cmpSel:'selected',cmpCheap:'cheapest',nofit:'Doesn’t fit',
       tips:'<strong>Tips:</strong> use the ◀ ▶ arrows to switch between real alternatives (the “cheapest” tag helps); <strong>drag</strong> the furniture on the plan; size, paint and budget all update automatically; finally use the <strong>🧾 Offer</strong> button to save a PDF for your client.',
-      footL:'© 2026 HomeVision AI — Interior planner',footR:'Prices: ikea.com/hu, jysk.hu · '+PRICE_DATE,
-      exTitle:'Furnishing offer — HomeVision AI',exStyle:'style',exWall:'wall',exNone:'none',exDate:'date',exCat:'Category',exProd:'Product',exStore:'Store',exPrice:'Price',exFurn:'Furniture',exPaint:'Wall paint',exTotal:'Total',exNote:'Prices are indicative ('+PRICE_DATE+'), verify on the store pages. Made with the HomeVision AI planner.',
-      noneItem:'No paint',belm:'ceiling',shoppingBtn:'🛒 Shopping list',slTitle:'Shopping list — by store',slItems:'items',slTotal:'Total',slOpen:'Open →',slPrint:'🖨️ Print / PDF',slClose:'Close',view3d:'🧊 3D view',d3Title:'3D view',d3Hint:'Drag to rotate · scroll = zoom',d3NoLib:'The 3D view needs an internet connection.',houseBtn:'🏠 My house',saveRoomBtn:'💾 Save to my house',houseTitle:'My house — saved rooms',houseEmpty:'No saved rooms yet. Design a room and save it under its room-type name!',load:'Load',del:'Delete',houseTotal:'Whole house total',houseShop:'🛒 Whole-house shopping list',shareBtn:'🔗 Share link',shareCopied:'✔ Link copied!',shareFail:'Copy this link:',
+      footL:'© 2026 DREAMR — Interior planner',footR:'Prices: ikea.com/hu, jysk.hu · '+PRICE_DATE,
+      exTitle:'Furnishing offer — DREAMR',exStyle:'style',exWall:'wall',exNone:'none',exDate:'date',exCat:'Category',exProd:'Product',exStore:'Store',exPrice:'Price',exFurn:'Furniture',exPaint:'Wall paint',exTotal:'Total',exNote:'Prices are indicative ('+PRICE_DATE+'), verify on the store pages. Made with the DREAMR planner.',
+      noneItem:'No paint',belm:'ceiling',shoppingBtn:'🛒 Shopping list',slTitle:'Shopping list — by store',slItems:'items',slTotal:'Total',slOpen:'Open →',slPrint:'🖨️ Print / PDF',slClose:'Close',view3d:'🧊 3D view',d3Title:'3D view',d3Hint:'Drag furniture to move · drag empty space to rotate · scroll = zoom',d3NoLib:'The 3D view needs an internet connection.',houseBtn:'🏠 My house',saveRoomBtn:'💾 Save to my house',houseTitle:'My house — saved rooms',houseEmpty:'No saved rooms yet. Design a room and save it under its room-type name!',load:'Load',del:'Delete',houseTotal:'Whole house total',houseShop:'🛒 Whole-house shopping list',shareBtn:'🔗 Share link',shareCopied:'✔ Link copied!',shareFail:'Copy this link:',
       accSignIn:'Enter your email — we will send a sign-in link:',accSent:'✉️ Sent! Open the link in the email.',accSignedIn:'Signed in:',accSignOut:'Sign out',accSynced:'☁ Your saved rooms now sync to your account.',accUpload:'You have {n} local saves. Upload them to your account?',
       aiBtn:'✨ AI visualization',authWelcome:'Welcome',authSub:'Sign in to your saved rooms',authCreate:'Create account',authCreateSub:'Keep your designs, on any device',authGoogle:'Continue with Google',authOr:'or',authName:'Name',authEmail:'Email address',authPass:'Password',authSignIn:'Sign in',authSignUp:'Sign up',authNew:'No account yet?',authHave:'Already have an account?',authMagic:'Sign in without a password, via email link',authFill:'Please enter your email and password.',authShort:'Password must be at least 6 characters.',authConfirm:'We sent a confirmation email — open the link inside.',aiWorking:'⏳ Rendering… (about 30s)',aiLogin:'Sign in with the 👤 button to use AI visualization!',aiLimit:'You used up today\'s AI quota (5 images/day). Try again tomorrow!',aiErr:'Something went wrong while rendering. Please try again!',aiLeft:'Images left today:'},
   };
@@ -434,7 +434,28 @@
       return {...META[slot.id], id:slot.id, ...o, optCount:allowed.length, optIndex:allowed.indexOf(sel), selFull:sel, minPrice:min, isCheapest:o.price===min, options:slot.options, allowed:allowed};
     });
   }
-  function fits(it,RL,RS){ if(it.floor==='none') return true; const lo=Math.max(it.w,it.d),sh=Math.min(it.w,it.d); return lo<=RL-MARGIN&&sh<=RS-MARGIN; }
+  function fits(it,RL,RS){ if(it.floor==='none') return true; return it.w<=RL-MARGIN&&it.d<=RS-MARGIN; }
+  // A single conservative finish map feeds both the plan and the 3D models.
+  // Unknown product finishes stay neutral instead of pretending to know an exact colour.
+  const packSize=id=>({dchair:4,nightstand:2,barstool:2}[id]||1);
+  const qtyFor=id=>Math.max(1,Math.min(8,Math.round(+state.quantity[id]||packSize(id))));
+  const unitPrice=it=>it.price/packSize(it.id);
+  const actualQty=it=>it.plan?(state.layoutQty[it.id]??0):1;
+  const linePrice=it=>Math.round(unitPrice(it)*actualQty(it));
+  function finishFor(it){
+    if(it && state.itemColors[it.id]) return state.itemColors[it.id];
+    const s=((it&&it.name)||'').toLowerCase();
+    if(/black|fekete|antracit|sötét/.test(s)) return '#343434';
+    if(/white|fehér|világos/.test(s)) return '#e8e5de';
+    if(/grey|gray|szürke/.test(s)) return '#858782';
+    if(/beige|bézs|homok/.test(s)) return '#c5ae8d';
+    if(/green|zöld/.test(s)) return '#64765b';
+    if(/blue|kék/.test(s)) return '#536b82';
+    if(/brown|barna|tölgy|dió|nyír|fa/.test(s)) return '#987858';
+    if(it&&(it.rug||it.floor==='rug')) return '#c6b28f';
+    return '#9a9993';
+  }
+  function finishForKind(kind,items){ const it=(items||[]).find(x=>x.id===kind); return it?finishFor(it):(kind==='rug'?'#c6b28f':'#9a9993'); }
   const len=()=>parseFloat(document.getElementById('len').value)||0;
   const wid=()=>parseFloat(document.getElementById('wid').value)||0;
   const hei=()=>parseFloat(document.getElementById('hei').value)||0;
@@ -446,7 +467,12 @@
   }
   function computeCosts(){
     const L=len(),W=wid(),H=hei(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100;
-    let f=0; curItems().forEach(it=>{ if(fits(it,RL,RS)&&!state.off.has(it.id)) f+=it.price; });
+    const resolved=placements3D(L,W,drawnList());
+    const placed=new Set(resolved.map(b=>b.productId));
+    state.layoutQty={};
+    resolved.forEach(b=>state.layoutQty[b.productId]=(state.layoutQty[b.productId]||0)+1);
+    state.layoutOmit=new Set(drawnList().filter(it=>placed.has(it.id)===false).map(it=>it.id));
+    let f=0; curItems().forEach(it=>{ if(fits(it,RL,RS)&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id)) f+=linePrice(it); });
     const p=computePaint(L,W,H).cost; return {furnTotal:f,paintTotal:p,grand:f+p};
   }
   function autoFit(){
@@ -463,63 +489,16 @@
   }
   function buildPlan(L,W,drawn,wallHex){
     const roomW=Math.max(L,W)*100,roomH=Math.min(L,W)*100,P=32,vw=roomW+2*P,vh=roomH+2*P;
-    const clampX=(x,w)=>Math.max(6,Math.min(x,roomW-w-6)), clampY=(y,h)=>Math.max(6,Math.min(y,roomH-h-6));
-    let anchors={}, order=[];
-    if(state.room==='nappali'){
-      anchors={tv:[(roomW-120)/2,10],sofa:[(roomW-224)/2,roomH-90-10],coffee:[(roomW-110)/2,roomH/2+10],armchair:[12,roomH-96-12],lamp:[12,12]};
-      order=['rug','sofa','coffee','tv','armchair','lamp'];
-    } else if(state.room==='haloszoba'){
-      const bed=drawn.find(x=>x.plan==='bed'); const bw=bed?bed.w:160;
-      anchors={bed:[(roomW-bw)/2,12],wardrobe:[roomW-130,roomH-55-10],lamp:[roomW-42,12]};
-      order=['rug','bed','nightstands','wardrobe','lamp'];
-    } else if(state.room==='etkezo'){
-      const dt=drawn.find(x=>x.plan==='dtable'); const tw=dt?dt.w:140, th=dt?dt.d:85;
-      anchors={dtable:[(roomW-tw)/2,(roomH-th)/2],sideboard:[roomW-135,roomH-50-10],lamp:[12,12]};
-      order=['rug','dtable','dchairs','sideboard','lamp'];
-    } else if(state.room==='konyha'){
-      const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80;
-      anchors={island:[(roomW-iw)/2,(roomH-ih)/2-20],kcabinet:[12,10],fridge:[roomW-66,10],lamp:[12,roomH-52]};
-      order=['kcabinet','island','barstools','fridge','lamp'];
-    } else if(state.room==='dolgozo'){
-      const dk=drawn.find(x=>x.plan==='desk'); const dw=dk?dk.w:120, dd=dk?dk.d:60;
-      anchors={desk:[(roomW-dw)/2,10],ochair:[(roomW-70)/2,10+dd+14],shelf:[12,roomH-40-10],lamp:[roomW-42,10]};
-      order=['rug','desk','ochair','shelf','lamp'];
-    } else {
-      const kd=drawn.find(x=>x.plan==='kdesk'); const kw=kd?kd.w:96;
-      anchors={kbed:[12,12],kdesk:[roomW-kw-12,12],wardrobe:[roomW-130,roomH-55-10],shelf:[12,roomH-40-10],lamp:[(roomW-30)/2,(roomH-40)/2]};
-      order=['rug','kbed','kdesk','wardrobe','shelf','lamp'];
-    }
     let blocks='';
-    order.forEach(key=>{
-      const it=drawn.find(x=>x.plan===key); if(!it) return;
-      if(key==='nightstands'){
-        const bed=drawn.find(x=>x.plan==='bed'); const bw=bed?bed.w:160; const bp=state.pos[keyOf('bed')]; const bx=bp?bp.x:(roomW-bw)/2, by=bp?bp.y:12;
-        const nw=35,nh=40;
-        [clampX(bx-nw-8,nw), clampX(bx+bw+8,nw)].forEach(nx=>{ blocks+=drawBlock(P,nx,clampY(by,nh),nw,nh,'#9aa6b2','#64748b',it.icon,null); });
-        return;
-      }
-      if(key==='dchairs'){
-        const dt=drawn.find(x=>x.plan==='dtable'); const tw=dt?dt.w:140, th=dt?dt.d:85; const tp=state.pos[keyOf('dtable')]; const tx=tp?tp.x:(roomW-tw)/2, ty=tp?tp.y:(roomH-th)/2;
-        const cw=44,ch=46;
-        [tx+tw*0.22-cw/2, tx+tw*0.78-cw/2].forEach(cx=>{ blocks+=drawBlock(P,clampX(cx,cw),clampY(ty-ch-4,ch),cw,ch,'#9aa6b2','#64748b',it.icon,null); blocks+=drawBlock(P,clampX(cx,cw),clampY(ty+th+4,ch),cw,ch,'#9aa6b2','#64748b',it.icon,null); });
-        return;
-      }
-      if(key==='barstools'){
-        const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80; const ip=state.pos[keyOf('island')]; const ix=ip?ip.x:(roomW-iw)/2, iy=ip?ip.y:(roomH-ih)/2-20;
-        const sw=42,sh=42;
-        [ix+iw*0.30-sw/2, ix+iw*0.65-sw/2].forEach(sx=>{ blocks+=drawBlock(P,clampX(sx,sw),clampY(iy+ih+6,sh),sw,sh,'#9aa6b2','#64748b',it.icon,null); });
-        return;
-      }
-      let w=(key==='rug')?Math.max(it.w,it.d):it.w, h=(key==='rug')?Math.min(it.w,it.d):it.d;
-      let ax,ay;
-      const custom=state.pos[keyOf(it.id)];
-      if(custom){ ax=custom.x; ay=custom.y; }
-      else if(key==='rug'){ if(state.room==='haloszoba'){ax=(roomW-300)/2;ay=roomH*0.5;} else {ax=(roomW-w)/2;ay=(roomH-h)/2;} }
-      else { [ax,ay]=anchors[key]; }
-      ax=clampX(ax,w); ay=clampY(ay,h);
-      const fill=key==='rug'?'#e7ded0':'#9aa6b2', stroke=key==='rug'?'#cbb995':'#64748b';
-      blocks+=drawBlock(P,ax,ay,w,h,fill,stroke,it.icon,it.id);
+    // The same resolved centimeter coordinates drive the SVG plan and the 3D scene.
+    placements3D(L,W,drawn).forEach(b=>{
+      const it=drawn.find(x=>x.id===b.productId)||drawn.find(x=>x.plan===b.kind);
+      const icon=it?it.icon:(META[b.kind]||{}).icon||'▪';
+      const color=b.color||finishForKind(b.kind,drawn), isRug=!!b.rug;
+      blocks+=drawBlock(P,b.cx-b.w/2,b.cy-b.d/2,b.w,b.d,color,isRug?'#8c785c':'#45443f',icon,b.instanceId);
     });
+    const screen=tvScreen(placements3D(L,W,drawn));
+    if(screen) blocks+=drawBlock(P,screen.cx-screen.w/2,screen.cy-screen.d/2,screen.w,screen.d,String.fromCharCode(35)+'202124',String.fromCharCode(35)+'202124',state.tvPlacement==='wall'?(state.lang==='hu'?'TV: falon':'TV: wall'):(state.lang==='hu'?'TV: bútoron':'TV: stand'),null);
     const doorX=P+40,doorW=80;
     return `<svg class="plan" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
       <rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="${wallHex}" stroke="#334155" stroke-width="10"/>
@@ -530,13 +509,30 @@
       <text x="${P/1.4}" y="${vh/2}" font-size="34" text-anchor="middle" fill="#94a3b8" transform="rotate(-90 ${P/1.4} ${vh/2})">${Math.min(L,W).toLocaleString('hu-HU')} m</text>
     </svg>`;
   }
+  function canPlace(id,cx,cy){
+    const items=placements3D(len(),wid(),drawnList()),it=items.find(x=>x.instanceId===id);
+    if(!it) return false;
+    const rw=Math.max(len(),wid())*100,rh=Math.min(len(),wid())*100;
+    if(cx-it.w/2<6||cy-it.d/2<6||cx+it.w/2>rw-6||cy+it.d/2>rh-6) return false;
+    return !items.some(b=>b.instanceId!==id&&!b.rug&&!it.rug&&Math.abs(b.cx-cx)<(b.w+it.w)/2+5&&Math.abs(b.cy-cy)<(b.d+it.d)/2+5);
+  }
+  function commitPlacement(it){
+    if(!canPlace(it.instanceId,it.cx,it.cy)) return false;
+    const resolved=placements3D(len(),wid(),drawnList());
+    const current=resolved.find(b=>b.instanceId===it.instanceId);
+    if(!current) return false;
+    resolved.forEach(b=>state.pos[keyOf(b.instanceId)]={x:b.cx-b.w/2,y:b.cy-b.d/2});
+    state.pos[keyOf(it.instanceId)]={x:it.cx-current.w/2,y:it.cy-current.d/2};
+    render();
+    return true;
+  }
   function attachDrag(){
     const svg=document.querySelector('svg.plan'); if(!svg) return;
     const vb=svg.viewBox.baseVal, P=32;
     let cur=null;
     svg.querySelectorAll('[data-drag]').forEach(g=>{
       g.addEventListener('pointerdown',e=>{
-        const rect=svg.getBoundingClientRect(), scale=vb.width/rect.width;
+        const rect=svg.getBoundingClientRect(), scale=1/svg.getScreenCTM().a;
         cur={g,id:g.getAttribute('data-drag'),sx:e.clientX,sy:e.clientY,ox:+g.getAttribute('data-x'),oy:+g.getAttribute('data-y'),scale};
         g.setPointerCapture(e.pointerId); g.style.cursor='grabbing'; e.preventDefault();
       });
@@ -545,9 +541,17 @@
         cur.nx=cur.ox+(e.clientX-cur.sx)*cur.scale; cur.ny=cur.oy+(e.clientY-cur.sy)*cur.scale;
         g.setAttribute('transform',`translate(${cur.nx},${cur.ny})`);
       });
-      const done=()=>{ if(!cur) return; if(cur.nx!=null){ state.pos[keyOf(cur.id)]={x:cur.nx-P,y:cur.ny-P}; } g.style.cursor='grab'; const c=cur; cur=null; if(c.nx!=null) render(); };
+      const done=()=>{
+        if(!cur) return;
+        if(cur.nx!=null){
+          const box=g.querySelector('rect'), w=box?+box.getAttribute('width'):0, h=box?+box.getAttribute('height'):0;
+          const x=cur.nx-P,y=cur.ny-P,L=len(),W=wid(),rw=Math.max(L,W)*100,rh=Math.min(L,W)*100;
+          if(!commitPlacement({instanceId:cur.id,cx:x+w/2,cy:y+h/2})) cur.blocked=true;
+        }
+        g.style.cursor='grab'; const c=cur; cur=null; if(c.nx!=null) render(); if(c.blocked) document.getElementById('layoutStatus').textContent=t('layoutBlocked');
+      };
       g.addEventListener('pointerup',done);
-      g.addEventListener('pointercancel',done);
+      g.addEventListener('pointercancel',()=>{ if(cur) cur.nx=null; done(); render(); });
     });
   }
 
@@ -560,6 +564,7 @@
     stb.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.style=el.dataset.s;state.off=new Set();render();}));
   }
   function applyStatic(){
+    document.documentElement.lang=state.lang;
     document.querySelectorAll('[data-i18n]').forEach(e=>{e.textContent=t(e.dataset.i18n);});
     document.querySelectorAll('[data-i18n-html]').forEach(e=>{e.innerHTML=t(e.dataset.i18nHtml);});
     document.querySelectorAll('[data-i18n-ph]').forEach(e=>{e.placeholder=t(e.dataset.i18nPh);});
@@ -582,7 +587,9 @@
   }
 
   function render(){
+    updateTVUI();
     const L=len(),W=wid(),H=hei(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100,roomArea=(L*W)*10000;
+    state.layoutOmit.clear();
     const list=curItems();
     applyStatic();
     document.getElementById('styleName').textContent=STYLE_LABEL[state.style][li()];
@@ -593,8 +600,9 @@
     let furnTotal=0,furnArea=0,fitCount=0,onCount=0; const drawn=[];
     list.forEach(it=>{
       const ok=fits(it,RL,RS); if(ok) fitCount++;
+      const qty=qtyFor(it.id);
       const on=ok&&!state.off.has(it.id);
-      if(on){ furnTotal+=it.price; onCount++; if(it.floor==='furniture') furnArea+=it.w*it.d; if(it.plan) drawn.push(it); }
+      if(on){ furnTotal+=unitPrice(it)*qty; onCount+=qty; if(it.floor==='furniture') furnArea+=it.w*it.d*qty; if(it.plan) drawn.push(it); }
       if(q && !(it.name.toLowerCase().includes(q) || catName(it.id).toLowerCase().includes(q))) return;
       const badge=ok?'':`<span class="badge-nofit">${t('nofit')}</span>`;
       let swap='',cmp='';
@@ -611,14 +619,34 @@
         }
       }
       const el=document.createElement('div'); el.className='item'+(on?'':' off');
-      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}"><div class="thumb">${it.icon}</div><div class="info"><div class="name">${it.name}</div><div class="meta"><span class="dims">${it.w} × ${it.d} cm</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${swap}${cmp}</div><div class="right"><div class="price">${fmt(it.price)} Ft</div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
+      const itemColor=finishFor(it);
+      const colorLabel=state.lang==='hu'?'Szín':'Color', quantityLabel=state.lang==='hu'?'Darab':'Qty';
+      const controls=it.plan?`<div class="item-controls"><label class="item-color"><span>${colorLabel}</span><input class="furn-color" type="color" aria-label="${colorLabel}: ${it.name}" value="${itemColor}" data-id="${it.id}"></label><div class="quantity-control"><span>${quantityLabel}</span><button type="button" class="qty-btn" data-id="${it.id}" data-step="-1" aria-label="Kevesebb">−</button><b class="qty-value" data-qty-for="${it.id}">${qty}</b><button type="button" class="qty-btn" data-id="${it.id}" data-step="1" aria-label="Több">+</button></div></div>`:'';
+      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}"><div class="thumb">${it.icon}</div><div class="info"><div class="name">${it.name}</div><div class="meta"><span class="dims">${it.w} × ${it.d} cm</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${controls}${swap}${cmp}</div><div class="right"><div class="price" data-price-for="${it.id}">${fmt(unitPrice(it)*qty)} Ft</div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
       listEl.appendChild(el);
     });
+    // Keep the visible plan, totals, and 3D scene in agreement when a complete
+    // layout cannot be packed without intersections.
+    const resolved=placements3D(L,W,drawn), placedKinds=new Set(resolved.map(x=>x.productId));
+    state.layoutQty={}; resolved.forEach(x=>state.layoutQty[x.productId]=(state.layoutQty[x.productId]||0)+1);
+    const rejected=drawn.filter(it=>!placedKinds.has(it.id));
+    state.layoutOmit=new Set(rejected.map(it=>it.id));
+    drawn.forEach(it=>{ const wanted=qtyFor(it.id),actual=state.layoutQty[it.id]||0; const delta=wanted-actual; if(delta>0){furnTotal-=unitPrice(it)*delta;onCount-=delta;if(it.floor==='furniture')furnArea-=it.w*it.d*delta;} const qtyEl=listEl.querySelector(`[data-qty-for="${it.id}"]`);if(qtyEl)qtyEl.textContent=actual+' / '+qtyFor(it.id);const priceEl=listEl.querySelector(`[data-price-for="${it.id}"]`);if(priceEl)priceEl.textContent=fmt(linePrice(it))+' Ft'; });
+    rejected.forEach(it=>{ const cb=listEl.querySelector(`.chk[data-id="${it.id}"]`); if(cb){cb.checked=false;cb.disabled=true;cb.closest('.item')?.classList.add('off');const meta=cb.closest('.item')?.querySelector('.meta');if(meta&&!meta.querySelector('.badge-nofit'))meta.insertAdjacentHTML('beforeend',` <span class="badge-nofit">${t('nofit')}</span>`);} });
+
     listEl.querySelectorAll('.chk').forEach(c=>c.addEventListener('change',()=>{ if(c.checked) state.off.delete(c.dataset.id); else state.off.add(c.dataset.id); render(); }));
+    listEl.querySelectorAll('.furn-color').forEach(c=>c.addEventListener('change',()=>{state.itemColors[c.dataset.id]=c.value;syncFurnitureViews();}));
+    labelFurnitureControls(listEl);
+    listEl.querySelectorAll('.qty-btn').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.id;state.quantity[id]=Math.max(1,Math.min(8,qtyFor(id)+(+b.dataset.step)));syncFurnitureViews();}));
     listEl.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.id,dir=+b.dataset.dir; const slot=getSlots().find(s=>s.id===id); const allowed=allowedIdxs(slot); let pos=allowed.indexOf(selIndex(id)); if(pos<0) pos=0; state.sel[keyOf(id)]=allowed[(pos+dir+allowed.length)%allowed.length]; render(); }));
     listEl.querySelectorAll('.cmpbtn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.cmp; state.openCmp.has(id)?state.openCmp.delete(id):state.openCmp.add(id); render(); }));
     listEl.querySelectorAll('.cmprow').forEach(r=>r.addEventListener('click',()=>{ state.sel[keyOf(r.dataset.id)]=+r.dataset.idx; render(); }));
 
+    furnTotal=0;onCount=0;furnArea=0;
+    list.forEach(it=>{if(!fits(it,RL,RS)) return;if(state.off.has(it.id)) return;furnTotal+=linePrice(it);onCount+=actualQty(it);});
+    resolved.forEach(it=>{if(!it.rug) furnArea+=it.w*it.d;});
+    const missing=drawn.reduce((n,it)=>n+qtyFor(it.id)-actualQty(it),0);
+    document.getElementById('layoutStatus').textContent=missing?t('layoutOmitted')+' ('+missing+')':'';
     const paint=computePaint(L,W,H), paintTotal=paint.cost;
     document.getElementById('paintcalc').innerHTML=paint.html;
     document.getElementById('plan').innerHTML=buildPlan(L,W,drawn,wallHex());
@@ -655,8 +683,8 @@
     const styleLabel=STYLE_LABEL[state.style][li()], roomLabel=ROOM_LABEL[state.room][li()];
     const colorName=state.color==='none'?t('exNone'):(state.lang==='hu'?(COLORS.find(c=>c.id===state.color)||{}).name:(COLOR_EN[state.color]||''));
     let rows='', furn=0;
-    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id); if(!on) return; furn+=it.price;
-      rows+=`<tr><td>${catName(it.id)}</td><td>${it.name}</td><td>${STORE_LABEL[it.store]||it.store.toUpperCase()}</td><td class="r">${fmt(it.price)} Ft</td></tr>`; });
+    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id); if(!on) return; furn+=linePrice(it);
+      rows+=`<tr><td>${catName(it.id)} × ${actualQty(it)}</td><td>${it.name}</td><td>${STORE_LABEL[it.store]||it.store.toUpperCase()}</td><td class="r">${fmt(linePrice(it))} Ft</td></tr>`; });
     const paint=computePaint(L,W,H); const grand=furn+paint.cost;
     const svg=document.querySelector('#plan svg') ? document.querySelector('#plan').innerHTML : '';
     document.getElementById('printArea').innerHTML=
@@ -682,7 +710,7 @@
   function shoppingGroups(){
     const L=len(),W=wid(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100;
     const g={}; let grand=0;
-    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id); if(!on) return; grand+=it.price; (g[it.store]=g[it.store]||[]).push(it); });
+    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id); if(!on) return; grand+=linePrice(it); (g[it.store]=g[it.store]||[]).push({...it,name:it.name+String.fromCharCode(32,215,32)+actualQty(it),quantity:actualQty(it),price:linePrice(it)}); });
     const order=['ikea','jysk','momax','mobelix'];
     return {groups:order.filter(s=>g[s]).map(s=>({store:s,items:g[s],sub:g[s].reduce((a,x)=>a+x.price,0)})), grand};
   }
@@ -707,7 +735,7 @@
     let rows='';
     groups.forEach(gr=>{ rows+=`<tr><td colspan="2" style="padding-top:14px;font-weight:800;border-bottom:none;">${STORE_LABEL[gr.store]} — ${fmt(gr.sub)} Ft</td></tr>`;
       gr.items.forEach(it=>{ rows+=`<tr><td>${it.name}</td><td class="r">${fmt(it.price)} Ft</td></tr>`; }); });
-    document.getElementById('printArea').innerHTML=`<div class="pa-h">${t('slTitle')}</div><div class="pa-meta">HomeVision AI · ${PRICE_DATE}</div><table><tbody>${rows}</tbody></table><div class="pa-tot"><span class="g">${t('slTotal')}: ${fmt(grand)} Ft</span></div>`;
+    document.getElementById('printArea').innerHTML=`<div class="pa-h">${t('slTitle')}</div><div class="pa-meta">DREAMR · ${PRICE_DATE}</div><table><tbody>${rows}</tbody></table><div class="pa-tot"><span class="g">${t('slTotal')}: ${fmt(grand)} Ft</span></div>`;
     window.print();
   }
   document.getElementById('shopBtn').addEventListener('click',openShopping);
@@ -717,6 +745,15 @@
     const L=len(),W=wid(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100; const arr=[];
     curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id); if(on&&it.plan) arr.push(it); });
     return arr;
+  }
+  function tvScreen(items){
+    if(state.room!=='nappali') return null;
+    if(!state.tvPlacement) return null;
+    const W=Math.max(len(),wid())*100,H=hei()*100;
+    if(state.tvPlacement==='wall') return {cx:W/2,cy:4,w:Math.min(118,W-12),d:5,h:Math.min(68,H/3),bottom:H*0.48,mode:'wall'};
+    const stand=items.find(it=>it.productId==='tv');
+    if(!stand) return null;
+    return {instanceId:stand.instanceId,cx:stand.cx,cy:stand.cy,w:Math.min(118,stand.w),d:5,h:Math.min(68,H-stand.h-6),bottom:stand.h,mode:'stand'};
   }
   const H3={sofa:80,chair:95,coffee:42,tv:48,rug:2,lamp:150,bed:45,nightstand:45,wardrobe:180,dtable:75,dchair:90,sideboard:80,island:90,barstool:72,kcabinet:120,fridge:180,desk:75,ochair:100,shelf:180,kbed:45,kdesk:65};
   function placements3D(L,W,drawn){
@@ -729,26 +766,83 @@
     else if(state.room==='konyha'){ const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80; anchors={island:[(roomW-iw)/2,(roomH-ih)/2-20],kcabinet:[12,10],fridge:[roomW-66,10],lamp:[12,roomH-52]}; order=['kcabinet','island','barstools','fridge','lamp']; }
     else if(state.room==='dolgozo'){ const dk=drawn.find(x=>x.plan==='desk'); const dw=dk?dk.w:120, dd=dk?dk.d:60; anchors={desk:[(roomW-dw)/2,10],ochair:[(roomW-70)/2,10+dd+14],shelf:[12,roomH-40-10],lamp:[roomW-42,10]}; order=['rug','desk','ochair','shelf','lamp']; }
     else { const kd=drawn.find(x=>x.plan==='kdesk'); const kw=kd?kd.w:96; anchors={kbed:[12,12],kdesk:[roomW-kw-12,12],wardrobe:[roomW-130,roomH-55-10],shelf:[12,roomH-40-10],lamp:[(roomW-30)/2,(roomH-40)/2]}; order=['rug','kbed','kdesk','wardrobe','shelf','lamp']; }
-    const out=[]; const push=(id,x,y,w,d)=>{ x=cX(x,w); y=cY(y,d); out.push({kind:id,cx:x+w/2,cy:y+d/2,w,d,h:(H3[id]||60),rug:(META[id]&&META[id].floor==='rug')}); };
-    order.forEach(key=>{ const it=drawn.find(x=>x.plan===key); if(!it) return;
-      if(key==='nightstands'){ const bed=drawn.find(x=>x.plan==='bed'); const bw=bed?bed.w:160; const bp=state.pos[keyOf('bed')]; const bx=bp?bp.x:(roomW-bw)/2, by=bp?bp.y:12; [bx-43,bx+bw+8].forEach(nx=>push('nightstand',nx,by,35,40)); return; }
-      if(key==='dchairs'){ const dt=drawn.find(x=>x.plan==='dtable'); const tw=dt?dt.w:140, th=dt?dt.d:85; const tp=state.pos[keyOf('dtable')]; const tx=tp?tp.x:(roomW-tw)/2, ty=tp?tp.y:(roomH-th)/2; [tx+tw*0.22-22,tx+tw*0.78-22].forEach(cx=>{ push('dchair',cx,ty-50,44,46); push('dchair',cx,ty+th+4,44,46); }); return; }
-      if(key==='barstools'){ const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80; const ip=state.pos[keyOf('island')]; const ix=ip?ip.x:(roomW-iw)/2, iy=ip?ip.y:(roomH-ih)/2-20; [ix+iw*0.30-21,ix+iw*0.65-21].forEach(sx=>push('barstool',sx,iy+ih+6,42,42)); return; }
+    const out=[]; let activeProduct=null;
+    const push=(id,x,y,w,d,instanceId=id)=>{
+      if(w>roomW-12) return; if(d>roomH-12) return;
+      const rug=META[id]&&META[id].floor==='rug';
+      const stored=state.pos[keyOf(instanceId)]; if(stored){x=stored.x;y=stored.y;}
+      x=cX(x,w); y=cY(y,d);
+      // Preserve the preferred room layout when possible. If it collides, search
+      // the measured floor area on a 10 cm grid and choose the nearest clear spot.
+      const blocked=(a,b)=>!a.rug&&!rug&&Math.abs(a.cx-(b.x+b.w/2))<(a.w+b.w)/2+5&&Math.abs(a.cy-(b.y+b.d/2))<(a.d+b.d)/2+5;
+      const collides=(px,py)=>out.some(a=>blocked(a,{x:px,y:py,w,d}));
+      if(!rug&&collides(x,y)){
+        let best=null,bestDist=Infinity;
+        for(let py=8;py<=roomH-d-8;py+=10) for(let px=8;px<=roomW-w-8;px+=10){
+          if(collides(px,py)) continue;
+          const dist=Math.hypot(px-x,py-y); if(dist<bestDist){best={x:px,y:py};bestDist=dist;}
+        }
+        if(best){x=best.x;y=best.y;}
+      }
+      if(!rug&&collides(x,y)) return; // Never draw an intersecting object.
+      const product=activeProduct;
+      const placed={productId:product.id,kind:id,instanceId,cx:x+w/2,cy:y+d/2,w,d,h:(H3[id]||60),rug:!!rug,color:finishFor(product)};
+      out.push(placed); return placed;
+    };
+    order.forEach(key=>{ const it=drawn.find(x=>x.plan===key); activeProduct=it; if(!it) return;
+      if(key==='nightstands'){ const bed=drawn.find(x=>x.plan==='bed'); const bw=bed?bed.w:160; const bp=state.pos[keyOf('bed')]; const bx=bp?bp.x:(roomW-bw)/2, by=bp?bp.y:12; for(let i=0;i<qtyFor('nightstand');i++){const nx=i%2===0?bx-43-Math.floor(i/2)*42:bx+bw+8+Math.floor(i/2)*42;push('nightstand',nx,by,it.w,it.d,`nightstand~${i+1}`);} return; }
+      if(key==='dchairs'){ const dt=drawn.find(x=>x.plan==='dtable'); const tw=dt?dt.w:140, th=dt?dt.d:85; const tp=state.pos[keyOf('dtable')]; const tx=tp?tp.x:(roomW-tw)/2, ty=tp?tp.y:(roomH-th)/2; const slots=[[tx+tw*.22-22,ty-50],[tx+tw*.78-22,ty-50],[tx+tw*.22-22,ty+th+4],[tx+tw*.78-22,ty+th+4],[tx-50,ty+th*.25-23],[tx-50,ty+th*.75-23],[tx+tw+6,ty+th*.25-23],[tx+tw+6,ty+th*.75-23]]; for(let i=0;i<qtyFor('dchair');i++){const [x,y]=slots[i];push('dchair',x,y,it.w,it.d,`dchair~${i+1}`);} return; }
+      if(key==='barstools'){ const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80; const ip=state.pos[keyOf('island')]; const ix=ip?ip.x:(roomW-iw)/2, iy=ip?ip.y:(roomH-ih)/2-20; for(let i=0;i<qtyFor('barstool');i++)push('barstool',ix+iw*(0.2+0.22*i)-it.w/2,iy+ih+6,it.w,it.d,`barstool~${i+1}`); return; }
       let w=(key==='rug')?Math.max(it.w,it.d):it.w, d=(key==='rug')?Math.min(it.w,it.d):it.d;
       let x,y; const cu=state.pos[keyOf(it.id)];
       if(cu){ x=cu.x; y=cu.y; } else if(key==='rug'){ if(state.room==='haloszoba'){x=(roomW-300)/2;y=roomH*0.5;} else {x=(roomW-w)/2;y=(roomH-d)/2;} } else { [x,y]=anchors[key]; }
-      push(it.id,x,y,w,d);
+      push(it.id,x,y,w,d,it.id);
+      for(let i=2;i<=qtyFor(it.id);i++){const instanceId=`${it.id}~${i}`,saved=state.pos[keyOf(instanceId)];push(it.id,saved?saved.x:x+(i-1)*(w+12),saved?saved.y:y,w,d,instanceId);}
     });
     return out;
   }
   let R3={};
   function close3D(){ if(R3.stop)R3.stop(); if(R3.dom&&R3.onwheel)R3.dom.removeEventListener('wheel',R3.onwheel); R3={}; document.getElementById('d3Overlay').style.display='none'; }
+  function labelFurnitureControls(host){
+    host.querySelectorAll('.qty-btn').forEach(b=>{
+      const less=+b.dataset.step<0,q=qtyFor(b.dataset.id);
+      b.disabled=less?q<=1:q>=8;
+      b.setAttribute('aria-label',(state.lang==='hu'?(less?'Kevesebb: ':'Több: '):(less?'Fewer: ':'More: '))+catName(b.dataset.id));
+    });
+    host.querySelectorAll('.three-d-color').forEach(el=>el.setAttribute('aria-label',catName(el.dataset.id)+(state.lang==='hu'?' színe':' colour')));
+  }
+  function syncFurnitureViews(){
+    render();
+    if(document.getElementById('d3Overlay').style.display==='flex'){build3DFurnitureControls();refresh3DScene();}
+  }
+  function build3DFurnitureControls(){
+    const host=document.getElementById('threeDFurnitureControls'); if(!host) return;
+    const items=curItems().filter(it=>it.plan);
+    host.innerHTML=`<div class="three-d-controls-title">${state.lang==='hu'?'Bútorok színe és darabszáma':'Furniture colour and quantity'}</div>`+
+      items.map(it=>{const qty=actualQty(it)+' / '+qtyFor(it.id);return `<div class="three-d-control"><span class="three-d-icon">${it.icon}</span><span class="three-d-name">${catName(it.id)}</span><input type="color" class="three-d-color" aria-label="${catName(it.id)} színe" data-id="${it.id}" value="${finishFor(it)}"><button type="button" class="qty-btn three-d-qty" data-id="${it.id}" data-step="-1">−</button><b>${qty}</b><button type="button" class="qty-btn three-d-qty" data-id="${it.id}" data-step="1">+</button></div>`;}).join('');
+    labelFurnitureControls(host);
+    host.querySelectorAll('.three-d-color').forEach(input=>input.addEventListener('change',()=>{state.itemColors[input.dataset.id]=input.value;syncFurnitureViews();}));
+    host.querySelectorAll('.three-d-qty').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.id;state.quantity[id]=Math.max(1,Math.min(8,qtyFor(id)+(+button.dataset.step)));syncFurnitureViews();}));
+  }
+  function refresh3DScene(){
+    const cont=document.getElementById('d3canvas'); if(!cont) return;
+    const view=window.HV3D?.getView?.();
+    if(R3.stop) R3.stop();
+    cont.querySelectorAll('canvas').forEach(canvas=>canvas.remove());
+    R3={}; init3D(view);
+  }
+  function tvInstruction(){
+    const screen=tvScreen(placements3D(len(),wid(),drawnList()));
+    if(!screen) return 'No television is present. Do not add a screen or TV stand.';
+    return screen.mode==='wall'?'The television is attached to the wall. Do not put a television on a cabinet.':'The television rests directly on the placed TV cabinet. Keep it on that cabinet; do not mount it on the wall.';
+  }
   function open3D(){
     const ov=document.getElementById('d3Overlay');
-    ov.innerHTML=`<div class="slbox" style="max-width:760px;"><div class="slhead"><h3>${t('d3Title')}</h3><button class="slclose" id="d3X">✕</button></div><div id="d3canvas" style="width:100%;height:440px;border-radius:14px;overflow:hidden;background:${document.body.classList.contains('dark')?'#12151b':'#eef1f5'};touch-action:none;"></div><div style="font-size:12.5px;color:var(--muted);margin-top:10px;">${t('d3Hint')}</div><div id="aiResult"></div><div class="slbtns">${(window.HVCloud&&window.HVCloud.enabled)?`<button class="pr" id="aiBtn">${t('aiBtn')}</button>`:''}<button class="cl" id="d3X2">${t('slClose')}</button></div></div>`;
+    ov.innerHTML=`<div class="slbox" style="max-width:760px;"><div class="slhead"><h3>${t('d3Title')}</h3><button class="slclose" id="d3X">✕</button></div><div id="d3canvas" style="width:100%;height:440px;border-radius:14px;overflow:hidden;background:${document.body.classList.contains('dark')?'#12151b':'#eef1f5'};touch-action:none;"></div><div style="font-size:12.5px;color:var(--muted);margin-top:10px;">${t('d3Hint')}</div><div id="threeDFurnitureControls"></div><div id="d3MoveStatus" role="status" aria-live="polite"></div><div id="aiResult"></div><div class="slbtns">${(window.HVCloud&&window.HVCloud.enabled)?`<button class="pr" id="aiBtn">${t('aiBtn')}</button>`:''}<button class="cl" id="d3X2">${t('slClose')}</button></div></div>`;
     ov.style.display='flex';
     document.getElementById('d3X').onclick=close3D; document.getElementById('d3X2').onclick=close3D;
     ov.onclick=e=>{ if(e.target===ov) close3D(); };
+    build3DFurnitureControls();
     const ab=document.getElementById('aiBtn');
     if(ab) ab.onclick=async()=>{
       if(!window.HVCloud.getUser()){ alert(t('aiLogin')); return; }
@@ -756,8 +850,9 @@
       ab.disabled=true; ab.textContent=t('aiWorking');
       try{
         // A 3D nézet aktuális képe + angol prompt a beállításokból
+        await window.HV3D.ready; if(!ab.isConnected) return;
         const img=window.HV3D.snapshot();
-        const prompt=`Turn this 3D room render into a photorealistic interior design photograph of a ${STYLE_LABEL[state.style][1]} style ${ROOM_LABEL[state.room][1].toLowerCase()}. Keep the exact same camera angle, room shape, wall and floor layout, and keep every piece of furniture in exactly the same position, size and proportion. Do not add, remove, move or resize any object. Walls colour ${wallHex()}. Realistic materials, soft natural daylight, sharp details, high quality.`;
+        const prompt=`Turn this 3D room render into a photorealistic interior design photograph of a ${STYLE_LABEL[state.style][1]} style ${ROOM_LABEL[state.room][1].toLowerCase()}. Keep the exact same camera angle, room shape, wall and floor layout, and keep every piece of furniture in exactly the same position, size and proportion. Do not add, remove, move or resize any object. Walls colour ${wallHex()}. ${tvInstruction()} Furniture finishes and all instance counts must match the source. Realistic materials, soft natural daylight, sharp details, high quality.`;
         const res=await window.HVCloud.aiRender(img,prompt);
         if(res&&res.url){
           document.getElementById('aiResult').innerHTML=`<img src="${res.url}" style="width:100%;border-radius:14px;margin-top:12px;" alt="AI render">`+(res.remaining!=null?`<div style="font-size:12px;color:var(--muted);margin-top:6px;">${t('aiLeft')} ${res.remaining}</div>`:'');
@@ -769,15 +864,31 @@
       ab.disabled=false; ab.textContent=t('aiBtn');
     };
     init3D();
+    const container=document.getElementById('d3canvas');
+    container.style.position='relative';
+    const transition=document.createElement('div');
+    transition.className='dreamr-transition';
+    const preview=document.querySelector('svg.plan').cloneNode(true);
+    preview.querySelectorAll('[data-drag]').forEach(g=>g.removeAttribute('data-drag'));
+    transition.innerHTML='<div class="transition-plan"></div><div class="transition-brand">DREAM<span>R</span></div><div class="transition-caption"></div><div class="transition-progress"><i></i></div>';
+    transition.querySelector('.transition-plan').appendChild(preview);
+    transition.querySelector('.transition-caption').textContent=t('transitionCaption');
+    container.appendChild(transition);
+    if(ab) ab.disabled=true;
+    const ready=window.HV3D ? window.HV3D.ready : Promise.resolve();
+    Promise.all([ready,new Promise(resolve=>setTimeout(resolve,720))]).then(()=>{
+      transition.classList.add('is-leaving');setTimeout(()=>transition.remove(),520);
+      if(ab) ab.disabled=false;
+    });
   }
-  function init3D(){
+  function init3D(view){
     const cont=document.getElementById('d3canvas');
     // Ha a Three.js modul betöltött (viewer3d.js), a valódi 3D nézetet használjuk.
     // Ha nem (pl. nincs internet), automatikusan a régi, beépített canvas-nézet fut.
     if(window.HV3D){
       const L=len(),Wd=wid(),Hh=hei();
-      const dispose=window.HV3D.mount(cont,{ roomW:Math.max(L,Wd), roomD:Math.min(L,Wd), roomH:Hh,
-        wallColor:wallHex(), floorColor:'#cbb48d', items:placements3D(L,Wd,drawnList()) });
+      const dispose=window.HV3D.mount(cont,{ view, roomW:Math.max(L,Wd), roomD:Math.min(L,Wd), roomH:Hh,
+        wallColor:wallHex(), floorColor:'#cbb48d', items:placements3D(L,Wd,drawnList()), tvScreen:tvScreen(placements3D(L,Wd,drawnList())), onMove:commitPlacement, canMove:canPlace, onBlocked:()=>{document.getElementById('layoutStatus').textContent=t('layoutBlocked');document.getElementById('d3MoveStatus').textContent=t('layoutBlocked');} });
       R3={stop:dispose};
       return;
     }
@@ -788,7 +899,7 @@
     const wallHexV=wallHex();
     const boxes=[];
     placements3D(L,Wd,drawnList()).forEach(b=>{ const X=(b.cx-(RW*100)/2)/100, Z=(b.cy-(RD*100)/2)/100, w=b.w/100, d=b.d/100, h=Math.max(b.h,2)/100;
-      boxes.push({min:[X-w/2,0,Z-d/2],max:[X+w/2,h,Z+d/2],color:b.rug?'#d8c6a0':'#9aa6b6'}); });
+      boxes.push({min:[X-w/2,0,Z-d/2],max:[X+w/2,h,Z+d/2],color:b.color}); });
     const target=[0,Hh*0.35,0];
     let theta=Math.PI*0.72, phi=Math.PI*0.36, radius=Math.max(RW,RD)*1.7+2.5;
     const sub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]], dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
@@ -828,23 +939,23 @@
   function saveHouse(){ try{ localStorage.setItem(LSKEY, JSON.stringify(state.house)); }catch(e){} if(window.HVCloud&&window.HVCloud.enabled) window.HVCloud.scheduleSave(state.house); }
   function currentSnapshot(){
     const L=len(),W=wid(),H=hei(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100; const items=[]; let furn=0;
-    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id); if(!on)return; furn+=it.price; items.push({cat:catName(it.id),name:it.name,store:it.store,price:it.price,url:it.url}); });
+    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id); if(!on)return; furn+=linePrice(it); items.push({cat:catName(it.id),name:it.name+String.fromCharCode(32,215,32)+actualQty(it),store:it.store,price:linePrice(it),quantity:actualQty(it),color:finishFor(it),url:it.url}); });
     const paint=computePaint(L,W,H).cost; return {items,furn,paint,grand:furn+paint,L,W,H};
   }
   function saveRoom(){
     const snap=currentSnapshot(), label=ROOM_LABEL[state.room][li()];
     const n=state.house.filter(r=>r.roomId===state.room).length, name=label+(n>0?(' '+(n+1)):'');
     state.house.push({ id:'h'+Date.now()+Math.random().toString(36).slice(2,6), name, roomId:state.room, styleLabel:STYLE_LABEL[state.style][li()], sizeStr:snap.L+'×'+snap.W+' m', total:snap.grand, items:snap.items,
-      config:{room:state.room,style:state.style,len:snap.L,wid:snap.W,hei:snap.H,color:state.color,budget:state.budget,sel:JSON.parse(JSON.stringify(state.sel)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos))} });
+      config:{room:state.room,style:state.style,len:snap.L,wid:snap.W,hei:snap.H,color:state.color,budget:state.budget,tvPlacement:state.tvPlacement,quantity:{...state.quantity},itemColors:{...state.itemColors},sel:JSON.parse(JSON.stringify(state.sel)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos))} });
     saveHouse(); openHouse();
   }
-  function loadRoom(r){ const c=r.config; document.getElementById('len').value=c.len; document.getElementById('wid').value=c.wid; document.getElementById('hei').value=c.hei; state.room=c.room; state.style=c.style; state.color=c.color; state.budget=c.budget; document.getElementById('budgetNum').value=c.budget; document.getElementById('budgetRange').value=Math.min(Math.max(c.budget,100000),1200000); state.sel=JSON.parse(JSON.stringify(c.sel||{})); state.off=new Set(c.off||[]); state.pos=JSON.parse(JSON.stringify(c.pos||{})); closeHouse(); render(); }
+  function loadRoom(r){ const c=r.config; document.getElementById('len').value=c.len; document.getElementById('wid').value=c.wid; document.getElementById('hei').value=c.hei; state.room=c.room; state.style=c.style; state.color=c.color; state.budget=c.budget; state.tvPlacement=c.tvPlacement==='wall'?'wall':'stand'; state.quantity=JSON.parse(JSON.stringify(c.quantity||{})); state.itemColors=JSON.parse(JSON.stringify(c.itemColors||{})); document.getElementById('budgetNum').value=c.budget; document.getElementById('budgetRange').value=Math.min(Math.max(c.budget,100000),1200000); state.sel=JSON.parse(JSON.stringify(c.sel||{})); state.off=new Set(c.off||[]); state.pos=JSON.parse(JSON.stringify(c.pos||{})); closeHouse(); render(); }
   function closeHouse(){ document.getElementById('houseOverlay').style.display='none'; }
   function printHouseShopping(){
     const g={}; let grand=0; const order=['ikea','jysk','momax','mobelix'];
     state.house.forEach(r=>r.items.forEach(it=>{ grand+=it.price; (g[it.store]=g[it.store]||[]).push(it); }));
     let rows=''; order.filter(s=>g[s]).forEach(s=>{ const sub=g[s].reduce((a,x)=>a+x.price,0); rows+=`<tr><td colspan="2" style="padding-top:14px;font-weight:800;border-bottom:none;">${STORE_LABEL[s]} — ${fmt(sub)} Ft</td></tr>`; g[s].forEach(it=>{ rows+=`<tr><td>${it.name}</td><td class="r">${fmt(it.price)} Ft</td></tr>`; }); });
-    document.getElementById('printArea').innerHTML=`<div class="pa-h">${t('houseTitle')} — ${t('slTitle')}</div><div class="pa-meta">HomeVision AI · ${PRICE_DATE}</div><table><tbody>${rows}</tbody></table><div class="pa-tot"><span class="g">${t('slTotal')}: ${fmt(grand)} Ft</span></div>`;
+    document.getElementById('printArea').innerHTML=`<div class="pa-h">${t('houseTitle')} — ${t('slTitle')}</div><div class="pa-meta">DREAMR · ${PRICE_DATE}</div><table><tbody>${rows}</tbody></table><div class="pa-tot"><span class="g">${t('slTotal')}: ${fmt(grand)} Ft</span></div>`;
     window.print();
   }
   function openHouse(){
@@ -869,8 +980,8 @@
   // ---- MEGOSZTHATÓ LINK (a szoba állapota a URL #c= részébe kódolva) ----
   function currentConfig(){
     // Ugyanaz a config objektum, mint a saveRoom-ban — egy formátum, több felhasználás.
-    return {room:state.room,style:state.style,len:len(),wid:wid(),hei:hei(),color:state.color,budget:state.budget,
-      sel:JSON.parse(JSON.stringify(state.sel)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos))};
+    return {room:state.room,style:state.style,len:len(),wid:wid(),hei:hei(),color:state.color,budget:state.budget,tvPlacement:state.tvPlacement,
+      quantity:{...state.quantity},itemColors:{...state.itemColors},sel:JSON.parse(JSON.stringify(state.sel)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos))};
   }
   function makeShareLink(){
     const encoded=LZString.compressToEncodedURIComponent(JSON.stringify(currentConfig()));
@@ -890,6 +1001,11 @@
       if(c&&c.room&&c.style) loadRoom({config:c}); // a meglévő betöltő újrahasznosítva
     }catch(e){} // hibás/csonka link: az app simán alaphelyzetből indul
   }
+  const heroCompare=document.getElementById('heroCompare');
+  heroCompare.addEventListener('input',()=>{
+    document.querySelector('.dreamr-hero-visual').style.setProperty('--compare-position',heroCompare.value+'%');
+  });
+
   document.getElementById('shareBtn').addEventListener('click',shareRoom);
 
   // ---- FIÓK + FELHŐ-MENTÉS (Supabase, lásd cloud.js) ----
@@ -911,7 +1027,7 @@
       const draw=()=>{
         const reg=mode==='up';
         ov.innerHTML=`<div class="authbox"><button class="aclose" id="aX">✕</button>
-          <div class="abrand">HomeVision AI</div>
+          <div class="abrand">DREAMR</div>
           <h2>${reg?t('authCreate'):t('authWelcome')}</h2>
           <div class="asub">${reg?t('authCreateSub'):t('authSub')}</div>
           ${window.HVCloud.google?`<button class="agoogle" id="aG">`:`<button class="agoogle" id="aG" style="display:none">`}<svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.4 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.9-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.6l-7.4-5.7c-2 1.4-4.7 2.3-7.8 2.3-6.3 0-11.7-4-13.6-9.8l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>${t('authGoogle')}</button>
@@ -968,6 +1084,27 @@
     };
   }
 
+  function updateTVUI(){
+    const ov=document.getElementById('tvPlacementOverlay');
+    const labels=['BEFORE PLANNING','Where should the TV go?','Used in the 2D, 3D and AI plan.','On a TV stand','On the first placed TV cabinet.','Wall mounted','The cabinet is optional.'];
+    const nodes=ov.querySelectorAll('.section-label,h2,p:not(.section-label),button b,button small');
+    nodes.forEach((n,i)=>{if(!n.dataset.hu) n.dataset.hu=n.textContent;n.textContent=state.lang==='hu'?n.dataset.hu:labels[i];});
+    const needsChoice=state.room==='nappali'&&!state.tvPlacement;
+    ov.style.display=needsChoice?'flex':'none'; if(needsChoice) ov.querySelector('button').focus();
+    document.querySelectorAll('.nav,.wrap').forEach(el=>el.inert=needsChoice);
+    const btn=document.getElementById('tvPlacementBtn');
+    btn.hidden=state.room!=='nappali';
+    btn.textContent=state.lang==='hu'
+      ? ('TV: '+(state.tvPlacement==='wall'?'falon':'bútoron'))
+      : ('TV: '+(state.tvPlacement==='wall'?'wall':'stand'));
+  }
+  document.querySelectorAll('[data-tv-placement]').forEach(b=>b.onclick=()=>{state.tvPlacement=b.dataset.tvPlacement;render();document.getElementById('tvPlacementBtn').focus();});
+  document.getElementById('tvPlacementBtn').onclick=()=>{document.getElementById('tvPlacementOverlay').style.display='flex';document.querySelectorAll('.nav,.wrap').forEach(el=>el.inert=true);document.querySelector('[data-tv-placement]').focus();};
+  document.getElementById('tvPlacementOverlay').addEventListener('keydown',e=>{
+    if(e.key!=='Tab') return;e.preventDefault();
+    const bs=[...document.querySelectorAll('[data-tv-placement]')];
+    bs[(bs.indexOf(document.activeElement)+1)%bs.length].focus();
+  });
   loadHouse();
   loadFromHash();
   document.getElementById('themeBtn').addEventListener('click',()=>{
@@ -992,8 +1129,8 @@
     T.en.note='Prices are indicative, as of <strong>'+PRICE_DATE_EN+'</strong>. Check the exact price on the product page.';
     T.hu.footR='Árak: ikea.com/hu, jysk.hu · '+PRICE_DATE;
     T.en.footR='Prices: ikea.com/hu, jysk.hu · '+PRICE_DATE;
-    T.hu.exNote='Az árak tájékoztató jellegűek ('+PRICE_DATE+'), a boltok oldalán ellenőrizhetők. Készült a HomeVision AI tervezővel.';
-    T.en.exNote='Prices are indicative ('+PRICE_DATE+'), verify on the store pages. Made with the HomeVision AI planner.';
+    T.hu.exNote='Az árak tájékoztató jellegűek ('+PRICE_DATE+'), a boltok oldalán ellenőrizhetők. Készült a DREAMR tervezővel.';
+    T.en.exNote='Prices are indicative ('+PRICE_DATE+'), verify on the store pages. Made with the DREAMR planner.';
   }
   function applyLivePrices(data){
     if(!data||!data.prices) return;

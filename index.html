@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HomeVision AI — Lakberendező tervező</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f3a63'/%3E%3Ctext x='16' y='24' font-size='21' text-anchor='middle' fill='white'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<title>DREAMR — AI lakberendező tervező</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23171717%27/%3E%3Ctext x=%2716%27 y=%2724%27 font-size=%2724%27 text-anchor=%27middle%27 fill=%27white%27%3ED%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -12,20 +12,50 @@
 </head>
 <body>
   <nav class="nav">
-    <div class="brand"><span class="logo">✦</span> HomeVision <span class="ai">AI</span></div>
-    <div style="display:flex;align-items:center;gap:10px;">
+    <a class="brand" href="#top" aria-label="DREAMR">
+      <span class="logo-mark" aria-hidden="true"><span></span></span>
+      <span class="brand-word">DREAM<span class="brand-r">R</span></span>
+    </a>
+    <div class="nav-center">
+      <a href="#planner" data-i18n="navPlanner">Tervező</a>
+      <a href="#furnitureSection" data-i18n="navFurniture">Bútorok</a>
+      <a href="#summarySection" data-i18n="navSummary">Összegzés</a>
+    </div>
+    <div class="nav-actions">
       <button id="langBtn" class="themebtn" title="Nyelv / Language" style="font-size:12px;font-weight:800;">EN</button>
       <button id="themeBtn" class="themebtn" title="Sötét / világos mód" aria-label="Sötét mód">🌙</button>
       <button id="accountBtn" class="themebtn" title="Fiók" style="display:none;font-size:15px;">👤</button>
-      <a class="cta" href="#" data-i18n="try">BB7 album
-        
-      </a>
+      <button class="nav-start" type="button" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})"><span data-i18n="startPlanning">Kezdj tervezni</span> <span aria-hidden="true">→</span></button>
     </div>
   </nav>
-  <div class="wrap">
-    <span class="kicker"><span class="dot"></span> <span data-i18n="kicker">Interaktív tervező · valódi árak</span></span>
-    <h1><span class="hl" id="styleName">Modern</span> <span id="roomName">nappali</span> <span id="plannerWord">tervező</span></h1>
-    <p class="sub" data-i18n-html="sub">Válassz szobatípust és stílust, méretet, falszínt, keretet. A bútoroknál <strong>valódi alternatívák</strong> közül választhatsz (◀ ▶), az alaprajzon <strong>áthúzhatod</strong> a bútorokat, végül <strong>ajánlatot</strong> exportálhatsz ügyfélnek. Minden ár valódi, kattintható linkkel.</p>
+  <div class="wrap" id="top">
+    <section class="dreamr-hero">
+      <div class="dreamr-hero-copy">
+        <span class="kicker"><span class="dot"></span> <span data-i18n="heroKicker">AI LAKBERENDEZÉS · VALÓDI TERMÉKEK</span></span>
+        <h1><span class="hl" id="styleName">Modern</span> <span id="roomName">nappali</span> <span id="plannerWord">tervező</span></h1>
+        <p class="sub" data-i18n-html="sub">Töltsd ki a szobád adatait, válassz stílust, és építsd fel az otthonod valódi bútorokból. <strong>Árak, alternatívák és vásárlási lista</strong> egy helyen.</p>
+        <div class="hero-actions">
+          <button class="hero-primary" type="button" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})"><span data-i18n="startPlanning">Kezdj tervezni</span> <span aria-hidden="true">→</span></button>
+          <span class="hero-proof" data-i18n="heroProof">✓ Valós árak &nbsp; ✓ 3D nézet &nbsp; ✓ PDF-ajánlat</span>
+        </div>
+      </div>
+      <div class="dreamr-hero-visual">
+        <div class="hero-room-before"></div>
+        <div class="hero-room-after"></div>
+        <div class="hero-room-label before" data-i18n="heroBefore">Eredeti</div>
+        <div class="hero-room-label after" data-i18n="heroAfter">DREAMR terv</div>
+        <div class="hero-room-line"></div>
+        <div class="hero-room-handle" aria-hidden="true">↔</div><label class="sr-only" for="heroCompare" data-i18n="heroCompare">Előtte–utána összehasonlítás</label><div class="hero-brand-stamp" aria-label="DREAMR"><span class="hero-brand-word">DREAM</span><span class="hero-brand-r">R</span></div><input id="heroCompare" class="hero-compare" type="range" min="0" max="100" value="50"><span class="hero-demo-note" data-i18n="heroDemo">Illusztráció · nem a jelenlegi szobaterv</span>
+      </div>
+    </section>
+
+    <section class="planner-intro" id="planner">
+      <div>
+        <span class="section-label">DREAMR PLANNER</span>
+        <h2 data-i18n="plannerIntroTitle">Építsd fel a szobád.</h2>
+        <p data-i18n="plannerIntroText">Először a teret állítjuk be, utána jöhetnek a bútorok, a színek és a büdzsé.</p>
+      </div>
+    </section>
 
     <div class="herobadges">
       <span data-i18n="b1">🛋️ 6 szobatípus</span><span data-i18n="b2">🎨 6 stílus</span><span data-i18n="b3">🏬 4 bolt</span><span data-i18n="b4">📐 méretre szabva</span><span data-i18n="b5">💰 büdzsére</span><span data-i18n="b6">🧾 PDF-ajánlat</span>
@@ -55,9 +85,9 @@
       <div>
         <div class="cardbox" style="margin-top:0;">
           <div class="chead"><span class="ic">🗺️</span><div><h3 data-i18n="planH">Alaprajz (felülnézet)</h3><p data-i18n="planP">Húzd át a bútorokat! A be nem férő, kikapcsolt darabok nem látszanak.</p></div></div>
-          <div class="planwrap"><div id="plan"></div></div>
+          <div class="planwrap"><p class="precision-note" data-i18n="precisionNote"></p><p id="layoutStatus" role="status" aria-live="polite"></p><div id="plan"></div></div>
           <div class="plantools">
-            <button class="minibtn" id="resetLayout" data-i18n="reset">↺ Elrendezés visszaállítása</button>
+            <button class="minibtn tv-placement-btn" id="tvPlacementBtn" type="button">TV</button><button class="minibtn" id="resetLayout" data-i18n="reset">↺ Elrendezés visszaállítása</button>
             <button class="minibtn" id="view3dBtn" data-i18n="view3d">🧊 3D nézet</button>
             <button class="minibtn dark" id="exportBtn2" data-i18n="exportBtn">🧾 Ajánlat (PDF)</button>
             <span class="planhint" data-i18n="planHint">Fogd meg és húzd a bútort.</span>
@@ -90,13 +120,13 @@
             <button class="minibtn" id="cheapAll" data-i18n="cheapAll" style="margin-left:auto;">⤓ Legolcsóbb mindenhol</button>
           </div>
         </div>
-        <div class="list-head">
+        <div class="list-head" id="furnitureSection">
           <div><div class="section-label" data-i18n="listLabel">Bútorlista</div><h2 data-i18n="listH">Az összeállítás elemei</h2></div>
           <div class="count-pill" id="countPill">—</div>
         </div>
         <div id="list"></div>
       </div>
-      <aside>
+      <aside id="summarySection">
         <div class="summary">
           <div class="lbl" data-i18n="sumLabel">Becsült összköltség</div>
           <div class="total"><span id="grand">—</span><small>Ft</small></div>
@@ -123,13 +153,25 @@
     <div class="disclaimer"><span>💡</span>
       <div data-i18n-html="tips">Tippek…</div>
     </div>
-    <div class="foot"><span data-i18n="footL">© 2026 HomeVision AI — Lakberendező tervező</span><span data-i18n="footR">Árak: ikea.com/hu, jysk.hu · 2026-08-29</span></div>
+    <div class="foot"><span data-i18n="footL">© 2026 DREAMR — Lakberendező tervező</span><span data-i18n="footR">Árak: ikea.com/hu, jysk.hu · 2026-08-29</span></div>
   </div>
 
   <div id="slOverlay" class="sloverlay" style="display:none"></div>
   <div id="d3Overlay" class="sloverlay" style="display:none"></div>
   <div id="authOverlay" class="authov" style="display:none"></div>
   <div id="houseOverlay" class="sloverlay" style="display:none"></div>
+  <div id="tvPlacementOverlay" class="tv-placement-overlay" role="dialog" aria-modal="true" aria-labelledby="tvPlacementTitle">
+    <div class="tv-placement-dialog">
+      <div class="tv-placement-mark">DREAM<span>R</span></div>
+      <p class="section-label">MÉG A TERVEZÉS ELŐTT</p>
+      <h2 id="tvPlacementTitle">Hogyan szeretnéd elhelyezni a TV-t?</h2>
+      <p>Ez alapján készül el a nappali alaprajza, 3D nézete és AI-látványterve.</p>
+      <div class="tv-placement-options">
+        <button type="button" data-tv-placement="stand"><span>▰</span><b>Polcra / TV-állványra</b><small>A képernyő bútoron áll; az állvány külön is kikapcsolható.</small></button>
+        <button type="button" data-tv-placement="wall"><span>▣</span><b>Falra szerelve</b><small>A képernyő a falra kerül, a konzol külön bútor marad.</small></button>
+      </div>
+    </div>
+  </div>
   <div id="printArea"></div>
 
 <script type="importmap">

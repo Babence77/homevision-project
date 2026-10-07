@@ -1,4 +1,4 @@
-# HomeVision AI — Lakberendező tervező
+# DREAMR — Lakberendező tervező
 
 Interaktív lakberendező-tervező webalkalmazás magyar és angol nyelven: valós termékek és árak több boltból, méretre és büdzsére szabva, alaprajz + 3D nézet, PDF-ajánlat, bevásárlólista és „Házam” (mentett szobák egész házhoz).
 
@@ -71,3 +71,26 @@ Ezt majd együtt végigcsináljuk, ha eljutunk odáig.
 - A „Házam” mentés a böngésződben tárolódik (a valódi felhő-mentés a backend-fázisban jön).
 
 Készült Bencével, lépésről lépésre. 💙
+
+## DREAMR arculat
+
+A korábbi HomeVision AI új neve DREAMR. Az új nyitóoldal bézs–fekete színeket, saját logójelet és billentyűzettel is kezelhető előtte–utána csúszkát használ. A room-before-dreamr.jpg és room-after-dreamr.jpg bemutatóképek illusztrációk, nem a tervező aktuális eredményei.
+
+A felület magyarul és angolul, mobilon és sötét módban is használható. A belépő ablak, a lábléc és a PDF-ajánlatok is DREAMR nevet viselnek. A korábbi homevision_house_v1 helyi tárolási kulcs megmaradt, így a meglévő szobák továbbra is elérhetők. A Supabase-projektet, a megosztott linkek formátumát és az árfrissítőt az arculatváltás nem módosítja.
+## Pontossági frissítés és képcsúszka
+
+A 2D és 3D nézet közös, centiméteres elhelyezést használ. A bútorok a szobán belül maradnak, és a szőnyeg kivételével 5 cm-es ütközési hézagot tartanak. A falba vagy másik bútorba húzott elhelyezést a program elutasítja.
+
+Helyhiány esetén figyelmeztetés jelenik meg. A kihagyott darab nem kerül az összegzésbe, PDF-be, bevásárlólistába és mentett tétellistába. A listában az elhelyezett / kért darabszám látható; a csomagból részben elférő darabok is bekerülhetnek.
+
+A színek terméknév alapján, a magasságok részben becsültek. Ajtó-, ablak- és közlekedési helyigényt még nem ellenőrzünk: ez nem építészeti garancia. Az AI-kép illusztráció, nem méretezett terv.
+
+A 3D nézet aktuális alaprajzból induló animált átmenetet kapott; az AI-gomb a modellek betöltését megvárja. A v4 új, összeillesztett képpárt és DREAMR saroklogót ad a billentyűzettel is kezelhető előtte-utána csúszkához.
+
+## V6 testreszabás és TV-elhelyezés
+
+- A bútorlista és a 3D vezérlősáv ugyanazt az állapotot használja: a szín és a darabszám mindkét helyen állítható, és azonnal szinkronban marad.
+- Darabszám 1–8 között adható meg. A költség, PDF, bevásárlólista és mentett tétel a ténylegesen elhelyezett darabszámból számol.
+- A többdarabos katalógusok (pl. 2-es/4-es csomag) ára belső egységárra van bontva, így nem számolódik duplán. Ez a tervbe kerülő darabok arányos költsége; a boltban a teljes csomag megvásárlása lehet szükséges.
+- A 3D mozgatás ugyanazt az ütközés- és falellenőrzést használja, mint a 2D. Érvénytelen mozgatásnál visszaáll az előző pozíció.
+- Nappali tervezés előtt kötelező TV-elhelyezést választani (bútoron / falon). A beállítás megjelenik 2D/3D nézetben, AI-promptban, mentésben és megosztható linkben.
