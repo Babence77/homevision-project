@@ -7,11 +7,24 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23171717%27/%3E%3Ctext x=%2716%27 y=%2724%27 font-size=%2724%27 text-anchor=%27middle%27 fill=%27white%27%3ED%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=dreamr-v7">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=dreamr-v8">
+<link rel="stylesheet" href="luxe.css?v=dreamr-v8">
 </head>
 <body class="welcome-mode">
   <main id="welcomePage" class="welcome-page" aria-labelledby="welcomeTitle">
+    <div class="welcome-decor" aria-hidden="true">
+      <div class="welcome-glow"></div>
+      <svg class="welcome-arch" viewBox="0 0 220 300"><path d="M10 300 V110 A100 100 0 0 1 210 110 V300"/></svg>
+      <svg class="welcome-plan" viewBox="0 0 300 220">
+        <path class="wp-wall" d="M20 20 H280 V200 H170 M130 200 H20 Z M150 20 V95 H280"/>
+        <rect class="wp-f" x="40" y="130" width="90" height="38" rx="8"/>
+        <rect class="wp-f" style="--d:.25s" x="58" y="80" width="54" height="30" rx="5"/>
+        <circle class="wp-f" style="--d:.5s" cx="215" cy="150" r="22"/>
+        <rect class="wp-f" style="--d:.75s" x="175" y="40" width="80" height="34" rx="6"/>
+      </svg>
+      <div id="welcomeDust" class="welcome-dust"></div>
+    </div>
     <header class="welcome-header">
       <a class="brand" href="#top" aria-label="DREAMR">
         <span class="logo-mark" aria-hidden="true"><span></span></span>
@@ -43,9 +56,10 @@
     </div>
     <div class="nav-actions">
       <button id="langBtn" class="themebtn" title="Nyelv / Language" style="font-size:12px;font-weight:800;">EN</button>
-      <button id="themeBtn" class="themebtn" title="Sötét / világos mód" aria-label="Sötét mód">🌙</button>
-      <button id="accountBtn" class="themebtn" title="Fiók" style="display:none;font-size:15px;">👤</button>
-      <button class="nav-start" type="button" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})"><span data-i18n="startPlanning">Kezdj tervezni</span> <span aria-hidden="true">→</span></button>
+      <button id="themeBtn" class="themebtn" title="Sötét / világos mód" aria-label="Sötét mód"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
+      <button id="accountBtn" class="themebtn" title="Fiók" aria-label="Fiók" style="display:none;"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c1.2-3.6 3.9-5.4 7-5.4s5.8 1.8 7 5.4"/></svg></button>
+      <button id="navBagBtn" class="themebtn nav-bag" type="button" aria-label="Bevásárlólista"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="nav-bag-count" id="navBagCount">0</span></button>
+      <button class="nav-start dr-shine dr-ripple" type="button" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})"><span data-i18n="startPlanning">Kezdj tervezni</span> <span aria-hidden="true">→</span></button>
     </div>
   </nav>
   <div class="wrap" id="top">
@@ -55,7 +69,7 @@
         <h1><span class="hl" id="styleName">Modern</span> <span id="roomName">nappali</span> <span id="plannerWord">tervező</span></h1>
         <p class="sub" data-i18n-html="sub">Töltsd ki a szobád adatait, válassz stílust, és építsd fel az otthonod valódi bútorokból. <strong>Árak, alternatívák és vásárlási lista</strong> egy helyen.</p>
         <div class="hero-actions">
-          <button class="hero-primary" type="button" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})"><span data-i18n="startPlanning">Kezdj tervezni</span> <span aria-hidden="true">→</span></button>
+          <button class="hero-primary dr-shine dr-ripple" type="button" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})"><span data-i18n="startPlanning">Kezdj tervezni</span> <span aria-hidden="true">→</span></button>
           <span class="hero-proof" data-i18n="heroProof">✓ Valós árak &nbsp; ✓ 3D nézet &nbsp; ✓ PDF-ajánlat</span>
         </div>
       </div>
@@ -87,7 +101,7 @@
     </div>
 
     <div class="cardbox">
-      <div class="chead"><span class="ic">📐</span><div><h3 data-i18n="sizeH">Szoba mérete</h3><p data-i18n="sizeP">A két oldal hossza és a belmagasság (méterben).</p></div></div>
+      <div class="chead"><span class="ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17L17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></svg></span><div><h3 data-i18n="sizeH">Szoba mérete</h3><p data-i18n="sizeP">A két oldal hossza és a belmagasság (méterben).</p></div></div>
       <div class="fields">
         <div class="field"><label for="len" data-i18n="len">Hossz (m)</label><input id="len" type="number" min="1" step="0.1" value="4.0"></div>
         <span class="times">×</span>
@@ -104,12 +118,12 @@
     <div class="grid">
       <div>
         <div class="cardbox" style="margin-top:0;">
-          <div class="chead"><span class="ic">🗺️</span><div><h3 data-i18n="planH">Alaprajz (felülnézet)</h3><p data-i18n="planP">Húzd át a bútorokat! A be nem férő, kikapcsolt darabok nem látszanak.</p></div></div>
+          <div class="chead"><span class="ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M12 4v7h8M4 14h5"/></svg></span><div><h3 data-i18n="planH">Alaprajz (felülnézet)</h3><p data-i18n="planP">Húzd át a bútorokat! A be nem férő, kikapcsolt darabok nem látszanak.</p></div></div>
           <div class="planwrap"><p class="precision-note" data-i18n="precisionNote"></p><p id="layoutStatus" role="status" aria-live="polite"></p><div id="plan"></div></div>
           <div class="plantools">
             <button class="minibtn tv-placement-btn" id="tvPlacementBtn" type="button">TV</button><button class="minibtn" id="resetLayout" data-i18n="reset">↺ Elrendezés visszaállítása</button>
             <button class="minibtn" id="view3dBtn" data-i18n="view3d">🧊 3D nézet</button>
-            <button class="minibtn dark" id="exportBtn2" data-i18n="exportBtn">🧾 Ajánlat (PDF)</button>
+            <button class="minibtn dark dr-shine dr-ripple" id="exportBtn2" data-i18n="exportBtn">🧾 Ajánlat (PDF)</button>
             <span class="planhint" data-i18n="planHint">Fogd meg és húzd a bútort.</span>
           </div>
           <div class="planlegend">
@@ -119,16 +133,16 @@
           </div>
         </div>
         <div class="cardbox">
-          <div class="chead"><span class="ic">🎨</span><div><h3 data-i18n="paintH">Falszín (Héra Prémium beltéri falfesték)</h3><p data-i18n="paintP">Válassz színt — kiszámoljuk, hány doboz kell és mennyibe kerül.</p></div></div>
+          <div class="chead"><span class="ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v5H4z"/><path d="M17 7.5h3v5.5h-8.5v3"/><path d="M10 16h3v5h-3z"/></svg></span><div><h3 data-i18n="paintH">Falszín (Héra Prémium beltéri falfesték)</h3><p data-i18n="paintP">Válassz színt — kiszámoljuk, hány doboz kell és mennyibe kerül.</p></div></div>
           <div class="palette" id="palette"></div>
           <div class="paintcalc" id="paintcalc"></div>
         </div>
         <div class="cardbox">
-          <div class="chead"><span class="ic">💰</span><div><h3 data-i18n="budgetH">Büdzsé</h3><p data-i18n="budgetP">Állítsd be a keretet — jelezzük, belefér-e, és egy kattintással hozzáigazítjuk.</p></div></div>
+          <div class="chead"><span class="ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h15a1 1 0 0 1 1 1v11H5a1 1 0 0 1-1-1z"/><path d="M4 7l11-3v3"/><circle cx="16" cy="13.5" r="1.2"/></svg></span><div><h3 data-i18n="budgetH">Büdzsé</h3><p data-i18n="budgetP">Állítsd be a keretet — jelezzük, belefér-e, és egy kattintással hozzáigazítjuk.</p></div></div>
           <div class="fields" style="align-items:center;gap:18px;">
             <input id="budgetRange" type="range" min="100000" max="1200000" step="10000" value="600000" style="flex:1;min-width:180px;accent-color:var(--accent);">
             <div class="field"><label for="budgetNum" data-i18n="budgetField">Keret (Ft)</label><input id="budgetNum" type="number" min="0" step="10000" value="600000" style="width:130px;"></div>
-            <button class="preset" id="autofit" data-i18n="autofit" style="background:#0f172a;color:#fff;border-color:#0f172a;">✨ Igazítás a kerethez</button>
+            <button class="preset autofit dr-shine dr-ripple" id="autofit" data-i18n="autofit">Igazítás a kerethez</button>
           </div>
           <div class="note" id="budgetHint" style="margin-top:10px;font-size:13px;"></div>
         </div>
@@ -153,6 +167,10 @@
           <div class="brk"><span data-i18n="brkFurn">Bútorok</span><span id="furnTotal">—</span></div>
           <div class="brk"><span data-i18n="brkPaint">Falfesték</span><span id="paintTotal">—</span></div>
           <div class="divider"></div>
+          <div class="budget-ring" id="budgetRing">
+            <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-track" cx="60" cy="60" r="48"/><circle class="ring-base" cx="60" cy="60" r="48"/><circle class="ring-over" cx="60" cy="60" r="48"/></svg>
+            <span class="ring-pct">0%</span>
+          </div>
           <div class="meter-top"><span><span data-i18n="budgetWord">Keret:</span> <b id="budgetVal">—</b></span><span class="state" id="budgetState">—</span></div>
           <div class="meter"><div class="bar" id="budgetBar" style="width:0%"></div></div>
           <div class="divider"></div>
@@ -160,9 +178,9 @@
           <div class="meter-top"><span id="fillPct">—</span><span class="state" id="fillState">—</span></div>
           <div class="meter"><div class="bar" id="fillBar" style="width:0%"></div></div>
           <div class="divider"></div>
-          <button class="exportbtn" id="exportBtn" data-i18n="exportFull">🧾 Ajánlat letöltése (PDF)</button>
+          <button class="exportbtn dr-shine dr-ripple" id="exportBtn" data-i18n="exportFull">Ajánlat letöltése (PDF)</button>
           <button class="exportbtn" id="shopBtn" data-i18n="shoppingBtn" style="background:var(--card);color:var(--ink);border:1px solid var(--line);margin-top:8px;">🛒 Bevásárlólista</button>
-          <button class="exportbtn" id="saveRoomBtn" data-i18n="saveRoomBtn" style="background:var(--accent);color:#fff;margin-top:8px;">💾 Mentés a házamba</button>
+          <button class="exportbtn exportbtn-gold dr-ripple" id="saveRoomBtn" data-i18n="saveRoomBtn" style="margin-top:8px;">Mentés a házamba</button>
           <button class="exportbtn" id="houseBtn" style="background:var(--card);color:var(--ink);border:1px solid var(--line);margin-top:8px;">🏠 Házam</button>
           <button class="exportbtn" id="shareBtn" data-i18n="shareBtn" style="background:var(--card);color:var(--ink);border:1px solid var(--line);margin-top:8px;">🔗 Megosztás linkkel</button>
           <div class="note" style="margin-top:12px;" data-i18n-html="note">Az árak <strong>2026. augusztus 29-i</strong> tájékoztató árak. A pontos árat a termék oldalán ellenőrizd.</div>
@@ -203,7 +221,8 @@
 <script type="module" src="viewer3d.js?v=dreamr-v7"></script>
 <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="cloud.js?v=dreamr-v7"></script>
-<script src="app.js?v=dreamr-v7"></script>
+<script src="cloud.js?v=dreamr-v8"></script>
+<script src="motion.js?v=dreamr-v8"></script>
+<script src="app.js?v=dreamr-v8"></script>
 </body>
 </html>
