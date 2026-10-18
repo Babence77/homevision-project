@@ -429,7 +429,25 @@
     authDelivery:'Your sign-in link request was accepted. Check Spam too. If no email arrives, the email delivery settings need checking.',
     authUnavailable:'Sign-in is unavailable. You can continue as a guest.'
   });
+  // Az új design ikon nélküli, letisztult feliratokat használ (emoji helyett).
+  Object.assign(T.hu,{
+    b1:'6 szobatípus',b2:'6 stílus',b3:'4 bolt',b4:'Méretre szabva',b5:'Büdzsére',b6:'PDF-ajánlat',
+    reset:'Elrendezés visszaállítása',exportBtn:'Ajánlat (PDF)',autofit:'Igazítás a kerethez',cheapAll:'Legolcsóbb mindenhol',
+    exportFull:'Ajánlat letöltése (PDF)',prices:'Árak',shoppingBtn:'Bevásárlólista',slPrint:'Nyomtatás / PDF',view3d:'3D nézet',
+    houseBtn:'Házam',saveRoomBtn:'Mentés a házamba',houseShop:'Teljes ház – bevásárlólista',shareBtn:'Megosztás linkkel',aiBtn:'AI látványterv',
+    heroProof:'Valós árak · 3D nézet · PDF-ajánlat',
+    enterKicker:'ÜDVÖZLÜNK OTTHON',enterTitle:'Berendezzük',enterTitleAlt:'az álmodat.',signInTab:'Belépés',signUpTab:'Regisztráció',bagLabel:'Bevásárlólista'
+  });
+  Object.assign(T.en,{
+    b1:'6 room types',b2:'6 styles',b3:'4 stores',b4:'Fits your room',b5:'Fits your budget',b6:'PDF offer',
+    reset:'Reset layout',exportBtn:'Offer (PDF)',autofit:'Fit to budget',cheapAll:'Cheapest everywhere',
+    exportFull:'Download offer (PDF)',prices:'Prices',shoppingBtn:'Shopping list',slPrint:'Print / PDF',view3d:'3D view',
+    houseBtn:'My house',saveRoomBtn:'Save to my house',houseShop:'Whole-house shopping list',shareBtn:'Share link',aiBtn:'AI visualization',
+    heroProof:'Real prices · 3D view · PDF offer',
+    enterKicker:'WELCOME HOME',enterTitle:'Let’s furnish',enterTitleAlt:'your dream.',signInTab:'Sign in',signUpTab:'Sign up',bagLabel:'Shopping list'
+  });
   const t=k=>T[state.lang][k];
+  const M=window.DRMotion;
   const CAT_EN={sofa:'Sofa',chair:'Armchair',coffee:'Coffee table',tv:'TV unit',rug:'Rug',lamp:'Floor lamp',curtain:'Curtain',cushion:'Cushion',vase:'Decor',bed:'Bed',nightstand:'Nightstand',wardrobe:'Wardrobe',bedding:'Bedding',dtable:'Dining table',dchair:'Dining chair',sideboard:'Sideboard',island:'Kitchen island',barstool:'Bar stool',kcabinet:'Storage cabinet',fridge:'Fridge',desk:'Desk',ochair:'Office chair',shelf:'Bookcase',kbed:'Kids bed',kdesk:'Kids desk'};
   const catName=id=>state.lang==='hu'?META[id].cat:(CAT_EN[id]||META[id].cat);
   const ROOM_LABEL={nappali:['Nappali','Living room'],haloszoba:['Hálószoba','Bedroom'],etkezo:['Étkező','Dining'],konyha:['Konyha','Kitchen'],dolgozo:['Dolgozószoba','Home office'],gyerek:['Gyerekszoba','Kids room']};
@@ -508,30 +526,34 @@
     render();
   }
 
-  function drawBlock(P,x,y,w,h,fill,stroke,icon,dragId){
+  function drawBlock(P,x,y,w,h,fill,stroke,icon,dragId,i){
     const dattr=dragId?` data-drag="${dragId}" data-x="${P+x}" data-y="${P+y}" style="cursor:grab"`:'';
-    return `<g transform="translate(${P+x},${P+y})"${dattr}><rect width="${w}" height="${h}" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="3"/><text x="${w/2}" y="${h/2}" font-size="44" text-anchor="middle" dominant-baseline="central">${icon}</text></g>`;
+    // A belső .pb csoport animálható (beesés), a külső transform marad a pozícióé.
+    return `<g transform="translate(${P+x},${P+y})"${dattr}><g class="pb" style="--i:${i||0}"><rect width="${w}" height="${h}" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="3"/><text x="${w/2}" y="${h/2}" font-size="44" text-anchor="middle" dominant-baseline="central">${icon}</text></g></g>`;
   }
-  function buildPlan(L,W,drawn,wallHex){
+  function buildPlan(L,W,drawn,wallHex,prevWallHex){
     const roomW=Math.max(L,W)*100,roomH=Math.min(L,W)*100,P=32,vw=roomW+2*P,vh=roomH+2*P;
-    let blocks='';
+    let blocks='',n=0;
     // The same resolved centimeter coordinates drive the SVG plan and the 3D scene.
     placements3D(L,W,drawn).forEach(b=>{
       const it=drawn.find(x=>x.id===b.productId)||drawn.find(x=>x.plan===b.kind);
       const icon=it?it.icon:(META[b.kind]||{}).icon||'▪';
       const color=b.color||finishForKind(b.kind,drawn), isRug=!!b.rug;
-      blocks+=drawBlock(P,b.cx-b.w/2,b.cy-b.d/2,b.w,b.d,color,isRug?'#8c785c':'#45443f',icon,b.instanceId);
+      blocks+=drawBlock(P,b.cx-b.w/2,b.cy-b.d/2,b.w,b.d,color,isRug?'#a08a5b':'#3a352d',icon,b.instanceId,n++);
     });
     const screen=tvScreen(placements3D(L,W,drawn));
-    if(screen) blocks+=drawBlock(P,screen.cx-screen.w/2,screen.cy-screen.d/2,screen.w,screen.d,String.fromCharCode(35)+'202124',String.fromCharCode(35)+'202124',state.tvPlacement==='wall'?(state.lang==='hu'?'TV: falon':'TV: wall'):(state.lang==='hu'?'TV: bútoron':'TV: stand'),null);
+    if(screen) blocks+=drawBlock(P,screen.cx-screen.w/2,screen.cy-screen.d/2,screen.w,screen.d,String.fromCharCode(35)+'202124',String.fromCharCode(35)+'202124',state.tvPlacement==='wall'?(state.lang==='hu'?'TV: falon':'TV: wall'):(state.lang==='hu'?'TV: bútoron':'TV: stand'),null,n++);
     const doorX=P+40,doorW=80;
+    // Falszínváltáskor az új szín körhullámként terül szét a régi fölött.
+    const under=prevWallHex?`<rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="${prevWallHex}" class="plan-wall-old"/>`:'';
     return `<svg class="plan" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-      <rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="${wallHex}" stroke="#334155" stroke-width="10"/>
+      ${under}<rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="${wallHex}" class="plan-floor${prevWallHex?' wall-reveal':''}"/>
+      <rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="none" class="plan-wall" stroke-width="10" pathLength="1000"/>
       <rect x="${doorX}" y="${P+roomH-5}" width="${doorW}" height="12" fill="${wallHex}"/>
-      <path d="M ${doorX} ${P+roomH} a ${doorW} ${doorW} 0 0 0 ${doorW} ${-doorW}" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 6"/>
+      <path d="M ${doorX} ${P+roomH} a ${doorW} ${doorW} 0 0 0 ${doorW} ${-doorW}" fill="none" class="plan-door" stroke-width="3" stroke-dasharray="6 6"/>
       ${blocks}
-      <text x="${vw/2}" y="${P/1.4}" font-size="34" text-anchor="middle" fill="#94a3b8">${Math.max(L,W).toLocaleString('hu-HU')} m</text>
-      <text x="${P/1.4}" y="${vh/2}" font-size="34" text-anchor="middle" fill="#94a3b8" transform="rotate(-90 ${P/1.4} ${vh/2})">${Math.min(L,W).toLocaleString('hu-HU')} m</text>
+      <text x="${vw/2}" y="${P/1.4}" font-size="34" text-anchor="middle" class="plan-dim">${Math.max(L,W).toLocaleString('hu-HU')} m</text>
+      <text x="${P/1.4}" y="${vh/2}" font-size="34" text-anchor="middle" class="plan-dim" transform="rotate(-90 ${P/1.4} ${vh/2})">${Math.min(L,W).toLocaleString('hu-HU')} m</text>
     </svg>`;
   }
   function canPlace(id,cx,cy){
@@ -590,7 +612,7 @@
   }
   function applyStatic(){
     document.documentElement.lang=state.lang;
-    document.querySelectorAll('[data-i18n]').forEach(e=>{e.textContent=t(e.dataset.i18n);});
+    document.querySelectorAll('[data-i18n]').forEach(e=>{ if(e.id==='welcomeTitle') M.setSplitText(e,t(e.dataset.i18n)); else e.textContent=t(e.dataset.i18n); });
     document.querySelectorAll('[data-i18n-html]').forEach(e=>{e.innerHTML=t(e.dataset.i18nHtml);});
     document.querySelectorAll('[data-i18n-ph]').forEach(e=>{e.placeholder=t(e.dataset.i18nPh);});
     document.getElementById('plannerWord').textContent=t('planner');
@@ -599,11 +621,13 @@
   }
   function buildPalette(){
     const el=document.getElementById('palette');
-    let html=COLORS.map(c=>`<div class="swatch ${state.color===c.id?'sel':''}" data-c="${c.id}"><div class="chip" style="background:${c.hex}"></div>${state.lang==='hu'?c.name:(COLOR_EN[c.id]||c.name)}</div>`).join('');
-    html+=`<div class="swatch none ${state.color==='none'?'sel':''}" data-c="none"><div class="chip">∅</div>${t('noneItem')}</div>`;
+    const cls=id=>(state.color===id?'sel':'')+(justPicked===id?' just':'');
+    let html=COLORS.map(c=>`<div class="swatch ${cls(c.id)}" data-c="${c.id}"><div class="chip" style="background:${c.hex}"></div>${state.lang==='hu'?c.name:(COLOR_EN[c.id]||c.name)}</div>`).join('');
+    html+=`<div class="swatch none ${cls('none')}" data-c="none"><div class="chip">∅</div>${t('noneItem')}</div>`;
     el.innerHTML=html;
-    el.querySelectorAll('.swatch').forEach(s=>s.addEventListener('click',()=>{state.color=s.dataset.c;render();}));
+    el.querySelectorAll('.swatch').forEach(s=>s.addEventListener('click',()=>{ if(state.color===s.dataset.c) return; state.color=s.dataset.c; justPicked=s.dataset.c; render(); justPicked=null; }));
   }
+  let justPicked=null,lastWall=null,pendingSwap=null,pendingFly=null;
   const wallHex=()=>{const c=COLORS.find(x=>x.id===state.color);return c?c.hex:'#ffffff';};
   function buildStoreChips(){
     const el=document.getElementById('storechips'); if(!el) return;
@@ -664,11 +688,13 @@
     drawn.forEach(it=>{ const wanted=qtyFor(it.id),actual=state.layoutQty[it.id]||0; const delta=wanted-actual; if(delta>0){furnTotal-=unitPrice(it)*delta;onCount-=delta;if(it.floor==='furniture')furnArea-=it.w*it.d*delta;} const qtyEl=listEl.querySelector(`[data-qty-for="${it.id}"]`);if(qtyEl)qtyEl.textContent=actual+' / '+qtyFor(it.id);const priceEl=listEl.querySelector(`[data-price-for="${it.id}"]`);if(priceEl)priceEl.textContent=fmt(linePrice(it))+' Ft'; });
     rejected.forEach(it=>{ const cb=listEl.querySelector(`.chk[data-id="${it.id}"]`); if(cb){cb.checked=false;cb.disabled=true;cb.closest('.item')?.classList.add('off');const meta=cb.closest('.item')?.querySelector('.meta');if(meta&&!meta.querySelector('.badge-nofit'))meta.insertAdjacentHTML('beforeend',` <span class="badge-nofit">${t('nofit')}</span>`);} });
 
-    listEl.querySelectorAll('.chk').forEach(c=>c.addEventListener('change',()=>{ if(c.checked) state.off.delete(c.dataset.id); else state.off.add(c.dataset.id); render(); }));
+    const photoRect=el=>(el.closest('.item')?.querySelector('.product-photo')||el).getBoundingClientRect();
+    listEl.querySelectorAll('.chk').forEach(c=>c.addEventListener('change',()=>{ if(c.checked){ state.off.delete(c.dataset.id); pendingFly=photoRect(c); } else state.off.add(c.dataset.id); render(); }));
     listEl.querySelectorAll('.furn-color').forEach(c=>c.addEventListener('change',()=>{state.itemColors[c.dataset.id]=c.value;syncFurnitureViews();}));
     labelFurnitureControls(listEl);
-    listEl.querySelectorAll('.qty-btn').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.id;state.quantity[id]=Math.max(1,Math.min(8,qtyFor(id)+(+b.dataset.step)));syncFurnitureViews();}));
-    listEl.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.id,dir=+b.dataset.dir; const slot=getSlots().find(s=>s.id===id); const allowed=allowedIdxs(slot); let pos=allowed.indexOf(selIndex(id)); if(pos<0) pos=0; state.sel[keyOf(id)]=allowed[(pos+dir+allowed.length)%allowed.length]; render(); }));
+    listEl.querySelectorAll('.qty-btn').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.id,before=qtyFor(id);state.quantity[id]=Math.max(1,Math.min(8,before+(+b.dataset.step)));if(state.quantity[id]>before) M.flyTo(photoRect(b),document.getElementById('navBagBtn'));syncFurnitureViews();}));
+    listEl.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.id,dir=+b.dataset.dir; const slot=getSlots().find(s=>s.id===id); const allowed=allowedIdxs(slot); let pos=allowed.indexOf(selIndex(id)); if(pos<0) pos=0; state.sel[keyOf(id)]=allowed[(pos+dir+allowed.length)%allowed.length]; pendingSwap={id,dir}; render(); }));
+    if(pendingSwap){ M.swapIn(listEl.querySelector(`.chk[data-id="${pendingSwap.id}"]`)?.closest('.item'),pendingSwap.dir); pendingSwap=null; }
     listEl.querySelectorAll('.cmpbtn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.cmp; state.openCmp.has(id)?state.openCmp.delete(id):state.openCmp.add(id); render(); }));
     listEl.querySelectorAll('.cmprow').forEach(r=>r.addEventListener('click',()=>{ state.sel[keyOf(r.dataset.id)]=+r.dataset.idx; render(); }));
 
@@ -679,13 +705,21 @@
     document.getElementById('layoutStatus').textContent=missing?t('layoutOmitted')+' ('+missing+')':'';
     const paint=computePaint(L,W,H), paintTotal=paint.cost;
     document.getElementById('paintcalc').innerHTML=paint.html;
-    document.getElementById('plan').innerHTML=buildPlan(L,W,drawn,wallHex());
+    const wall=wallHex(),planEl=document.getElementById('plan');
+    planEl.innerHTML=buildPlan(L,W,drawn,wall,lastWall&&lastWall!==wall&&!M.reduced()?lastWall:null);
+    lastWall=wall;
+    if(!document.body.classList.contains('welcome-mode')) M.markNewBlocks(planEl);
     attachDrag();
-    document.getElementById('wallDot').style.background=wallHex();
+    document.getElementById('wallDot').style.background=wall;
     buildPalette(); buildTabs(); buildStoreChips();
 
     const grand=furnTotal+paintTotal;
-    document.getElementById('grand').textContent=fmt(grand);
+    M.countTo(document.getElementById('grand'),grand,fmt);
+    M.budgetRing(document.getElementById('budgetRing'),state.budget>0?grand/state.budget:0);
+    const bagCount=document.getElementById('navBagCount');
+    if(bagCount.textContent!==String(onCount)){ bagCount.textContent=onCount; M.bump(bagCount); }
+    document.getElementById('navBagBtn').setAttribute('aria-label',t('bagLabel')+' ('+onCount+')');
+    if(pendingFly){ M.flyTo(pendingFly,document.getElementById('navBagBtn')); pendingFly=null; }
     document.getElementById('furnTotal').textContent=fmt(furnTotal)+' Ft';
     document.getElementById('paintTotal').textContent=fmt(paintTotal)+' Ft';
     document.getElementById('countPill').textContent=onCount+' '+t('on')+' · '+fitCount+'/'+list.length+' '+t('fit');
@@ -1038,13 +1072,33 @@
 
   document.getElementById('shareBtn').addEventListener('click',shareRoom);
 
+  // Felhasználói belépéskor (űrlap vagy vendég) a belépőből átmeneti animáció vezet a tervezőbe.
+  let celebrateFrom=null,entering=false;
   function enterPlanner(){
+    if(entering) return;
+    const origin=celebrateFrom; celebrateFrom=null;
+    if(origin&&document.body.classList.contains('welcome-mode')){
+      entering=true;
+      const submit=document.getElementById('aGo');
+      if(origin.button===submit) M.buttonDone(submit);
+      const r=origin.button.getBoundingClientRect();
+      setTimeout(()=>M.playEnter({
+        origin:{x:r.left+r.width/2,y:r.top+r.height/2},
+        kicker:t('enterKicker'),title:t('enterTitle'),titleAlt:t('enterTitleAlt'),
+        onSwap:()=>{ entering=false; showPlanner(); window.scrollTo(0,0); }
+      }),origin.button===submit&&!M.reduced()?650:0);
+      return;
+    }
+    showPlanner();
+  }
+  function showPlanner(){
     document.body.classList.remove('welcome-mode');
     document.getElementById('welcomePage').hidden=true;
     document.getElementById('welcomeAuth').innerHTML='';
     document.getElementById('authOverlay').style.display='none';
     document.getElementById('authOverlay').innerHTML='';
     render();
+    if(!M.reduced()){ document.body.classList.add('dr-intro'); setTimeout(()=>document.body.classList.remove('dr-intro'),2400); }
   }
   function showWelcome(){
     guestMode=false;
@@ -1055,7 +1109,7 @@
     document.getElementById('welcomePage').hidden=false;
     render();
   }
-  document.getElementById('guestBtn').onclick=()=>{guestMode=true;enterPlanner();};
+  document.getElementById('guestBtn').onclick=e=>{guestMode=true;celebrateFrom={button:e.currentTarget};enterPlanner();};
   document.getElementById('welcomeLang').onclick=()=>{
     state.lang=state.lang==='hu'?'en':'hu';render();
     document.getElementById('welcomeLang').textContent=state.lang==='hu'?'EN':'HU';
@@ -1078,11 +1132,13 @@
     });
     // Minimal, luxus stílusú belépő ablak: Google, jelszó+regisztráció, vagy e-mailes link
     function openAuth(embedded=false){
-      const ov=document.getElementById(embedded?'welcomeAuth':'authOverlay'); let mode='in';
+      const ov=document.getElementById(embedded?'welcomeAuth':'authOverlay'); let mode='in',prevMode='in';
       const draw=()=>{
         const reg=mode==='up';
-        ov.innerHTML=`<div class="authbox">${embedded?'':'<button class="aclose" id="aX" type="button" aria-label="Close">✕</button>'}
+        // A váltó kijelölése az előző állásból csúszik át az újba.
+        ov.innerHTML=`<div class="authbox${reg?' is-reg':''}">${embedded?'':'<button class="aclose" id="aX" type="button" aria-label="Close">✕</button>'}
           <div class="abrand">DREAMR</div>
+          <div class="aseg" data-mode="${prevMode}" role="group"><span class="aseg-ind"></span><button type="button" data-m="in" aria-pressed="${!reg}">${t('signInTab')}</button><button type="button" data-m="up" aria-pressed="${reg}">${t('signUpTab')}</button></div>
           <h2>${reg?t('authCreate'):t('authWelcome')}</h2>
           <div class="asub">${reg?t('authCreateSub'):t('authSub')}</div>
           ${window.HVCloud.google?`<button class="agoogle" id="aG">`:`<button class="agoogle" id="aG" style="display:none">`}<svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.4 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.9-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.6l-7.4-5.7c-2 1.4-4.7 2.3-7.8 2.3-6.3 0-11.7-4-13.6-9.8l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>${t('authGoogle')}</button>
@@ -1091,7 +1147,7 @@
           ${reg?`<input id="aName" type="text" aria-label="${t('authName')}" placeholder="${t('authName')}" autocomplete="name">`:''}
           <input id="aMail" type="email" name="email" aria-label="${t('authEmail')}" placeholder="${t('authEmail')}" autocomplete="username" required>
           <input id="aPass" type="password" name="password" aria-label="${t('authPass')}" placeholder="${t('authPass')}" autocomplete="${reg?'new-password':'current-password'}" required>
-          <button class="asubmit" id="aGo" type="submit">${reg?t('authSignUp'):t('authSignIn')}</button>
+          <button class="asubmit dr-shine dr-ripple" id="aGo" type="submit"><span class="asubmit-label">${reg?t('authSignUp'):t('authSignIn')}</span></button>
           </form>
           <p class="auth-remember">${t('authRemember')}</p>
           <div class="amsg" id="aMsg" role="status" aria-live="polite"></div>
@@ -1107,12 +1163,20 @@
         const x=document.getElementById('aX');
         if(x) x.onclick=close;
         if(!embedded) ov.onclick=e=>{ if(e.target===ov) close(); };
-        document.getElementById('aSw').onclick=()=>{ mode=reg?'in':'up'; draw(); };
-        const run=async(action)=>{
-          const buttons=[...ov.querySelectorAll('button')],submit=document.getElementById('aGo'),caption=submit.textContent;
-          buttons.forEach(b=>b.disabled=true);submit.textContent=t('authBusy');msg('');
+        const switchTo=m=>{ if(m===mode) return; prevMode=mode; mode=m; draw(); };
+        document.getElementById('aSw').onclick=()=>switchTo(reg?'in':'up');
+        ov.querySelectorAll('.aseg button').forEach(b=>b.onclick=()=>switchTo(b.dataset.m));
+        const seg=ov.querySelector('.aseg'); requestAnimationFrame(()=>{ seg.dataset.mode=mode; prevMode=mode; });
+        const run=async(action,useSubmit)=>{
+          const buttons=[...ov.querySelectorAll('button')],submit=document.getElementById('aGo');
+          buttons.forEach(b=>b.disabled=true);msg('');
+          if(useSubmit){ M.buttonBusy(submit,true); celebrateFrom={button:submit}; }
           try{await action();}catch(error){console.error('DREAMR sign-in:',error);if(ov.querySelector('#aMsg')) msg(error.message||t('authNetwork'));}
-          finally{buttons.forEach(b=>b.disabled=false);submit.textContent=caption;}
+          finally{
+            buttons.forEach(b=>b.disabled=false);M.buttonBusy(submit,false);
+            // Ha nem történt belépés (hiba vagy megerősítésre vár), nincs ünneplés.
+            if(!entering) celebrateFrom=null;
+          }
         };
         document.getElementById('aG').onclick=()=>run(async()=>{ const err=await window.HVCloud.signInGoogle(); if(err) msg(err); });
         document.getElementById('authForm').onsubmit=e=>{
@@ -1128,7 +1192,7 @@
             const err=await window.HVCloud.signInPassword(email,pass);
             if(err) msg(err); else close();
           }
-          });
+          },true);
         };
         const mg=document.getElementById('aMagic');
         if(mg) mg.onclick=()=>run(async()=>{
@@ -1150,7 +1214,7 @@
     window.HVCloud.showWelcomeAuth=()=>openAuth(true);
     window.HVCloud.onAuthChange=async(u)=>{
       const name=u?.user_metadata?.full_name||u?.user_metadata?.name||'';
-      accBtn.textContent=u?'☁':'👤';
+      accBtn.classList.toggle('is-signed',!!u);
       accBtn.title=u?(t('accSignedIn')+' '+(name?name+' · ':'')+u.email):t('authSignIn');
       const id=u?u.id:null;
       if(id===lastUserId) return;
@@ -1206,10 +1270,28 @@
   });
   loadHouse();
   loadFromHash();
+  // Világos (krém-arany) az alap, a sötét luxus a sötét mód; a választás megmarad ezen a böngészőn.
+  const MOON='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>';
+  const SUN='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>';
+  function applyTheme(dark){
+    document.body.classList.toggle('dark',dark);
+    const b=document.getElementById('themeBtn'); b.innerHTML=dark?SUN:MOON; b.setAttribute('aria-label',dark?'Világos mód':'Sötét mód');
+  }
+  try{ applyTheme(localStorage.getItem('dreamr-theme')==='dark'); }catch(e){ applyTheme(false); }
   document.getElementById('themeBtn').addEventListener('click',()=>{
-    const dark=document.body.classList.toggle('dark');
-    document.getElementById('themeBtn').textContent=dark?'☀️':'🌙';
+    const dark=!document.body.classList.contains('dark');
+    applyTheme(dark);
+    try{ localStorage.setItem('dreamr-theme',dark?'dark':'light'); }catch(e){}
   });
+  document.getElementById('navBagBtn').addEventListener('click',openShopping);
+  // Mozgás: belépő aranypor, előtte/utána söprés, billenő kártyák, söpörhető alternatívák, beúszó blokkok.
+  M.dust(document.getElementById('welcomeDust'),14);
+  M.autoSweep(document.querySelector('.dreamr-hero-visual'),document.getElementById('heroCompare'));
+  M.gyroParallax(document.querySelector('.dreamr-hero-visual'));
+  M.tiltWithin(document.getElementById('list'),'.item');
+  M.swipeWithin(document.getElementById('list'),(item,dir)=>item?.querySelector(`.sbtn[data-dir="${dir}"]`)?.click());
+  M.watchPlanIntro(document.getElementById('plan'));
+  M.revealOnScroll('.planner-intro,.selectors,.wrap>.cardbox,.grid .cardbox,.list-head,.summary,.disclaimer');
   document.getElementById('langBtn').addEventListener('click',()=>{ state.lang=state.lang==='hu'?'en':'hu'; render(); });
   document.getElementById('searchBox').addEventListener('input',e=>{ state.search=e.target.value; render(); });
   document.getElementById('cheapAll').addEventListener('click',()=>{
