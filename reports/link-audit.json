@@ -1,0 +1,2619 @@
+{
+ "checkedAt": "2026-11-12T21:54:55.609Z",
+ "total": 107,
+ "count": {
+  "gone": 5,
+  "ok": 95,
+  "blocked": 7
+ },
+ "byStore": {
+  "ikea": {
+   "gone": 4,
+   "ok": 74
+  },
+  "jysk": {
+   "ok": 21,
+   "gone": 1
+  },
+  "mobelix": {
+   "blocked": 3
+  },
+  "momax": {
+   "blocked": 4
+  }
+ },
+ "rows": [
+  {
+   "keys": [
+    "viskafors"
+   ],
+   "name": "VISKAFORS 3 személyes kanapé, szürke",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/viskafors-3-szemelyes-kanape-lejde-szuerke-zoeld-nyir-s29443337/",
+   "codePrice": 449900,
+   "status": "gone",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/cat/termekek-products/",
+   "chain": [
+    "301 https://www.ikea.com/hu/hu/p/viskafors-3-szemelyes-kanape-lejde-szuerke-zoeld-nyir-s29443337/",
+    "200 https://www.ikea.com/hu/hu/cat/termekek-products/"
+   ],
+   "expectedId": "29443337",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "kategória- vagy gyűjtőoldalra irányít: https://www.ikea.com/hu/hu/cat/termekek-products/"
+  },
+  {
+   "keys": [
+    "ektorp"
+   ],
+   "name": "EKTORP 3 személyes kanapé, világosbézs",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/ektorp-3-szemelyes-kanape-kilanda-vilagosbezs-s69509010/",
+   "codePrice": 179900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/ektorp-3-szemelyes-kanape-kilanda-vilagosbezs-s69509010/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/ektorp-3-szemelyes-kanape-kilanda-vilagosbezs-s69509010/"
+   ],
+   "expectedId": "69509010",
+   "sku": "695.090.10",
+   "pageName": "EKTORP 3 személyes kanapé - Kilanda világosbézs",
+   "livePrice": 179900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "gedved"
+   ],
+   "name": "GEDVED 3 személyes kanapé, szürke",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/kanapek/kanape-gedved-3-szemelyes-szurke-szovet",
+   "codePrice": 214900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/kanapek/kanape-gedved-3-szemelyes-szurke-szovet",
+   "chain": [
+    "200 https://jysk.hu/nappali/kanapek/kanape-gedved-3-szemelyes-szurke-szovet"
+   ],
+   "expectedId": null,
+   "sku": "3600407",
+   "pageName": "Kanapé GEDVED 3-személyes szürke szövet",
+   "livePrice": 214900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "egense"
+   ],
+   "name": "EGENSE 3 személyes kanapé, sötétszürke",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/kanapek/kanape-egense-3-szemelyes-sotetszurke-szovet",
+   "codePrice": 139900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/kanapek/kanape-egense-3-szemelyes-sotetszurke-szovet",
+   "chain": [
+    "200 https://jysk.hu/nappali/kanapek/kanape-egense-3-szemelyes-sotetszurke-szovet"
+   ],
+   "expectedId": null,
+   "sku": "3690340",
+   "pageName": "Kanapé EGENSE 3-személyes sötétszürke szövet",
+   "livePrice": 139900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "hellerup"
+   ],
+   "name": "HELLERUP 3 személyes kanapé, bézs/tölgy",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/kanapek/kanape-hellerup-3-szemelyes-bezs-szovet-natur-tolgy",
+   "codePrice": 179900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/kanapek/kanape-hellerup-3-szemelyes-bezs-szovet-natur-tolgy",
+   "chain": [
+    "200 https://jysk.hu/nappali/kanapek/kanape-hellerup-3-szemelyes-bezs-szovet-natur-tolgy"
+   ],
+   "expectedId": null,
+   "sku": "3690473",
+   "pageName": "Kanapé HELLERUP 3-személyes bézs szövet/natúr tölgy",
+   "livePrice": 179900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "applaryd"
+   ],
+   "name": "ÄPPLARYD 3 személyes kanapé, világosszürke",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/aepplaryd-3-szemelyes-kanape-lejde-vilagosszuerke-30506239/",
+   "codePrice": 299900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/aepplaryd-3-szemelyes-kanape-lejde-vilagosszuerke-30506239/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/aepplaryd-3-szemelyes-kanape-lejde-vilagosszuerke-30506239/"
+   ],
+   "expectedId": "30506239",
+   "sku": "305.062.39",
+   "pageName": "ÄPPLARYD 3 személyes kanapé - Lejde világosszürke",
+   "livePrice": 299900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "trevo"
+   ],
+   "name": "Trevo 3 személyes kanapé",
+   "store": "mobelix",
+   "url": "https://www.moebelix.hu/p/haromueleses-kanape-trevo-002694005702",
+   "codePrice": 219900,
+   "status": "blocked",
+   "httpStatus": 403,
+   "finalUrl": "https://www.moebelix.hu/p/haromueleses-kanape-trevo-002694005702",
+   "chain": [
+    "403 https://www.moebelix.hu/p/haromueleses-kanape-trevo-002694005702"
+   ],
+   "expectedId": "002694005702",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "HTTP 403 — robotszűrő, automatikusan nem ellenőrizhető"
+  },
+  {
+   "keys": [
+    "kiss"
+   ],
+   "name": "Kiss 3 személyes kanapé",
+   "store": "momax",
+   "url": "https://www.moemax.hu/p/kanape-kiss-000812011601",
+   "codePrice": 289900,
+   "status": "blocked",
+   "httpStatus": 403,
+   "finalUrl": "https://www.moemax.hu/p/kanape-kiss-000812011601",
+   "chain": [
+    "403 https://www.moemax.hu/p/kanape-kiss-000812011601"
+   ],
+   "expectedId": "000812011601",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "HTTP 403 — robotszűrő, automatikusan nem ellenőrizhető"
+  },
+  {
+   "keys": [
+    "strandmon"
+   ],
+   "name": "STRANDMON füles fotel, sötétszürke",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/strandmon-fueles-fotel-nordvalla-soetetszuerke-20343224/",
+   "codePrice": 84990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/strandmon-fueles-fotel-nordvalla-soetetszuerke-20343224/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/strandmon-fueles-fotel-nordvalla-soetetszuerke-20343224/"
+   ],
+   "expectedId": "20343224",
+   "sku": "203.432.24",
+   "pageName": "STRANDMON Füles fotel - Nordvalla sötétszürke",
+   "livePrice": 84990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "poang"
+   ],
+   "name": "POÄNG fotel, nyír/világosbézs",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/poaeng-fotel-nyir-furner-knisa-vilagosbezs-s39240787/",
+   "codePrice": 36990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/poaeng-fotel-nyir-furner-knisa-vilagosbezs-s39240787/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/poaeng-fotel-nyir-furner-knisa-vilagosbezs-s39240787/"
+   ],
+   "expectedId": "39240787",
+   "sku": "392.407.87",
+   "pageName": "POÄNG Fotel - nyír furnér/Knisa világosbézs",
+   "livePrice": 29990,
+   "listPrice": 36990,
+   "saleUntil": "2026-12-29",
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "gedvedchair"
+   ],
+   "name": "GEDVED fotel, szürke szövet",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/fotelek/fotel-gedved-szurke-szovet",
+   "codePrice": 59900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/fotelek/fotel-gedved-szurke-szovet",
+   "chain": [
+    "200 https://jysk.hu/nappali/fotelek/fotel-gedved-szurke-szovet"
+   ],
+   "expectedId": null,
+   "sku": "3690331",
+   "pageName": "Fotel GEDVED szürke szövet",
+   "livePrice": 59900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "ekenaset"
+   ],
+   "name": "ÅRSUNDA fotel, világosszürke",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/arsunda-fotel-knisa-vilagosszuerke-00535894/",
+   "codePrice": 22990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/arsunda-fotel-knisa-vilagosszuerke-00535894/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/arsunda-fotel-knisa-vilagosszuerke-00535894/"
+   ],
+   "expectedId": "00535894",
+   "sku": "005.358.94",
+   "pageName": "ÅRSUNDA Fotel - Knisa világosszürke",
+   "livePrice": 19990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "vejen"
+   ],
+   "name": "VEJEN fotel, fekete textilbőr",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/fotelek/fotel-vejen-fekete-textilbor",
+   "codePrice": 60000,
+   "status": "gone",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/fotelek",
+   "chain": [
+    "302 https://jysk.hu/nappali/fotelek/fotel-vejen-fekete-textilbor",
+    "301 https://jysk.hu/taxonomy/term/13582",
+    "200 https://jysk.hu/nappali/fotelek"
+   ],
+   "expectedId": null,
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "kategória- vagy gyűjtőoldalra irányít: https://jysk.hu/nappali/fotelek"
+  },
+  {
+   "keys": [
+    "strandmondeep"
+   ],
+   "name": "STRANDMON füles fotel, mélybézs",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/strandmon-fueles-fotel-tommaboda-melybezs-50613163/",
+   "codePrice": 99990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/strandmon-fueles-fotel-tommaboda-melybezs-50613163/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/strandmon-fueles-fotel-tommaboda-melybezs-50613163/"
+   ],
+   "expectedId": "50613163",
+   "sku": "506.131.63",
+   "pageName": "STRANDMON Füles fotel - Tommaboda mélybézs",
+   "livePrice": 99990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "lack"
+   ],
+   "name": "LACK dohányzóasztal, fehér, 90×55",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/lack-dohanyzoasztal-feher-90449905/",
+   "codePrice": 8990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/lack-dohanyzoasztal-feher-90449905/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/lack-dohanyzoasztal-feher-90449905/"
+   ],
+   "expectedId": "90449905",
+   "sku": "904.499.05",
+   "pageName": "LACK Dohányzóasztal - fehér 90x55 cm",
+   "livePrice": 8990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "lejre"
+   ],
+   "name": "LEJRE dohányzóasztal, fehér/tölgy",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-lejre-60x120-feher-natur-tolgy",
+   "codePrice": 21500,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-lejre-60x120-feher-natur-tolgy",
+   "chain": [
+    "200 https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-lejre-60x120-feher-natur-tolgy"
+   ],
+   "expectedId": null,
+   "sku": "3690456",
+   "pageName": "Dohányzóasztal LEJRE 60x120 fehér/natúr tölgy",
+   "livePrice": 21500,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "vedde"
+   ],
+   "name": "VEDDE dohányzóasztal, sötét tölgy",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-vedde-60x110-1-polcos-artisan-sotet",
+   "codePrice": 35000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-vedde-60x110-1-polcos-artisan-sotet",
+   "chain": [
+    "200 https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-vedde-60x110-1-polcos-artisan-sotet"
+   ],
+   "expectedId": null,
+   "sku": "3690444",
+   "pageName": "Dohányzóasztal VEDDE 60x110 1 polcos artisan sötét tölgyszín",
+   "livePrice": 35000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "markskel"
+   ],
+   "name": "JEGIND dohányzóasztal, ÁTM80, fehér/tölgy",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-jegind-atm80-polccal-feher-natur-tolgyszinu",
+   "codePrice": 19950,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-jegind-atm80-polccal-feher-natur-tolgyszinu",
+   "chain": [
+    "200 https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-jegind-atm80-polccal-feher-natur-tolgyszinu"
+   ],
+   "expectedId": null,
+   "sku": "3640433",
+   "pageName": "Dohányzóasztal JEGIND ÁTM80 polccal fehér/natúr tölgyszínű",
+   "livePrice": 19950,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "frotorp"
+   ],
+   "name": "FRÖTORP dohányzóasztal, márvány hatású",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/froetorp-dohanyzoasztal-antracit-marvany-hatasu-fekete-ueveg-70497582/",
+   "codePrice": 59990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/froetorp-dohanyzoasztal-antracit-marvany-hatasu-fekete-ueveg-70497582/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/froetorp-dohanyzoasztal-antracit-marvany-hatasu-fekete-ueveg-70497582/"
+   ],
+   "expectedId": "70497582",
+   "sku": "704.975.82",
+   "pageName": "FRÖTORP Dohányzóasztal - antracit márvány hatású/fekete üveg 88 cm",
+   "livePrice": 59990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "sandby"
+   ],
+   "name": "SANDBY dohányzóasztal, tölgy/fekete",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-sandby-60x110-natur-tolgy-fekete",
+   "codePrice": 65000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-sandby-60x110-natur-tolgy-fekete",
+   "chain": [
+    "200 https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-sandby-60x110-natur-tolgy-fekete"
+   ],
+   "expectedId": null,
+   "sku": "3601296",
+   "pageName": "Dohányzóasztal SANDBY 60x110 natúr tölgy/fekete",
+   "livePrice": 65000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "brava"
+   ],
+   "name": "Brava dohányzóasztal, kerek 70 cm",
+   "store": "momax",
+   "url": "https://www.moemax.hu/p/dohanyzoasztal-brava-008103019102",
+   "codePrice": 32990,
+   "status": "blocked",
+   "httpStatus": 403,
+   "finalUrl": "https://www.moemax.hu/p/dohanyzoasztal-brava-008103019102",
+   "chain": [
+    "403 https://www.moemax.hu/p/dohanyzoasztal-brava-008103019102"
+   ],
+   "expectedId": "008103019102",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "HTTP 403 — robotszűrő, automatikusan nem ellenőrizhető"
+  },
+  {
+   "keys": [
+    "quattro"
+   ],
+   "name": "Quattro dohányzóasztal, 105×60",
+   "store": "mobelix",
+   "url": "https://www.moebelix.hu/p/dohanyzoasztal-quattro-001803024706",
+   "codePrice": 59990,
+   "status": "blocked",
+   "httpStatus": 403,
+   "finalUrl": "https://www.moebelix.hu/p/dohanyzoasztal-quattro-001803024706",
+   "chain": [
+    "403 https://www.moebelix.hu/p/dohanyzoasztal-quattro-001803024706"
+   ],
+   "expectedId": "001803024706",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "HTTP 403 — robotszűrő, automatikusan nem ellenőrizhető"
+  },
+  {
+   "keys": [
+    "besta"
+   ],
+   "name": "BESTÅ TV-állvány, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/besta-tv-allvany-feher-80294503/",
+   "codePrice": 29990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/besta-tv-allvany-feher-80294503/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/besta-tv-allvany-feher-80294503/"
+   ],
+   "expectedId": "80294503",
+   "sku": "802.945.03",
+   "pageName": "BESTÅ TV-állvány - fehér 120x40x38 cm",
+   "livePrice": 20000,
+   "listPrice": 29990,
+   "saleUntil": "2026-12-29",
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "favrbo"
+   ],
+   "name": "HEMDRUP TV-állvány, 2 ajtós, tölgy/fekete",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/tv-allvanyok/tv-allvany-hemdrup-2-ajtos-meleg-tolgyszinu-fekete",
+   "codePrice": 42500,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/tv-allvanyok/tv-allvany-hemdrup-2-ajtos-meleg-tolgyszinu-fekete",
+   "chain": [
+    "200 https://jysk.hu/nappali/tv-allvanyok/tv-allvany-hemdrup-2-ajtos-meleg-tolgyszinu-fekete"
+   ],
+   "expectedId": null,
+   "sku": "3670024",
+   "pageName": "TV-állvány HEMDRUP 2 ajtós meleg tölgyszínű/fekete",
+   "livePrice": 42500,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "evetofte"
+   ],
+   "name": "EVETOFTE TV-állvány, világos tölgy",
+   "store": "jysk",
+   "url": "https://jysk.hu/nappali/tv-allvanyok/tv-allvany-evetofte-vilagos-tolgyszinu",
+   "codePrice": 45000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/nappali/tv-allvanyok/tv-allvany-evetofte-vilagos-tolgyszinu",
+   "chain": [
+    "200 https://jysk.hu/nappali/tv-allvanyok/tv-allvany-evetofte-vilagos-tolgyszinu"
+   ],
+   "expectedId": null,
+   "sku": "3696642",
+   "pageName": "TV-állvány EVETOFTE világos tölgyszínű",
+   "livePrice": 45000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "fjallbo"
+   ],
+   "name": "FJÄLLBO TV-állvány, fekete/fenyő",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/fjaellbo-tv-allvany-fekete-90339290/",
+   "codePrice": 79990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/fjaellbo-tv-allvany-fekete-90339290/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/fjaellbo-tv-allvany-fekete-90339290/"
+   ],
+   "expectedId": "90339290",
+   "sku": "903.392.90",
+   "pageName": "FJÄLLBO TV-állvány - fekete 150x36x54 cm",
+   "livePrice": 79990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "tonstad"
+   ],
+   "name": "TONSTAD TV-állvány, tölgy furnér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/tonstad-tv-allvany-toelgy-furner-00489302/",
+   "codePrice": 99990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/tonstad-tv-allvany-toelgy-furner-00489302/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/tonstad-tv-allvany-toelgy-furner-00489302/"
+   ],
+   "expectedId": "00489302",
+   "sku": "004.893.02",
+   "pageName": "TONSTAD TV-állvány - tölgy furnér 178x37x55 cm",
+   "livePrice": 99990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "malta"
+   ],
+   "name": "Malta TV-elem, 185×42",
+   "store": "mobelix",
+   "url": "https://www.moebelix.hu/p/tv-elem-malta-001803031864",
+   "codePrice": 79990,
+   "status": "blocked",
+   "httpStatus": 403,
+   "finalUrl": "https://www.moebelix.hu/p/tv-elem-malta-001803031864",
+   "chain": [
+    "403 https://www.moebelix.hu/p/tv-elem-malta-001803031864"
+   ],
+   "expectedId": "001803031864",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "HTTP 403 — robotszűrő, automatikusan nem ellenőrizhető"
+  },
+  {
+   "keys": [
+    "carlos"
+   ],
+   "name": "Carlos TV-szekrény, 180×42",
+   "store": "momax",
+   "url": "https://www.moemax.hu/p/tv-szekreny-carlos-002798001801",
+   "codePrice": 129900,
+   "status": "blocked",
+   "httpStatus": 403,
+   "finalUrl": "https://www.moemax.hu/p/tv-szekreny-carlos-002798001801",
+   "chain": [
+    "403 https://www.moemax.hu/p/tv-szekreny-carlos-002798001801"
+   ],
+   "expectedId": "002798001801",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "HTTP 403 — robotszűrő, automatikusan nem ellenőrizhető"
+  },
+  {
+   "keys": [
+    "tiphede"
+   ],
+   "name": "TIPHEDE szőnyeg, 155×220",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/tiphede-szonyeg-sikszoevoett-fekete-natur-20470047/",
+   "codePrice": 8490,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/tiphede-szonyeg-sikszoevoett-fekete-natur-20470047/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/tiphede-szonyeg-sikszoevoett-fekete-natur-20470047/"
+   ],
+   "expectedId": "20470047",
+   "sku": "204.700.47",
+   "pageName": "TIPHEDE Szőnyeg, síkszövött - fekete/natúr 155x220 cm",
+   "livePrice": 8490,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStoreOnly",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "lohals"
+   ],
+   "name": "LOHALS szőnyeg, natúr, 200×300",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/lohals-szonyeg-sikszoevoett-natur-00277395/",
+   "codePrice": 49990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/lohals-szonyeg-sikszoevoett-natur-00277395/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/lohals-szonyeg-sikszoevoett-natur-00277395/"
+   ],
+   "expectedId": "00277395",
+   "sku": "002.773.95",
+   "pageName": "LOHALS Szőnyeg, síkszövött - natúr 200x300 cm",
+   "livePrice": 49990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "stoense"
+   ],
+   "name": "STOENSE szőnyeg, 200×300",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/stoense-szonyeg-roevid-szalu-toertfeher-20426808/",
+   "codePrice": 54990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/stoense-szonyeg-roevid-szalu-toertfeher-20426808/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/stoense-szonyeg-roevid-szalu-toertfeher-20426808/"
+   ],
+   "expectedId": "20426808",
+   "sku": "204.268.08",
+   "pageName": "STOENSE Szőnyeg, rövid szálú - törtfehér 200x300 cm",
+   "livePrice": 54990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "paul"
+   ],
+   "name": "MORUM síkszövött szőnyeg, bézs, 200×300",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/morum-szonyeg-sikszoevoett-bel-kuelteri-bezs-80198295/",
+   "codePrice": 29990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/morum-szonyeg-sikszoevoett-bel-kuelteri-bezs-80198295/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/morum-szonyeg-sikszoevoett-bel-kuelteri-bezs-80198295/"
+   ],
+   "expectedId": "80198295",
+   "sku": "801.982.95",
+   "pageName": "MORUM Szőnyeg, síkszövött, bel/kültéri - bézs 200x300 cm",
+   "livePrice": 29990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "lucy"
+   ],
+   "name": "Lucy szőtt szőnyeg, 160×230",
+   "store": "momax",
+   "url": "https://www.moemax.hu/p/modern-living-szott-szonyeg-lucy-160-230-004868025101",
+   "codePrice": 37990,
+   "status": "blocked",
+   "httpStatus": 403,
+   "finalUrl": "https://www.moemax.hu/p/modern-living-szott-szonyeg-lucy-160-230-004868025101",
+   "chain": [
+    "403 https://www.moemax.hu/p/modern-living-szott-szonyeg-lucy-160-230-004868025101"
+   ],
+   "expectedId": "004868025101",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "HTTP 403 — robotszűrő, automatikusan nem ellenőrizhető"
+  },
+  {
+   "keys": [
+    "hansson"
+   ],
+   "name": "HANSSON állólámpa, fekete, 155 cm",
+   "store": "jysk",
+   "url": "https://jysk.hu/lakberendezes/vilagitas/lampak/allolampa-hansson-ma155cm-fekete",
+   "codePrice": 7500,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/lakberendezes/vilagitas/lampak/allolampa-hansson-ma155cm-fekete",
+   "chain": [
+    "200 https://jysk.hu/lakberendezes/vilagitas/lampak/allolampa-hansson-ma155cm-fekete"
+   ],
+   "expectedId": null,
+   "sku": "4911923",
+   "pageName": "Állólámpa HANSSON MA155cm fekete",
+   "livePrice": 7000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "nymane"
+   ],
+   "name": "NYMÅNE állólámpa 3 spottal, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/nymane-allolampa-3-spottal-feher-80455483/",
+   "codePrice": 19990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/nymane-allolampa-3-spottal-feher-80455483/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/nymane-allolampa-3-spottal-feher-80455483/"
+   ],
+   "expectedId": "80455483",
+   "sku": "804.554.83",
+   "pageName": "NYMÅNE Állólámpa 3 spottal - fehér",
+   "livePrice": 19990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "lauters"
+   ],
+   "name": "LAUTERS állólámpa, kőris/fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/lauters-allolampa-koris-feher-30405042/",
+   "codePrice": 24990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/lauters-allolampa-koris-feher-30405042/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/lauters-allolampa-koris-feher-30405042/"
+   ],
+   "expectedId": "30405042",
+   "sku": "304.050.42",
+   "pageName": "LAUTERS Állólámpa - kőris/fehér",
+   "livePrice": 24990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "stockholm"
+   ],
+   "name": "STOCKHOLM 2025 állólámpa, sárgaréz-bev.",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/stockholm-2025-allolampa-feher-textil-sargarez-bev-50585914/",
+   "codePrice": 39990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/stockholm-2025-allolampa-feher-textil-sargarez-bev-50585914/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/stockholm-2025-allolampa-feher-textil-sargarez-bev-50585914/"
+   ],
+   "expectedId": "50585914",
+   "sku": "505.859.14",
+   "pageName": "STOCKHOLM 2025 Állólámpa - fehér textil/sárgaréz-bev 159 cm",
+   "livePrice": 39990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "barlast"
+   ],
+   "name": "BARLAST állólámpa, fekete/fehér, 150 cm",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/barlast-allolampa-fekete-feher-10430368/",
+   "codePrice": 3990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/barlast-allolampa-fekete-feher-10430368/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/barlast-allolampa-fekete-feher-10430368/"
+   ],
+   "expectedId": "10430368",
+   "sku": "104.303.68",
+   "pageName": "BARLAST Állólámpa - fekete/fehér 150 cm",
+   "livePrice": 3990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStoreOnly",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "arstid"
+   ],
+   "name": "ÅRSTID állólámpa, sárgaréz/fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/arstid-allolampa-sargarez-feher-00321317/",
+   "codePrice": 21990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/arstid-allolampa-sargarez-feher-00321317/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/arstid-allolampa-sargarez-feher-00321317/"
+   ],
+   "expectedId": "00321317",
+   "sku": "003.213.17",
+   "pageName": "ÅRSTID Állólámpa - sárgaréz/fehér",
+   "livePrice": 21990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "slattum"
+   ],
+   "name": "SLATTUM kárpitozott ágykeret, 160×200",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/slattum-karpitozott-agykeret-vissle-soetetszuerke-40571248/",
+   "codePrice": 54990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/slattum-karpitozott-agykeret-vissle-soetetszuerke-40571248/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/slattum-karpitozott-agykeret-vissle-soetetszuerke-40571248/"
+   ],
+   "expectedId": "40571248",
+   "sku": "405.712.48",
+   "pageName": "SLATTUM Kárpitozott ágykeret - Vissle sötétszürke 160x200 cm",
+   "livePrice": 54990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStoreOnly",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "malm"
+   ],
+   "name": "MALM ágykeret, magas, fehér, 160×200",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/malm-agykeret-magas-feher-luroey-s29002433/",
+   "codePrice": 84990,
+   "status": "gone",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/cat/termekek-products/",
+   "chain": [
+    "301 https://www.ikea.com/hu/hu/p/malm-agykeret-magas-feher-luroey-s29002433/",
+    "200 https://www.ikea.com/hu/hu/cat/termekek-products/"
+   ],
+   "expectedId": "29002433",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "kategória- vagy gyűjtőoldalra irányít: https://www.ikea.com/hu/hu/cat/termekek-products/"
+  },
+  {
+   "keys": [
+    "kongsberg"
+   ],
+   "name": "KONGSBERG ágykeret, bézs, 160×200",
+   "store": "jysk",
+   "url": "https://jysk.hu/haloszoba/agyak/agyalapok-agyracsok-agykeretek/agykeretek/agykeret-kongsberg-160x200-bezs-szovet",
+   "codePrice": 105000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/haloszoba/agyak/agyalapok-agyracsok-agykeretek/agykeretek/agykeret-kongsberg-160x200-bezs-szovet",
+   "chain": [
+    "200 https://jysk.hu/haloszoba/agyak/agyalapok-agyracsok-agykeretek/agykeretek/agykeret-kongsberg-160x200-bezs-szovet"
+   ],
+   "expectedId": null,
+   "sku": "3640351",
+   "pageName": "Ágykeret KONGSBERG 160x200 bézs szövet",
+   "livePrice": 70000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "vihals"
+   ],
+   "name": "VIHALS ágykeret, fehér, 160×200",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/vihals-agykeret-feher-60602442/",
+   "codePrice": 44990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/vihals-agykeret-feher-60602442/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/vihals-agykeret-feher-60602442/"
+   ],
+   "expectedId": "60602442",
+   "sku": "606.024.42",
+   "pageName": "VIHALS Ágykeret - fehér 160x200 cm",
+   "livePrice": 44990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "kleppstadbed"
+   ],
+   "name": "KLEPPSTAD ágykeret, fehér/bézs, 160×200",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/kleppstad-agykeret-feher-vissle-bezs-10492672/",
+   "codePrice": 59990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/kleppstad-agykeret-feher-vissle-bezs-10492672/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/kleppstad-agykeret-feher-vissle-bezs-10492672/"
+   ],
+   "expectedId": "10492672",
+   "sku": "104.926.72",
+   "pageName": "KLEPPSTAD Ágykeret - fehér/Vissle bézs 160x200 cm",
+   "livePrice": 59990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "kleppstad2"
+   ],
+   "name": "KLEPPSTAD gardrób 2 ajtóval, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/kleppstad-gardrob-2-ajtoval-feher-80437234/",
+   "codePrice": 39990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/kleppstad-gardrob-2-ajtoval-feher-80437234/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/kleppstad-gardrob-2-ajtoval-feher-80437234/"
+   ],
+   "expectedId": "80437234",
+   "sku": "804.372.34",
+   "pageName": "KLEPPSTAD Gardrób 2 ajtóval - fehér 79x55x176 cm",
+   "livePrice": 34990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "kleppstad3"
+   ],
+   "name": "KLEPPSTAD gardrób 3 ajtóval, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/kleppstad-gardrobszekreny-3-ajtoval-feher-00441758/",
+   "codePrice": 54990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/kleppstad-gardrobszekreny-3-ajtoval-feher-00441758/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/kleppstad-gardrobszekreny-3-ajtoval-feher-00441758/"
+   ],
+   "expectedId": "00441758",
+   "sku": "004.417.58",
+   "pageName": "KLEPPSTAD Gardróbszekrény 3 ajtóval - fehér 117x55x176 cm",
+   "livePrice": 54990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "brimnes3"
+   ],
+   "name": "BRIMNES gardrób 3 ajtóval, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/brimnes-3-ajtos-gardrob-feher-40407922/",
+   "codePrice": 79990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/brimnes-3-ajtos-gardrob-feher-40407922/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/brimnes-3-ajtos-gardrob-feher-40407922/"
+   ],
+   "expectedId": "40407922",
+   "sku": "404.079.22",
+   "pageName": "BRIMNES 3 ajtós gardrób - fehér 117x50x190 cm",
+   "livePrice": 69990,
+   "listPrice": 79990,
+   "saleUntil": "2026-12-29",
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "kleppstadslide"
+   ],
+   "name": "KLEPPSTAD tolóajtós gardrób, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/kleppstad-toloajtos-gardrobszekreny-feher-90437238/",
+   "codePrice": 59990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/kleppstad-toloajtos-gardrobszekreny-feher-90437238/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/kleppstad-toloajtos-gardrobszekreny-feher-90437238/"
+   ],
+   "expectedId": "90437238",
+   "sku": "904.372.38",
+   "pageName": "KLEPPSTAD Tolóajtós gardróbszekrény - fehér 117x55x176 cm",
+   "livePrice": 59990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "alling"
+   ],
+   "name": "ALLING kihúzható étkezőasztal, tölgy",
+   "store": "jysk",
+   "url": "https://jysk.hu/etkezo/etkezoasztalok/etkezoasztal-alling-80x100-163-meleg-tolgyszinu",
+   "codePrice": 64900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/etkezo/etkezoasztalok/etkezoasztal-alling-80x100-163-meleg-tolgyszinu",
+   "chain": [
+    "200 https://jysk.hu/etkezo/etkezoasztalok/etkezoasztal-alling-80x100-163-meleg-tolgyszinu"
+   ],
+   "expectedId": null,
+   "sku": "3670432",
+   "pageName": "Étkezőasztal ALLING 80x100/163 meleg tölgyszínű",
+   "livePrice": 64900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "nordviken"
+   ],
+   "name": "NORDVIKEN meghosszabbítható asztal, fekete",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/nordviken-meghosszabbithato-asztal-fekete-20368714/",
+   "codePrice": 129900,
+   "status": "gone",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/cat/termekek-products/",
+   "chain": [
+    "301 https://www.ikea.com/hu/hu/p/nordviken-meghosszabbithato-asztal-fekete-20368714/",
+    "200 https://www.ikea.com/hu/hu/cat/termekek-products/"
+   ],
+   "expectedId": "20368714",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "kategória- vagy gyűjtőoldalra irányít: https://www.ikea.com/hu/hu/cat/termekek-products/"
+  },
+  {
+   "keys": [
+    "morbylanga"
+   ],
+   "name": "MÖRBYLÅNGA asztal, tölgy furnér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/moerbylanga-asztal-toelgy-furner-barna-pacolt-50386245/",
+   "codePrice": 249900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/moerbylanga-asztal-toelgy-furner-barna-pacolt-50386245/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/moerbylanga-asztal-toelgy-furner-barna-pacolt-50386245/"
+   ],
+   "expectedId": "50386245",
+   "sku": "503.862.45",
+   "pageName": "MÖRBYLÅNGA Asztal - tölgy furnér barna pácolt 140x85 cm",
+   "livePrice": 249900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "vihalstable"
+   ],
+   "name": "VIHALS asztal, fehér, 125×74",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/vihals-asztal-feher-feher-s39578509/",
+   "codePrice": 19990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/vihals-asztal-feher-feher-s39578509/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/vihals-asztal-feher-feher-s39578509/"
+   ],
+   "expectedId": "39578509",
+   "sku": "395.785.09",
+   "pageName": "VIHALS Asztal - fehér/fehér 125x74 cm",
+   "livePrice": 19990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "jonstrup"
+   ],
+   "name": "JONSTRUP étkezőszék, szürke/tölgy (4 db)",
+   "store": "jysk",
+   "url": "https://jysk.hu/etkezo/etkezoszekek/etkezoszek-jonstrup-szurke-szovet-natur-tolgyszinu",
+   "codePrice": 40000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/etkezo/etkezoszekek/etkezoszek-jonstrup-szurke-szovet-natur-tolgyszinu",
+   "chain": [
+    "200 https://jysk.hu/etkezo/etkezoszekek/etkezoszek-jonstrup-szurke-szovet-natur-tolgyszinu"
+   ],
+   "expectedId": null,
+   "sku": "3640080",
+   "pageName": "Étkezőszék JONSTRUP szürke szövet/natúr tölgyszínű",
+   "livePrice": 36000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "bistrup"
+   ],
+   "name": "BISTRUP étkezőszék, homok/tölgy (4 db)",
+   "store": "jysk",
+   "url": "https://jysk.hu/etkezo/etkezoszekek/etkezoszek-bistrup-homok-natur-tolgyszinu",
+   "codePrice": 71600,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/etkezo/etkezoszekek/etkezoszek-bistrup-homok-natur-tolgyszinu",
+   "chain": [
+    "200 https://jysk.hu/etkezo/etkezoszekek/etkezoszek-bistrup-homok-natur-tolgyszinu"
+   ],
+   "expectedId": null,
+   "sku": "3640243",
+   "pageName": "Étkezőszék BISTRUP homok/natúr tölgyszínű",
+   "livePrice": 71600,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "pinntorp"
+   ],
+   "name": "PINNTORP szék, fenyő (4 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/pinntorp-szek-vilagos-barnara-pacolt-fenyo-00590480/",
+   "codePrice": 51960,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/pinntorp-szek-vilagos-barnara-pacolt-fenyo-00590480/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/pinntorp-szek-vilagos-barnara-pacolt-fenyo-00590480/"
+   ],
+   "expectedId": "00590480",
+   "sku": "005.904.80",
+   "pageName": "PINNTORP Szék - világos barnára pácolt/fenyő",
+   "livePrice": 51960,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "hauga"
+   ],
+   "name": "HAUGA szék, fehér (4 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/hauga-szek-feher-10576718/",
+   "codePrice": 39960,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/hauga-szek-feher-10576718/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/hauga-szek-feher-10576718/"
+   ],
+   "expectedId": "10576718",
+   "sku": "105.767.18",
+   "pageName": "HAUGA Szék - fehér",
+   "livePrice": 39960,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "havstasb"
+   ],
+   "name": "HAVSTA tálalószekrény, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/havsta-talaloszekreny-feher-40529235/",
+   "codePrice": 139900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/havsta-talaloszekreny-feher-40529235/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/havsta-talaloszekreny-feher-40529235/"
+   ],
+   "expectedId": "40529235",
+   "sku": "405.292.35",
+   "pageName": "HAVSTA Tálalószekrény - fehér 121x47x89 cm",
+   "livePrice": 139900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "idanas"
+   ],
+   "name": "IDANÄS tálalószekrény, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/idanaes-talaloszekreny-feher-80496025/",
+   "codePrice": 149900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/idanaes-talaloszekreny-feher-80496025/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/idanaes-talaloszekreny-feher-80496025/"
+   ],
+   "expectedId": "80496025",
+   "sku": "804.960.25",
+   "pageName": "IDANÄS Tálalószekrény - fehér 124x50x95 cm",
+   "livePrice": 149900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "skruvby"
+   ],
+   "name": "SKRUVBY tálalószekrény, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/skruvby-talaloszekreny-feher-60568725/",
+   "codePrice": 59990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/skruvby-talaloszekreny-feher-60568725/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/skruvby-talaloszekreny-feher-60568725/"
+   ],
+   "expectedId": "60568725",
+   "sku": "605.687.25",
+   "pageName": "SKRUVBY Tálalószekrény - fehér 120x38x90 cm",
+   "livePrice": 59990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "haugasb"
+   ],
+   "name": "HAUGA tálalószekrény, szürke",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/hauga-talaloszekreny-szuerke-60621488/",
+   "codePrice": 89990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/hauga-talaloszekreny-szuerke-60621488/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/hauga-talaloszekreny-szuerke-60621488/"
+   ],
+   "expectedId": "60621488",
+   "sku": "606.214.88",
+   "pageName": "HAUGA Tálalószekrény - szürke 140x46x84 cm",
+   "livePrice": 89990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "raskog"
+   ],
+   "name": "RÅSKOG zsúrkocsi, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/raskog-zsurkocsi-feher-30586783/",
+   "codePrice": 14990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/raskog-zsurkocsi-feher-30586783/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/raskog-zsurkocsi-feher-30586783/"
+   ],
+   "expectedId": "30586783",
+   "sku": "305.867.83",
+   "pageName": "RÅSKOG Zsúrkocsi - fehér 35x45x77 cm",
+   "livePrice": 14990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "vadholma"
+   ],
+   "name": "VADHOLMA konyhasziget, fekete/tölgy",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/vadholma-konyhasziget-fekete-toelgy-20359154/",
+   "codePrice": 249900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/vadholma-konyhasziget-fekete-toelgy-20359154/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/vadholma-konyhasziget-fekete-toelgy-20359154/"
+   ],
+   "expectedId": "20359154",
+   "sku": "203.591.54",
+   "pageName": "VADHOLMA Konyhasziget - fekete/tölgy 126x79x90 cm",
+   "livePrice": 249900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "tornviken"
+   ],
+   "name": "TORNVIKEN konyhasziget, törtfehér/tölgy",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/tornviken-konyhasziget-toertfeher-toelgy-40391657/",
+   "codePrice": 199900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/tornviken-konyhasziget-toertfeher-toelgy-40391657/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/tornviken-konyhasziget-toertfeher-toelgy-40391657/"
+   ],
+   "expectedId": "40391657",
+   "sku": "403.916.57",
+   "pageName": "TORNVIKEN Konyhasziget - törtfehér/tölgy 126x77 cm",
+   "livePrice": 199900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "forhoja"
+   ],
+   "name": "FÖRHÖJA konyhai zsúrkocsi, nyír",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/foerhoeja-konyhai-zsurkocsi-nyir-80035920/",
+   "codePrice": 49990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/foerhoeja-konyhai-zsurkocsi-nyir-80035920/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/foerhoeja-konyhai-zsurkocsi-nyir-80035920/"
+   ],
+   "expectedId": "80035920",
+   "sku": "800.359.20",
+   "pageName": "FÖRHÖJA Konyhai zsúrkocsi - nyír 100x43 cm",
+   "livePrice": 49990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "stig"
+   ],
+   "name": "STIG bárszék, fekete (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/stig-barszek-hattamla-barpult-magassagu-fekete-fekete-30498418/",
+   "codePrice": 15980,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/stig-barszek-hattamla-barpult-magassagu-fekete-fekete-30498418/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/stig-barszek-hattamla-barpult-magassagu-fekete-fekete-30498418/"
+   ],
+   "expectedId": "30498418",
+   "sku": "304.984.18",
+   "pageName": "STIG Bárszék+háttámla - bárpult magasságú fekete/fekete 63 cm",
+   "livePrice": 15980,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStoreOnly",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "dalfred"
+   ],
+   "name": "DALFRED bárszék, fekete (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/dalfred-barszek-fekete-60155602/",
+   "codePrice": 33980,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/dalfred-barszek-fekete-60155602/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/dalfred-barszek-fekete-60155602/"
+   ],
+   "expectedId": "60155602",
+   "sku": "601.556.02",
+   "pageName": "DALFRED Bárszék - fekete 63-74 cm",
+   "livePrice": 33980,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "franklin"
+   ],
+   "name": "FRANKLIN összecsukható bárszék, fekete (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/franklin-tamlas-barszek-oesszecsukhato-barpult-magassagu-fekete-fekete-50406465/",
+   "codePrice": 25980,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/franklin-tamlas-barszek-oesszecsukhato-barpult-magassagu-fekete-fekete-50406465/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/franklin-tamlas-barszek-oesszecsukhato-barpult-magassagu-fekete-fekete-50406465/"
+   ],
+   "expectedId": "50406465",
+   "sku": "504.064.65",
+   "pageName": "FRANKLIN Támlás bárszék,összecsukható - bárpult magasságú fekete/fekete 63 cm",
+   "livePrice": 25980,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "bergmund"
+   ],
+   "name": "BERGMUND bárszék háttámlával, fekete (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/bergmund-barszek-hattamla-barpult-magassagu-fekete-gunnared-koezepszuerke-s59384690/",
+   "codePrice": 79980,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/bergmund-barszek-hattamla-barpult-magassagu-fekete-gunnared-koezepszuerke-s59384690/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/bergmund-barszek-hattamla-barpult-magassagu-fekete-gunnared-koezepszuerke-s59384690/"
+   ],
+   "expectedId": "59384690",
+   "sku": "593.846.90",
+   "pageName": "BERGMUND Bárszék+háttámla - bárpult magasságú fekete/GUNNARED középszürke 62 cm",
+   "livePrice": 79980,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "ivar"
+   ],
+   "name": "IVAR szekrény ajtókkal, fekete háló",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/ivar-szekreny-ajtok-fekete-halo-00531240/",
+   "codePrice": 34990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/ivar-szekreny-ajtok-fekete-halo-00531240/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/ivar-szekreny-ajtok-fekete-halo-00531240/"
+   ],
+   "expectedId": "00531240",
+   "sku": "005.312.40",
+   "pageName": "IVAR Szekrény+ajtók - fekete háló 80x83 cm",
+   "livePrice": 34990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "havstagl"
+   ],
+   "name": "HAVSTA üvegajtós szekrény, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/havsta-uevegajtos-szekreny-feher-60529263/",
+   "codePrice": 109900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/havsta-uevegajtos-szekreny-feher-60529263/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/havsta-uevegajtos-szekreny-feher-60529263/"
+   ],
+   "expectedId": "60529263",
+   "sku": "605.292.63",
+   "pageName": "HAVSTA Üvegajtós szekrény - fehér 81x35x123 cm",
+   "livePrice": 109900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "metodwall"
+   ],
+   "name": "METOD faliszekrény, vízszintesen nyíló",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/metod-faliszekreny-vizszintesen-nyilo-feher-vallstena-feher-s39507277/",
+   "codePrice": 29000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/metod-faliszekreny-vizszintesen-nyilo-feher-vallstena-feher-s39507277/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/metod-faliszekreny-vizszintesen-nyilo-feher-vallstena-feher-s39507277/"
+   ],
+   "expectedId": "39507277",
+   "sku": "395.072.77",
+   "pageName": "METOD Faliszekrény, vízszintesen nyíló - fehér/Vallstena fehér 80x40 cm",
+   "livePrice": 29000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "knoxhult"
+   ],
+   "name": "KNOXHULT faliszekrény ajtóval, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/knoxhult-faliszekreny-ajto-feher-10326791/",
+   "codePrice": 15000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/knoxhult-faliszekreny-ajto-feher-10326791/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/knoxhult-faliszekreny-ajto-feher-10326791/"
+   ],
+   "expectedId": "10326791",
+   "sku": "103.267.91",
+   "pageName": "KNOXHULT Faliszekrény+ajtó - fehér 60x60 cm",
+   "livePrice": 12000,
+   "listPrice": 15000,
+   "saleUntil": "2026-12-29",
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "rakall"
+   ],
+   "name": "RÅKALL beépíthető hűtő/fagyasztó",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/rakall-hutoszekreny-fagyaszto-ikea-500-beepitett-80572868/",
+   "codePrice": 169900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/rakall-hutoszekreny-fagyaszto-ikea-500-beepitett-80572868/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/rakall-hutoszekreny-fagyaszto-ikea-500-beepitett-80572868/"
+   ],
+   "expectedId": "80572868",
+   "sku": "805.728.68",
+   "pageName": "RÅKALL Hűtőszekrény/ fagyasztó - IKEA 500 beépített 153/79 l",
+   "livePrice": 169900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "lagan"
+   ],
+   "name": "LAGAN szabadonálló hűtő/fagyasztó, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/lagan-hutoszekreny-fagyaszto-szabadon-allo-feher-50619457/",
+   "codePrice": 129900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/lagan-hutoszekreny-fagyaszto-szabadon-allo-feher-50619457/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/lagan-hutoszekreny-fagyaszto-szabadon-allo-feher-50619457/"
+   ],
+   "expectedId": "50619457",
+   "sku": "506.194.57",
+   "pageName": "LAGAN Hűtőszekrény/ fagyasztó - szabadon álló/fehér 115/59 l",
+   "livePrice": 129900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "tinad"
+   ],
+   "name": "TINAD beépíthető hűtő/fagyasztó",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/tinad-hutoszekreny-fagyaszto-ikea-500-beepitett-00572872/",
+   "codePrice": 219900,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/tinad-hutoszekreny-fagyaszto-ikea-500-beepitett-00572872/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/tinad-hutoszekreny-fagyaszto-ikea-500-beepitett-00572872/"
+   ],
+   "expectedId": "00572872",
+   "sku": "005.728.72",
+   "pageName": "TINAD Hűtőszekrény/ fagyasztó - IKEA 500 beépített 210/79 l",
+   "livePrice": 219900,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "lagkapten"
+   ],
+   "name": "LAGKAPTEN/ADILS íróasztal, fehér",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/lagkapten-adils-iroasztal-feher-s29416758/",
+   "codePrice": 21990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/lagkapten-adils-iroasztal-feher-s29416758/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/lagkapten-adils-iroasztal-feher-s29416758/"
+   ],
+   "expectedId": "29416758",
+   "sku": "294.167.58",
+   "pageName": "LAGKAPTEN / ADILS Íróasztal - fehér 120x60 cm",
+   "livePrice": 21990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "pahl"
+   ],
+   "name": "PÅHL íróasztal, állítható magasságú",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/pahl-iroasztal-allithato-magassagu-feher-s49619340/",
+   "codePrice": 26990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/pahl-iroasztal-allithato-magassagu-feher-s49619340/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/pahl-iroasztal-allithato-magassagu-feher-s49619340/"
+   ],
+   "expectedId": "49619340",
+   "sku": "496.193.40",
+   "pageName": "PÅHL Íróasztal - állítható magasságú fehér 96x58 cm",
+   "livePrice": 26990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "stauning"
+   ],
+   "name": "STAUNING íróasztal, fehér, 160×80",
+   "store": "jysk",
+   "url": "https://jysk.hu/dolgozoszoba/iroasztalok/iroasztal-stauning-80x160-feher",
+   "codePrice": 35000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/dolgozoszoba/iroasztalok/iroasztal-stauning-80x160-feher",
+   "chain": [
+    "200 https://jysk.hu/dolgozoszoba/iroasztalok/iroasztal-stauning-80x160-feher"
+   ],
+   "expectedId": null,
+   "sku": "3601337",
+   "pageName": "Íróasztal STAUNING 80x160 fehér",
+   "livePrice": 35000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "micke"
+   ],
+   "name": "MICKE íróasztal, fehér, 142×50",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/micke-iroasztal-feher-90214308/",
+   "codePrice": 44990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/micke-iroasztal-feher-90214308/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/micke-iroasztal-feher-90214308/"
+   ],
+   "expectedId": "90214308",
+   "sku": "902.143.08",
+   "pageName": "MICKE Íróasztal - fehér 142x50 cm",
+   "livePrice": 44990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "flintan"
+   ],
+   "name": "FLINTAN irodai szék, fekete",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/flintan-irodai-szek-fekete-10489028/",
+   "codePrice": 24990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/flintan-irodai-szek-fekete-10489028/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/flintan-irodai-szek-fekete-10489028/"
+   ],
+   "expectedId": "10489028",
+   "sku": "104.890.28",
+   "pageName": "FLINTAN Irodai szék - fekete",
+   "livePrice": 24990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "millberget"
+   ],
+   "name": "MILLBERGET forgószék, fekete",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/millberget-forgoszek-murum-fekete-70489394/",
+   "codePrice": 44990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/millberget-forgoszek-murum-fekete-70489394/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/millberget-forgoszek-murum-fekete-70489394/"
+   ],
+   "expectedId": "70489394",
+   "sku": "704.893.94",
+   "pageName": "MILLBERGET Forgószék - Murum fekete",
+   "livePrice": 44990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "markus"
+   ],
+   "name": "MARKUS irodai szék, sötétszürke",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/markus-irodai-szek-vissle-soetetszuerke-70261150/",
+   "codePrice": 79990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/markus-irodai-szek-vissle-soetetszuerke-70261150/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/markus-irodai-szek-vissle-soetetszuerke-70261150/"
+   ],
+   "expectedId": "70261150",
+   "sku": "702.611.50",
+   "pageName": "MARKUS Irodai szék - Vissle sötétszürke M",
+   "livePrice": 79990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "flintanarm"
+   ],
+   "name": "FLINTAN irodai szék karfákkal, fekete",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/flintan-irodai-szek-karfakkal-fekete-s89424468/",
+   "codePrice": 32990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/flintan-irodai-szek-karfakkal-fekete-s89424468/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/flintan-irodai-szek-karfakkal-fekete-s89424468/"
+   ],
+   "expectedId": "89424468",
+   "sku": "894.244.68",
+   "pageName": "FLINTAN Irodai szék karfákkal - fekete",
+   "livePrice": 32990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "kallax"
+   ],
+   "name": "KALLAX polcos elem, fehér, 77×77",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/kallax-polcos-elem-feher-20275814/",
+   "codePrice": 15990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/kallax-polcos-elem-feher-20275814/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/kallax-polcos-elem-feher-20275814/"
+   ],
+   "expectedId": "20275814",
+   "sku": "202.758.14",
+   "pageName": "KALLAX Polcos elem - fehér 77x77 cm",
+   "livePrice": 15990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "skals"
+   ],
+   "name": "SKALS könyvespolc-elem, fehér",
+   "store": "jysk",
+   "url": "https://jysk.hu/tarolas/polcok-es-terelvalasztok/polc-kombinacio-elem-skals-konyvespolc-feher",
+   "codePrice": 18500,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/tarolas/polcok-es-terelvalasztok/polc-kombinacio-elem-skals-konyvespolc-feher",
+   "chain": [
+    "200 https://jysk.hu/tarolas/polcok-es-terelvalasztok/polc-kombinacio-elem-skals-konyvespolc-feher"
+   ],
+   "expectedId": null,
+   "sku": "3640399",
+   "pageName": "Polc kombináció elem SKALS könyvespolc fehér",
+   "livePrice": 18500,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "billy"
+   ],
+   "name": "BILLY könyvespolc, fehér, 80×28",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/billy-koenyvespolc-feher-00263850/",
+   "codePrice": 22990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/billy-koenyvespolc-feher-00263850/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/billy-koenyvespolc-feher-00263850/"
+   ],
+   "expectedId": "00263850",
+   "sku": "002.638.50",
+   "pageName": "BILLY Könyvespolc - fehér 80x28x202 cm",
+   "livePrice": 22990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "slakt"
+   ],
+   "name": "SLÄKT ágykeret, fehér, 90×200",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/slaekt-agykeret-feher-00362746/",
+   "codePrice": 33990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/slaekt-agykeret-feher-00362746/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/slaekt-agykeret-feher-00362746/"
+   ],
+   "expectedId": "00362746",
+   "sku": "003.627.46",
+   "pageName": "SLÄKT Ágykeret - fehér 90x200 cm",
+   "livePrice": 33990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "kura"
+   ],
+   "name": "KURA megfordítható ágy, 90×200",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/kura-megfordithato-agy-feher-fenyo-80253809/",
+   "codePrice": 79990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/kura-megfordithato-agy-feher-fenyo-80253809/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/kura-megfordithato-agy-feher-fenyo-80253809/"
+   ],
+   "expectedId": "80253809",
+   "sku": "802.538.09",
+   "pageName": "KURA Megfordítható ágy - fehér/fenyő 90x200 cm",
+   "livePrice": 79990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "klippuggla"
+   ],
+   "name": "KLIPPUGGLA tárolós gyerekágy, 90×200",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/klippuggla-agykeret-taroloval-feher-leesesgatloval-s09627827/",
+   "codePrice": 72480,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/klippuggla-agykeret-taroloval-feher-leesesgatloval-s09627827/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/klippuggla-agykeret-taroloval-feher-leesesgatloval-s09627827/"
+   ],
+   "expectedId": "09627827",
+   "sku": "096.278.27",
+   "pageName": "KLIPPUGGLA Ágykeret tárolóval - fehér/leesésgátlóval 90x200 cm",
+   "livePrice": 72480,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "stadsholmen",
+    "c",
+    "c"
+   ],
+   "name": "STADSHOLMEN fényzáró függöny (2 db)",
+   "store": "jysk",
+   "url": "https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke",
+   "codePrice": 11000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke",
+   "chain": [
+    "200 https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke"
+   ],
+   "expectedId": null,
+   "sku": "5098243",
+   "pageName": "Fényzáró függöny STADSHOLMEN 140x245 szürke",
+   "livePrice": 10000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "majgull",
+    "c"
+   ],
+   "name": "MAJGULL fényzáró függöny, szürke (1 pár)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/majgull-fenyzaro-fueggoeny-1-par-szuerke-fueggoenyrancolo-szalaggal-80417815/",
+   "codePrice": 14990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/majgull-fenyzaro-fueggoeny-1-par-szuerke-fueggoenyrancolo-szalaggal-80417815/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/majgull-fenyzaro-fueggoeny-1-par-szuerke-fueggoenyrancolo-szalaggal-80417815/"
+   ],
+   "expectedId": "80417815",
+   "sku": "804.178.15",
+   "pageName": "MAJGULL Fényzáró függöny, 1 pár - szürke/függönyráncoló szalaggal 145x300 cm",
+   "livePrice": 14990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "idse",
+    "c"
+   ],
+   "name": "AMUNGEN dimout függöny, szürke (2 db)",
+   "store": "jysk",
+   "url": "https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/dimout-fuggony-amungen-140x300-szurke",
+   "codePrice": 17000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/dimout-fuggony-amungen-140x300-szurke",
+   "chain": [
+    "200 https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/dimout-fuggony-amungen-140x300-szurke"
+   ],
+   "expectedId": null,
+   "sku": "5080030",
+   "pageName": "Dimout függöny AMUNGEN 140x300 szürke",
+   "livePrice": 15000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "dytag",
+    "c"
+   ],
+   "name": "DYTÅG függönypár, bézs len (1 pár)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/dytag-fueggoenypar-bezs-fueggoenyrancolo-szalaggal-80607820/",
+   "codePrice": 34990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/dytag-fueggoenypar-bezs-fueggoenyrancolo-szalaggal-80607820/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/dytag-fueggoenypar-bezs-fueggoenyrancolo-szalaggal-80607820/"
+   ],
+   "expectedId": "80607820",
+   "sku": "806.078.20",
+   "pageName": "DYTÅG Függönypár - bézs/függönyráncoló szalaggal 145x300 cm",
+   "livePrice": 34990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "sanela",
+    "c"
+   ],
+   "name": "VILBORG sötétítőfüggöny, bézs (1 pár)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/vilborg-soetetitofueggoeny-1-par-bezs-fueggoenyrancolo-szalaggal-50297555/",
+   "codePrice": 29990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/vilborg-soetetitofueggoeny-1-par-bezs-fueggoenyrancolo-szalaggal-50297555/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/vilborg-soetetitofueggoeny-1-par-bezs-fueggoenyrancolo-szalaggal-50297555/"
+   ],
+   "expectedId": "50297555",
+   "sku": "502.975.55",
+   "pageName": "VILBORG Sötétítőfüggöny, 1 pár - bézs/függönyráncoló szalaggal 145x300 cm",
+   "livePrice": 29990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "sanelac",
+    "u"
+   ],
+   "name": "SANELA díszpárnahuzat, sárga-barna (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/sanela-diszparnahuzat-sarga-barna-50635990/",
+   "codePrice": 4980,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/sanela-diszparnahuzat-sarga-barna-50635990/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/sanela-diszparnahuzat-sarga-barna-50635990/"
+   ],
+   "expectedId": "50635990",
+   "sku": "506.359.90",
+   "pageName": "SANELA Díszpárnahuzat - sárga-barna 50x50 cm",
+   "livePrice": 4980,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "kongsspir",
+    "u"
+   ],
+   "name": "MYRFIOL díszpárna, topszín (2 db)",
+   "store": "jysk",
+   "url": "https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin",
+   "codePrice": 4000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin",
+   "chain": [
+    "200 https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin"
+   ],
+   "expectedId": null,
+   "sku": "6893175",
+   "pageName": "Díszpárna MYRFIOL 45x45 tópszín",
+   "livePrice": 5500,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "gurli",
+    "u",
+    "u"
+   ],
+   "name": "GURLI díszpárnahuzat, sötétszürke (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/",
+   "codePrice": 2980,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/"
+   ],
+   "expectedId": "50598737",
+   "sku": "505.987.37",
+   "pageName": "GURLI Díszpárnahuzat - sötétszürke 50x50 cm",
+   "livePrice": 2980,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "hvidblomme",
+    "u"
+   ],
+   "name": "HVIDBLOMME díszpárna, homok (2 db)",
+   "store": "jysk",
+   "url": "https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-hvidblomme-45x45-sotet-homokszinu",
+   "codePrice": 4000,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-hvidblomme-45x45-sotet-homokszinu",
+   "chain": [
+    "200 https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-hvidblomme-45x45-sotet-homokszinu"
+   ],
+   "expectedId": null,
+   "sku": "6886207",
+   "pageName": "Díszpárna HVIDBLOMME 45x45 sötét homokszínű",
+   "livePrice": 5000,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "svartho",
+    "u"
+   ],
+   "name": "SVARTHÖ díszpárnahuzat, bézs (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/svarthoe-diszparnahuzat-bezs-70336594/",
+   "codePrice": 11980,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/svarthoe-diszparnahuzat-bezs-70336594/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/svarthoe-diszparnahuzat-bezs-70336594/"
+   ],
+   "expectedId": "70336594",
+   "sku": "703.365.94",
+   "pageName": "SVARTHÖ Díszpárnahuzat - bézs 50x50 cm",
+   "livePrice": 11980,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "gradvis",
+    "v",
+    "v"
+   ],
+   "name": "PÅDRAG váza, átlátszó üveg, 17 cm",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/padrag-vaza-atlatszo-ueveg-10470991/",
+   "codePrice": 495,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/padrag-vaza-atlatszo-ueveg-10470991/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/padrag-vaza-atlatszo-ueveg-10470991/"
+   ],
+   "expectedId": "10470991",
+   "sku": "104.709.91",
+   "pageName": "PÅDRAG Váza - átlátszó üveg 17 cm",
+   "livePrice": 495,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStoreOnly",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "frovaxt",
+    "v"
+   ],
+   "name": "FRÖVÄXT váza, fehér, 20 cm",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/froevaext-vaza-feher-60591919/",
+   "codePrice": 2490,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/froevaext-vaza-feher-60591919/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/froevaext-vaza-feher-60591919/"
+   ],
+   "expectedId": "60591919",
+   "sku": "605.919.19",
+   "pageName": "FRÖVÄXT Váza - fehér 20 cm",
+   "livePrice": 2490,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "fulltalig",
+    "v"
+   ],
+   "name": "FULLTALIG gyertyatartó, 3 db, fekete",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3-db-fekete-40342134/",
+   "codePrice": 3990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3-db-fekete-40342134/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3-db-fekete-40342134/"
+   ],
+   "expectedId": "40342134",
+   "sku": "403.421.34",
+   "pageName": "FULLTALIG Gyertyatartó, 3 db - fekete",
+   "livePrice": 3990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "stilren",
+    "v"
+   ],
+   "name": "STILREN váza, fehér, 22 cm",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/stilren-vaza-feher-10442045/",
+   "codePrice": 4490,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/stilren-vaza-feher-10442045/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/stilren-vaza-feher-10442045/"
+   ],
+   "expectedId": "10442045",
+   "sku": "104.420.45",
+   "pageName": "STILREN Váza - fehér 22 cm",
+   "livePrice": 4490,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "begarlig",
+    "v"
+   ],
+   "name": "BEGÄRLIG váza, üveg, 29 cm",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/begaerlig-vaza-atlatszo-ueveg-30309781/",
+   "codePrice": 7990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/begaerlig-vaza-atlatszo-ueveg-30309781/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/begaerlig-vaza-atlatszo-ueveg-30309781/"
+   ],
+   "expectedId": "30309781",
+   "sku": "303.097.81",
+   "pageName": "BEGÄRLIG Váza - átlátszó üveg 29 cm",
+   "livePrice": 7990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  },
+  {
+   "keys": [
+    "n"
+   ],
+   "name": "KULLEN éjjeliszekrény, fehér (2 db)",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/kullen-2-fiokos-szekreny-feher-80309241/",
+   "codePrice": 19980,
+   "status": "gone",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/cat/termekek-products/",
+   "chain": [
+    "301 https://www.ikea.com/hu/hu/p/kullen-2-fiokos-szekreny-feher-80309241/",
+    "200 https://www.ikea.com/hu/hu/cat/termekek-products/"
+   ],
+   "expectedId": "80309241",
+   "sku": null,
+   "pageName": null,
+   "livePrice": null,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": null,
+   "identityConfirmed": false,
+   "reason": "kategória- vagy gyűjtőoldalra irányít: https://www.ikea.com/hu/hu/cat/termekek-products/"
+  },
+  {
+   "keys": [
+    "b"
+   ],
+   "name": "ÄNGSLILJA ágyneműhuzat, szürke",
+   "store": "ikea",
+   "url": "https://www.ikea.com/hu/hu/p/aengslilja-paplanhuzat-parnahuzat-szuerke-70608882/",
+   "codePrice": 6990,
+   "status": "ok",
+   "httpStatus": 200,
+   "finalUrl": "https://www.ikea.com/hu/hu/p/aengslilja-paplanhuzat-parnahuzat-szuerke-70608882/",
+   "chain": [
+    "200 https://www.ikea.com/hu/hu/p/aengslilja-paplanhuzat-parnahuzat-szuerke-70608882/"
+   ],
+   "expectedId": "70608882",
+   "sku": "706.088.82",
+   "pageName": "ÄNGSLILJA Paplanhuzat+párnahuzat - szürke 150x200/50x60 cm",
+   "livePrice": 6990,
+   "listPrice": null,
+   "saleUntil": null,
+   "availability": "InStock",
+   "identityConfirmed": false,
+   "reason": ""
+  }
+ ]
+}

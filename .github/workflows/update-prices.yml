@@ -1,6 +1,8 @@
-# HomeVision AI — napi automatikus árfrissítés
-# Minden hajnalban lefuttatja az update-prices.mjs szkriptet, és ha változott
-# az ár, be-commitolja a friss prices.json-t → a GitHub Pages újraépül.
+# DREAMR — napi automatikus árfrissítés
+# Minden hajnalban lefuttatja az update-prices.mjs szkriptet, és be-commitolja a friss
+# prices.json-t → a GitHub Pages újraépül.
+# Ha egy bolt hibaaránya átlépi a küszöböt (tools/price-sources.json), a jó árak ettől még
+# mentésre kerülnek, de a futás a végén PIROS lesz — így a kiesés nem marad rejtve.
 name: Árak frissítése
 
 on:
@@ -11,15 +13,24 @@ on:
 permissions:
   contents: write           # kell, hogy a robot commitolhasson
 
+concurrency:
+  group: update-prices
+  cancel-in-progress: false
+
 jobs:
   update-prices:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+      - name: Árkinyerés tesztjei
+        run: node --test test/
       - name: Árak letöltése a boltokból
+        id: update
+        continue-on-error: true   # a jó árakat hiba esetén is mentjük; a futás a végén bukik el
         run: node update-prices.mjs
       - name: Változások commitolása
         run: |
@@ -28,3 +39,8 @@ jobs:
           git add prices.json
           git diff --cached --quiet || git commit -m "Automatikus árfrissítés ($(date -u +%F))"
           git push
+      - name: Hibajelzés, ha a frissítés küszöb feletti hibával zárult
+        if: steps.update.outcome == 'failure'
+        run: |
+          echo "::error::Az árfrissítés hibával zárult — lásd a futás összefoglalóját. A legutolsó jó árak megmaradtak."
+          exit 1
