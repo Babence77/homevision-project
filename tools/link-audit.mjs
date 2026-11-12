@@ -2,7 +2,7 @@
 // Futtatás:  node tools/link-audit.mjs
 // Eredmény:  reports/link-audit.json (gépi) és reports/link-audit.md (olvasható táblázat)
 import { mkdir, writeFile } from 'node:fs/promises';
-import { readCatalog, uniqueByUrl, packSize } from './catalog.mjs';
+import { readCatalog, uniqueByUrl } from './catalog.mjs';
 import { fetchPage, evaluate, expectedId, STATUS } from './store-pages.mjs';
 
 const LABEL = {
@@ -18,12 +18,11 @@ const rows = [];
 for (const [url, it] of catalog) {
   const page = await fetchPage(url);
   const r = evaluate(it.store, url, page);
-  const unit = r.price ? r.price * packSize(it.name) : null;
   rows.push({
     keys: it.keys, name: it.name, store: it.store, url, codePrice: it.price,
     status: r.status, httpStatus: r.httpStatus, finalUrl: r.finalUrl,
     chain: r.chain.map(c => `${c.status} ${c.url}`), expectedId: expectedId(it.store, url),
-    sku: r.sku, pageName: r.pageName, livePrice: unit, listPrice: r.listPrice ? r.listPrice * packSize(it.name) : null,
+    sku: r.sku, pageName: r.pageName, livePrice: r.price ?? null, listPrice: r.listPrice ?? null,
     saleUntil: r.saleUntil || null, availability: r.availability || null, identityConfirmed: !!r.identityConfirmed, reason: r.reason
   });
   console.log(`${r.status.padEnd(18)} ${it.store.padEnd(8)} ${it.name}${r.reason ? '  — ' + r.reason : ''}`);

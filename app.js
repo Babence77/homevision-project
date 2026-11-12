@@ -102,10 +102,10 @@
       P_('vihalstable',"VIHALS asztal, fehér, 125×74","ikea",19990,125,74,"https://www.ikea.com/hu/hu/p/vihals-asztal-feher-feher-s39578509/"),
     ],
     dchair:[
-      P_('jonstrup',"JONSTRUP étkezőszék, szürke/tölgy (4 db)","jysk",40000,45,53,"https://jysk.hu/etkezo/etkezoszekek/etkezoszek-jonstrup-szurke-szovet-natur-tolgyszinu"),
-      P_('bistrup',"BISTRUP étkezőszék, homok/tölgy (4 db)","jysk",71600,44,53,"https://jysk.hu/etkezo/etkezoszekek/etkezoszek-bistrup-homok-natur-tolgyszinu"),
-      P_('pinntorp',"PINNTORP szék, fenyő (4 db)","ikea",51960,45,50,"https://www.ikea.com/hu/hu/p/pinntorp-szek-vilagos-barnara-pacolt-fenyo-00590480/"),
-      P_('hauga',"HAUGA szék, fehér (4 db)","ikea",39960,46,50,"https://www.ikea.com/hu/hu/p/hauga-szek-feher-10576718/"),
+      P_('jonstrup',"JONSTRUP étkezőszék, szürke/tölgy","jysk",9000,45,53,"https://jysk.hu/etkezo/etkezoszekek/etkezoszek-jonstrup-szurke-szovet-natur-tolgyszinu"),
+      P_('bistrup',"BISTRUP étkezőszék, homok/tölgy","jysk",17900,44,53,"https://jysk.hu/etkezo/etkezoszekek/etkezoszek-bistrup-homok-natur-tolgyszinu"),
+      P_('pinntorp',"PINNTORP szék, fenyő","ikea",12990,45,50,"https://www.ikea.com/hu/hu/p/pinntorp-szek-vilagos-barnara-pacolt-fenyo-00590480/"),
+      P_('hauga',"HAUGA szék, fehér","ikea",9990,46,50,"https://www.ikea.com/hu/hu/p/hauga-szek-feher-10576718/"),
     ],
     sideboard:[
       P_('havstasb',"HAVSTA tálalószekrény, fehér","ikea",139900,121,47,"https://www.ikea.com/hu/hu/p/havsta-talaloszekreny-feher-40529235/"),
@@ -120,10 +120,10 @@
       P_('forhoja',"FÖRHÖJA konyhai zsúrkocsi, nyír","ikea",49990,100,43,"https://www.ikea.com/hu/hu/p/foerhoeja-konyhai-zsurkocsi-nyir-80035920/"),
     ],
     barstool:[
-      P_('stig',"STIG bárszék, fekete (2 db)","ikea",15980,40,42,"https://www.ikea.com/hu/hu/p/stig-barszek-hattamla-barpult-magassagu-fekete-fekete-30498418/"),
-      P_('dalfred',"DALFRED bárszék, fekete (2 db)","ikea",33980,50,50,"https://www.ikea.com/hu/hu/p/dalfred-barszek-fekete-60155602/"),
-      P_('franklin',"FRANKLIN összecsukható bárszék, fekete (2 db)","ikea",25980,44,50,"https://www.ikea.com/hu/hu/p/franklin-tamlas-barszek-oesszecsukhato-barpult-magassagu-fekete-fekete-50406465/"),
-      P_('bergmund',"BERGMUND bárszék háttámlával, fekete (2 db)","ikea",79980,45,49,"https://www.ikea.com/hu/hu/p/bergmund-barszek-hattamla-barpult-magassagu-fekete-gunnared-koezepszuerke-s59384690/"),
+      P_('stig',"STIG bárszék, fekete","ikea",7990,40,42,"https://www.ikea.com/hu/hu/p/stig-barszek-hattamla-barpult-magassagu-fekete-fekete-30498418/"),
+      P_('dalfred',"DALFRED bárszék, fekete","ikea",16990,50,50,"https://www.ikea.com/hu/hu/p/dalfred-barszek-fekete-60155602/"),
+      P_('franklin',"FRANKLIN összecsukható bárszék, fekete","ikea",12990,44,50,"https://www.ikea.com/hu/hu/p/franklin-tamlas-barszek-oesszecsukhato-barpult-magassagu-fekete-fekete-50406465/"),
+      P_('bergmund',"BERGMUND bárszék háttámlával, fekete","ikea",39990,45,49,"https://www.ikea.com/hu/hu/p/bergmund-barszek-hattamla-barpult-magassagu-fekete-gunnared-koezepszuerke-s59384690/"),
     ],
     kcabinet:[
       P_('ivar',"IVAR szekrény ajtókkal, fekete háló","ikea",34990,80,30,"https://www.ikea.com/hu/hu/p/ivar-szekreny-ajtok-fekete-halo-00531240/"),
@@ -159,18 +159,18 @@
       P_('klippuggla',"KLIPPUGGLA tárolós gyerekágy, 90×200","ikea",72480,96,206,"https://www.ikea.com/hu/hu/p/klippuggla-agykeret-taroloval-feher-leesesgatloval-s09627827/"),
     ],
     curtain:[
-      P_('stadsholmen',"STADSHOLMEN fényzáró függöny (2 db)","jysk",11000,140,245,"https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke"),
+      P_('stadsholmen',"STADSHOLMEN fényzáró függöny","jysk",5000,140,245,"https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke"),
       P_('majgull',"MAJGULL fényzáró függöny, szürke (1 pár)","ikea",14990,145,300,"https://www.ikea.com/hu/hu/p/majgull-fenyzaro-fueggoeny-1-par-szuerke-fueggoenyrancolo-szalaggal-80417815/"),
-      P_('idse',"AMUNGEN dimout függöny, szürke (2 db)","jysk",17000,140,300,"https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/dimout-fuggony-amungen-140x300-szurke"),
+      P_('idse',"AMUNGEN dimout függöny, szürke","jysk",7500,140,300,"https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/dimout-fuggony-amungen-140x300-szurke"),
       P_('dytag',"DYTÅG függönypár, bézs len (1 pár)","ikea",34990,145,300,"https://www.ikea.com/hu/hu/p/dytag-fueggoenypar-bezs-fueggoenyrancolo-szalaggal-80607820/"),
       P_('sanela',"VILBORG sötétítőfüggöny, bézs (1 pár)","ikea",29990,145,300,"https://www.ikea.com/hu/hu/p/vilborg-soetetitofueggoeny-1-par-bezs-fueggoenyrancolo-szalaggal-50297555/"),
     ],
     cushion:[
-      P_('sanelac',"SANELA díszpárnahuzat, sárga-barna (2 db)","ikea",4980,50,50,"https://www.ikea.com/hu/hu/p/sanela-diszparnahuzat-sarga-barna-50635990/"),
-      P_('kongsspir',"MYRFIOL díszpárna, topszín (2 db)","jysk",4000,45,45,"https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin"),
-      P_('gurli',"GURLI díszpárnahuzat, sötétszürke (2 db)","ikea",2980,50,50,"https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/"),
-      P_('hvidblomme',"HVIDBLOMME díszpárna, homok (2 db)","jysk",4000,45,45,"https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-hvidblomme-45x45-sotet-homokszinu"),
-      P_('svartho',"SVARTHÖ díszpárnahuzat, bézs (2 db)","ikea",11980,50,50,"https://www.ikea.com/hu/hu/p/svarthoe-diszparnahuzat-bezs-70336594/"),
+      P_('sanelac',"SANELA díszpárnahuzat, sárga-barna","ikea",2490,50,50,"https://www.ikea.com/hu/hu/p/sanela-diszparnahuzat-sarga-barna-50635990/"),
+      P_('kongsspir',"MYRFIOL díszpárna, topszín","jysk",2750,45,45,"https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin"),
+      P_('gurli',"GURLI díszpárnahuzat, sötétszürke","ikea",1490,50,50,"https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/"),
+      P_('hvidblomme',"HVIDBLOMME díszpárna, homok","jysk",2500,45,45,"https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-hvidblomme-45x45-sotet-homokszinu"),
+      P_('svartho',"SVARTHÖ díszpárnahuzat, bézs","ikea",5990,50,50,"https://www.ikea.com/hu/hu/p/svarthoe-diszparnahuzat-bezs-70336594/"),
     ],
     vase:[
       P_('gradvis',"PÅDRAG váza, átlátszó üveg, 17 cm","ikea",495,17,17,"https://www.ikea.com/hu/hu/p/padrag-vaza-atlatszo-ueveg-10470991/"),
@@ -191,20 +191,20 @@
 
   // stílusonkénti egyedi kiegészítők (nappali)
   const CURTAIN={
-    modern:P_('c','STADSHOLMEN fényzáró függöny (2 db)','jysk',11000,140,245,'https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke'),
-    skandinav:P_('c','AMUNGEN dimout függöny, szürke (2 db)','jysk',17000,140,300,'https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/dimout-fuggony-amungen-140x300-szurke'),
-    minimalista:P_('c','STADSHOLMEN fényzáró függöny (2 db)','jysk',11000,140,245,'https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke'),
+    modern:P_('c','STADSHOLMEN fényzáró függöny','jysk',5000,140,245,'https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke'),
+    skandinav:P_('c','AMUNGEN dimout függöny, szürke','jysk',7500,140,300,'https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/dimout-fuggony-amungen-140x300-szurke'),
+    minimalista:P_('c','STADSHOLMEN fényzáró függöny','jysk',5000,140,245,'https://jysk.hu/fuggonyok/keszfuggonyok/fenyzaro-fuggonyok/fenyzaro-fuggony-stadsholmen-140x245-szurke'),
     japandi:P_('c','DYTÅG függönypár, bézs len (1 pár)','ikea',34990,145,300,'https://www.ikea.com/hu/hu/p/dytag-fueggoenypar-bezs-fueggoenyrancolo-szalaggal-80607820/'),
     luxus:P_('c','VILBORG sötétítőfüggöny, bézs (1 pár)','ikea',29990,145,300,'https://www.ikea.com/hu/hu/p/vilborg-soetetitofueggoeny-1-par-bezs-fueggoenyrancolo-szalaggal-50297555/'),
     ipari:P_('c','MAJGULL fényzáró függöny, szürke (1 pár)','ikea',14990,145,300,'https://www.ikea.com/hu/hu/p/majgull-fenyzaro-fueggoeny-1-par-szuerke-fueggoenyrancolo-szalaggal-80417815/'),
   };
   const CUSHION={
-    modern:P_('u','GURLI díszpárnahuzat, sötétszürke (2 db)','ikea',2980,50,50,'https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/'),
-    skandinav:P_('u','HVIDBLOMME díszpárna, homok (2 db)','jysk',4000,45,45,'https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-hvidblomme-45x45-sotet-homokszinu'),
-    minimalista:P_('u','MYRFIOL díszpárna, topszín (2 db)','jysk',4000,45,45,'https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin'),
-    japandi:P_('u','SVARTHÖ díszpárnahuzat, bézs (2 db)','ikea',11980,50,50,'https://www.ikea.com/hu/hu/p/svarthoe-diszparnahuzat-bezs-70336594/'),
-    luxus:P_('u','SANELA díszpárnahuzat, sárga-barna (2 db)','ikea',4980,50,50,'https://www.ikea.com/hu/hu/p/sanela-diszparnahuzat-sarga-barna-50635990/'),
-    ipari:P_('u','GURLI díszpárnahuzat, sötétszürke (2 db)','ikea',2980,50,50,'https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/'),
+    modern:P_('u','GURLI díszpárnahuzat, sötétszürke','ikea',1490,50,50,'https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/'),
+    skandinav:P_('u','HVIDBLOMME díszpárna, homok','jysk',2500,45,45,'https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-hvidblomme-45x45-sotet-homokszinu'),
+    minimalista:P_('u','MYRFIOL díszpárna, topszín','jysk',2750,45,45,'https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin'),
+    japandi:P_('u','SVARTHÖ díszpárnahuzat, bézs','ikea',5990,50,50,'https://www.ikea.com/hu/hu/p/svarthoe-diszparnahuzat-bezs-70336594/'),
+    luxus:P_('u','SANELA díszpárnahuzat, sárga-barna','ikea',2490,50,50,'https://www.ikea.com/hu/hu/p/sanela-diszparnahuzat-sarga-barna-50635990/'),
+    ipari:P_('u','GURLI díszpárnahuzat, sötétszürke','ikea',1490,50,50,'https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-50598737/'),
   };
   const VASE={
     modern:P_('v','PÅDRAG váza, átlátszó üveg, 17 cm','ikea',495,17,17,'https://www.ikea.com/hu/hu/p/padrag-vaza-atlatszo-ueveg-10470991/'),
@@ -215,9 +215,24 @@
     ipari:P_('v','FULLTALIG gyertyatartó, 3 db','ikea',3990,10,10,'https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3-db-fekete-40342134/'),
   };
   // Az első elem sorszáma (0) a mentett tervekben a KULLEN — ezért a sorrend nem változhat; új elem csak a végére kerülhet.
+  // B03: a használathoz szükséges, külön megvásárolandó kiegészítők — a bolt által a termékoldalon ajánlott,
+  // ellenőrzött termékek (sales-data.js REQUIRES hivatkozik rájuk URL-lel). A napi árfrissítő ezeket is követi.
+  const ACCESSORY={
+    fjadrar:P_('fjadrar','FJÄDRAR díszpárnabelső, 50×50','ikea',2500,50,50,'https://www.ikea.com/hu/hu/p/fjaedrar-diszparnabelso-toertfeher-80262187/'),
+    inner:P_('inner','INNER díszpárnabelső, 50×50','ikea',1200,50,50,'https://www.ikea.com/hu/hu/p/inner-diszparnabelso-feher-bel-kuelter-50550702/'),
+    gu10:P_('gu10','SOLHETTA LED-izzó GU10, 345 lm','ikea',1290,5,5,'https://www.ikea.com/hu/hu/p/solhetta-led-es-izzo-gu10-345-lumen-fenyereje-szabh-20584096/'),
+    e27big:P_('e27big','SOLHETTA LED-izzó E27, 1521 lm','ikea',2190,8,8,'https://www.ikea.com/hu/hu/p/solhetta-led-izzo-e27-1521-lumen-fenyereje-szabh-goemb-opalfeh-70591546/'),
+    e27small:P_('e27small','SOLHETTA LED-izzó E27, 806 lm (2 db-os csomag)','ikea',1990,8,8,'https://www.ikea.com/hu/hu/p/solhetta-led-izzo-e27-806-lumen-fenyereje-szabh-kerek-opalfeh-60583924/'),
+    vesteroy160:P_('vesteroy160','VESTERÖY zsákrugós matrac, 160×200','ikea',69990,160,200,'https://www.ikea.com/hu/hu/p/vesteroey-zsakrugos-matrac-kemeny-vilagoskek-40450618/'),
+    afjall160:P_('afjall160','ÅFJÄLL habszivacs matrac, 160×200','ikea',59990,160,200,'https://www.ikea.com/hu/hu/p/afjaell-habszivacs-matrac-kemeny-feher-50569952/'),
+    afjall90m:P_('afjall90m','ÅFJÄLL habszivacs matrac, közepesen kemény, 90×200','ikea',39990,90,200,'https://www.ikea.com/hu/hu/p/afjaell-habszivacs-matrac-koezepesen-kemeny-feher-40568646/'),
+    afjall90k:P_('afjall90k','ÅFJÄLL habszivacs matrac, kemény, 90×200','ikea',39990,90,200,'https://www.ikea.com/hu/hu/p/afjaell-habszivacs-matrac-kemeny-feher-00568634/'),
+    luroy90:P_('luroy90','LURÖY ágyrács, 90×200','ikea',11000,90,200,'https://www.ikea.com/hu/hu/p/luroey-agyracs-90160211/'),
+  };
+  const ACCESSORY_BY_URL={}; Object.values(ACCESSORY).forEach(p=>ACCESSORY_BY_URL[p.url]=p);
   const NIGHTSTANDS=[
-    P_('n','KULLEN éjjeliszekrény, fehér (2 db)','ikea',19980,35,40,'https://www.ikea.com/hu/hu/p/kullen-2-fiokos-szekreny-feher-80309241/'),
-    P_('brimnesn','BRIMNES éjjeliszekrény, fehér (2 db)','ikea',23980,39,41,'https://www.ikea.com/hu/hu/p/brimnes-ejjeliszekreny-feher-10234942/'),
+    P_('n','KULLEN éjjeliszekrény, fehér','ikea',9990,35,40,'https://www.ikea.com/hu/hu/p/kullen-2-fiokos-szekreny-feher-80309241/'),
+    P_('brimnesn','BRIMNES éjjeliszekrény, fehér','ikea',11990,39,41,'https://www.ikea.com/hu/hu/p/brimnes-ejjeliszekreny-feher-10234942/'),
   ];
   const BEDDING={
     default:P_('b','ÄNGSLILJA ágyneműhuzat, szürke','ikea',6990,150,200,'https://www.ikea.com/hu/hu/p/aengslilja-paplanhuzat-parnahuzat-szuerke-70608882/'),
@@ -358,7 +373,7 @@
     return `<div class="product-photo">${image?`<img src="${escapeHtml(image)}" alt="${escapeHtml(it.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">`:''}<span class="photo-fallback" ${image?'hidden':''}>${it.icon}<small>${label}</small></span><span class="photo-store-logo ${it.store}">${STORE_LABEL[it.store]}</span></div>`;
   }
   const storeBadge=s=>`<span class="store ${s}">${STORE_LABEL[s]||s.toUpperCase()}</span>`;
-  const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, replaced:{}, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(['ikea','jysk','momax','mobelix']), search:'', house:[]};
+  const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, replaced:{}, fulfillment:'delivery', zone:null, compareSnap:null, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(['ikea','jysk','momax','mobelix']), search:'', house:[]};
   const fmt=n=>n.toLocaleString(state.lang==='hu'?'hu-HU':'en-US');
   let guestMode=false;
 
@@ -446,7 +461,16 @@
     pcUncertainTitle:'Bizonytalan ár: ellenőrizd a bolt oldalán',pcUncertainSum:'Ebből bizonytalan ár ({n} tétel)',
     pcExportNote:'* Bizonytalan ár (elavult vagy nem ellenőrzött) — vásárlás előtt ellenőrizd a bolt oldalán.',
     goneTitle:'Megszűnt termék.',goneText:'A bolt már nem árulja; az ára nem ellenőrizhető.',goneSuggest:'Ellenőrzött csere:',goneReplace:'Csere erre',
-    replacedNote:'Lecserélve: {from} helyett (megszűnt termék, {when}).'
+    replacedNote:'Lecserélve: {from} helyett (megszűnt termék, {when}).',
+    modeDelivery:'Házhozszállítás',modePickup:'Bolti átvétel',zoneLabel:'Szállítási cím (IKEA díjzóna)',zoneUnknown:'Még nem tudom',zoneA:'Budapest (1007–1299)',zoneB:'Vidék (2000–9999)',
+    brkFurn:'Termékek',brkAcc:'Kiegészítők (becslés)',brkPaint:'Falfesték (becslés)',grandPlusUnknown:'+ ismeretlen tételek — lásd lent',
+    buyQty:'Vásárlandó: {units} {u}',pieces:'db',buyExtra:'{n} többletdarab',whyPack:'a bolt {n} darabos egységben ({u}) árulja',
+    whyDeliveryMultiple:'házhozszállításnál csak {n} többszörösében rendelhető',whyMultiple:'csak {n} többszörösében rendelhető',whyMin:'legalább {n} egység rendelhető',
+    whyPickupAlt:'Bolti átvételnél elég {n}.',accMissing:'Nem tartozék:',accSeparate:'(külön számolva)',accUnknown:'nincs benne az árban, a boltban pontosítandó',
+    costNoPrice:'nincs ár',shipFree:'ingyenes',shipUnknown:'ismeretlen',shipByZone:'(címtől függ)',shipFrom:'{n} Ft-tól',shipBelowMin:'csak {n} Ft felett',
+    openTitle:'Nincs benne / a boltban pontosítandó',openPrice:'{name}: nincs ellenőrzött ár',openShipping:'szállítási díj',
+    openExtra:'{name}: {n} többletdarab a rendelési szabály miatt',openPaint:'Falfesték: becslés, az ár nem ellenőrzött',
+    priceChange:'Mentéskor: {from} Ft → most: {to} Ft ({delta} Ft)',priceChangeItems:'Mentés óta változott ár ({delta} Ft):',exPlanned:'tervezve',exAcc:'Kiegészítő',exQty:'Mennyiség',exShipping:'Szállítás / átvétel'
   });
   Object.assign(T.en,{
     b1:'6 room types',b2:'6 styles',b3:'4 stores',b4:'Fits your room',b5:'Fits your budget',b6:'PDF offer',
@@ -460,7 +484,16 @@
     pcUncertainTitle:'Uncertain price: check it on the store page',pcUncertainSum:'Of which uncertain ({n} items)',
     pcExportNote:'* Uncertain price (outdated or unverified) — check it on the store page before buying.',
     goneTitle:'Discontinued product.',goneText:'The store no longer sells it; its price cannot be verified.',goneSuggest:'Verified replacement:',goneReplace:'Replace',
-    replacedNote:'Replaced: was {from} (discontinued, {when}).'
+    replacedNote:'Replaced: was {from} (discontinued, {when}).',
+    modeDelivery:'Home delivery',modePickup:'Store pickup',zoneLabel:'Delivery address (IKEA fee zone)',zoneUnknown:'Not sure yet',zoneA:'Budapest (1007–1299)',zoneB:'Rest of Hungary (2000–9999)',
+    brkFurn:'Products',brkAcc:'Accessories (estimate)',brkPaint:'Wall paint (estimate)',grandPlusUnknown:'+ unknown items — see below',
+    buyQty:'To buy: {units} {u}',pieces:'pcs',buyExtra:'{n} extra',whyPack:'the store sells it in units of {n} ({u})',
+    whyDeliveryMultiple:'for home delivery it can only be ordered in multiples of {n}',whyMultiple:'can only be ordered in multiples of {n}',whyMin:'minimum order is {n} units',
+    whyPickupAlt:'For store pickup {n} is enough.',accMissing:'Not included:',accSeparate:'(counted separately)',accUnknown:'not in the price, to be confirmed in store',
+    costNoPrice:'no price',shipFree:'free',shipUnknown:'unknown',shipByZone:'(depends on address)',shipFrom:'from {n} Ft',shipBelowMin:'only above {n} Ft',
+    openTitle:'Not included / to be confirmed in store',openPrice:'{name}: no verified price',openShipping:'delivery fee',
+    openExtra:'{name}: {n} extra due to the ordering rule',openPaint:'Wall paint: estimate, price not verified',
+    priceChange:'When saved: {from} Ft → now: {to} Ft ({delta} Ft)',priceChangeItems:'Prices changed since saving ({delta} Ft):',exPlanned:'planned',exAcc:'Accessory',exQty:'Quantity',exShipping:'Delivery / pickup'
   });
   const t=k=>T[state.lang][k];
   const M=window.DRMotion;
@@ -524,11 +557,99 @@
   function fits(it,RL,RS){ if(it.floor==='none') return true; return it.w<=RL-MARGIN&&it.d<=RS-MARGIN; }
   // A single conservative finish map feeds both the plan and the 3D models.
   // Unknown product finishes stay neutral instead of pretending to know an exact colour.
-  const packSize=id=>({dchair:4,nightstand:2,barstool:2}[id]||1);
-  const qtyFor=id=>Math.max(1,Math.min(8,Math.round(+state.quantity[id]||packSize(id))));
-  const unitPrice=it=>it.price/packSize(it.id);
-  const actualQty=it=>it.plan?(state.layoutQty[it.id]??0):1;
-  const linePrice=it=>Math.round(unitPrice(it)*actualQty(it));
+  // ---- KÖLTSÉG (2. szakasz) ----
+  // Tervezett (kért) darabszám alapértéke kategóriánként — tervezési döntés (pl. 4 étkezőszék, 2 függönylap).
+  // A kiszerelés, minimum, többszörös és teljesítési szabály NEM innen jön, hanem a sales-data.js-ből és az élő adatból.
+  const PLAN_QTY={dchair:4,nightstand:2,barstool:2,curtain:2,cushion:2};
+  const qtyFor=id=>Math.max(1,Math.min(8,Math.round(+state.quantity[id]||PLAN_QTY[id]||1)));
+  const actualQty=it=>it.plan?(state.layoutQty[it.id]??0):qtyFor(it.id);
+  // Értékesítési szabály: a sales-data.js adata, a JYSK házhozszállítási többszörösét a napi frissítő felülírja.
+  function saleFor(p){
+    const base=DRSales.saleOf(p.url), live=p.check;
+    // A napi frissítő csak a JYSK-oldalakról olvassa ki a házhozszállítási többszöröst — máshol a sales-data.js az irányadó.
+    if(p.store!=='jysk'||!live||live.status!=='ok'||!('deliveryMultiple' in live)) return base;
+    const modes={...(base.modes||{})};
+    if(live.deliveryMultiple) modes.delivery={multiple:live.deliveryMultiple}; else delete modes.delivery;
+    return {...base,modes};
+  }
+  const refInfo=url=>{ const p=ACCESSORY_BY_URL[url]; if(!p) return null;
+    return {name:p.name,store:p.store,url:p.url,unitPrice:isGone(p)?null:p.price,sale:saleFor(p),uncertain:isUncertain(p)}; };
+  const costInput=it=>({id:it.id,key:it.key,name:it.name,store:it.store,url:it.url,unitPrice:it.price,
+    requested:qtyFor(it.id),placed:it.plan?(state.layoutQty[it.id]??0):undefined,
+    sale:saleFor(it),requires:DRSales.requiresOf(it.url),uncertain:isUncertain(it)});
+  // Az EGYETLEN költségszámítás: lista, összegzés, PDF, bevásárlólista, mentés és megosztás is ezt használja (B05).
+  // Feltétel: a bútorelrendezés (state.layoutQty) már ki van számolva.
+  function currentCost(){
+    const L=len(),W=wid(),H=hei(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100;
+    const items=curItems().filter(it=>fits(it,RL,RS)&&!state.off.has(it.id));
+    return DRPricing.compute({lines:items.map(costInput),mode:state.fulfillment,zone:state.zone,shipping:DRSales.SHIPPING,
+      refInfo,paint:{cost:computePaint(L,W,H).cost},priceDate:PRICE_DATE});
+  }
+  const costLine=(cost,id)=>cost.lines.find(l=>l.id===id);
+  let lastCost=null;
+  const UNIT_EN={db:'pc',pár:'pair',csomag:'pack'};
+  const unitWord=u=>state.lang==='hu'?(u||'db'):(UNIT_EN[u]||u||'pc');
+  const L10N=v=>v&&typeof v==='object'?(v[state.lang]||v.hu):v;
+  // Kártya: mennyit kell ténylegesen megvenni és miért, illetve mi nem tartozék (B01–B03).
+  function costNotesHtml(l,acc){
+    let h='';
+    if(l.units&&(l.pack>1||l.extra>0)){
+      const why=l.reasons.map(r=>r.code==='pack'?t('whyPack').replace('{n}',r.pack).replace('{u}',unitWord(r.unit))
+        :r.code==='multiple'?(r.mode==='delivery'?t('whyDeliveryMultiple'):t('whyMultiple')).replace('{n}',r.multiple)
+        :r.code==='min'?t('whyMin').replace('{n}',r.min):'').filter(Boolean).join('; ');
+      let alt='';
+      if(l.reasons.some(r=>r.code==='multiple'&&r.mode==='delivery')){ const p=DRPricing.purchase(l.requested,l.sale,'pickup'); alt=' '+t('whyPickupAlt').replace('{n}',p.units); }
+      h+=`<div class="buy-note">${t('buyQty').replace('{units}',l.units).replace('{u}',unitWord(l.unit))}${l.pack>1?` (${l.pieces} ${t('pieces')})`:''}`+
+        (l.extra>0?` · <b>${t('buyExtra').replace('{n}',l.extra)}</b> — ${why}.${alt}`:'')+`</div>`;
+    }
+    acc.forEach(a=>{
+      const what=`${L10N(a.label)}${a.note?` (${a.note})`:''} × ${a.need}`;
+      const accWhy=a.known&&a.extra>0?` · ${t('buyQty').replace('{units}',a.units).replace('{u}',unitWord(a.unit))}${a.pack>1?` (${a.pieces} ${t('pieces')})`:''}: `+
+        a.reasons.map(r=>r.code==='pack'?t('whyPack').replace('{n}',r.pack).replace('{u}',unitWord(r.unit)):r.code==='multiple'?(r.mode==='delivery'?t('whyDeliveryMultiple'):t('whyMultiple')).replace('{n}',r.multiple):t('whyMin').replace('{n}',r.min)).join('; '):'';
+      h+=a.known?`<div class="acc-note">${t('accMissing')} ${what} — ${escapeHtml(a.ref.name)} ≈ ${fmt(a.total)} Ft ${t('accSeparate')}${accWhy}</div>`
+        :`<div class="acc-note is-unknown">${t('accMissing')} ${what} — ${t('accUnknown')}</div>`;
+    });
+    return h;
+  }
+  const shipText=s=>s.known?(s.amount?fmt(s.amount)+' Ft':t('shipFree'))
+    :s.belowMinimum?t('shipBelowMin').replace('{n}',fmt(s.belowMinimum))
+    :s.min!=null&&s.max!=null?fmt(s.min)+'–'+fmt(s.max)+' Ft '+t('shipByZone')
+    :s.min!=null?t('shipFrom').replace('{n}',fmt(s.min)):t('shipUnknown');
+  // Összegzés: mit tartalmaz a becsült végösszeg, és mit kell a boltban pontosítani (B04).
+  function renderCostSummary(cost){
+    const T=cost.totals, el=id=>document.getElementById(id);
+    el('furnTotal').textContent=fmt(T.products)+' Ft';
+    el('paintTotal').textContent=T.paint?'≈ '+fmt(T.paint)+' Ft':'—';
+    el('accRow').hidden=!cost.accessories.length;
+    el('accTotal').textContent=T.accessories?'≈ '+fmt(T.accessories)+' Ft':t('shipUnknown');
+    el('shipRows').innerHTML=cost.stores.filter(s=>s.subtotal||cost.lines.some(l=>l.store===s.store&&l.units)).map(s=>
+      `<div class="brk ship-row"><span>${STORE_LABEL[s.store]} · ${cost.mode==='pickup'?t('modePickup'):t('modeDelivery')}</span><span class="${s.shipping.known?'':'is-unknown'}">${shipText(s.shipping)}</span></div>`).join('');
+    document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===cost.mode));
+    el('fulfillSeg').dataset.mode=cost.mode;
+    el('zoneRow').hidden=cost.mode!=='delivery'||!cost.stores.some(s=>s.store==='ikea');
+    el('zoneSel').value=state.zone||'';
+    el('grandNote').textContent=T.hasUnknown?t('grandPlusUnknown'):'';
+    const u=cost.unknown, items=[];
+    u.prices.forEach(p=>items.push(t('openPrice').replace('{name}',p.name)));
+    u.accessories.forEach(a=>items.push(`${L10N(a.label)}${a.note?` (${a.note})`:''} × ${a.need} — ${escapeHtml(a.forName)}`));
+    u.shipping.forEach(s=>items.push(`${STORE_LABEL[s.store]}: ${t('openShipping')} (${shipText(s)})`));
+    cost.extras.forEach(x=>items.push(t('openExtra').replace('{name}',x.name).replace('{n}',x.extra)));
+    if(T.paint) items.push(t('openPaint'));
+    el('costOpen').hidden=!items.length;
+    el('costOpenList').innerHTML=items.map(x=>`<li>${x}</li>`).join('');
+    // Mentett / megosztott terv: a mentéskori árpillanatképhez képest látszik a változás (B05)
+    // Csak valódi egységár-változást jelzünk; a teljes összeget csak azonos teljesítési mód és zóna mellett vetjük össze
+    // (különben a különbség a mód váltásából jönne, nem az árból).
+    const d=state.compareSnap?DRPricing.diff(state.compareSnap,cost):null;
+    el('priceChange').hidden=!d||!d.changed.length;
+    if(d&&d.changed.length){
+      const sameBasis=state.compareSnap.mode===cost.mode&&(state.compareSnap.zone||null)===(cost.zone||null);
+      const pd=d.changed.reduce((a,c)=>a+(c.to-c.from)*c.units,0), sign=n=>(n>0?'+':'')+fmt(n);
+      el('priceChange').innerHTML=t('priceChangeItems').replace('{delta}',sign(pd))
+        +`<ul>${d.changed.map(c=>`<li>${escapeHtml(c.name)}: ${fmt(c.from)} → ${fmt(c.to)} Ft</li>`).join('')}</ul>`
+        +(sameBasis?`<div>${t('priceChange').replace('{from}',fmt(d.from)).replace('{to}',fmt(d.to)).replace('{delta}',sign(d.delta))}</div>`:'');
+    }
+  }
   // ---- ÁR-FRISSESSÉG (A04) ----
   // Minden termék saját ellenőrzési idővel rendelkezik (prices.json v2 → items[url].checkedAt).
   // Egy napi import nem teszi „maivá” a kimaradt terméket: az ő ára a saját utolsó sikeres idejét mutatja.
@@ -600,8 +721,7 @@
     state.layoutQty={};
     resolved.forEach(b=>state.layoutQty[b.productId]=(state.layoutQty[b.productId]||0)+1);
     state.layoutOmit=new Set(drawnList().filter(it=>placed.has(it.id)===false).map(it=>it.id));
-    let f=0; curItems().forEach(it=>{ if(fits(it,RL,RS)&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id)) f+=linePrice(it); });
-    const p=computePaint(L,W,H).cost; return {furnTotal:f,paintTotal:p,grand:f+p};
+    const c=currentCost(); return {furnTotal:c.totals.products,paintTotal:c.totals.paint,grand:c.totals.known};
   }
   function autoFit(){
     state.off=new Set();
@@ -690,10 +810,10 @@
   function buildTabs(){
     const rt=document.getElementById('roomtabs');
     rt.innerHTML=ROOMS.map(r=>`<div class="tab room ${state.room===r.id?'sel':''}" data-r="${r.id}">${ROOM_LABEL[r.id][li()]}</div>`).join('');
-    rt.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.room=el.dataset.r;state.off=new Set();render();}));
+    rt.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.room=el.dataset.r;state.off=new Set();state.compareSnap=null;render();}));
     const stb=document.getElementById('styletabs');
     stb.innerHTML=STYLES.map(s=>`<div class="tab ${state.style===s.id?'sel':''}" data-s="${s.id}">${STYLE_LABEL[s.id][li()]}</div>`).join('');
-    stb.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.style=el.dataset.s;state.off=new Set();render();}));
+    stb.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.style=el.dataset.s;state.off=new Set();state.compareSnap=null;render();}));
   }
   function applyStatic(){
     document.documentElement.lang=state.lang;
@@ -731,12 +851,12 @@
     const q=(state.search||'').trim().toLowerCase();
 
     const listEl=document.getElementById('list'); listEl.innerHTML='';
-    let furnTotal=0,furnArea=0,fitCount=0,onCount=0; const drawn=[];
+    let furnArea=0,fitCount=0,onCount=0; const drawn=[];
     list.forEach(it=>{
       const ok=fits(it,RL,RS); if(ok) fitCount++;
       const qty=qtyFor(it.id);
       const on=ok&&!state.off.has(it.id);
-      if(on){ furnTotal+=unitPrice(it)*qty; onCount+=qty; if(it.floor==='furniture') furnArea+=it.w*it.d*qty; if(it.plan) drawn.push(it); }
+      if(on&&it.plan) drawn.push(it);
       if(q && !(it.name.toLowerCase().includes(q) || catName(it.id).toLowerCase().includes(q))) return;
       const badge=ok?'':`<span class="badge-nofit">${t('nofit')}</span>`;
       let swap='',cmp='';
@@ -755,8 +875,10 @@
       const el=document.createElement('div'); el.className='item'+(on?'':' off');
       const itemColor=finishFor(it);
       const colorLabel=state.lang==='hu'?'Szín':'Color', quantityLabel=state.lang==='hu'?'Darab':'Qty';
-      const controls=it.plan?`<div class="item-controls"><label class="item-color"><span>${colorLabel}</span><input class="furn-color" type="color" aria-label="${colorLabel}: ${it.name}" value="${itemColor}" data-id="${it.id}"></label><div class="quantity-control"><span>${quantityLabel}</span><button type="button" class="qty-btn" data-id="${it.id}" data-step="-1" aria-label="Kevesebb">−</button><b class="qty-value" data-qty-for="${it.id}">${qty}</b><button type="button" class="qty-btn" data-id="${it.id}" data-step="1" aria-label="Több">+</button></div></div>`:'';
-      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}">${productPhoto(it)}<div class="info"><div class="name">${it.name}</div><div class="meta"><span class="dims">${it.w} × ${it.d} cm</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${priceNoteHtml(it)}${replaceNoteHtml(it)}${controls}${swap}${cmp}</div><div class="right"><div class="price${isUncertain(it)?' is-uncertain':''}" data-price-for="${it.id}"${isUncertain(it)?` title="${t('pcUncertainTitle')}"`:''}>${fmt(unitPrice(it)*qty)} Ft</div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
+      // B01: a darabszám minden tételnél állítható (a bútoroknál a szín is); a megvásárolandó mennyiséget a költségszámítás adja.
+      const colorCtl=it.plan?`<label class="item-color"><span>${colorLabel}</span><input class="furn-color" type="color" aria-label="${colorLabel}: ${it.name}" value="${itemColor}" data-id="${it.id}"></label>`:'';
+      const controls=`<div class="item-controls">${colorCtl}<div class="quantity-control"><span>${quantityLabel}</span><button type="button" class="qty-btn" data-id="${it.id}" data-step="-1" aria-label="Kevesebb">−</button><b class="qty-value" data-qty-for="${it.id}">${qty}</b><button type="button" class="qty-btn" data-id="${it.id}" data-step="1" aria-label="Több">+</button></div></div>`;
+      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}">${productPhoto(it)}<div class="info"><div class="name">${it.name}</div><div class="meta"><span class="dims">${it.w} × ${it.d} cm</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${priceNoteHtml(it)}${replaceNoteHtml(it)}<div class="cost-notes" data-notes-for="${it.id}"></div>${controls}${swap}${cmp}</div><div class="right"><div class="price${isUncertain(it)?' is-uncertain':''}" data-price-for="${it.id}"${isUncertain(it)?` title="${t('pcUncertainTitle')}"`:''}>—</div><div class="unit-price" data-unit-for="${it.id}"></div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
       el.querySelector('.product-photo img')?.addEventListener('error',e=>{
         e.currentTarget.hidden=true;
         el.querySelector('.photo-fallback').hidden=false;
@@ -770,7 +892,7 @@
     state.layoutQty={}; resolved.forEach(x=>state.layoutQty[x.productId]=(state.layoutQty[x.productId]||0)+1);
     const rejected=drawn.filter(it=>!placedKinds.has(it.id));
     state.layoutOmit=new Set(rejected.map(it=>it.id));
-    drawn.forEach(it=>{ const wanted=qtyFor(it.id),actual=state.layoutQty[it.id]||0; const delta=wanted-actual; if(delta>0){furnTotal-=unitPrice(it)*delta;onCount-=delta;if(it.floor==='furniture')furnArea-=it.w*it.d*delta;} const qtyEl=listEl.querySelector(`[data-qty-for="${it.id}"]`);if(qtyEl)qtyEl.textContent=actual+' / '+qtyFor(it.id);const priceEl=listEl.querySelector(`[data-price-for="${it.id}"]`);if(priceEl)priceEl.textContent=fmt(linePrice(it))+' Ft'; });
+    drawn.forEach(it=>{ const actual=state.layoutQty[it.id]||0; const qtyEl=listEl.querySelector(`[data-qty-for="${it.id}"]`); if(qtyEl) qtyEl.textContent=actual+' / '+qtyFor(it.id); });
     rejected.forEach(it=>{ const cb=listEl.querySelector(`.chk[data-id="${it.id}"]`); if(cb){cb.checked=false;cb.disabled=true;cb.closest('.item')?.classList.add('off');const meta=cb.closest('.item')?.querySelector('.meta');if(meta&&!meta.querySelector('.badge-nofit'))meta.insertAdjacentHTML('beforeend',` <span class="badge-nofit">${t('nofit')}</span>`);} });
 
     const photoRect=el=>(el.closest('.item')?.querySelector('.product-photo')||el).getBoundingClientRect();
@@ -789,9 +911,18 @@
       if(isGone(slot.options[cur])&&to!==cur) recordReplacement(id,slot.options[cur],slot.options[to],'gone');
       state.sel[keyOf(id)]=to; render(); }));
 
-    furnTotal=0;onCount=0;furnArea=0;
-    list.forEach(it=>{if(!fits(it,RL,RS)) return;if(state.off.has(it.id)) return;furnTotal+=linePrice(it);onCount+=actualQty(it);});
+    // B05: egyetlen költségszámítás — a lista, az összegzés és minden más felület ebből dolgozik.
+    const cost=currentCost(); lastCost=cost;
+    onCount=cost.lines.reduce((a,l)=>a+l.requested,0);
     resolved.forEach(it=>{if(!it.rug) furnArea+=it.w*it.d;});
+    list.forEach(it=>{
+      // kikapcsolt / be nem férő tétel: ugyanazzal a számítással, csak a végösszegen kívül
+      const l=costLine(cost,it.id)||DRPricing.line(costInput(it),cost.mode);
+      const pe=listEl.querySelector(`[data-price-for="${it.id}"]`); if(pe) pe.textContent=l.total!=null?fmt(l.total)+' Ft':t('costNoPrice');
+      const ue=listEl.querySelector(`[data-unit-for="${it.id}"]`); if(ue) ue.textContent=l.units>1&&l.unitPrice!=null?fmt(l.unitPrice)+' Ft / '+unitWord(l.unit):'';
+      const ne=listEl.querySelector(`[data-notes-for="${it.id}"]`); if(ne) ne.innerHTML=costNotesHtml(l,cost.accessories.filter(a=>a.for===it.id));
+      ne?.closest('.item')?.classList.toggle('is-partial',cost.accessories.some(a=>a.for===it.id));
+    });
     const missing=drawn.reduce((n,it)=>n+qtyFor(it.id)-actualQty(it),0);
     document.getElementById('layoutStatus').textContent=missing?t('layoutOmitted')+' ('+missing+')':'';
     const paint=computePaint(L,W,H), paintTotal=paint.cost;
@@ -804,18 +935,17 @@
     document.getElementById('wallDot').style.background=wall;
     buildPalette(); buildTabs(); buildStoreChips();
 
-    const grand=furnTotal+paintTotal;
+    const grand=cost.totals.known;
     M.countTo(document.getElementById('grand'),grand,fmt);
+    renderCostSummary(cost);
     M.budgetRing(document.getElementById('budgetRing'),state.budget>0?grand/state.budget:0);
     const bagCount=document.getElementById('navBagCount');
     if(bagCount.textContent!==String(onCount)){ bagCount.textContent=onCount; M.bump(bagCount); }
     document.getElementById('navBagBtn').setAttribute('aria-label',t('bagLabel')+' ('+onCount+')');
     if(pendingFly){ M.flyTo(pendingFly,document.getElementById('navBagBtn')); pendingFly=null; }
-    document.getElementById('furnTotal').textContent=fmt(furnTotal)+' Ft';
-    document.getElementById('paintTotal').textContent=fmt(paintTotal)+' Ft';
     // A04: a végösszegből mennyi a bizonytalan (elavult / nem ellenőrzött / megszűnt) tétel
     let unsure=0,unsureN=0;
-    list.forEach(it=>{ if(!fits(it,RL,RS)||state.off.has(it.id)||!isUncertain(it)) return; unsure+=linePrice(it); unsureN++; });
+    cost.lines.forEach(l=>{ if(!l.units||!l.uncertain||l.total==null) return; unsure+=l.total; unsureN++; });
     const ur=document.getElementById('uncertainRow'); ur.hidden=!unsureN;
     if(unsureN){ document.getElementById('uncertainLabel').textContent=t('pcUncertainSum').replace('{n}',unsureN); document.getElementById('uncertainTotal').textContent='≈ '+fmt(unsure)+' Ft'; }
     document.getElementById('countPill').textContent=onCount+' '+t('on')+' · '+fitCount+'/'+list.length+' '+t('fit');
@@ -842,18 +972,25 @@
     const L=len(),W=wid(),H=hei(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100;
     const styleLabel=STYLE_LABEL[state.style][li()], roomLabel=ROOM_LABEL[state.room][li()];
     const colorName=state.color==='none'?t('exNone'):(state.lang==='hu'?(COLORS.find(c=>c.id===state.color)||{}).name:(COLOR_EN[state.color]||''));
-    let rows='', furn=0, unsure=0;
-    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id); if(!on) return; furn+=linePrice(it);
-      const mark=isUncertain(it)?(unsure++,' *'):'';
-      rows+=`<tr><td>${catName(it.id)} × ${actualQty(it)}</td><td>${it.name}</td><td>${STORE_LABEL[it.store]||it.store.toUpperCase()}</td><td class="r">${fmt(linePrice(it))} Ft${mark}</td></tr>`; });
-    const paint=computePaint(L,W,H); const grand=furn+paint.cost;
+    // B05: ugyanaz a számítás, mint a képernyőn (currentCost) — tételenként a megvásárolandó egységgel
+    const cost=lastCost||currentCost(); let rows='', unsure=0;
+    cost.lines.filter(l=>l.units).forEach(l=>{
+      const mark=l.uncertain||l.total==null?(unsure++,' *'):'';
+      const qty=`${l.units} ${unitWord(l.unit)}${l.extra>0?` (${t('exPlanned')} ${l.requested})`:''}`;
+      rows+=`<tr><td>${catName(l.id)}</td><td>${l.name}</td><td>${STORE_LABEL[l.store]||l.store.toUpperCase()}</td><td class="r">${qty}</td><td class="r">${l.total!=null?fmt(l.total)+' Ft':t('costNoPrice')}${mark}</td></tr>`; });
+    cost.accessories.forEach(a=>{ rows+=`<tr><td>${t('exAcc')}</td><td>${L10N(a.label)}${a.note?` (${a.note})`:''}${a.known?' — '+a.ref.name:''}</td><td>${a.known?STORE_LABEL[a.ref.store]:'—'}</td><td class="r">${a.known?a.units+' '+unitWord(a.unit):a.need}</td><td class="r">${a.known?'≈ '+fmt(a.total)+' Ft':t('shipUnknown')}</td></tr>`; });
+    const ship=cost.stores.map(s=>`${STORE_LABEL[s.store]}: ${shipText(s.shipping)}`).join(' · ');
+    const open=[...cost.unknown.prices.map(p=>t('openPrice').replace('{name}',p.name)),...cost.unknown.accessories.map(a=>`${L10N(a.label)} — ${a.forName}`),
+      ...cost.unknown.shipping.map(s=>`${STORE_LABEL[s.store]}: ${t('openShipping')}`),...cost.extras.map(x=>t('openExtra').replace('{name}',x.name).replace('{n}',x.extra))];
+    const T=cost.totals;
     const svg=document.querySelector('#plan svg') ? document.querySelector('#plan').innerHTML : '';
     document.getElementById('printArea').innerHTML=
       `<div class="pa-h">${t('exTitle')}</div>
-       <div class="pa-meta">${roomLabel} · ${styleLabel} ${t('exStyle')} · ${L} × ${W} m (${t('belm')} ${H} m) · ${t('exWall')}: ${colorName} · ${t('exDate')}: ${PRICE_DATE}</div>
+       <div class="pa-meta">${roomLabel} · ${styleLabel} ${t('exStyle')} · ${L} × ${W} m (${t('belm')} ${H} m) · ${t('exWall')}: ${colorName} · ${t('exDate')}: ${PRICE_DATE} · ${cost.mode==='pickup'?t('modePickup'):t('modeDelivery')}</div>
        <div class="pa-plan">${svg}</div>
-       <table><thead><tr><th>${t('exCat')}</th><th>${t('exProd')}</th><th>${t('exStore')}</th><th class="r">${t('exPrice')}</th></tr></thead><tbody>${rows}</tbody></table>
-       <div class="pa-tot">${t('exFurn')}: <b>${fmt(furn)} Ft</b> &nbsp;·&nbsp; ${t('exPaint')}: <b>${fmt(paint.cost)} Ft</b><br><span class="g">${t('exTotal')}: ${fmt(grand)} Ft</span></div>
+       <table><thead><tr><th>${t('exCat')}</th><th>${t('exProd')}</th><th>${t('exStore')}</th><th class="r">${t('exQty')}</th><th class="r">${t('exPrice')}</th></tr></thead><tbody>${rows}</tbody></table>
+       <div class="pa-tot">${t('exFurn')}: <b>${fmt(T.products)} Ft</b>${T.accessories?` &nbsp;·&nbsp; ${t('brkAcc')}: <b>≈ ${fmt(T.accessories)} Ft</b>`:''} &nbsp;·&nbsp; ${t('exPaint')}: <b>≈ ${fmt(T.paint)} Ft</b><br>${t('exShipping')}: ${ship||'—'}<br><span class="g">${t('exTotal')}: ${fmt(T.known)} Ft${T.hasUnknown?' '+t('grandPlusUnknown'):''}</span></div>
+       ${open.length?`<div class="pa-meta" style="margin-top:10px;"><b>${t('openTitle')}:</b> ${open.join(' · ')}</div>`:''}
        <div class="pa-meta" style="margin-top:14px;">${unsure?t('pcExportNote')+'<br>':''}${t('exNote')}</div>`;
     window.print();
   }
@@ -869,21 +1006,24 @@
   document.getElementById('exportBtn2').addEventListener('click',exportOffer);
 
   function shoppingGroups(){
-    const L=len(),W=wid(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100;
-    const g={}; let grand=0;
-    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id); if(!on) return; grand+=linePrice(it); (g[it.store]=g[it.store]||[]).push({...it,name:it.name+String.fromCharCode(32,215,32)+actualQty(it),quantity:actualQty(it),price:linePrice(it)}); });
+    // B05: a bevásárlólista a megvásárolandó egységeket mutatja (nem a tervezett darabot), kiegészítőkkel és szállítással.
+    const cost=lastCost||currentCost(), g={};
+    cost.lines.filter(l=>l.units).forEach(l=>{ const it=curItems().find(x=>x.id===l.id)||{};
+      (g[l.store]=g[l.store]||[]).push({icon:it.icon||'',url:l.url,name:`${l.name} × ${l.units} ${unitWord(l.unit)}`,quantity:l.units,price:l.total||0,unknown:l.total==null}); });
+    cost.accessories.filter(a=>a.known).forEach(a=>{ (g[a.ref.store]=g[a.ref.store]||[]).push({icon:'+',url:a.ref.url,name:`${a.ref.name} × ${a.units} ${unitWord(a.unit)} (${L10N(a.label)})`,quantity:a.units,price:a.total}); });
     const order=['ikea','jysk','momax','mobelix'];
-    return {groups:order.filter(s=>g[s]).map(s=>({store:s,items:g[s],sub:g[s].reduce((a,x)=>a+x.price,0)})), grand};
+    return {groups:order.filter(s=>g[s]).map(s=>({store:s,items:g[s],sub:g[s].reduce((a,x)=>a+x.price,0),shipping:(cost.stores.find(x=>x.store===s)||{}).shipping})), grand:cost.totals.known, cost};
   }
   function openShopping(){
-    const {groups,grand}=shoppingGroups();
+    const {groups,grand,cost}=shoppingGroups();
     let html=`<div class="slbox"><div class="slhead"><h3>${t('slTitle')}</h3><button class="slclose" id="slX">✕</button></div>`;
     groups.forEach(gr=>{
       html+=`<div class="slstore"><div class="sst"><span>${storeBadge(gr.store)} <span style="color:var(--muted);font-size:12.5px;">${gr.items.length} ${t('slItems')}</span></span><span class="sub">${fmt(gr.sub)} Ft</span></div>`;
-      gr.items.forEach(it=>{ html+=`<div class="slitem"><span class="in">${it.icon} ${it.name}</span><span class="ip">${fmt(it.price)} Ft</span><a href="${it.url}" target="_blank" rel="noopener">${t('slOpen')}</a></div>`; });
+      gr.items.forEach(it=>{ html+=`<div class="slitem"><span class="in">${it.icon} ${escapeHtml(it.name)}</span><span class="ip">${it.unknown?t('costNoPrice'):fmt(it.price)+' Ft'}</span><a href="${it.url}" target="_blank" rel="noopener">${t('slOpen')}</a></div>`; });
+      if(gr.shipping) html+=`<div class="slitem sl-ship"><span class="in">${cost.mode==='pickup'?t('modePickup'):t('modeDelivery')}</span><span class="ip">${shipText(gr.shipping)}</span><span></span></div>`;
       html+=`</div>`;
     });
-    html+=`<div class="slgrand"><span>${t('slTotal')}</span><span>${fmt(grand)} Ft</span></div><div class="slbtns"><button class="pr" id="slPrint">${t('slPrint')}</button><button class="cl" id="slX2">${t('slClose')}</button></div></div>`;
+    html+=`<div class="slgrand"><span>${t('slTotal')}</span><span>${fmt(grand)} Ft${cost.totals.hasUnknown?' '+t('grandPlusUnknown'):''}</span></div><div class="slbtns"><button class="pr" id="slPrint">${t('slPrint')}</button><button class="cl" id="slX2">${t('slClose')}</button></div></div>`;
     const ov=document.getElementById('slOverlay'); ov.innerHTML=html; ov.style.display='flex';
     document.getElementById('slX').onclick=closeShopping;
     document.getElementById('slX2').onclick=closeShopping;
@@ -1099,14 +1239,17 @@
   function loadHouse(){ try{ const s=localStorage.getItem(LSKEY); if(s) state.house=JSON.parse(s)||[]; }catch(e){} }
   function saveHouse(){ try{ localStorage.setItem(LSKEY, JSON.stringify(state.house)); }catch(e){} if(window.HVCloud&&window.HVCloud.enabled) window.HVCloud.scheduleSave(state.house); }
   function currentSnapshot(){
-    const L=len(),W=wid(),H=hei(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100; const items=[]; let furn=0;
-    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id)&&!state.layoutOmit.has(it.id); if(!on)return; furn+=linePrice(it); items.push({cat:catName(it.id),name:it.name+String.fromCharCode(32,215,32)+actualQty(it),store:it.store,price:linePrice(it),quantity:actualQty(it),color:finishFor(it),url:it.url}); });
-    const paint=computePaint(L,W,H).cost; return {items,furn,paint,grand:furn+paint,L,W,H};
+    // B05: a mentés ugyanabból a számításból készül, és árpillanatképet is őriz (mikor, mennyi, milyen egységárral).
+    const L=len(),W=wid(),H=hei(), cost=lastCost||currentCost(), items=[];
+    cost.lines.filter(l=>l.units).forEach(l=>{ const it=curItems().find(x=>x.id===l.id)||{};
+      items.push({cat:catName(l.id),name:`${l.name} × ${l.units} ${unitWord(l.unit)}`,store:l.store,price:l.total||0,quantity:l.units,color:finishFor(it),url:l.url}); });
+    cost.accessories.filter(a=>a.known).forEach(a=>items.push({cat:L10N(a.label),name:`${a.ref.name} × ${a.units} ${unitWord(a.unit)}`,store:a.ref.store,price:a.total,quantity:a.units,url:a.ref.url}));
+    return {items,furn:cost.totals.products,paint:cost.totals.paint,grand:cost.totals.known,hasUnknown:cost.totals.hasUnknown,priceSnap:DRPricing.snapshot(cost),L,W,H};
   }
   function saveRoom(){
     const snap=currentSnapshot(), label=ROOM_LABEL[state.room][li()];
     const n=state.house.filter(r=>r.roomId===state.room).length, name=label+(n>0?(' '+(n+1)):'');
-    state.house.push({ id:'h'+Date.now()+Math.random().toString(36).slice(2,6), name, roomId:state.room, styleLabel:STYLE_LABEL[state.style][li()], sizeStr:snap.L+'×'+snap.W+' m', total:snap.grand, items:snap.items,
+    state.house.push({ id:'h'+Date.now()+Math.random().toString(36).slice(2,6), name, roomId:state.room, styleLabel:STYLE_LABEL[state.style][li()], sizeStr:snap.L+'×'+snap.W+' m', total:snap.grand, hasUnknown:snap.hasUnknown, items:snap.items, priceSnap:snap.priceSnap,
       config:currentConfig() });
     saveHouse(); openHouse();
   }
@@ -1119,7 +1262,7 @@
       if(byKey>=0) state.sel[k]=byKey; else if(state.sel[k]==null) state.sel[k]=0;
     });
   }
-  function loadRoom(r){ const c=r.config; document.getElementById('len').value=c.len; document.getElementById('wid').value=c.wid; document.getElementById('hei').value=c.hei; state.room=c.room; state.style=c.style; state.color=c.color; state.budget=c.budget; state.tvPlacement=c.tvPlacement==='wall'?'wall':'stand'; state.quantity=JSON.parse(JSON.stringify(c.quantity||{})); state.itemColors=JSON.parse(JSON.stringify(c.itemColors||{})); document.getElementById('budgetNum').value=c.budget; document.getElementById('budgetRange').value=Math.min(Math.max(c.budget,100000),1200000); state.sel=JSON.parse(JSON.stringify(c.sel||{})); state.replaced=JSON.parse(JSON.stringify(c.replaced||{})); pinSavedSelection(c); state.off=new Set(c.off||[]); state.pos=JSON.parse(JSON.stringify(c.pos||{})); closeHouse(); render(); }
+  function loadRoom(r){ const c=r.config; document.getElementById('len').value=c.len; document.getElementById('wid').value=c.wid; document.getElementById('hei').value=c.hei; state.room=c.room; state.style=c.style; state.color=c.color; state.budget=c.budget; state.tvPlacement=c.tvPlacement==='wall'?'wall':'stand'; state.quantity=JSON.parse(JSON.stringify(c.quantity||{})); state.itemColors=JSON.parse(JSON.stringify(c.itemColors||{})); document.getElementById('budgetNum').value=c.budget; document.getElementById('budgetRange').value=Math.min(Math.max(c.budget,100000),1200000); state.sel=JSON.parse(JSON.stringify(c.sel||{})); state.replaced=JSON.parse(JSON.stringify(c.replaced||{})); pinSavedSelection(c); if(c.fulfillment==='pickup'||c.fulfillment==='delivery') state.fulfillment=c.fulfillment; state.zone=c.zone==='A'||c.zone==='B'?c.zone:state.zone; state.compareSnap=r.priceSnap||c.snap||null; state.off=new Set(c.off||[]); state.pos=JSON.parse(JSON.stringify(c.pos||{})); closeHouse(); render(); }
   function closeHouse(){ document.getElementById('houseOverlay').style.display='none'; }
   function printHouseShopping(){
     const g={}; let grand=0; const order=['ikea','jysk','momax','mobelix'];
@@ -1154,10 +1297,14 @@
     const sel=JSON.parse(JSON.stringify(state.sel)), selKeys={};
     getSlots().forEach(slot=>{ const k=keyOf(slot.id),i=selIndex(slot.id); sel[k]=i; selKeys[k]=slot.options[i].key; });
     return {room:state.room,style:state.style,len:len(),wid:wid(),hei:hei(),color:state.color,budget:state.budget,tvPlacement:state.tvPlacement,
+      fulfillment:state.fulfillment,zone:state.zone,
       quantity:{...state.quantity},itemColors:{...state.itemColors},sel,selKeys,replaced:JSON.parse(JSON.stringify(state.replaced)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos))};
   }
   function makeShareLink(){
-    const encoded=LZString.compressToEncodedURIComponent(JSON.stringify(currentConfig()));
+    // A megosztott terv a konfigurációt és egy rövid árpillanatképet visz (URL nélkül, tétel-azonosítóval),
+    // így a címzettnél is látszik, ha azóta változott az ár (B05).
+    const snap=DRPricing.snapshot(lastCost||currentCost()); snap.lines=snap.lines.map(({url,...l})=>l);
+    const encoded=LZString.compressToEncodedURIComponent(JSON.stringify({...currentConfig(),snap}));
     return location.origin+location.pathname+'#c='+encoded;
   }
   function shareRoom(){
@@ -1393,6 +1540,12 @@
     try{ localStorage.setItem('dreamr-theme',dark?'dark':'light'); }catch(e){}
   });
   document.getElementById('navBagBtn').addEventListener('click',openShopping);
+  // B02/B04: teljesítési mód és IKEA díjzóna — a választás megmarad ezen a böngészőn
+  try{ const m=localStorage.getItem('dreamr-fulfillment'); if(m==='pickup'||m==='delivery') state.fulfillment=m; const z=localStorage.getItem('dreamr-zone'); if(z==='A'||z==='B') state.zone=z; }catch(e){}
+  document.querySelectorAll('#fulfillSeg [data-mode]').forEach(b=>b.addEventListener('click',()=>{
+    state.fulfillment=b.dataset.mode; try{ localStorage.setItem('dreamr-fulfillment',state.fulfillment); }catch(e){} render(); }));
+  document.getElementById('zoneSel').addEventListener('change',e=>{
+    state.zone=e.target.value||null; try{ localStorage.setItem('dreamr-zone',state.zone||''); }catch(err){} render(); });
   // Mozgás: belépő aranypor, előtte/utána söprés, billenő kártyák, söpörhető alternatívák, beúszó blokkok.
   M.dust(document.getElementById('welcomeDust'),14);
   M.autoSweep(document.querySelector('.dreamr-hero-visual'),document.getElementById('heroCompare'));
@@ -1428,9 +1581,12 @@
   function applyLivePrices(data){
     priceDataLoaded=true;
     if(!data||!data.prices){ render(); return; } // nincs árfájl: minden ár „nem ellenőrzött”
+    // v3 óta minden ár EGY megvásárolható egység ára. A régebbi (v1/v2) fájlban a többdarabos tételek ára
+    // szorzott volt — azt nem használjuk egységárként, így ilyenkor minden ár „nem ellenőrzött” marad.
+    if(!(data.version>=3)){ console.warn('DREAMR: elavult prices.json formátum (v'+(data.version||1)+'), az árak nem ellenőrzöttként jelennek meg.'); render(); return; }
     // Minden terméklistán végigmegyünk; az URL a termék egyedi azonosítója.
     // v2: tételenkénti ellenőrzési adatok; v1: csak ár → az akkori futás idejével ellenőrzöttnek tekintjük.
-    const lists=[...Object.values(POOL),Object.values(CURTAIN),Object.values(CUSHION),Object.values(VASE),NIGHTSTANDS,Object.values(BEDDING)];
+    const lists=[...Object.values(POOL),Object.values(CURTAIN),Object.values(CUSHION),Object.values(VASE),NIGHTSTANDS,Object.values(BEDDING),Object.values(ACCESSORY)];
     const v1At=data.updated||(data.date?data.date+'T04:00:00Z':null);
     let n=0;
     lists.forEach(arr=>arr.forEach(p=>{

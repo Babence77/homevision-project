@@ -159,6 +159,33 @@ body.dark .product-photo{background:#F3EEE5;}
 .replace-history{margin-top:6px;font-size:11.5px;color:var(--gold-ink);}
 .item:has(.gone-note) .price{text-decoration:line-through;}
 
+/* ---- Vásárlási költség (2. szakasz) ---- */
+.cost-notes:empty{display:none;}
+.buy-note,.acc-note{margin-top:6px;font-size:12px;line-height:1.5;color:var(--dream-ink);}
+.buy-note b{color:var(--gold-ink);}
+.acc-note{padding-left:10px;border-left:2px solid var(--gold);color:var(--dream-muted);}
+.acc-note.is-unknown{border-left-color:var(--warn);color:var(--warn);}
+.unit-price{font-size:11.5px;color:var(--dream-muted);white-space:nowrap;}
+.item.is-partial .price::after{content:" +";color:var(--gold-ink);}
+.fulfill-seg{position:relative;display:flex;padding:4px;margin-bottom:12px;border-radius:24px;background:var(--chip);border:1px solid var(--dream-line);}
+.fulfill-ind{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:20px;background:var(--cta-bg);transition:transform .5s cubic-bezier(.34,1.4,.64,1);}
+.fulfill-seg[data-mode="pickup"] .fulfill-ind{transform:translateX(100%);}
+.fulfill-seg button{position:relative;flex:1;min-height:38px;border:0;background:transparent;font:600 12.5px var(--sans);color:var(--dream-muted);cursor:pointer;transition:color .3s;}
+.fulfill-seg button[aria-pressed="true"]{color:var(--cta-ink);}
+.zone-row{display:flex;flex-direction:column;gap:5px;margin-bottom:16px;font-size:11.5px;color:var(--dream-muted);}
+.zone-row[hidden]{display:none;}
+.zone-row select{min-height:40px;padding:0 10px;border-radius:12px;border:1px solid var(--dream-line);background:var(--dream-bg);color:var(--dream-ink);font:500 13px var(--sans);}
+.grand-note{font-size:12px;color:var(--warn);min-height:0;margin:-2px 0 6px;}
+.grand-note:empty{display:none;}
+.ship-row .is-unknown{color:var(--warn);}
+.price-change{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--gold-soft);font-size:12.5px;line-height:1.5;color:var(--dream-ink);}
+.price-change[hidden],.cost-open[hidden]{display:none!important;}
+.price-change ul{margin:6px 0 0 16px;}
+.cost-open{margin-top:12px;font-size:12.5px;color:var(--dream-ink);}
+.cost-open summary{cursor:pointer;font-weight:700;color:var(--warn);}
+.cost-open ul{margin:8px 0 0 16px;display:flex;flex-direction:column;gap:4px;color:var(--dream-muted);}
+.sl-ship .in{color:var(--dream-muted);}
+
 /* ---- Összegzés, büdzsé-gyűrű ---- */
 .summary,body.dark .summary{background:var(--dream-surface);border:1px solid var(--dream-line);border-radius:26px;box-shadow:var(--luxe-shadow);}
 .summary .total{font-family:var(--serif);font-weight:600;font-size:46px;letter-spacing:-1px;}

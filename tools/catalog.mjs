@@ -23,5 +23,3 @@ export function uniqueByUrl(entries) {
   return map;
 }
 
-// "(N db)" a névben: a katalógusár N darab ára, a boltban 1 darab ára szerepel.
-export const packSize = name => { const m = name.match(/\((\d+)\s*db\)/); return m ? +m[1] : 1; };

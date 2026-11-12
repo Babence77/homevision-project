@@ -15,8 +15,12 @@
 //   DREAMR_ONLY_STORE=jysk        — csak egy boltot frissít (gyors próba)
 
 import { readFile, writeFile, appendFile } from 'node:fs/promises';
-import { readCatalog, uniqueByUrl, packSize } from './tools/catalog.mjs';
+import { readCatalog, uniqueByUrl } from './tools/catalog.mjs';
 import { fetchWithRetry, evaluate, STATUS } from './tools/store-pages.mjs';
+
+// B01/B02: az ár mindig EGY megvásárolható egység ára (a terméknévből semmi nem szorzódik).
+// JYSK: a termékoldal jelzi, ha házhozszállításnál csak többszörösében rendelhető.
+export const deliveryMultiple = html => { const m = html.match(/Házhozszállítás kiválasztásakor ezt a terméket\s*(\d+)\s*többszörösében/i); return m ? +m[1] : null; };
 
 const OUT = process.env.DREAMR_PRICES_OUT || 'prices.json';
 const IN = process.env.DREAMR_PRICES_IN || 'prices.json';
@@ -29,7 +33,11 @@ const config = JSON.parse(await readFile(new URL('./tools/price-sources.json', i
 async function loadPrevious() {
   try {
     const prev = JSON.parse(await readFile(IN, 'utf8'));
-    if (prev.version === 2 && prev.items) return prev.items;
+    if (prev.version >= 3 && prev.items) return prev.items;
+    // v2 → v3 átállás: a v2-ben a „(N db)” nevű termékek ára N-nel szorzott volt, ezért onnan árat nem
+    // örökítünk egységárként — csak az állapotot. Ami most nem frissíthető, az ár nélkül, „nem ellenőrzött” marad.
+    if (prev.version === 2 && prev.items) return Object.fromEntries(Object.entries(prev.items).map(([u, v]) =>
+      [u, { ...v, price: null, listPrice: null, saleUntil: null, checkedAt: null }]));
     // v1 formátum: minden tárolt ár az akkori futás sikeres eredménye volt
     const at = prev.updated || (prev.date ? prev.date + 'T00:00:00.000Z' : null);
     return Object.fromEntries(Object.entries(prev.prices || {}).map(([url, price]) =>
@@ -54,13 +62,13 @@ for (const [url, it] of catalog) {
     : await fetchWithRetry(url);
   const r = evaluate(it.store, url, page, now);
   st.statuses[r.status] = (st.statuses[r.status] || 0) + 1;
-  const n = packSize(it.name);
 
   if (r.status === STATUS.OK) {
-    const price = r.price * n;
+    const price = r.price;
     items[url] = {
-      price, listPrice: r.listPrice ? r.listPrice * n : null, saleUntil: r.saleUntil || null,
+      price, listPrice: r.listPrice || null, saleUntil: r.saleUntil || null,
       sku: r.sku, availability: r.availability || null,
+      deliveryMultiple: it.store === 'jysk' ? deliveryMultiple(page.html) : null,
       checkedAt: now.toISOString(), lastAttempt: now.toISOString(), status: STATUS.OK, error: null
     };
     st.ok++;
@@ -70,7 +78,7 @@ for (const [url, it] of catalog) {
     // A03: az utolsó jó ár és annak ideje megmarad; csak a próbálkozás és a hiba frissül.
     items[url] = {
       price: prev?.price ?? null, listPrice: prev?.listPrice ?? null, saleUntil: prev?.saleUntil ?? null,
-      sku: prev?.sku ?? r.sku ?? null, availability: prev?.availability ?? null,
+      sku: prev?.sku ?? r.sku ?? null, availability: prev?.availability ?? null, deliveryMultiple: prev?.deliveryMultiple ?? null,
       checkedAt: prev?.checkedAt ?? null, lastAttempt: now.toISOString(),
       status: r.status, error: r.reason || r.status, finalUrl: r.finalUrl !== url ? r.finalUrl : undefined
     };
@@ -96,7 +104,7 @@ for (const [store, st] of Object.entries(stats)) {
 const finishedAt = new Date().toISOString();
 const sorted = Object.fromEntries(Object.entries(items).sort((a, b) => a[0].localeCompare(b[0])));
 const out = {
-  version: 2,
+  version: 3, priceBasis: "salesUnit",
   date: finishedAt.slice(0, 10),
   updated: finishedAt,
   run: { startedAt, finishedAt, healthy: problems.length === 0, problems, stores: stats },

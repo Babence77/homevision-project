@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=dreamr-v9">
-<link rel="stylesheet" href="luxe.css?v=dreamr-v9">
+<link rel="stylesheet" href="styles.css?v=dreamr-v10">
+<link rel="stylesheet" href="luxe.css?v=dreamr-v10">
 </head>
 <body class="welcome-mode">
   <main id="welcomePage" class="welcome-page" aria-labelledby="welcomeTitle">
@@ -162,11 +162,24 @@
       </div>
       <aside id="summarySection">
         <div class="summary">
+          <div class="fulfill-seg" id="fulfillSeg" role="group" aria-label="Teljesítés módja">
+            <span class="fulfill-ind"></span>
+            <button type="button" data-mode="delivery" aria-pressed="true" data-i18n="modeDelivery">Házhozszállítás</button>
+            <button type="button" data-mode="pickup" aria-pressed="false" data-i18n="modePickup">Bolti átvétel</button>
+          </div>
+          <label class="zone-row" id="zoneRow"><span data-i18n="zoneLabel">Szállítási cím (IKEA díjzóna)</span>
+            <select id="zoneSel"><option value="" data-i18n="zoneUnknown">Még nem tudom</option><option value="A" data-i18n="zoneA">Budapest (1007–1299)</option><option value="B" data-i18n="zoneB">Vidék (2000–9999)</option></select>
+          </label>
           <div class="lbl" data-i18n="sumLabel">Becsült összköltség</div>
           <div class="total"><span id="grand">—</span><small>Ft</small></div>
+          <div class="grand-note" id="grandNote"></div>
           <div class="brk"><span data-i18n="brkFurn">Bútorok</span><span id="furnTotal">—</span></div>
+          <div class="brk" id="accRow" hidden><span data-i18n="brkAcc">Kiegészítők (becslés)</span><span id="accTotal">—</span></div>
           <div class="brk"><span data-i18n="brkPaint">Falfesték</span><span id="paintTotal">—</span></div>
+          <div id="shipRows"></div>
           <div class="brk uncertain-row" id="uncertainRow" role="note" hidden><span id="uncertainLabel"></span><span id="uncertainTotal"></span></div>
+          <div class="price-change" id="priceChange" role="note" hidden></div>
+          <details class="cost-open" id="costOpen" hidden><summary data-i18n="openTitle">Nincs benne / a boltban pontosítandó</summary><ul id="costOpenList"></ul></details>
           <div class="divider"></div>
           <div class="budget-ring" id="budgetRing">
             <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-track" cx="60" cy="60" r="48"/><circle class="ring-base" cx="60" cy="60" r="48"/><circle class="ring-over" cx="60" cy="60" r="48"/></svg>
@@ -222,8 +235,10 @@
 <script type="module" src="viewer3d.js?v=dreamr-v7"></script>
 <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="cloud.js?v=dreamr-v9"></script>
-<script src="motion.js?v=dreamr-v9"></script>
-<script src="app.js?v=dreamr-v9"></script>
+<script src="cloud.js?v=dreamr-v10"></script>
+<script src="sales-data.js?v=dreamr-v10"></script>
+<script src="pricing.js?v=dreamr-v10"></script>
+<script src="motion.js?v=dreamr-v10"></script>
+<script src="app.js?v=dreamr-v10"></script>
 </body>
 </html>
