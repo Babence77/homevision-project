@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 22
       - name: Árkinyerés tesztjei
-        run: node --test test/
+        run: node --test test/*.test.mjs
       - name: Árak letöltése a boltokból
         id: update
         continue-on-error: true   # a jó árakat hiba esetén is mentjük; a futás a végén bukik el

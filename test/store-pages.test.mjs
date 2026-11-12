@@ -1,4 +1,4 @@
-// DREAMR — az árkinyerés tesztjei (A02). Futtatás: node --test test/
+// DREAMR — az árkinyerés tesztjei (A02). Futtatás: node --test test/*.test.mjs
 // A minta-oldalak a valódi IKEA / JYSK / XXXL oldalak JSON-LD szerkezetét követik (2026-11-12).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
