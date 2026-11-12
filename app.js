@@ -33,7 +33,7 @@
     sofa:[
       P_('viskafors',"VISKAFORS 3 személyes kanapé, szürke","ikea",449900,224,90,"https://www.ikea.com/hu/hu/p/viskafors-3-szemelyes-kanape-lejde-szuerke-zoeld-nyir-s29443337/"),
       P_('ektorp',"EKTORP 3 személyes kanapé, világosbézs","ikea",179900,218,88,"https://www.ikea.com/hu/hu/p/ektorp-3-szemelyes-kanape-kilanda-vilagosbezs-s69509010/"),
-      P_('gedved',"GEDVED 3 személyes kanapé, szürke","jysk",214900,210,84,"https://jysk.hu/nappali/kanapek/kanape-gedved-3-szemelyes-szurke"),
+      P_('gedved',"GEDVED 3 személyes kanapé, szürke","jysk",214900,210,84,"https://jysk.hu/nappali/kanapek/kanape-gedved-3-szemelyes-szurke-szovet"),
       P_('egense',"EGENSE 3 személyes kanapé, sötétszürke","jysk",139900,200,80,"https://jysk.hu/nappali/kanapek/kanape-egense-3-szemelyes-sotetszurke-szovet"),
       P_('hellerup',"HELLERUP 3 személyes kanapé, bézs/tölgy","jysk",179900,219,90,"https://jysk.hu/nappali/kanapek/kanape-hellerup-3-szemelyes-bezs-szovet-natur-tolgy"),
       P_('applaryd',"ÄPPLARYD 3 személyes kanapé, világosszürke","ikea",299900,231,93,"https://www.ikea.com/hu/hu/p/aepplaryd-3-szemelyes-kanape-lejde-vilagosszuerke-30506239/"),
@@ -51,7 +51,7 @@
     coffee:[
       P_('lack',"LACK dohányzóasztal, fehér, 90×55","ikea",8990,90,55,"https://www.ikea.com/hu/hu/p/lack-dohanyzoasztal-feher-90449905/"),
       P_('lejre',"LEJRE dohányzóasztal, fehér/tölgy","jysk",21500,120,60,"https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-lejre-60x120-feher-natur-tolgy"),
-      P_('vedde',"VEDDE dohányzóasztal, sötét tölgy","jysk",35000,110,60,"https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-vedde-60x110-1-polcos-sotet-tolgyszinu"),
+      P_('vedde',"VEDDE dohányzóasztal, sötét tölgy","jysk",35000,110,60,"https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-vedde-60x110-1-polcos-artisan-sotet"),
       P_('markskel',"JEGIND dohányzóasztal, ÁTM80, fehér/tölgy","jysk",19950,80,80,"https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-jegind-atm80-polccal-feher-natur-tolgyszinu"),
       P_('frotorp',"FRÖTORP dohányzóasztal, márvány hatású","ikea",59990,88,88,"https://www.ikea.com/hu/hu/p/froetorp-dohanyzoasztal-antracit-marvany-hatasu-fekete-ueveg-70497582/"),
       P_('sandby',"SANDBY dohányzóasztal, tölgy/fekete","jysk",65000,110,60,"https://jysk.hu/nappali/dohanyzoasztalok-es-kisasztalok/dohanyzoasztal-sandby-60x110-natur-tolgy-fekete"),
@@ -103,7 +103,7 @@
     ],
     dchair:[
       P_('jonstrup',"JONSTRUP étkezőszék, szürke/tölgy (4 db)","jysk",40000,45,53,"https://jysk.hu/etkezo/etkezoszekek/etkezoszek-jonstrup-szurke-szovet-natur-tolgyszinu"),
-      P_('bistrup',"BISTRUP étkezőszék, homok/tölgy (4 db)","jysk",71600,44,53,"https://jysk.hu/etkezo/etkezoszekek/etkezoszek-bistrup-homok-natur-tolgy"),
+      P_('bistrup',"BISTRUP étkezőszék, homok/tölgy (4 db)","jysk",71600,44,53,"https://jysk.hu/etkezo/etkezoszekek/etkezoszek-bistrup-homok-natur-tolgyszinu"),
       P_('pinntorp',"PINNTORP szék, fenyő (4 db)","ikea",51960,45,50,"https://www.ikea.com/hu/hu/p/pinntorp-szek-vilagos-barnara-pacolt-fenyo-00590480/"),
       P_('hauga',"HAUGA szék, fehér (4 db)","ikea",39960,46,50,"https://www.ikea.com/hu/hu/p/hauga-szek-feher-10576718/"),
     ],
@@ -175,7 +175,7 @@
     vase:[
       P_('gradvis',"PÅDRAG váza, átlátszó üveg, 17 cm","ikea",495,17,17,"https://www.ikea.com/hu/hu/p/padrag-vaza-atlatszo-ueveg-10470991/"),
       P_('frovaxt',"FRÖVÄXT váza, fehér, 20 cm","ikea",2490,10,10,"https://www.ikea.com/hu/hu/p/froevaext-vaza-feher-60591919/"),
-      P_('fulltalig',"FULLTALIG gyertyatartó, 3 db, fekete","ikea",3990,10,10,"https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3db-fekete-40342134/"),
+      P_('fulltalig',"FULLTALIG gyertyatartó, 3 db, fekete","ikea",3990,10,10,"https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3-db-fekete-40342134/"),
       P_('stilren',"STILREN váza, fehér, 22 cm","ikea",4490,12,12,"https://www.ikea.com/hu/hu/p/stilren-vaza-feher-10442045/"),
       P_('begarlig',"BEGÄRLIG váza, üveg, 29 cm","ikea",7990,19,19,"https://www.ikea.com/hu/hu/p/begaerlig-vaza-atlatszo-ueveg-30309781/"),
     ],
@@ -212,7 +212,7 @@
     minimalista:P_('v','FRÖVÄXT váza, fehér, 20 cm','ikea',2490,10,10,'https://www.ikea.com/hu/hu/p/froevaext-vaza-feher-60591919/'),
     japandi:P_('v','PÅDRAG váza, átlátszó üveg, 17 cm','ikea',495,17,17,'https://www.ikea.com/hu/hu/p/padrag-vaza-atlatszo-ueveg-10470991/'),
     luxus:P_('v','BEGÄRLIG váza, üveg, 29 cm','ikea',7990,19,19,'https://www.ikea.com/hu/hu/p/begaerlig-vaza-atlatszo-ueveg-30309781/'),
-    ipari:P_('v','FULLTALIG gyertyatartó, 3 db','ikea',3990,10,10,'https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3db-fekete-40342134/'),
+    ipari:P_('v','FULLTALIG gyertyatartó, 3 db','ikea',3990,10,10,'https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3-db-fekete-40342134/'),
   };
   const NIGHTSTAND=P_('n','KULLEN éjjeliszekrény, fehér (2 db)','ikea',19980,35,40,'https://www.ikea.com/hu/hu/p/kullen-2-fiokos-szekreny-feher-80309241/');
   const BEDDING={
