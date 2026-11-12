@@ -141,6 +141,24 @@ body.dark .product-photo{background:#F3EEE5;}
 .cmprow.cur,body.dark .cmprow.cur,.cmprow:hover,body.dark .cmprow:hover{background:var(--gold-soft);}
 .cmprow .cn,body.dark .cmprow .cn,.dims,body.dark .dims{color:var(--dream-ink);}
 
+/* ---- Ár-frissesség a termékkártyán (A04) ---- */
+.price-check{display:block;margin-top:6px;font-size:11.5px;line-height:1.45;color:var(--dream-muted);}
+.price-check::before{content:"";display:inline-block;vertical-align:1px;width:7px;height:7px;border-radius:50%;margin-right:6px;background:var(--good);}
+.price-check.is-stale{color:var(--warn);} .price-check.is-stale::before{background:var(--warn);}
+.price-check.is-unverified{color:var(--bad);} .price-check.is-unverified::before{background:transparent;border:1.5px solid var(--bad);width:6px;height:6px;}
+.price-sale{color:var(--gold-ink);font-weight:600;}
+.price.is-uncertain{color:var(--dream-muted);text-decoration:underline dotted;text-underline-offset:4px;}
+.price.is-uncertain::before{content:"≈ ";}
+.uncertain-row{color:var(--warn)!important;font-size:12.5px;}
+.uncertain-row[hidden]{display:none!important;}
+/* Megszűnt termék és csere (A05) */
+.gone-note{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--bad-soft);color:var(--dream-ink);font-size:12.5px;line-height:1.5;}
+.gone-note>b:first-child{color:var(--bad);}
+.gone-suggest{flex-basis:100%;}
+.replace-btn{border:0;border-radius:999px;padding:7px 14px;background:var(--cta-bg);color:var(--cta-ink);font:700 12px var(--sans);cursor:pointer;}
+.replace-history{margin-top:6px;font-size:11.5px;color:var(--gold-ink);}
+.item:has(.gone-note) .price{text-decoration:line-through;}
+
 /* ---- Összegzés, büdzsé-gyűrű ---- */
 .summary,body.dark .summary{background:var(--dream-surface);border:1px solid var(--dream-line);border-radius:26px;box-shadow:var(--luxe-shadow);}
 .summary .total{font-family:var(--serif);font-weight:600;font-size:46px;letter-spacing:-1px;}
