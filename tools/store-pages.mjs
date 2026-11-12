@@ -41,6 +41,18 @@ export async function fetchPage(url, { timeoutMs = 25000, maxHops = 5 } = {}) {
   }
 }
 
+// Újrapróbálás átmeneti hibánál (hálózat, időtúllépés, 429, 5xx) — 403/404-nél nem, az végleges.
+export async function fetchWithRetry(url, { retries = 2, backoffMs = [2000, 6000], ...opts } = {}) {
+  let page;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    page = await fetchPage(url, opts);
+    const transient = page.error || page.status === 429 || page.status >= 500;
+    if (!transient) return { ...page, attempts: attempt + 1 };
+    if (attempt < retries) await new Promise(r => setTimeout(r, backoffMs[attempt] ?? backoffMs.at(-1)));
+  }
+  return { ...page, attempts: retries + 1 };
+}
+
 // --- segédfüggvények ---
 const norm = u => {
   try { const x = new URL(String(u).replace(/\\\//g, '/')); return (x.origin + x.pathname).replace(/\/+$/, '').toLowerCase(); }

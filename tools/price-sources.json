@@ -1,0 +1,9 @@
+{
+ "_leiras": "Boltonkénti árforrás-beállítás az update-prices.mjs számára. failThreshold: ha a bolt linkjeinek ennél nagyobb része sikertelen, a futás piros (hibás). expectBlocked: a bolt ismerten robotszűrő mögött van — próbálkozunk, jelentjük, de nem bukik el miatta a futás, és az árai 'nem ellenőrzöttként' jelennek meg. Ezt partnerenként (pl. hivatalos adatforrás) kell véglegesen rendezni.",
+ "stores": {
+  "ikea":    { "failThreshold": 0.2 },
+  "jysk":    { "failThreshold": 0.2 },
+  "momax":   { "failThreshold": 0.2, "expectBlocked": true, "since": "2026-11-12", "note": "Cloudflare robotszűrő (HTTP 403). Nem kerüljük meg; partneri adatforrás kell." },
+  "mobelix": { "failThreshold": 0.2, "expectBlocked": true, "since": "2026-11-12", "note": "Cloudflare robotszűrő (HTTP 403). Nem kerüljük meg; partneri adatforrás kell." }
+ }
+}
