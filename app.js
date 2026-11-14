@@ -21,15 +21,17 @@
     {id:'terra',name:"Terrakotta",hex:"#cf9077"},{id:'char',name:"Antracit",hex:"#6b7178"}
   ];
   const MARGIN=40;
-  const STORE_LABEL={ikea:'IKEA',jysk:'JYSK',momax:'MÖMAX',mobelix:'MÖBELIX'};
+  const STORE_LABEL={ikea:'IKEA',jysk:'JYSK',momax:'MÖMAX',mobelix:'MÖBELIX',kondela:'KONDELA',bonami:'BONAMI'};
   const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function productPhoto(it){
     // C05: a kép a katalógusból jön (a termék saját bolti oldaláról, elérhetőség-ellenőrzéssel); hiányzó vagy elérhetetlen kép helyett érthető jelzés
     const im=it.variant&&it.variant.image, image=im&&im.url&&(im.status==='verified'||im.status==='unchecked')?im.url:null, label=t('imgMissing');
     return `<div class="product-photo">${image?`<img src="${escapeHtml(image)}" alt="${escapeHtml(it.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">`:''}<span class="photo-fallback" ${image?'hidden':''}>${it.icon}<small>${label}</small></span><span class="photo-store-logo ${it.store}">${STORE_LABEL[it.store]}</span></div>`;
   }
+  // 4. szakasz: a boltok listája a katalógusból jön — új partner felvételéhez nem kell kódot módosítani
+  const STORES=(()=>{ const known=['ikea','jysk','momax','mobelix'], inUse=new Set(CAT.allItems().map(i=>i.store)); return [...known.filter(s=>inUse.has(s)),...[...inUse].filter(s=>!known.includes(s)).sort()]; })();
   const storeBadge=s=>`<span class="store ${s}">${STORE_LABEL[s]||s.toUpperCase()}</span>`;
-  const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, replaced:{}, fulfillment:'delivery', zone:null, compareSnap:null, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(['ikea','jysk','momax','mobelix']), search:'', house:[]};
+  const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, replaced:{}, fulfillment:'delivery', zone:null, compareSnap:null, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(STORES), search:'', house:[]};
   const fmt=n=>n.toLocaleString(state.lang==='hu'?'hu-HU':'en-US');
   let guestMode=false;
 
@@ -546,7 +548,7 @@
   const wallHex=()=>{const c=COLORS.find(x=>x.id===state.color);return c?c.hex:'#ffffff';};
   function buildStoreChips(){
     const el=document.getElementById('storechips'); if(!el) return;
-    el.innerHTML=['ikea','jysk','momax','mobelix'].map(s=>`<span class="schip ${state.stores.has(s)?'on':''}" data-s="${s}">${STORE_LABEL[s]}</span>`).join('');
+    el.innerHTML=STORES.map(s=>`<span class="schip ${state.stores.has(s)?'on':''}" data-s="${s}">${STORE_LABEL[s]}</span>`).join('');
     el.querySelectorAll('.schip').forEach(c=>c.addEventListener('click',()=>{ const s=c.dataset.s; if(state.stores.has(s)){ if(state.stores.size>1) state.stores.delete(s); } else state.stores.add(s); render(); }));
   }
 
@@ -725,7 +727,7 @@
     cost.lines.filter(l=>l.units).forEach(l=>{ const it=curItems().find(x=>x.id===l.id)||{};
       (g[l.store]=g[l.store]||[]).push({icon:it.icon||'',url:l.url,name:`${l.name} × ${l.units} ${unitWord(l.unit)}`,quantity:l.units,price:l.total||0,unknown:l.total==null}); });
     cost.accessories.filter(a=>a.known).forEach(a=>{ (g[a.ref.store]=g[a.ref.store]||[]).push({icon:'+',url:a.ref.url,name:`${a.ref.name} × ${a.units} ${unitWord(a.unit)} (${L10N(a.label)})`,quantity:a.units,price:a.total}); });
-    const order=['ikea','jysk','momax','mobelix'];
+    const order=STORES;
     return {groups:order.filter(s=>g[s]).map(s=>({store:s,items:g[s],sub:g[s].reduce((a,x)=>a+x.price,0),shipping:(cost.stores.find(x=>x.store===s)||{}).shipping})), grand:cost.totals.known, cost};
   }
   function openShopping(){
@@ -981,7 +983,7 @@
   function loadRoom(r){ const c=r.config; document.getElementById('len').value=c.len; document.getElementById('wid').value=c.wid; document.getElementById('hei').value=c.hei; state.room=c.room; state.style=c.style; state.color=c.color; state.budget=c.budget; state.tvPlacement=c.tvPlacement==='wall'?'wall':'stand'; state.quantity=JSON.parse(JSON.stringify(c.quantity||{})); state.itemColors=JSON.parse(JSON.stringify(c.itemColors||{})); document.getElementById('budgetNum').value=c.budget; document.getElementById('budgetRange').value=Math.min(Math.max(c.budget,100000),1200000); const mig=migrateConfig(c); restoreNotes=mig.notes; state.sel=JSON.parse(JSON.stringify(mig.config.sel)); state.replaced=JSON.parse(JSON.stringify(c.replaced||{})); if(c.fulfillment==='pickup'||c.fulfillment==='delivery') state.fulfillment=c.fulfillment; state.zone=c.zone==='A'||c.zone==='B'?c.zone:state.zone; state.compareSnap=r.priceSnap||c.snap||null; state.off=new Set(c.off||[]); state.pos=JSON.parse(JSON.stringify(c.pos||{})); closeHouse(); render(); }
   function closeHouse(){ document.getElementById('houseOverlay').style.display='none'; }
   function printHouseShopping(){
-    const g={}; let grand=0; const order=['ikea','jysk','momax','mobelix'];
+    const g={}; let grand=0; const order=STORES;
     state.house.forEach(r=>r.items.forEach(it=>{ grand+=it.price; (g[it.store]=g[it.store]||[]).push(it); }));
     let rows=''; order.filter(s=>g[s]).forEach(s=>{ const sub=g[s].reduce((a,x)=>a+x.price,0); rows+=`<tr><td colspan="2" style="padding-top:14px;font-weight:800;border-bottom:none;">${STORE_LABEL[s]} — ${fmt(sub)} Ft</td></tr>`; g[s].forEach(it=>{ rows+=`<tr><td>${it.name}</td><td class="r">${fmt(it.price)} Ft</td></tr>`; }); });
     document.getElementById('printArea').innerHTML=`<div class="pa-h">${t('houseTitle')} — ${t('slTitle')}</div><div class="pa-meta">DREAMR · ${PRICE_DATE}</div><table><tbody>${rows}</tbody></table><div class="pa-tot"><span class="g">${t('slTotal')}: ${fmt(grand)} Ft</span></div>`;
@@ -1306,7 +1308,10 @@
     // v4: tételek változatazonosító szerint (C02); v3: URL szerint — a katalógus a régi URL-eket is ismeri.
     const byUrl={}; if(!(data.version>=4)) Object.entries(data.items||{}).forEach(([u,info])=>{ const it=CAT.byUrl(u); if(it) byUrl[it.vid]=info; });
     CAT.allItems().forEach(p=>{
-      const info=(data.version>=4?data.items[p.vid]:byUrl[p.vid])||null;
+      let info=(data.version>=4?data.items[p.vid]:byUrl[p.vid])||null;
+      // 4. szakasz: a bolti feedből érkező termék ára és ellenőrzési ideje magából a feedből jön; a feedből eltűnt tétel megszűnt
+      if(!info&&p.variant&&p.product&&p.product.source&&p.product.source.feed){ const bp=p.variant.basePrice;
+        info=p.variant.missingSince?{price:null,checkedAt:null,status:'gone'}:{price:bp.amount,checkedAt:bp.checkedAt?bp.checkedAt+'T06:00:00Z':null,status:bp.status==='verified'?'ok':'parse_error'}; }
       p.check=info;
       if(info&&info.price) p.price=info.price;
     });

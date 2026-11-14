@@ -1,0 +1,18 @@
+{
+ "_leiras": "TESZTBEÁLLÍTÁS a kitalált mintafeedhez — nem valós megállapodás.",
+ "feeds": {
+  "minta": {
+   "enabled": true,
+   "status": "teszt",
+   "adapter": "heureka-xml",
+   "store": "kondela",
+   "urlSecret": "FEED_MINTA_URL",
+   "currency": "HUF",
+   "usage": { "agreementRef": "TESZT – nem valós megállapodás", "imagesAllowed": true, "dimensionsAllowed": true, "linksAllowed": true },
+   "pilot": { "maxVariants": 300, "categories": ["sofa", "chair", "coffee", "tv", "rug", "lamp", "curtain", "cushion", "vase"] },
+   "categoryMap": { "Kanapé": "sofa", "Fotel": "chair", "Dohányzóasztal": "coffee", "Díszpárna": "cushion" },
+   "params": { "width": ["Szélesség", "Szélesség (cm)"], "depth": ["Mélység", "Mélység (cm)"], "height": ["Magasság"], "salesUnit": ["Kiszerelés"], "color": ["Szín"], "material": ["Anyag"] },
+   "limits": { "quarantineMaxRatio": 0.6, "minItems": 1 }
+  }
+ }
+}
