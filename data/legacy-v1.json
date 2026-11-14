@@ -1,0 +1,1964 @@
+{
+ "format": "dreamr-legacy-order/1",
+ "note": "A 3. szakasz előtti mentések state.sel sorszámai és selKeys kulcsai ebből fordíthatók változatazonosítóra. SOHA NE MÓDOSÍTSD.",
+ "order": {
+  "nappali:modern:sofa": [
+   "sofa.viskafors.szurke",
+   "sofa.ektorp.vilagosbezs",
+   "sofa.gedved.szurke",
+   "sofa.egense.sotetszurke",
+   "sofa.hellerup.bezs-tolgy",
+   "sofa.applaryd.vilagosszurke",
+   "sofa.trevo.alap",
+   "sofa.kiss.alap"
+  ],
+  "nappali:modern:chair": [
+   "chair.strandmon.sotetszurke",
+   "chair.poang.nyir-vilagosbezs",
+   "chair.gedved.szurke-szovet",
+   "chair.arsunda.vilagosszurke",
+   "chair.vejen.fekete-textilbor",
+   "chair.strandmon.melybezs"
+  ],
+  "nappali:modern:coffee": [
+   "coffee.vedde.sotet-tolgy",
+   "coffee.lack.feher-90-55",
+   "coffee.lejre.feher-tolgy",
+   "coffee.jegind.atm80-feher-tolgy",
+   "coffee.frotorp.marvany-hatasu",
+   "coffee.sandby.tolgy-fekete",
+   "coffee.brava.kerek-70-cm",
+   "coffee.quattro.105-60"
+  ],
+  "nappali:modern:tv": [
+   "tv.besta.feher",
+   "tv.hemdrup.2-ajtos-tolgy-fekete",
+   "tv.evetofte.vilagos-tolgy",
+   "tv.fjallbo.fekete-fenyo",
+   "tv.tonstad.tolgy-furner",
+   "tv.malta.185-42",
+   "tv.carlos.180-42"
+  ],
+  "nappali:modern:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "nappali:modern:lamp": [
+   "lamp.nymane.feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "nappali:modern:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "nappali:modern:cushion": [
+   "cushion.gurli.sotetszurke",
+   "cushion.sanela.sarga-barna",
+   "cushion.myrfiol.topszin",
+   "cushion.hvidblomme.homok",
+   "cushion.svartho.bezs"
+  ],
+  "nappali:modern:vase": [
+   "vase.padrag.atlatszo-uveg-17-cm",
+   "vase.frovaxt.feher-20-cm",
+   "vase.fulltalig.3-db-fekete",
+   "vase.stilren.feher-22-cm",
+   "vase.begarlig.uveg-29-cm"
+  ],
+  "nappali:skandinav:sofa": [
+   "sofa.ektorp.vilagosbezs",
+   "sofa.viskafors.szurke",
+   "sofa.gedved.szurke",
+   "sofa.egense.sotetszurke",
+   "sofa.hellerup.bezs-tolgy",
+   "sofa.applaryd.vilagosszurke",
+   "sofa.trevo.alap",
+   "sofa.kiss.alap"
+  ],
+  "nappali:skandinav:chair": [
+   "chair.arsunda.vilagosszurke",
+   "chair.strandmon.sotetszurke",
+   "chair.poang.nyir-vilagosbezs",
+   "chair.gedved.szurke-szovet",
+   "chair.vejen.fekete-textilbor",
+   "chair.strandmon.melybezs"
+  ],
+  "nappali:skandinav:coffee": [
+   "coffee.sandby.tolgy-fekete",
+   "coffee.lack.feher-90-55",
+   "coffee.lejre.feher-tolgy",
+   "coffee.vedde.sotet-tolgy",
+   "coffee.jegind.atm80-feher-tolgy",
+   "coffee.frotorp.marvany-hatasu",
+   "coffee.brava.kerek-70-cm",
+   "coffee.quattro.105-60"
+  ],
+  "nappali:skandinav:tv": [
+   "tv.evetofte.vilagos-tolgy",
+   "tv.besta.feher",
+   "tv.hemdrup.2-ajtos-tolgy-fekete",
+   "tv.fjallbo.fekete-fenyo",
+   "tv.tonstad.tolgy-furner",
+   "tv.malta.185-42",
+   "tv.carlos.180-42"
+  ],
+  "nappali:skandinav:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "nappali:skandinav:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "nappali:skandinav:curtain": [
+   "curtain.amungen.szurke",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "nappali:skandinav:cushion": [
+   "cushion.hvidblomme.homok",
+   "cushion.sanela.sarga-barna",
+   "cushion.myrfiol.topszin",
+   "cushion.gurli.sotetszurke",
+   "cushion.svartho.bezs"
+  ],
+  "nappali:skandinav:vase": [
+   "vase.stilren.feher-22-cm",
+   "vase.padrag.atlatszo-uveg-17-cm",
+   "vase.frovaxt.feher-20-cm",
+   "vase.fulltalig.3-db-fekete",
+   "vase.begarlig.uveg-29-cm"
+  ],
+  "nappali:minimalista:sofa": [
+   "sofa.gedved.szurke",
+   "sofa.viskafors.szurke",
+   "sofa.ektorp.vilagosbezs",
+   "sofa.egense.sotetszurke",
+   "sofa.hellerup.bezs-tolgy",
+   "sofa.applaryd.vilagosszurke",
+   "sofa.trevo.alap",
+   "sofa.kiss.alap"
+  ],
+  "nappali:minimalista:chair": [
+   "chair.gedved.szurke-szovet",
+   "chair.strandmon.sotetszurke",
+   "chair.poang.nyir-vilagosbezs",
+   "chair.arsunda.vilagosszurke",
+   "chair.vejen.fekete-textilbor",
+   "chair.strandmon.melybezs"
+  ],
+  "nappali:minimalista:coffee": [
+   "coffee.jegind.atm80-feher-tolgy",
+   "coffee.lack.feher-90-55",
+   "coffee.lejre.feher-tolgy",
+   "coffee.vedde.sotet-tolgy",
+   "coffee.frotorp.marvany-hatasu",
+   "coffee.sandby.tolgy-fekete",
+   "coffee.brava.kerek-70-cm",
+   "coffee.quattro.105-60"
+  ],
+  "nappali:minimalista:tv": [
+   "tv.hemdrup.2-ajtos-tolgy-fekete",
+   "tv.besta.feher",
+   "tv.evetofte.vilagos-tolgy",
+   "tv.fjallbo.fekete-fenyo",
+   "tv.tonstad.tolgy-furner",
+   "tv.malta.185-42",
+   "tv.carlos.180-42"
+  ],
+  "nappali:minimalista:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "nappali:minimalista:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "nappali:minimalista:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "nappali:minimalista:cushion": [
+   "cushion.myrfiol.topszin",
+   "cushion.sanela.sarga-barna",
+   "cushion.gurli.sotetszurke",
+   "cushion.hvidblomme.homok",
+   "cushion.svartho.bezs"
+  ],
+  "nappali:minimalista:vase": [
+   "vase.frovaxt.feher-20-cm",
+   "vase.padrag.atlatszo-uveg-17-cm",
+   "vase.fulltalig.3-db-fekete",
+   "vase.stilren.feher-22-cm",
+   "vase.begarlig.uveg-29-cm"
+  ],
+  "nappali:japandi:sofa": [
+   "sofa.hellerup.bezs-tolgy",
+   "sofa.viskafors.szurke",
+   "sofa.ektorp.vilagosbezs",
+   "sofa.gedved.szurke",
+   "sofa.egense.sotetszurke",
+   "sofa.applaryd.vilagosszurke",
+   "sofa.trevo.alap",
+   "sofa.kiss.alap"
+  ],
+  "nappali:japandi:chair": [
+   "chair.gedved.szurke-szovet",
+   "chair.strandmon.sotetszurke",
+   "chair.poang.nyir-vilagosbezs",
+   "chair.arsunda.vilagosszurke",
+   "chair.vejen.fekete-textilbor",
+   "chair.strandmon.melybezs"
+  ],
+  "nappali:japandi:coffee": [
+   "coffee.lejre.feher-tolgy",
+   "coffee.lack.feher-90-55",
+   "coffee.vedde.sotet-tolgy",
+   "coffee.jegind.atm80-feher-tolgy",
+   "coffee.frotorp.marvany-hatasu",
+   "coffee.sandby.tolgy-fekete",
+   "coffee.brava.kerek-70-cm",
+   "coffee.quattro.105-60"
+  ],
+  "nappali:japandi:tv": [
+   "tv.evetofte.vilagos-tolgy",
+   "tv.besta.feher",
+   "tv.hemdrup.2-ajtos-tolgy-fekete",
+   "tv.fjallbo.fekete-fenyo",
+   "tv.tonstad.tolgy-furner",
+   "tv.malta.185-42",
+   "tv.carlos.180-42"
+  ],
+  "nappali:japandi:rug": [
+   "rug.lohals.natur-200-300",
+   "rug.tiphede.155-220",
+   "rug.stoense.200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "nappali:japandi:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "nappali:japandi:curtain": [
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "nappali:japandi:cushion": [
+   "cushion.svartho.bezs",
+   "cushion.sanela.sarga-barna",
+   "cushion.myrfiol.topszin",
+   "cushion.gurli.sotetszurke",
+   "cushion.hvidblomme.homok"
+  ],
+  "nappali:japandi:vase": [
+   "vase.padrag.atlatszo-uveg-17-cm",
+   "vase.frovaxt.feher-20-cm",
+   "vase.fulltalig.3-db-fekete",
+   "vase.stilren.feher-22-cm",
+   "vase.begarlig.uveg-29-cm"
+  ],
+  "nappali:luxus:sofa": [
+   "sofa.applaryd.vilagosszurke",
+   "sofa.viskafors.szurke",
+   "sofa.ektorp.vilagosbezs",
+   "sofa.gedved.szurke",
+   "sofa.egense.sotetszurke",
+   "sofa.hellerup.bezs-tolgy",
+   "sofa.trevo.alap",
+   "sofa.kiss.alap"
+  ],
+  "nappali:luxus:chair": [
+   "chair.strandmon.melybezs",
+   "chair.strandmon.sotetszurke",
+   "chair.poang.nyir-vilagosbezs",
+   "chair.gedved.szurke-szovet",
+   "chair.arsunda.vilagosszurke",
+   "chair.vejen.fekete-textilbor"
+  ],
+  "nappali:luxus:coffee": [
+   "coffee.frotorp.marvany-hatasu",
+   "coffee.lack.feher-90-55",
+   "coffee.lejre.feher-tolgy",
+   "coffee.vedde.sotet-tolgy",
+   "coffee.jegind.atm80-feher-tolgy",
+   "coffee.sandby.tolgy-fekete",
+   "coffee.brava.kerek-70-cm",
+   "coffee.quattro.105-60"
+  ],
+  "nappali:luxus:tv": [
+   "tv.tonstad.tolgy-furner",
+   "tv.besta.feher",
+   "tv.hemdrup.2-ajtos-tolgy-fekete",
+   "tv.evetofte.vilagos-tolgy",
+   "tv.fjallbo.fekete-fenyo",
+   "tv.malta.185-42",
+   "tv.carlos.180-42"
+  ],
+  "nappali:luxus:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "nappali:luxus:lamp": [
+   "lamp.stockholm.sargarez-bev",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "nappali:luxus:curtain": [
+   "curtain.vilborg.bezs-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par"
+  ],
+  "nappali:luxus:cushion": [
+   "cushion.sanela.sarga-barna",
+   "cushion.myrfiol.topszin",
+   "cushion.gurli.sotetszurke",
+   "cushion.hvidblomme.homok",
+   "cushion.svartho.bezs"
+  ],
+  "nappali:luxus:vase": [
+   "vase.begarlig.uveg-29-cm",
+   "vase.padrag.atlatszo-uveg-17-cm",
+   "vase.frovaxt.feher-20-cm",
+   "vase.fulltalig.3-db-fekete",
+   "vase.stilren.feher-22-cm"
+  ],
+  "nappali:ipari:sofa": [
+   "sofa.egense.sotetszurke",
+   "sofa.viskafors.szurke",
+   "sofa.ektorp.vilagosbezs",
+   "sofa.gedved.szurke",
+   "sofa.hellerup.bezs-tolgy",
+   "sofa.applaryd.vilagosszurke",
+   "sofa.trevo.alap",
+   "sofa.kiss.alap"
+  ],
+  "nappali:ipari:chair": [
+   "chair.vejen.fekete-textilbor",
+   "chair.strandmon.sotetszurke",
+   "chair.poang.nyir-vilagosbezs",
+   "chair.gedved.szurke-szovet",
+   "chair.arsunda.vilagosszurke",
+   "chair.strandmon.melybezs"
+  ],
+  "nappali:ipari:coffee": [
+   "coffee.sandby.tolgy-fekete",
+   "coffee.lack.feher-90-55",
+   "coffee.lejre.feher-tolgy",
+   "coffee.vedde.sotet-tolgy",
+   "coffee.jegind.atm80-feher-tolgy",
+   "coffee.frotorp.marvany-hatasu",
+   "coffee.brava.kerek-70-cm",
+   "coffee.quattro.105-60"
+  ],
+  "nappali:ipari:tv": [
+   "tv.fjallbo.fekete-fenyo",
+   "tv.besta.feher",
+   "tv.hemdrup.2-ajtos-tolgy-fekete",
+   "tv.evetofte.vilagos-tolgy",
+   "tv.tonstad.tolgy-furner",
+   "tv.malta.185-42",
+   "tv.carlos.180-42"
+  ],
+  "nappali:ipari:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "nappali:ipari:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "nappali:ipari:curtain": [
+   "curtain.majgull.szurke-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "nappali:ipari:cushion": [
+   "cushion.gurli.sotetszurke",
+   "cushion.sanela.sarga-barna",
+   "cushion.myrfiol.topszin",
+   "cushion.hvidblomme.homok",
+   "cushion.svartho.bezs"
+  ],
+  "nappali:ipari:vase": [
+   "vase.fulltalig.3-db-fekete",
+   "vase.padrag.atlatszo-uveg-17-cm",
+   "vase.frovaxt.feher-20-cm",
+   "vase.stilren.feher-22-cm",
+   "vase.begarlig.uveg-29-cm"
+  ],
+  "haloszoba:modern:bed": [
+   "bed.malm.magas-feher-160-200",
+   "bed.slattum.160-200",
+   "bed.kongsberg.bezs-160-200",
+   "bed.vihals.feher-160-200",
+   "bed.kleppstad.feher-bezs-160-200"
+  ],
+  "haloszoba:modern:nightstand": [
+   "nightstand.kullen.feher",
+   "nightstand.brimnes.feher"
+  ],
+  "haloszoba:modern:wardrobe": [
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "haloszoba:modern:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "haloszoba:modern:lamp": [
+   "lamp.nymane.feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "haloszoba:modern:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "haloszoba:modern:bedding": [
+   "bedding.angslilja.szurke"
+  ],
+  "haloszoba:skandinav:bed": [
+   "bed.slattum.160-200",
+   "bed.malm.magas-feher-160-200",
+   "bed.kongsberg.bezs-160-200",
+   "bed.vihals.feher-160-200",
+   "bed.kleppstad.feher-bezs-160-200"
+  ],
+  "haloszoba:skandinav:nightstand": [
+   "nightstand.kullen.feher",
+   "nightstand.brimnes.feher"
+  ],
+  "haloszoba:skandinav:wardrobe": [
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "haloszoba:skandinav:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "haloszoba:skandinav:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "haloszoba:skandinav:curtain": [
+   "curtain.amungen.szurke",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "haloszoba:skandinav:bedding": [
+   "bedding.angslilja.szurke"
+  ],
+  "haloszoba:minimalista:bed": [
+   "bed.slattum.160-200",
+   "bed.malm.magas-feher-160-200",
+   "bed.kongsberg.bezs-160-200",
+   "bed.vihals.feher-160-200",
+   "bed.kleppstad.feher-bezs-160-200"
+  ],
+  "haloszoba:minimalista:nightstand": [
+   "nightstand.kullen.feher",
+   "nightstand.brimnes.feher"
+  ],
+  "haloszoba:minimalista:wardrobe": [
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "haloszoba:minimalista:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "haloszoba:minimalista:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "haloszoba:minimalista:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "haloszoba:minimalista:bedding": [
+   "bedding.angslilja.szurke"
+  ],
+  "haloszoba:japandi:bed": [
+   "bed.malm.magas-feher-160-200",
+   "bed.slattum.160-200",
+   "bed.kongsberg.bezs-160-200",
+   "bed.vihals.feher-160-200",
+   "bed.kleppstad.feher-bezs-160-200"
+  ],
+  "haloszoba:japandi:nightstand": [
+   "nightstand.kullen.feher",
+   "nightstand.brimnes.feher"
+  ],
+  "haloszoba:japandi:wardrobe": [
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "haloszoba:japandi:rug": [
+   "rug.lohals.natur-200-300",
+   "rug.tiphede.155-220",
+   "rug.stoense.200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "haloszoba:japandi:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "haloszoba:japandi:curtain": [
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "haloszoba:japandi:bedding": [
+   "bedding.angslilja.szurke"
+  ],
+  "haloszoba:luxus:bed": [
+   "bed.kongsberg.bezs-160-200",
+   "bed.slattum.160-200",
+   "bed.malm.magas-feher-160-200",
+   "bed.vihals.feher-160-200",
+   "bed.kleppstad.feher-bezs-160-200"
+  ],
+  "haloszoba:luxus:nightstand": [
+   "nightstand.kullen.feher",
+   "nightstand.brimnes.feher"
+  ],
+  "haloszoba:luxus:wardrobe": [
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "haloszoba:luxus:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "haloszoba:luxus:lamp": [
+   "lamp.stockholm.sargarez-bev",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "haloszoba:luxus:curtain": [
+   "curtain.vilborg.bezs-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par"
+  ],
+  "haloszoba:luxus:bedding": [
+   "bedding.angslilja.szurke"
+  ],
+  "haloszoba:ipari:bed": [
+   "bed.malm.magas-feher-160-200",
+   "bed.slattum.160-200",
+   "bed.kongsberg.bezs-160-200",
+   "bed.vihals.feher-160-200",
+   "bed.kleppstad.feher-bezs-160-200"
+  ],
+  "haloszoba:ipari:nightstand": [
+   "nightstand.kullen.feher",
+   "nightstand.brimnes.feher"
+  ],
+  "haloszoba:ipari:wardrobe": [
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "haloszoba:ipari:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "haloszoba:ipari:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "haloszoba:ipari:curtain": [
+   "curtain.majgull.szurke-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "haloszoba:ipari:bedding": [
+   "bedding.angslilja.szurke"
+  ],
+  "etkezo:modern:dtable": [
+   "dtable.nordviken.fekete",
+   "dtable.alling.tolgy",
+   "dtable.morbylanga.tolgy-furner",
+   "dtable.vihals.feher-125-74"
+  ],
+  "etkezo:modern:dchair": [
+   "dchair.jonstrup.szurke-tolgy",
+   "dchair.bistrup.homok-tolgy",
+   "dchair.pinntorp.fenyo",
+   "dchair.hauga.feher"
+  ],
+  "etkezo:modern:sideboard": [
+   "sideboard.idanas.feher",
+   "sideboard.havsta.feher",
+   "sideboard.skruvby.feher",
+   "sideboard.hauga.szurke"
+  ],
+  "etkezo:modern:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "etkezo:modern:lamp": [
+   "lamp.nymane.feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "etkezo:modern:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "etkezo:skandinav:dtable": [
+   "dtable.alling.tolgy",
+   "dtable.nordviken.fekete",
+   "dtable.morbylanga.tolgy-furner",
+   "dtable.vihals.feher-125-74"
+  ],
+  "etkezo:skandinav:dchair": [
+   "dchair.jonstrup.szurke-tolgy",
+   "dchair.bistrup.homok-tolgy",
+   "dchair.pinntorp.fenyo",
+   "dchair.hauga.feher"
+  ],
+  "etkezo:skandinav:sideboard": [
+   "sideboard.havsta.feher",
+   "sideboard.idanas.feher",
+   "sideboard.skruvby.feher",
+   "sideboard.hauga.szurke"
+  ],
+  "etkezo:skandinav:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "etkezo:skandinav:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "etkezo:skandinav:curtain": [
+   "curtain.amungen.szurke",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "etkezo:minimalista:dtable": [
+   "dtable.alling.tolgy",
+   "dtable.nordviken.fekete",
+   "dtable.morbylanga.tolgy-furner",
+   "dtable.vihals.feher-125-74"
+  ],
+  "etkezo:minimalista:dchair": [
+   "dchair.jonstrup.szurke-tolgy",
+   "dchair.bistrup.homok-tolgy",
+   "dchair.pinntorp.fenyo",
+   "dchair.hauga.feher"
+  ],
+  "etkezo:minimalista:sideboard": [
+   "sideboard.havsta.feher",
+   "sideboard.idanas.feher",
+   "sideboard.skruvby.feher",
+   "sideboard.hauga.szurke"
+  ],
+  "etkezo:minimalista:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "etkezo:minimalista:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "etkezo:minimalista:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "etkezo:japandi:dtable": [
+   "dtable.morbylanga.tolgy-furner",
+   "dtable.alling.tolgy",
+   "dtable.nordviken.fekete",
+   "dtable.vihals.feher-125-74"
+  ],
+  "etkezo:japandi:dchair": [
+   "dchair.bistrup.homok-tolgy",
+   "dchair.jonstrup.szurke-tolgy",
+   "dchair.pinntorp.fenyo",
+   "dchair.hauga.feher"
+  ],
+  "etkezo:japandi:sideboard": [
+   "sideboard.havsta.feher",
+   "sideboard.idanas.feher",
+   "sideboard.skruvby.feher",
+   "sideboard.hauga.szurke"
+  ],
+  "etkezo:japandi:rug": [
+   "rug.lohals.natur-200-300",
+   "rug.tiphede.155-220",
+   "rug.stoense.200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "etkezo:japandi:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "etkezo:japandi:curtain": [
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "etkezo:luxus:dtable": [
+   "dtable.morbylanga.tolgy-furner",
+   "dtable.alling.tolgy",
+   "dtable.nordviken.fekete",
+   "dtable.vihals.feher-125-74"
+  ],
+  "etkezo:luxus:dchair": [
+   "dchair.bistrup.homok-tolgy",
+   "dchair.jonstrup.szurke-tolgy",
+   "dchair.pinntorp.fenyo",
+   "dchair.hauga.feher"
+  ],
+  "etkezo:luxus:sideboard": [
+   "sideboard.idanas.feher",
+   "sideboard.havsta.feher",
+   "sideboard.skruvby.feher",
+   "sideboard.hauga.szurke"
+  ],
+  "etkezo:luxus:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "etkezo:luxus:lamp": [
+   "lamp.stockholm.sargarez-bev",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "etkezo:luxus:curtain": [
+   "curtain.vilborg.bezs-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par"
+  ],
+  "etkezo:ipari:dtable": [
+   "dtable.nordviken.fekete",
+   "dtable.alling.tolgy",
+   "dtable.morbylanga.tolgy-furner",
+   "dtable.vihals.feher-125-74"
+  ],
+  "etkezo:ipari:dchair": [
+   "dchair.jonstrup.szurke-tolgy",
+   "dchair.bistrup.homok-tolgy",
+   "dchair.pinntorp.fenyo",
+   "dchair.hauga.feher"
+  ],
+  "etkezo:ipari:sideboard": [
+   "sideboard.idanas.feher",
+   "sideboard.havsta.feher",
+   "sideboard.skruvby.feher",
+   "sideboard.hauga.szurke"
+  ],
+  "etkezo:ipari:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "etkezo:ipari:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "etkezo:ipari:curtain": [
+   "curtain.majgull.szurke-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "konyha:modern:island": [
+   "island.vadholma.fekete-tolgy",
+   "island.raskog.feher",
+   "island.tornviken.tortfeher-tolgy",
+   "island.forhoja.nyir"
+  ],
+  "konyha:modern:barstool": [
+   "barstool.stig.fekete",
+   "barstool.dalfred.fekete",
+   "barstool.franklin.fekete",
+   "barstool.bergmund.fekete"
+  ],
+  "konyha:modern:kcabinet": [
+   "kcabinet.ivar.fekete-halo",
+   "kcabinet.havsta.feher",
+   "kcabinet.metod.vizszintesen-nyilo",
+   "kcabinet.knoxhult.feher"
+  ],
+  "konyha:modern:fridge": [
+   "fridge.rakall.alap"
+  ],
+  "konyha:modern:lamp": [
+   "lamp.nymane.feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "konyha:modern:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "konyha:skandinav:island": [
+   "island.raskog.feher",
+   "island.vadholma.fekete-tolgy",
+   "island.tornviken.tortfeher-tolgy",
+   "island.forhoja.nyir"
+  ],
+  "konyha:skandinav:barstool": [
+   "barstool.stig.fekete",
+   "barstool.dalfred.fekete",
+   "barstool.franklin.fekete",
+   "barstool.bergmund.fekete"
+  ],
+  "konyha:skandinav:kcabinet": [
+   "kcabinet.ivar.fekete-halo",
+   "kcabinet.havsta.feher",
+   "kcabinet.metod.vizszintesen-nyilo",
+   "kcabinet.knoxhult.feher"
+  ],
+  "konyha:skandinav:fridge": [
+   "fridge.rakall.alap"
+  ],
+  "konyha:skandinav:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "konyha:skandinav:curtain": [
+   "curtain.amungen.szurke",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "konyha:minimalista:island": [
+   "island.raskog.feher",
+   "island.vadholma.fekete-tolgy",
+   "island.tornviken.tortfeher-tolgy",
+   "island.forhoja.nyir"
+  ],
+  "konyha:minimalista:barstool": [
+   "barstool.stig.fekete",
+   "barstool.dalfred.fekete",
+   "barstool.franklin.fekete",
+   "barstool.bergmund.fekete"
+  ],
+  "konyha:minimalista:kcabinet": [
+   "kcabinet.ivar.fekete-halo",
+   "kcabinet.havsta.feher",
+   "kcabinet.metod.vizszintesen-nyilo",
+   "kcabinet.knoxhult.feher"
+  ],
+  "konyha:minimalista:fridge": [
+   "fridge.rakall.alap"
+  ],
+  "konyha:minimalista:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "konyha:minimalista:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "konyha:japandi:island": [
+   "island.raskog.feher",
+   "island.vadholma.fekete-tolgy",
+   "island.tornviken.tortfeher-tolgy",
+   "island.forhoja.nyir"
+  ],
+  "konyha:japandi:barstool": [
+   "barstool.dalfred.fekete",
+   "barstool.stig.fekete",
+   "barstool.franklin.fekete",
+   "barstool.bergmund.fekete"
+  ],
+  "konyha:japandi:kcabinet": [
+   "kcabinet.havsta.feher",
+   "kcabinet.ivar.fekete-halo",
+   "kcabinet.metod.vizszintesen-nyilo",
+   "kcabinet.knoxhult.feher"
+  ],
+  "konyha:japandi:fridge": [
+   "fridge.rakall.alap"
+  ],
+  "konyha:japandi:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "konyha:japandi:curtain": [
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "konyha:luxus:island": [
+   "island.vadholma.fekete-tolgy",
+   "island.raskog.feher",
+   "island.tornviken.tortfeher-tolgy",
+   "island.forhoja.nyir"
+  ],
+  "konyha:luxus:barstool": [
+   "barstool.dalfred.fekete",
+   "barstool.stig.fekete",
+   "barstool.franklin.fekete",
+   "barstool.bergmund.fekete"
+  ],
+  "konyha:luxus:kcabinet": [
+   "kcabinet.havsta.feher",
+   "kcabinet.ivar.fekete-halo",
+   "kcabinet.metod.vizszintesen-nyilo",
+   "kcabinet.knoxhult.feher"
+  ],
+  "konyha:luxus:fridge": [
+   "fridge.rakall.alap"
+  ],
+  "konyha:luxus:lamp": [
+   "lamp.stockholm.sargarez-bev",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "konyha:luxus:curtain": [
+   "curtain.vilborg.bezs-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par"
+  ],
+  "konyha:ipari:island": [
+   "island.vadholma.fekete-tolgy",
+   "island.raskog.feher",
+   "island.tornviken.tortfeher-tolgy",
+   "island.forhoja.nyir"
+  ],
+  "konyha:ipari:barstool": [
+   "barstool.stig.fekete",
+   "barstool.dalfred.fekete",
+   "barstool.franklin.fekete",
+   "barstool.bergmund.fekete"
+  ],
+  "konyha:ipari:kcabinet": [
+   "kcabinet.ivar.fekete-halo",
+   "kcabinet.havsta.feher",
+   "kcabinet.metod.vizszintesen-nyilo",
+   "kcabinet.knoxhult.feher"
+  ],
+  "konyha:ipari:fridge": [
+   "fridge.rakall.alap"
+  ],
+  "konyha:ipari:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "konyha:ipari:curtain": [
+   "curtain.majgull.szurke-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "dolgozo:modern:desk": [
+   "desk.micke.feher-142-50",
+   "desk.lagkapten-adils.feher",
+   "desk.pahl.allithato-magassagu",
+   "desk.stauning.feher-160-80"
+  ],
+  "dolgozo:modern:ochair": [
+   "ochair.millberget.fekete",
+   "ochair.flintan.fekete",
+   "ochair.markus.sotetszurke",
+   "ochair.flintan-karfas.fekete"
+  ],
+  "dolgozo:modern:shelf": [
+   "shelf.billy.feher-80-28",
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher"
+  ],
+  "dolgozo:modern:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "dolgozo:modern:lamp": [
+   "lamp.nymane.feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "dolgozo:modern:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "dolgozo:skandinav:desk": [
+   "desk.lagkapten-adils.feher",
+   "desk.pahl.allithato-magassagu",
+   "desk.stauning.feher-160-80",
+   "desk.micke.feher-142-50"
+  ],
+  "dolgozo:skandinav:ochair": [
+   "ochair.flintan.fekete",
+   "ochair.millberget.fekete",
+   "ochair.markus.sotetszurke",
+   "ochair.flintan-karfas.fekete"
+  ],
+  "dolgozo:skandinav:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "dolgozo:skandinav:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "dolgozo:skandinav:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "dolgozo:skandinav:curtain": [
+   "curtain.amungen.szurke",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "dolgozo:minimalista:desk": [
+   "desk.lagkapten-adils.feher",
+   "desk.pahl.allithato-magassagu",
+   "desk.stauning.feher-160-80",
+   "desk.micke.feher-142-50"
+  ],
+  "dolgozo:minimalista:ochair": [
+   "ochair.flintan.fekete",
+   "ochair.millberget.fekete",
+   "ochair.markus.sotetszurke",
+   "ochair.flintan-karfas.fekete"
+  ],
+  "dolgozo:minimalista:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "dolgozo:minimalista:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "dolgozo:minimalista:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "dolgozo:minimalista:curtain": [
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "dolgozo:japandi:desk": [
+   "desk.micke.feher-142-50",
+   "desk.lagkapten-adils.feher",
+   "desk.pahl.allithato-magassagu",
+   "desk.stauning.feher-160-80"
+  ],
+  "dolgozo:japandi:ochair": [
+   "ochair.flintan.fekete",
+   "ochair.millberget.fekete",
+   "ochair.markus.sotetszurke",
+   "ochair.flintan-karfas.fekete"
+  ],
+  "dolgozo:japandi:shelf": [
+   "shelf.billy.feher-80-28",
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher"
+  ],
+  "dolgozo:japandi:rug": [
+   "rug.lohals.natur-200-300",
+   "rug.tiphede.155-220",
+   "rug.stoense.200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "dolgozo:japandi:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "dolgozo:japandi:curtain": [
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "dolgozo:luxus:desk": [
+   "desk.micke.feher-142-50",
+   "desk.lagkapten-adils.feher",
+   "desk.pahl.allithato-magassagu",
+   "desk.stauning.feher-160-80"
+  ],
+  "dolgozo:luxus:ochair": [
+   "ochair.millberget.fekete",
+   "ochair.flintan.fekete",
+   "ochair.markus.sotetszurke",
+   "ochair.flintan-karfas.fekete"
+  ],
+  "dolgozo:luxus:shelf": [
+   "shelf.billy.feher-80-28",
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher"
+  ],
+  "dolgozo:luxus:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "dolgozo:luxus:lamp": [
+   "lamp.stockholm.sargarez-bev",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "dolgozo:luxus:curtain": [
+   "curtain.vilborg.bezs-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.majgull.szurke-1-par",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par"
+  ],
+  "dolgozo:ipari:desk": [
+   "desk.stauning.feher-160-80",
+   "desk.lagkapten-adils.feher",
+   "desk.pahl.allithato-magassagu",
+   "desk.micke.feher-142-50"
+  ],
+  "dolgozo:ipari:ochair": [
+   "ochair.flintan.fekete",
+   "ochair.millberget.fekete",
+   "ochair.markus.sotetszurke",
+   "ochair.flintan-karfas.fekete"
+  ],
+  "dolgozo:ipari:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "dolgozo:ipari:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "dolgozo:ipari:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "dolgozo:ipari:curtain": [
+   "curtain.majgull.szurke-1-par",
+   "curtain.stadsholmen.alap",
+   "curtain.amungen.szurke",
+   "curtain.dytag.bezs-len-1-par",
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "gyerek:modern:kbed": [
+   "kbed.slakt.feher-90-200",
+   "kbed.kura.90-200",
+   "kbed.klippuggla.90-200"
+  ],
+  "gyerek:modern:kdesk": [
+   "desk.pahl.allithato-magassagu",
+   "desk.lagkapten-adils.feher",
+   "desk.stauning.feher-160-80",
+   "desk.micke.feher-142-50"
+  ],
+  "gyerek:modern:wardrobe": [
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "gyerek:modern:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "gyerek:modern:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "gyerek:modern:lamp": [
+   "lamp.nymane.feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "gyerek:skandinav:kbed": [
+   "kbed.slakt.feher-90-200",
+   "kbed.kura.90-200",
+   "kbed.klippuggla.90-200"
+  ],
+  "gyerek:skandinav:kdesk": [
+   "desk.pahl.allithato-magassagu",
+   "desk.lagkapten-adils.feher",
+   "desk.stauning.feher-160-80",
+   "desk.micke.feher-142-50"
+  ],
+  "gyerek:skandinav:wardrobe": [
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "gyerek:skandinav:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "gyerek:skandinav:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "gyerek:skandinav:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "gyerek:minimalista:kbed": [
+   "kbed.slakt.feher-90-200",
+   "kbed.kura.90-200",
+   "kbed.klippuggla.90-200"
+  ],
+  "gyerek:minimalista:kdesk": [
+   "desk.pahl.allithato-magassagu",
+   "desk.lagkapten-adils.feher",
+   "desk.stauning.feher-160-80",
+   "desk.micke.feher-142-50"
+  ],
+  "gyerek:minimalista:wardrobe": [
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "gyerek:minimalista:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "gyerek:minimalista:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "gyerek:minimalista:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "gyerek:japandi:kbed": [
+   "kbed.kura.90-200",
+   "kbed.slakt.feher-90-200",
+   "kbed.klippuggla.90-200"
+  ],
+  "gyerek:japandi:kdesk": [
+   "desk.pahl.allithato-magassagu",
+   "desk.lagkapten-adils.feher",
+   "desk.stauning.feher-160-80",
+   "desk.micke.feher-142-50"
+  ],
+  "gyerek:japandi:wardrobe": [
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "gyerek:japandi:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "gyerek:japandi:rug": [
+   "rug.lohals.natur-200-300",
+   "rug.tiphede.155-220",
+   "rug.stoense.200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "gyerek:japandi:lamp": [
+   "lamp.lauters.koris-feher",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "gyerek:luxus:kbed": [
+   "kbed.kura.90-200",
+   "kbed.slakt.feher-90-200",
+   "kbed.klippuggla.90-200"
+  ],
+  "gyerek:luxus:kdesk": [
+   "desk.micke.feher-142-50",
+   "desk.lagkapten-adils.feher",
+   "desk.pahl.allithato-magassagu",
+   "desk.stauning.feher-160-80"
+  ],
+  "gyerek:luxus:wardrobe": [
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "gyerek:luxus:shelf": [
+   "shelf.billy.feher-80-28",
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher"
+  ],
+  "gyerek:luxus:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "gyerek:luxus:lamp": [
+   "lamp.stockholm.sargarez-bev",
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ],
+  "gyerek:ipari:kbed": [
+   "kbed.kura.90-200",
+   "kbed.slakt.feher-90-200",
+   "kbed.klippuggla.90-200"
+  ],
+  "gyerek:ipari:kdesk": [
+   "desk.pahl.allithato-magassagu",
+   "desk.lagkapten-adils.feher",
+   "desk.stauning.feher-160-80",
+   "desk.micke.feher-142-50"
+  ],
+  "gyerek:ipari:wardrobe": [
+   "wardrobe.kleppstad-2-ajtos.feher",
+   "wardrobe.kleppstad-3-ajtos.feher",
+   "wardrobe.brimnes.feher",
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "gyerek:ipari:shelf": [
+   "shelf.kallax.feher-77-77",
+   "shelf.skals.feher",
+   "shelf.billy.feher-80-28"
+  ],
+  "gyerek:ipari:rug": [
+   "rug.stoense.200-300",
+   "rug.tiphede.155-220",
+   "rug.lohals.natur-200-300",
+   "rug.morum.bezs-200-300",
+   "rug.lucy.160-230"
+  ],
+  "gyerek:ipari:lamp": [
+   "lamp.hansson.fekete-155-cm",
+   "lamp.nymane.feher",
+   "lamp.lauters.koris-feher",
+   "lamp.stockholm.sargarez-bev",
+   "lamp.barlast.fekete-feher-150-cm",
+   "lamp.arstid.sargarez-feher"
+  ]
+ },
+ "keys": {
+  "viskafors": [
+   "sofa.viskafors.szurke"
+  ],
+  "ektorp": [
+   "sofa.ektorp.vilagosbezs"
+  ],
+  "gedved": [
+   "sofa.gedved.szurke"
+  ],
+  "egense": [
+   "sofa.egense.sotetszurke"
+  ],
+  "hellerup": [
+   "sofa.hellerup.bezs-tolgy"
+  ],
+  "applaryd": [
+   "sofa.applaryd.vilagosszurke"
+  ],
+  "trevo": [
+   "sofa.trevo.alap"
+  ],
+  "kiss": [
+   "sofa.kiss.alap"
+  ],
+  "strandmon": [
+   "chair.strandmon.sotetszurke"
+  ],
+  "poang": [
+   "chair.poang.nyir-vilagosbezs"
+  ],
+  "gedvedchair": [
+   "chair.gedved.szurke-szovet"
+  ],
+  "ekenaset": [
+   "chair.arsunda.vilagosszurke"
+  ],
+  "vejen": [
+   "chair.vejen.fekete-textilbor"
+  ],
+  "strandmondeep": [
+   "chair.strandmon.melybezs"
+  ],
+  "lack": [
+   "coffee.lack.feher-90-55"
+  ],
+  "lejre": [
+   "coffee.lejre.feher-tolgy"
+  ],
+  "vedde": [
+   "coffee.vedde.sotet-tolgy"
+  ],
+  "markskel": [
+   "coffee.jegind.atm80-feher-tolgy"
+  ],
+  "frotorp": [
+   "coffee.frotorp.marvany-hatasu"
+  ],
+  "sandby": [
+   "coffee.sandby.tolgy-fekete"
+  ],
+  "brava": [
+   "coffee.brava.kerek-70-cm"
+  ],
+  "quattro": [
+   "coffee.quattro.105-60"
+  ],
+  "besta": [
+   "tv.besta.feher"
+  ],
+  "favrbo": [
+   "tv.hemdrup.2-ajtos-tolgy-fekete"
+  ],
+  "evetofte": [
+   "tv.evetofte.vilagos-tolgy"
+  ],
+  "fjallbo": [
+   "tv.fjallbo.fekete-fenyo"
+  ],
+  "tonstad": [
+   "tv.tonstad.tolgy-furner"
+  ],
+  "malta": [
+   "tv.malta.185-42"
+  ],
+  "carlos": [
+   "tv.carlos.180-42"
+  ],
+  "tiphede": [
+   "rug.tiphede.155-220"
+  ],
+  "lohals": [
+   "rug.lohals.natur-200-300"
+  ],
+  "stoense": [
+   "rug.stoense.200-300"
+  ],
+  "paul": [
+   "rug.morum.bezs-200-300"
+  ],
+  "lucy": [
+   "rug.lucy.160-230"
+  ],
+  "hansson": [
+   "lamp.hansson.fekete-155-cm"
+  ],
+  "nymane": [
+   "lamp.nymane.feher"
+  ],
+  "lauters": [
+   "lamp.lauters.koris-feher"
+  ],
+  "stockholm": [
+   "lamp.stockholm.sargarez-bev"
+  ],
+  "barlast": [
+   "lamp.barlast.fekete-feher-150-cm"
+  ],
+  "arstid": [
+   "lamp.arstid.sargarez-feher"
+  ],
+  "slattum": [
+   "bed.slattum.160-200"
+  ],
+  "malm": [
+   "bed.malm.magas-feher-160-200"
+  ],
+  "kongsberg": [
+   "bed.kongsberg.bezs-160-200"
+  ],
+  "vihals": [
+   "bed.vihals.feher-160-200"
+  ],
+  "kleppstadbed": [
+   "bed.kleppstad.feher-bezs-160-200"
+  ],
+  "kleppstad2": [
+   "wardrobe.kleppstad-2-ajtos.feher"
+  ],
+  "kleppstad3": [
+   "wardrobe.kleppstad-3-ajtos.feher"
+  ],
+  "brimnes3": [
+   "wardrobe.brimnes.feher"
+  ],
+  "kleppstadslide": [
+   "wardrobe.kleppstad-toloajtos.feher"
+  ],
+  "alling": [
+   "dtable.alling.tolgy"
+  ],
+  "nordviken": [
+   "dtable.nordviken.fekete"
+  ],
+  "morbylanga": [
+   "dtable.morbylanga.tolgy-furner"
+  ],
+  "vihalstable": [
+   "dtable.vihals.feher-125-74"
+  ],
+  "jonstrup": [
+   "dchair.jonstrup.szurke-tolgy"
+  ],
+  "bistrup": [
+   "dchair.bistrup.homok-tolgy"
+  ],
+  "pinntorp": [
+   "dchair.pinntorp.fenyo"
+  ],
+  "hauga": [
+   "dchair.hauga.feher"
+  ],
+  "havstasb": [
+   "sideboard.havsta.feher"
+  ],
+  "idanas": [
+   "sideboard.idanas.feher"
+  ],
+  "skruvby": [
+   "sideboard.skruvby.feher"
+  ],
+  "haugasb": [
+   "sideboard.hauga.szurke"
+  ],
+  "raskog": [
+   "island.raskog.feher"
+  ],
+  "vadholma": [
+   "island.vadholma.fekete-tolgy"
+  ],
+  "tornviken": [
+   "island.tornviken.tortfeher-tolgy"
+  ],
+  "forhoja": [
+   "island.forhoja.nyir"
+  ],
+  "stig": [
+   "barstool.stig.fekete"
+  ],
+  "dalfred": [
+   "barstool.dalfred.fekete"
+  ],
+  "franklin": [
+   "barstool.franklin.fekete"
+  ],
+  "bergmund": [
+   "barstool.bergmund.fekete"
+  ],
+  "ivar": [
+   "kcabinet.ivar.fekete-halo"
+  ],
+  "havstagl": [
+   "kcabinet.havsta.feher"
+  ],
+  "metodwall": [
+   "kcabinet.metod.vizszintesen-nyilo"
+  ],
+  "knoxhult": [
+   "kcabinet.knoxhult.feher"
+  ],
+  "rakall": [
+   "fridge.rakall.alap"
+  ],
+  "lagan": [
+   "fridge.lagan.feher"
+  ],
+  "tinad": [
+   "fridge.tinad.alap"
+  ],
+  "lagkapten": [
+   "desk.lagkapten-adils.feher"
+  ],
+  "pahl": [
+   "desk.pahl.allithato-magassagu"
+  ],
+  "stauning": [
+   "desk.stauning.feher-160-80"
+  ],
+  "micke": [
+   "desk.micke.feher-142-50"
+  ],
+  "flintan": [
+   "ochair.flintan.fekete"
+  ],
+  "millberget": [
+   "ochair.millberget.fekete"
+  ],
+  "markus": [
+   "ochair.markus.sotetszurke"
+  ],
+  "flintanarm": [
+   "ochair.flintan-karfas.fekete"
+  ],
+  "kallax": [
+   "shelf.kallax.feher-77-77"
+  ],
+  "skals": [
+   "shelf.skals.feher"
+  ],
+  "billy": [
+   "shelf.billy.feher-80-28"
+  ],
+  "slakt": [
+   "kbed.slakt.feher-90-200"
+  ],
+  "kura": [
+   "kbed.kura.90-200"
+  ],
+  "klippuggla": [
+   "kbed.klippuggla.90-200"
+  ],
+  "stadsholmen": [
+   "curtain.stadsholmen.alap"
+  ],
+  "majgull": [
+   "curtain.majgull.szurke-1-par"
+  ],
+  "idse": [
+   "curtain.amungen.szurke"
+  ],
+  "dytag": [
+   "curtain.dytag.bezs-len-1-par"
+  ],
+  "sanela": [
+   "curtain.vilborg.bezs-1-par"
+  ],
+  "sanelac": [
+   "cushion.sanela.sarga-barna"
+  ],
+  "kongsspir": [
+   "cushion.myrfiol.topszin"
+  ],
+  "gurli": [
+   "cushion.gurli.sotetszurke"
+  ],
+  "hvidblomme": [
+   "cushion.hvidblomme.homok"
+  ],
+  "svartho": [
+   "cushion.svartho.bezs"
+  ],
+  "gradvis": [
+   "vase.padrag.atlatszo-uveg-17-cm"
+  ],
+  "frovaxt": [
+   "vase.frovaxt.feher-20-cm"
+  ],
+  "fulltalig": [
+   "vase.fulltalig.3-db-fekete"
+  ],
+  "stilren": [
+   "vase.stilren.feher-22-cm"
+  ],
+  "begarlig": [
+   "vase.begarlig.uveg-29-cm"
+  ],
+  "n": [
+   "nightstand.kullen.feher"
+  ],
+  "brimnesn": [
+   "nightstand.brimnes.feher"
+  ],
+  "b": [
+   "bedding.angslilja.szurke"
+  ],
+  "fjadrar": [
+   "cushionInsert.fjadrar.50-50"
+  ],
+  "inner": [
+   "cushionInsert.inner.50-50"
+  ],
+  "gu10": [
+   "bulb.solhetta-gu10.345-lm"
+  ],
+  "e27big": [
+   "bulb.solhetta-e27-1521.1521-lm"
+  ],
+  "e27small": [
+   "bulb.solhetta-e27-806.806-lm-2-db-os-csomag"
+  ],
+  "vesteroy160": [
+   "mattress.vesteroy.160-200"
+  ],
+  "afjall160": [
+   "mattress.afjall.160-200"
+  ],
+  "afjall90m": [
+   "mattress.afjall.kozepesen-kemeny-90-200"
+  ],
+  "afjall90k": [
+   "mattress.afjall.kemeny-90-200"
+  ],
+  "luroy90": [
+   "bedbase.luroy.90-200"
+  ]
+ }
+}

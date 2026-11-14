@@ -186,6 +186,25 @@ body.dark .product-photo{background:#F3EEE5;}
 .cost-open ul{margin:8px 0 0 16px;display:flex;flex-direction:column;gap:4px;color:var(--dream-muted);}
 .sl-ship .in{color:var(--dream-muted);}
 
+/* ---- Terméklap és katalógus-jelzések (3. szakasz) ---- */
+.detail-btn{border:0;background:none;padding:6px 0;font:600 12px var(--sans);color:var(--gold-ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+.viz-note{display:block;flex-basis:100%;font-size:11px;color:var(--dream-muted);font-style:italic;}
+.detail-box{max-width:620px;}
+.detail-lead,.detail-foot{font-size:12.5px;color:var(--dream-muted);margin:6px 0 12px;line-height:1.5;}
+.detail-foot a{color:var(--gold-ink);font-weight:600;}
+.detail-table{width:100%;border-collapse:collapse;font-size:13px;}
+.detail-table th{text-align:left;font-weight:600;color:var(--dream-muted);padding:8px 8px 8px 0;vertical-align:top;white-space:nowrap;}
+.detail-table td{padding:8px 6px;border-top:1px solid var(--dream-line);vertical-align:top;}
+.detail-table tr:first-child td,.detail-table tr:first-child th{border-top:0;}
+.detail-table th{border-top:1px solid var(--dream-line);}
+.src-badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+.src-badge.is-verified{background:var(--good-soft);color:var(--good);}
+.src-badge.is-estimated{background:var(--warn-soft);color:var(--warn);}
+.src-badge.is-missing{background:var(--chip);color:var(--dream-muted);}
+.restore-note{background:var(--warn-soft);}
+.restore-note[hidden]{display:none!important;}
+@media(max-width:520px){.detail-table th{white-space:normal;}}
+
 /* ---- Összegzés, büdzsé-gyűrű ---- */
 .summary,body.dark .summary{background:var(--dream-surface);border:1px solid var(--dream-line);border-radius:26px;box-shadow:var(--luxe-shadow);}
 .summary .total{font-family:var(--serif);font-weight:600;font-size:46px;letter-spacing:-1px;}

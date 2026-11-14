@@ -3,10 +3,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
-import { readCatalog } from '../tools/catalog.mjs';
+import { readFile } from 'node:fs/promises';
 const require = createRequire(import.meta.url);
 const P = require('../pricing.js');
 const S = require('../sales-data.js');
+// 3. szakasz óta a kiszerelés (sale) és a kiegészítők (requires) a katalógus változatain vannak.
+const C = require('../catalog.js').fromJSON(JSON.parse(await readFile('data/catalog.json', 'utf8')), null);
+const saleOf = url => (C.byUrl(url)?.variant.sale) || { unit: 'db', pack: 1 };
+const requiresOf = url => C.byUrl(url)?.variant.requires || [];
 
 const JONSTRUP = 'https://jysk.hu/etkezo/etkezoszekek/etkezoszek-jonstrup-szurke-szovet-natur-tolgyszinu';
 const BRIMNES = 'https://www.ikea.com/hu/hu/p/brimnes-ejjeliszekreny-feher-10234942/';
@@ -14,16 +18,16 @@ const GURLI = 'https://www.ikea.com/hu/hu/p/gurli-diszparnahuzat-soetetszuerke-5
 const MYRFIOL = 'https://jysk.hu/lakberendezes/diszparnak-es-diszparnahuzatok/diszparnak/diszparna-myrfiol-45x45-topszin';
 const MAJGULL = 'https://www.ikea.com/hu/hu/p/majgull-fenyzaro-fueggoeny-1-par-szuerke-fueggoenyrancolo-szalaggal-80417815/';
 const FULLTALIG = 'https://www.ikea.com/hu/hu/p/fulltalig-gyertyatarto-3-db-fekete-40342134/';
-const INNER = S.ACCESSORY_URLS.inner;
+const INNER = 'cushionInsert.inner.50-50';
 
-const item = (url, store, unitPrice, requested, extra = {}) => ({ id: url.slice(-12), name: url, store, url, unitPrice, requested, sale: S.saleOf(url), requires: S.requiresOf(url), ...extra });
-const refInfo = url => url === INNER ? { name: 'INNER díszpárnabelső', store: 'ikea', url, unitPrice: 1200, sale: S.saleOf(url) } : null;
+const item = (url, store, unitPrice, requested, extra = {}) => ({ id: url.slice(-12), name: url, store, url, unitPrice, requested, sale: saleOf(url), requires: requiresOf(url), ...extra });
+const refInfo = id => id === INNER ? { name: 'INNER díszpárnabelső', store: 'ikea', url: C.variant(id).url, unitPrice: 1200, sale: C.variant(id).variant.sale } : null;
 const run = (lines, mode = 'delivery', zone = null) => P.compute({ lines, mode, zone, shipping: S.SHIPPING, refInfo });
 
 // --- B01: ugyanaz a termék 1, 2, 3, 4, 5 és 8 darabnál következetesen ---
 test('Egyedi termék: 1, 2, 3, 4, 5, 8 darab = darabszám × egységár, többlet nélkül', () => {
   for (const n of [1, 2, 3, 4, 5, 8]) {
-    const r = P.purchase(n, S.saleOf(BRIMNES), 'delivery');
+    const r = P.purchase(n, saleOf(BRIMNES), 'delivery');
     assert.deepEqual([r.units, r.pieces, r.extra], [n, n, 0], `${n} db`);
     assert.equal(run([item(BRIMNES, 'ikea', 11990, n)]).totals.products, n * 11990);
   }
@@ -32,14 +36,14 @@ test('Egyedi termék: 1, 2, 3, 4, 5, 8 darab = darabszám × egységár, többle
 test('Függönypár (1 egység = 2 lap): 1, 2, 3, 4, 5, 8 lapnál a megvásárolandó pár és a többlet', () => {
   const want = { 1: [1, 2, 1], 2: [1, 2, 0], 3: [2, 4, 1], 4: [2, 4, 0], 5: [3, 6, 1], 8: [4, 8, 0] };
   for (const [n, exp] of Object.entries(want)) {
-    const r = P.purchase(+n, S.saleOf(MAJGULL), 'pickup');
+    const r = P.purchase(+n, saleOf(MAJGULL), 'pickup');
     assert.deepEqual([r.units, r.pieces, r.extra], exp, `${n} lap`);
     if (exp[2]) assert.equal(r.reasons[0].code, 'pack');
   }
 });
 
 test('Csomag (FULLTALIG, 1 egység = 3 db): 1 darabhoz is egy teljes csomag kell', () => {
-  const r = P.purchase(1, S.saleOf(FULLTALIG), 'pickup');
+  const r = P.purchase(1, saleOf(FULLTALIG), 'pickup');
   assert.deepEqual([r.units, r.pieces, r.extra, r.unit], [1, 3, 2, 'csomag']);
   assert.equal(run([item(FULLTALIG, 'ikea', 3990, 1)]).totals.products, 3990);
 });
@@ -55,7 +59,7 @@ test('JONSTRUP: 3 szék tervezve → házhozszállításnál 4 vásárolandó, b
 });
 
 test('JONSTRUP házhozszállításnál: 1, 2, 3, 4, 5, 8 szék → 4, 4, 4, 4, 8, 8 vásárolandó', () => {
-  const got = [1, 2, 3, 4, 5, 8].map(n => P.purchase(n, S.saleOf(JONSTRUP), 'delivery').units);
+  const got = [1, 2, 3, 4, 5, 8].map(n => P.purchase(n, saleOf(JONSTRUP), 'delivery').units);
   assert.deepEqual(got, [4, 4, 4, 4, 8, 8]);
 });
 
@@ -140,10 +144,8 @@ test('Árpillanatkép: új árnál látszik a változás', () => {
   assert.equal(d.delta, 2000); assert.deepEqual(d.changed, [{ name: BRIMNES, from: 11990, to: 12990, units: 2 }]);
 });
 
-// --- Adatminőség: minden értékesítési adat létező katalógustermékre mutat ---
-test('sales-data.js: minden URL szerepel a katalógusban vagy a kiegészítők között', async () => {
-  const urls = new Set((await readCatalog()).map(c => c.url)), acc = new Set(Object.values(S.ACCESSORY_URLS));
-  const bad = [...Object.keys(S.SALES), ...Object.keys(S.REQUIRES)].filter(u => !urls.has(u) && !acc.has(u));
-  const badRef = Object.values(S.REQUIRES).flat().map(r => r.ref).filter(u => u && !urls.has(u));
-  assert.deepEqual(bad, []); assert.deepEqual(badRef, [], 'a kiegészítő-referenciák is a katalógusban (ACCESSORY) legyenek');
+// --- Adatminőség: minden kiegészítő-hivatkozás létező katalógusváltozatra mutat ---
+test('Katalógus: minden „requires” hivatkozás létező változat', () => {
+  const bad = C.allItems().flatMap(it => (it.variant.requires || []).map(r => r.ref)).filter(id => id && !C.variant(id));
+  assert.deepEqual(bad, []);
 });

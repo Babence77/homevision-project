@@ -1,0 +1,87 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://babence77.github.io/homevision-project/schemas/product.schema.json",
+ "title": "DREAMR katalógus (data/catalog.json)",
+ "description": "Termékek és változatok mezőnkénti forrással és minőségi állapottal. verified = bolti adat (forrás + dátum kötelező), estimated = DREAMR becslés / szemléltető, missing = nincs adat.",
+ "type": "object",
+ "required": ["format", "categories", "rooms", "assortment", "products"],
+ "properties": {
+  "$schema": { "type": "string" },
+  "format": { "const": "dreamr-catalog/1" },
+  "checked": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+  "categories": { "type": "object", "additionalProperties": { "$ref": "#/$defs/category" } },
+  "rooms": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "#/$defs/slot" } } },
+  "assortment": {
+   "type": "object", "required": ["pools", "primary"],
+   "properties": {
+    "pools": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "#/$defs/variantId" } } },
+    "primary": { "type": "object", "required": ["roomStyle", "style"],
+     "properties": {
+      "roomStyle": { "type": "object", "additionalProperties": { "type": "object", "additionalProperties": { "type": "object", "additionalProperties": { "$ref": "#/$defs/variantId" } } } },
+      "style": { "type": "object", "additionalProperties": { "type": "object", "additionalProperties": { "$ref": "#/$defs/variantId" } } }
+     } }
+   }
+  },
+  "products": { "type": "array", "items": { "$ref": "#/$defs/product" } }
+ },
+ "$defs": {
+  "variantId": { "type": "string", "pattern": "^[a-zA-Z]+\\.[a-z0-9-]+\\.[a-z0-9-]+$" },
+  "text": { "type": "object", "required": ["hu"], "properties": { "hu": { "type": "string" }, "en": { "type": "string" } }, "additionalProperties": false },
+  "status": { "enum": ["verified", "estimated", "missing"] },
+  "field": {
+   "type": "object", "required": ["status"],
+   "properties": { "value": {}, "status": { "$ref": "#/$defs/status" }, "source": { "type": ["string", "null"] }, "checkedAt": { "type": "string" }, "note": { "type": "string" } },
+   "if": { "properties": { "status": { "const": "verified" } } },
+   "then": { "required": ["value", "source", "checkedAt"] }
+  },
+  "category": {
+   "type": "object", "required": ["label", "floor", "planQty"],
+   "properties": { "label": { "$ref": "#/$defs/text" }, "icon": { "type": "string" }, "floor": { "enum": ["furniture", "rug", "small", "none"] },
+    "plan": { "type": ["string", "null"] }, "planQty": { "type": "integer", "minimum": 1 }, "accessoryOnly": { "type": "boolean" } }
+  },
+  "slot": {
+   "type": "object", "required": ["slot", "pool", "primary"],
+   "properties": { "slot": { "type": "string" }, "pool": { "type": "string" }, "primary": { "enum": ["roomStyle", "style", null] }, "limit": { "type": "integer", "minimum": 1 } },
+   "additionalProperties": false
+  },
+  "product": {
+   "type": "object", "required": ["id", "category", "family", "name", "variants"],
+   "properties": {
+    "id": { "type": "string", "pattern": "^[a-zA-Z]+\\.[a-z0-9-]+$" },
+    "category": { "type": "string" }, "family": { "type": "string" }, "name": { "$ref": "#/$defs/text" },
+    "variants": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/variant" } }
+   },
+   "additionalProperties": false
+  },
+  "variant": {
+   "type": "object", "required": ["id", "legacyKeys", "store", "sku", "name", "urls", "basePrice", "dimensions", "package", "attributes", "image", "requires"],
+   "properties": {
+    "id": { "$ref": "#/$defs/variantId" },
+    "legacyKeys": { "type": "array", "items": { "type": "string" } },
+    "store": { "enum": ["ikea", "jysk", "momax", "mobelix"] },
+    "sku": { "type": ["string", "null"] },
+    "name": { "$ref": "#/$defs/text" }, "label": { "$ref": "#/$defs/text" },
+    "storeName": { "$ref": "#/$defs/field" },
+    "urls": { "type": "object", "required": ["canonical", "buy"],
+     "properties": { "canonical": { "type": "string", "pattern": "^https://" }, "buy": { "type": "string", "pattern": "^https://" },
+      "previous": { "type": "array", "items": { "type": "object", "required": ["url"], "properties": { "url": { "type": "string" }, "until": { "type": "string" }, "reason": { "type": "string" } } } } },
+     "additionalProperties": false },
+    "basePrice": { "type": "object", "required": ["amount", "currency", "basis", "status"],
+     "properties": { "amount": { "type": "integer", "minimum": 1 }, "currency": { "const": "HUF" }, "basis": { "const": "salesUnit" }, "status": { "$ref": "#/$defs/status" }, "source": { "type": "string" } } },
+    "dimensions": { "type": "object", "required": ["unit", "width", "depth", "height", "wallMounted"],
+     "properties": { "unit": { "const": "cm" }, "width": { "$ref": "#/$defs/field" }, "depth": { "$ref": "#/$defs/field" }, "height": { "$ref": "#/$defs/field" },
+      "wallMounted": { "$ref": "#/$defs/field" }, "open": { "type": ["object", "null"] }, "store": { "type": "object" } } },
+    "package": { "type": "object", "required": ["status"],
+     "properties": { "status": { "$ref": "#/$defs/status" }, "parcels": { "type": "array", "items": { "type": "object", "required": ["width", "height", "length", "weightKg"] } } } },
+    "attributes": { "type": "object", "required": ["material", "color", "availability", "offerPeriod"],
+     "additionalProperties": { "$ref": "#/$defs/field" } },
+    "image": { "type": "object", "required": ["status"],
+     "properties": { "url": { "type": ["string", "null"] }, "status": { "enum": ["verified", "unchecked", "unreachable", "missing"] },
+      "license": { "type": "object", "required": ["status"], "properties": { "status": { "enum": ["own", "licensed", "permitted", "unsettled"] }, "owner": { "type": "string" }, "note": { "type": "string" } } } } },
+    "sale": { "type": ["object", "null"] },
+    "requires": { "type": "array", "items": { "type": "object", "required": ["id", "label", "per", "ref"],
+     "properties": { "ref": { "anyOf": [{ "$ref": "#/$defs/variantId" }, { "type": "null" }] }, "per": { "type": "integer", "minimum": 1 } } } }
+   }
+  }
+ }
+}
