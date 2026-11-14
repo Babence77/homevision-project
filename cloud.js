@@ -57,7 +57,10 @@ const GOOGLE_LOGIN = false; // true-ra állítani, ha a Supabase-ben már be van
   async function fetchHouse() {
     const { data, error } = await client.from('houses').select('data').maybeSingle();
     if (error) throw error;
-    return data ? data.data : null; // null = még nincs felhő-mentése
+    if (!data) return null; // null = még nincs felhő-mentése
+    // C06: a rekordok verziózottak (format: 'dreamr-room/2'); a régi, verzió nélküli rekordok a betöltéskor
+    // (app.js loadRoom → DRCatalog.migratePlan) vezetődnek át. Értelmezhetetlen tartalom nem töri el az appot.
+    return Array.isArray(data.data) ? data.data.filter(r => r && typeof r === 'object' && r.config) : [];
   }
   async function pushHouse(houseArr) {
     if (!user) return;

@@ -15,7 +15,7 @@
 //   DREAMR_ONLY_STORE=jysk        — csak egy boltot frissít (gyors próba)
 
 import { readFile, writeFile, appendFile } from 'node:fs/promises';
-import { readCatalog, uniqueByUrl } from './tools/catalog.mjs';
+import { readCatalog } from './tools/catalog.mjs';
 import { fetchWithRetry, evaluate, STATUS } from './tools/store-pages.mjs';
 
 // B01/B02: az ár mindig EGY megvásárolható egység ára (a terméknévből semmi nem szorzódik).
@@ -33,7 +33,10 @@ const config = JSON.parse(await readFile(new URL('./tools/price-sources.json', i
 async function loadPrevious() {
   try {
     const prev = JSON.parse(await readFile(IN, 'utf8'));
-    if (prev.version >= 3 && prev.items) return prev.items;
+    // v4 (3. szakasz, C02): tételek változatazonosító szerint — URL-változás nem veszít el ártörténetet
+    if (prev.version >= 4 && prev.items) return prev.items;
+    // v3: URL szerint → változatazonosítóra fordítjuk (a katalógus a régi URL-eket is ismeri)
+    if (prev.version === 3 && prev.items) { const out = {}; for (const [u, v] of Object.entries(prev.items)) { const id = idByUrl.get(u); if (id) out[id] = v; } return out; }
     // v2 → v3 átállás: a v2-ben a „(N db)” nevű termékek ára N-nel szorzott volt, ezért onnan árat nem
     // örökítünk egységárként — csak az állapotot. Ami most nem frissíthető, az ár nélkül, „nem ellenőrzött” marad.
     if (prev.version === 2 && prev.items) return Object.fromEntries(Object.entries(prev.items).map(([u, v]) =>
@@ -44,17 +47,21 @@ async function loadPrevious() {
       [url, { price, checkedAt: at, lastAttempt: at, status: STATUS.OK, error: null }]));
   } catch { return {}; }
 }
+// C01: a katalógus a data/catalog.json-ból jön (változatonként egy bejegyzés, stabil azonosítóval)
+const entries = await readCatalog();
+const idByUrl = new Map(); entries.forEach(e => [e.url, ...e.previousUrls].forEach(u => idByUrl.set(u, e.id)));
 const previous = await loadPrevious();
-const catalog = uniqueByUrl(await readCatalog());
+const catalog = new Map(entries.map(e => [e.id, e]));
 const startedAt = new Date().toISOString();
 console.log(`Termékek: ${catalog.size}${FAIL_STORE ? `  (PRÓBA: a(z) ${FAIL_STORE} forrása szándékosan elrontva)` : ''}`);
 
 // --- 2) Végigmegyünk minden terméken ---
 const items = {}; const stats = {};
-for (const [url, it] of catalog) {
+for (const [id, it] of catalog) {
+  const url = it.url;
   const st = (stats[it.store] ||= { total: 0, ok: 0, failed: 0, statuses: {}, changed: 0 });
-  const prev = previous[url] || null;
-  if (ONLY_STORE && it.store !== ONLY_STORE) { if (prev) items[url] = prev; continue; }
+  const prev = previous[id] || null;
+  if (ONLY_STORE && it.store !== ONLY_STORE) { if (prev) items[id] = prev; continue; }
   st.total++;
   const now = new Date();
   const page = it.store === FAIL_STORE
@@ -65,7 +72,7 @@ for (const [url, it] of catalog) {
 
   if (r.status === STATUS.OK) {
     const price = r.price;
-    items[url] = {
+    items[id] = { url,
       price, listPrice: r.listPrice || null, saleUntil: r.saleUntil || null,
       sku: r.sku, availability: r.availability || null,
       deliveryMultiple: it.store === 'jysk' ? deliveryMultiple(page.html) : null,
@@ -76,7 +83,7 @@ for (const [url, it] of catalog) {
     if (before !== price) { st.changed++; console.log(`VÁLTOZÁS  ${it.name}: ${before ?? '—'} -> ${price}`); }
   } else {
     // A03: az utolsó jó ár és annak ideje megmarad; csak a próbálkozás és a hiba frissül.
-    items[url] = {
+    items[id] = { url,
       price: prev?.price ?? null, listPrice: prev?.listPrice ?? null, saleUntil: prev?.saleUntil ?? null,
       sku: prev?.sku ?? r.sku ?? null, availability: prev?.availability ?? null, deliveryMultiple: prev?.deliveryMultiple ?? null,
       checkedAt: prev?.checkedAt ?? null, lastAttempt: now.toISOString(),
@@ -104,7 +111,7 @@ for (const [store, st] of Object.entries(stats)) {
 const finishedAt = new Date().toISOString();
 const sorted = Object.fromEntries(Object.entries(items).sort((a, b) => a[0].localeCompare(b[0])));
 const out = {
-  version: 3, priceBasis: "salesUnit",
+  version: 4, priceBasis: "salesUnit", keyedBy: "variantId",
   date: finishedAt.slice(0, 10),
   updated: finishedAt,
   run: { startedAt, finishedAt, healthy: problems.length === 0, problems, stores: stats },

@@ -1,19 +1,21 @@
-// DREAMR — termékkatalógus kiolvasása az app.js-ből (a P_(...) sorok).
-// Ezt használja a linkfelmérő (link-audit.mjs) és a napi árfrissítő (update-prices.mjs).
+// DREAMR — termékkatalógus az eszközöknek (árfrissítő, linkfelmérés, felderítés).
+// 3. szakasz (C01): a forrás a data/catalog.json — JavaScript-sorokat többé nem értelmezünk.
 import { readFile } from 'node:fs/promises';
 
-const RE = /P_\(\s*(?:'([^']*)'|"([^"]*)")\s*,\s*(?:"([^"]+)"|'([^']+)')\s*,\s*(?:"([^"]+)"|'([^']+)')\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(?:"([^"]+)"|'([^']+)')\s*\)/g;
-
-// Visszaad: [{key,name,store,price,w,d,url}] a forrás sorrendjében (egy URL többször is szerepelhet).
-export async function readCatalog(file = 'app.js') {
-  const src = await readFile(file, 'utf8');
-  return [...src.matchAll(RE)].map(m => ({
-    key: m[1] ?? m[2], name: m[3] ?? m[4], store: m[5] ?? m[6],
-    price: +m[7], w: +m[8], d: +m[9], url: m[10] ?? m[11]
-  }));
+export async function loadCatalogJSON(file = 'data/catalog.json') {
+  return JSON.parse(await readFile(file, 'utf8'));
 }
 
-// URL-enként egy bejegyzés (az első előfordulás adatai + az összes kulcs).
+// Visszaad: [{id, key, name, store, price, url, previousUrls}] — egy bejegyzés változatonként.
+export async function readCatalog(file = 'data/catalog.json') {
+  const cat = await loadCatalogJSON(file);
+  return cat.products.flatMap(p => p.variants.map(v => ({
+    id: v.id, key: v.id, name: v.name.hu, store: v.store, price: v.basePrice.amount,
+    url: v.urls.canonical, previousUrls: (v.urls.previous || []).map(x => x.url)
+  })));
+}
+
+// URL-enként egy bejegyzés (az első előfordulás adatai + az összes azonosító).
 export function uniqueByUrl(entries) {
   const map = new Map();
   for (const e of entries) {
@@ -22,4 +24,3 @@ export function uniqueByUrl(entries) {
   }
   return map;
 }
-
