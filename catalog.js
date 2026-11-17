@@ -31,7 +31,8 @@
         const primary=s.primary==='roomStyle'?prim.roomStyle[room]?.[style]?.[s.slot]:s.primary==='style'?prim.style[style]?.[s.slot]:null;
         if(primary) ids=[primary,...ids.filter(x=>x!==primary)];
         if(s.limit) ids=ids.slice(0,s.limit);
-        return {id:s.slot,category:s.pool,options:ids.map(id=>variants.get(id))};
+        // 5. szakasz: role = a szoba fő funkciója (required) vagy opcionális; primaryVid = a stílus alapajánlata (rangsoroláshoz)
+        return {id:s.slot,category:s.pool,role:s.role||'optional',primaryVid:primary||null,options:ids.map(id=>variants.get(id))};
       });
     }
     // Régi (v1) mentés fordítása: sorszám vagy régi kulcs → változatazonosító

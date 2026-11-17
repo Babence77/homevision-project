@@ -37,11 +37,11 @@
   "category": {
    "type": "object", "required": ["label", "floor", "planQty"],
    "properties": { "label": { "$ref": "#/$defs/text" }, "icon": { "type": "string" }, "floor": { "enum": ["furniture", "rug", "small", "none"] },
-    "plan": { "type": ["string", "null"] }, "planQty": { "type": "integer", "minimum": 1 }, "accessoryOnly": { "type": "boolean" } }
+    "plan": { "type": ["string", "null"] }, "planQty": { "type": "integer", "minimum": 1 }, "minQty": { "type": "integer", "minimum": 1 }, "accessoryOnly": { "type": "boolean" } }
   },
   "slot": {
    "type": "object", "required": ["slot", "pool", "primary"],
-   "properties": { "slot": { "type": "string" }, "pool": { "type": "string" }, "primary": { "enum": ["roomStyle", "style", null] }, "limit": { "type": "integer", "minimum": 1 } },
+   "properties": { "slot": { "type": "string" }, "pool": { "type": "string" }, "primary": { "enum": ["roomStyle", "style", null] }, "limit": { "type": "integer", "minimum": 1 }, "role": { "enum": ["required", "optional"] } },
    "additionalProperties": false
   },
   "product": {

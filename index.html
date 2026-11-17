@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=dreamr-v11">
-<link rel="stylesheet" href="luxe.css?v=dreamr-v11">
+<link rel="stylesheet" href="styles.css?v=dreamr-v12">
+<link rel="stylesheet" href="luxe.css?v=dreamr-v12">
 </head>
 <body class="welcome-mode">
   <main id="welcomePage" class="welcome-page" aria-labelledby="welcomeTitle">
@@ -121,10 +121,16 @@
           <div class="chead"><span class="ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M12 4v7h8M4 14h5"/></svg></span><div><h3 data-i18n="planH">Alaprajz (felülnézet)</h3><p data-i18n="planP">Húzd át a bútorokat! A be nem férő, kikapcsolt darabok nem látszanak.</p></div></div>
           <div class="planwrap"><p class="precision-note" data-i18n="precisionNote"></p><p id="layoutStatus" role="status" aria-live="polite"></p><div id="plan"></div></div>
           <div class="plantools">
-            <button class="minibtn tv-placement-btn" id="tvPlacementBtn" type="button">TV</button><button class="minibtn" id="resetLayout" data-i18n="reset">↺ Elrendezés visszaállítása</button>
+            <button class="minibtn tv-placement-btn" id="tvPlacementBtn" type="button">TV</button><button class="minibtn" id="rotateBtn" type="button" disabled>↻ Forgatás</button><button class="minibtn" id="resetLayout" data-i18n="reset">↺ Elrendezés visszaállítása</button>
             <button class="minibtn" id="view3dBtn" data-i18n="view3d">🧊 3D nézet</button>
             <button class="minibtn dark dr-shine dr-ripple" id="exportBtn2" data-i18n="exportBtn">🧾 Ajánlat (PDF)</button>
             <span class="planhint" data-i18n="planHint">Fogd meg és húzd a bútort.</span>
+          </div>
+          <div class="doorrow">
+            <span class="flabel" data-i18n="doorLabel">Ajtó:</span>
+            <select id="doorWall" aria-label="Ajtó fala"><option value="bottom" data-i18n="doorBottom">alsó fal</option><option value="top" data-i18n="doorTop">felső fal</option><option value="left" data-i18n="doorLeft">bal fal</option><option value="right" data-i18n="doorRight">jobb fal</option></select>
+            <label><input id="doorOffset" type="number" min="0" step="5" value="40" aria-label="Ajtó helye a saroktól (cm)"> <span data-i18n="doorFrom">cm-től</span></label>
+            <label><span data-i18n="doorWidthL">szélesség (cm)</span> <input id="doorWidth" type="number" min="60" max="120" step="5" value="80"></label>
           </div>
           <div class="planlegend">
             <span><span class="swatchdot" style="background:#9aa6b2"></span> <span data-i18n="legFurn">Bútor</span></span>
@@ -145,10 +151,12 @@
             <button class="preset autofit dr-shine dr-ripple" id="autofit" data-i18n="autofit">Igazítás a kerethez</button>
           </div>
           <div class="note" id="budgetHint" style="margin-top:10px;font-size:13px;"></div>
+          <div id="budgetLog"></div>
         </div>
         <div class="cardbox">
           <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
             <input id="searchBox" class="searchbox" data-i18n-ph="searchPh" placeholder="Keresés a bútorok közt…">
+            <button class="minibtn" id="catalogSearchBtn" type="button" data-i18n="catSearchBtn">🔎 Teljes katalógus</button>
             <span class="flabel" data-i18n="storesLabel">Boltok:</span>
             <div id="storechips" class="storechips"></div>
             <button class="minibtn" id="cheapAll" data-i18n="cheapAll" style="margin-left:auto;">⤓ Legolcsóbb mindenhol</button>
@@ -158,6 +166,7 @@
           <div><div class="section-label" data-i18n="listLabel">Bútorlista</div><h2 data-i18n="listH">Az összeállítás elemei</h2></div>
           <div class="count-pill" id="countPill">—</div>
         </div>
+        <p id="filterNote" class="filter-note" role="status" hidden></p>
         <div id="list"></div>
       </div>
       <aside id="summarySection">
@@ -213,6 +222,7 @@
   <div id="d3Overlay" class="sloverlay" style="display:none"></div>
   <div id="authOverlay" class="authov" style="display:none"></div>
   <div id="houseOverlay" class="sloverlay" style="display:none"></div>
+  <div id="searchOverlay" class="sloverlay" style="display:none"></div>
   <div id="tvPlacementOverlay" class="tv-placement-overlay" role="dialog" aria-modal="true" aria-labelledby="tvPlacementTitle">
     <div class="tv-placement-dialog">
       <div class="tv-placement-mark">DREAM<span>R</span></div>
@@ -233,14 +243,16 @@
     "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
 } }
 </script>
-<script type="module" src="viewer3d.js?v=dreamr-v7"></script>
+<script type="module" src="viewer3d.js?v=dreamr-v8"></script>
 <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="cloud.js?v=dreamr-v11"></script>
-<script src="sales-data.js?v=dreamr-v11"></script>
-<script src="pricing.js?v=dreamr-v11"></script>
-<script src="motion.js?v=dreamr-v11"></script>
+<script src="cloud.js?v=dreamr-v12"></script>
+<script src="sales-data.js?v=dreamr-v12"></script>
+<script src="pricing.js?v=dreamr-v12"></script>
+<script src="motion.js?v=dreamr-v12"></script>
 <!-- A katalógust a catalog.js tölti be, és utána indítja az app.js-t (3. szakasz) -->
-<script src="catalog.js?v=dreamr-v11"></script>
+<script src="recommendations.js?v=dreamr-v12"></script>
+<script src="layout.js?v=dreamr-v12"></script>
+<script src="catalog.js?v=dreamr-v12"></script>
 </body>
 </html>
