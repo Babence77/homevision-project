@@ -6,7 +6,14 @@
   let PRICE_DATE='2026-08-29'; // az árellenőrzés dátuma — a prices.json betöltése automatikusan frissíti
   let PRICE_DATE_HU='2026. augusztus 29-i', PRICE_DATE_EN='29 August 2026';
   // Egy szoba tételei a választott stílusban (alapajánlat elöl) — a szobák felépítése is a katalógusban van.
-  const getSlotsFor=(room,style)=>CAT.slotsFor(room,style);
+  // R06: a teljes katalógusból (keresésből) választott, azonos kategóriájú termék is a tétel opciója lesz.
+  const getSlotsFor=(room,style)=>CAT.slotsFor(room,style).map(slot=>{
+    const v=state.sel[room+':'+style+':'+slot.id];
+    if(v&&!slot.options.some(o=>o.vid===v)){ const o=CAT.variant(v); if(o&&o.category===slot.category) return {...slot,options:[...slot.options,o]}; }
+    return slot;
+  });
+  // 5. szakasz: ajánlómotor (szűrés → rangsor → kerethez igazítás → indoklás → keresés) és közös elhelyezőmotor (2D + 3D)
+  const RECO=window.DRReco, LY=window.DRLayout;
   function getSlots(){ return getSlotsFor(state.room,state.style); }
 
   const STYLES=[{id:'modern',label:'Modern'},{id:'skandinav',label:'Skandináv'},{id:'minimalista',label:'Minimalista'},{id:'japandi',label:'Japandi'},{id:'luxus',label:'Luxus'},{id:'ipari',label:'Ipari'}];
@@ -20,7 +27,6 @@
     {id:'blue',name:"Ködkék",hex:"#b6c6d0"},{id:'sand',name:"Homok bézs",hex:"#e6d8bd"},
     {id:'terra',name:"Terrakotta",hex:"#cf9077"},{id:'char',name:"Antracit",hex:"#6b7178"}
   ];
-  const MARGIN=40;
   const STORE_LABEL={ikea:'IKEA',jysk:'JYSK',momax:'MÖMAX',mobelix:'MÖBELIX',kondela:'KONDELA',bonami:'BONAMI'};
   const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function productPhoto(it){
@@ -31,7 +37,9 @@
   // 4. szakasz: a boltok listája a katalógusból jön — új partner felvételéhez nem kell kódot módosítani
   const STORES=(()=>{ const known=['ikea','jysk','momax','mobelix'], inUse=new Set(CAT.allItems().map(i=>i.store)); return [...known.filter(s=>inUse.has(s)),...[...inUse].filter(s=>!known.includes(s)).sort()]; })();
   const storeBadge=s=>`<span class="store ${s}">${STORE_LABEL[s]||s.toUpperCase()}</span>`;
-  const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, replaced:{}, fulfillment:'delivery', zone:null, compareSnap:null, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(STORES), search:'', house:[]};
+  const state={room:'nappali', style:'modern', off:new Set(), layoutOmit:new Set(), layoutQty:{}, quantity:{}, itemColors:{}, tvPlacement:null, color:'white', budget:600000, sel:{}, replaced:{}, fulfillment:'delivery', zone:null, compareSnap:null, pos:{}, openCmp:new Set(), lang:'hu', stores:new Set(STORES), search:'', house:[],
+    // 5. szakasz: zárolt tételek, az ajtó helye, forgatás, kijelölt alaprajzi elem, a választások eredete (visszavonáshoz), a keret-igazítás naplója
+    locked:new Set(), door:{...window.DRLayout.DOOR_DEFAULT}, rot:{}, selBlock:null, picked:{}, budgetLog:null};
   const fmt=n=>n.toLocaleString(state.lang==='hu'?'hu-HU':'en-US');
   let guestMode=false;
 
@@ -153,6 +161,71 @@
     openExtra:'{name}: {n} extra due to the ordering rule',openPaint:'Wall paint: estimate, price not verified',
     priceChange:'When saved: {from} Ft → now: {to} Ft ({delta} Ft)',priceChangeItems:'Prices changed since saving ({delta} Ft):',exPlanned:'planned',exAcc:'Accessory',exQty:'Quantity',exShipping:'Delivery / pickup'
   });
+  // ---- 5. szakasz szövegei (ajánlás, keret, elhelyezés, keresés) ----
+  Object.assign(T.hu,{
+    precisionNote:'Ellenőrizve: falak (6 cm), bútorok átfedése, az ajtó nyitási területe, a belmagasság (ahol a magasság ismert) és a falra szerelés. Csak jelezve: szék kihúzása, szekrény- és fióknyitás (szaggatott sáv). Nincs ellenőrizve: ablak, radiátor, konnektor, közlekedési útvonal a szobán át. Az AI-kép illusztráció, nem méretezett terv.',
+    planHint:'Húzd a bútort; koppints rá, majd ↻ a forgatáshoz.',
+    rotOnly:'csak elforgatva fér el',rotOnlyTitle:'Ebben a szobában csak 90°-kal elforgatva fér el — az alaprajz így helyezi el.',
+    nofitHeight:'Túl magas',nofitSpace:'Nincs szabad hely',roleRequired:'fő funkció',roleRequiredTitle:'A szoba fő funkciója — a kerethez igazítás nem hagyja el, legfeljebb olcsóbb változatra cseréli.',
+    roleLocked:'zárolt',lockTitle:'Zárolva a kerethez igazítás és a „Legolcsóbb mindenhol” nem változtat rajta.',locked:'Zárolva',lock:'Zárolás',
+    cheapestOf:'✓ legolcsóbb a {n} vizsgált közül',cheaperPreOf:'a {n} vizsgált közül a legolcsóbb: ',
+    ex_store:'nem választott boltból',ex_link:'megszűnt / hibás link',ex_variant:'nem ebbe a kategóriába való',ex_size:'hiányzó méret',
+    missingInStores:'Nincs megfelelő termék a választott boltokban ({stores}) — ez a tétel most üres, más bolt nem tölti ki.',missingWhy:'Kizárva:',
+    missingRequired:'A szoba fő funkciójához tartozik: kapcsolj be másik boltot, vagy keress a teljes katalógusban.',
+    filterNote:'A szűrés csak a listát szűkíti ({shown} / {all} látszik) — az összeg, az alaprajz és a 3D mind a {all} tételt tartalmazza.',searchCatalogFor:'Keresés a teljes katalógusban: „{q}”',
+    layoutOmittedHead:'Nem került az alaprajzra:',layoutOmittedTail:'Ezek nem szerepelnek az összegben.',
+    why_size:'semmilyen állásban nem fér el',why_height:'magasabb a belmagasságnál',why_space:'nincs szabad hely (bútor vagy ajtónyitás)',why_wall:'nem fér a falak közé',why_mount:'nincs szabad falfelület',
+    clearHead:'Kevés a használati hely:',clear_chair:'{what} kihúzásához {need} cm kell, itt {have} cm van',clear_door:'{what} nyitásához {need} cm kell, itt {have} cm van',
+    rotateSel:'↻ {what} forgatása 90°-kal',rotateHint:'↻ Forgatás (koppints egy bútorra)',rotateBlocked:'Elforgatva itt nem fér el: {why}. Húzd szabadabb helyre, és próbáld újra.',rotWhy_wall:'nem fér a falak közé',rotWhy_overlap:'másik bútorba ütközne',rotWhy_door:'az ajtó nyitási területébe lógna',rotWhy_height:'magasabb a belmagasságnál',rotWhy_mount:'nincs mellette fal',
+    blockWall:'Ide nem helyezhető: kilógna a falon túlra. Visszaállt az eredeti helyére.',blockOverlap:'Ide nem helyezhető: másik bútorba ütközne. Visszaállt az eredeti helyére.',
+    blockDoor:'Ide nem helyezhető: az ajtó nyitási területe. Visszaállt az eredeti helyére.',blockHeight:'Ide nem helyezhető: magasabb a belmagasságnál.',blockMount:'Falra szerelt elem: csak fal mellé tehető. Visszaállt az eredeti helyére.',
+    logCheapTitle:'„Legolcsóbb mindenhol” — cserék:',logOkTitle:'Igazítva a kerethez (−{saving} Ft):',logFailTitle:'A keret a szoba fő funkciójának megtartásával nem érhető el — a legolcsóbb megfelelő összeállítás is {over} Ft-tal túllépi.',
+    logFailWhy:'Ami nem hagyható el:',logNotApplied:'Nem változtattam semmit. A legkisebb elérhető összeg {total} Ft lenne az alábbi lépésekkel:',logApply:'Mégis a legolcsóbb ({total} Ft)',logNothing:'Már belefér a keretbe — nem kellett változtatni.',logNoMove:'Nincs olyan megfelelő, ellenőrzött árú csere, ami csökkentené az összeget.',
+    logSwap:'{cat}: {from} → {to}',logQty:'{cat}: {from} → {to} db',logDrop:'{cat} elhagyva ({name})',logUndone:'visszavonva',undo:'Visszavonás',undoAll:'Mind visszavonása',
+    whyTitle:'Miért ez a termék?',whyHow_search:'A teljes katalógusból választottad.',whyHow_budget:'A kerethez igazítás cserélte olcsóbbra.',whyHow_cheap:'A „Legolcsóbb mindenhol” cserélte.',
+    whyBefore:'Előtte: {name}.',whyUser:'Te választottad.',whySaved:'A mentett terv választása.',
+    whyPrimary:'A {style} {room} alapajánlata (stílus szerint válogatva).',
+    whyAlt:'Az alapajánlat ({name}) helyett:',whyBlk_store:'a boltja ({store}) nincs kiválasztva;',whyBlk_link:'megszűnt vagy hibás a linkje;',whyBlk_variant:'nem ebbe a kategóriába való;',
+    whyBlk_size:'hiányzik a mérete;',whyBlk_unverified:'az ára nem ellenőrzött;',whyBlk_fit:'nem fér be a szobába;',whyAltRule:'ezért a hozzá legközelebbi árszintű, megfelelő termék került előre.',
+    whyExamined:'Vizsgált kör: {n} megfelelő termék.',whyExcluded:'Kizárva: {list}.',whyUnsure:'Bizonytalan adat:',
+    u_priceStale:'az ár elavult',u_priceUnverified:'az ár nincs ellenőrizve',u_gone:'a termék megszűnt',u_sizeEstimated:'a méret becsült',u_heightMissing:'a magasság hiányzik',u_heightEstimated:'a magasság becsült',u_colorUnknown:'a szín nincs megadva',
+    catSearchBtn:'🔎 Teljes katalógus',catSearchTitle:'Keresés a teljes katalógusban',catSearchLead:'Minden termék a választott boltokból, ami megfelelő (él a linkje, megvan a mérete). Ha a szobában van ilyen tétel, egy kattintással beteheted.',
+    catSearchPh:'Terméknév, pl. „ektorp” vagy „kanapé”',csCat:'Kategória',csAllCats:'Minden kategória',csOther:'Más szobák',csMaxW:'Max. szélesség',csMaxD:'Max. mélység',csMinP:'Min. ár',csMaxP:'Max. ár',
+    csCount:'{n} találat',csFirst:'(az első {n} látszik)',csNotRoom:'nem ebbe a szobába való',csLocked:'zárolt tétel',csPick:'Csere: {cat}',csNone:'Nincs találat ezekkel a szűrőkkel.',
+    doorLabel:'Ajtó:',doorBottom:'alsó fal',doorTop:'felső fal',doorLeft:'bal fal',doorRight:'jobb fal',doorFrom:'cm-től',doorWidthL:'szélesség (cm)'
+  });
+  Object.assign(T.en,{
+    precisionNote:'Checked: walls (6 cm), overlapping furniture, the door swing area, ceiling height (where the height is known) and wall mounting. Only flagged: pulling out chairs, opening cabinets and drawers (dashed band). Not checked: windows, radiators, sockets, walkways through the room. The AI image is an illustration, not a scaled plan.',
+    planHint:'Drag a piece; tap it, then ↻ to rotate.',
+    rotOnly:'fits only rotated',rotOnlyTitle:'In this room it only fits rotated by 90° — the plan places it that way.',
+    nofitHeight:'Too tall',nofitSpace:'No free space',roleRequired:'core item',roleRequiredTitle:'The room’s core function — budget fitting never removes it, at most swaps it for a cheaper variant.',
+    roleLocked:'locked',lockTitle:'When locked, budget fitting and “Cheapest everywhere” leave it unchanged.',locked:'Locked',lock:'Lock',
+    cheapestOf:'✓ cheapest of the {n} examined',cheaperPreOf:'cheapest of the {n} examined: ',
+    ex_store:'from an unselected store',ex_link:'discontinued / broken link',ex_variant:'wrong category',ex_size:'missing size',
+    missingInStores:'No suitable product in the selected stores ({stores}) — this item is empty now; no other store fills it.',missingWhy:'Excluded:',
+    missingRequired:'It is part of the room’s core function: enable another store or search the full catalogue.',
+    filterNote:'Filtering only narrows the list ({shown} / {all} shown) — the total, the plan and 3D include all {all} items.',searchCatalogFor:'Search the full catalogue: “{q}”',
+    layoutOmittedHead:'Not placed on the plan:',layoutOmittedTail:'These are not in the total.',
+    why_size:'does not fit in any orientation',why_height:'taller than the ceiling',why_space:'no free space (furniture or door swing)',why_wall:'does not fit between the walls',why_mount:'no free wall space',
+    clearHead:'Little room for use:',clear_chair:'{what} needs {need} cm to pull out, {have} cm here',clear_door:'{what} needs {need} cm to open, {have} cm here',
+    rotateSel:'↻ Rotate {what} by 90°',rotateHint:'↻ Rotate (tap a piece first)',rotateBlocked:'Does not fit here when rotated: {why}. Drag it to a freer spot and try again.',rotWhy_wall:'it does not fit between the walls',rotWhy_overlap:'it would hit other furniture',rotWhy_door:'it would reach into the door swing',rotWhy_height:'taller than the ceiling',rotWhy_mount:'no wall next to it',
+    blockWall:'Cannot go here: it would cross the wall. Moved back.',blockOverlap:'Cannot go here: it would hit other furniture. Moved back.',
+    blockDoor:'Cannot go here: door swing area. Moved back.',blockHeight:'Cannot go here: taller than the ceiling.',blockMount:'Wall-mounted item: it must sit against a wall. Moved back.',
+    logCheapTitle:'“Cheapest everywhere” — swaps:',logOkTitle:'Fitted to the budget (−{saving} Ft):',logFailTitle:'The budget cannot be met while keeping the room’s core function — even the cheapest suitable set is {over} Ft over.',
+    logFailWhy:'What cannot be removed:',logNotApplied:'Nothing was changed. The lowest reachable total would be {total} Ft with these steps:',logApply:'Apply the cheapest anyway ({total} Ft)',logNothing:'Already within budget — nothing to change.',logNoMove:'No suitable, price-verified swap would lower the total.',
+    logSwap:'{cat}: {from} → {to}',logQty:'{cat}: {from} → {to} pcs',logDrop:'{cat} removed ({name})',logUndone:'undone',undo:'Undo',undoAll:'Undo all',
+    whyTitle:'Why this product?',whyHow_search:'You picked it from the full catalogue.',whyHow_budget:'Budget fitting swapped it for a cheaper one.',whyHow_cheap:'“Cheapest everywhere” swapped it.',
+    whyBefore:'Before: {name}.',whyUser:'You chose it.',whySaved:'Chosen in the saved plan.',
+    whyPrimary:'The default pick for a {style} {room} (curated by style).',
+    whyAlt:'Instead of the default ({name}):',whyBlk_store:'its store ({store}) is not selected;',whyBlk_link:'it is discontinued or its link is broken;',whyBlk_variant:'it is in another category;',
+    whyBlk_size:'its size is missing;',whyBlk_unverified:'its price is not verified;',whyBlk_fit:'it does not fit the room;',whyAltRule:'so the closest suitable product by price level comes first.',
+    whyExamined:'Examined: {n} suitable products.',whyExcluded:'Excluded: {list}.',whyUnsure:'Uncertain data:',
+    u_priceStale:'outdated price',u_priceUnverified:'price not verified',u_gone:'discontinued',u_sizeEstimated:'estimated size',u_heightMissing:'height missing',u_heightEstimated:'estimated height',u_colorUnknown:'colour not given',
+    catSearchBtn:'🔎 Full catalogue',catSearchTitle:'Search the full catalogue',catSearchLead:'Every suitable product from the selected stores (live link, known size). If the room has a matching item, swap it in with one click.',
+    catSearchPh:'Product name, e.g. “ektorp” or “sofa”',csCat:'Category',csAllCats:'All categories',csOther:'Other rooms',csMaxW:'Max. width',csMaxD:'Max. depth',csMinP:'Min. price',csMaxP:'Max. price',
+    csCount:'{n} results',csFirst:'(first {n} shown)',csNotRoom:'not for this room',csLocked:'locked item',csPick:'Swap: {cat}',csNone:'No results with these filters.',
+    doorLabel:'Door:',doorBottom:'bottom wall',doorTop:'top wall',doorLeft:'left wall',doorRight:'right wall',doorFrom:'cm from corner',doorWidthL:'width (cm)'
+  });
   const t=k=>T[state.lang][k];
   const M=window.DRMotion;
   const catName=id=>!META[id]?id:state.lang==='hu'?META[id].cat:(CAT.categories[id].label.en||META[id].cat);
@@ -176,45 +249,49 @@
       return ((A.store!==from.store)-(B.store!==from.store))||(Math.abs(A.price-from.price)-Math.abs(B.price-from.price)); });
     return cands.length?cands[0]:-1;
   }
-  function defaultIdx(slot,allowed){
-    if(!priceDataLoaded||!slot.options.length) return 0;
-    // Az eredeti első ajánlat (0.) a mérce: ha megszűnt vagy igazolatlan, a hozzá legközelebbi ellenőrzött csere jön.
-    const o=slot.options[0];
-    if(allowed.includes(0)&&!isGone(o)&&isVerified(o)) return 0;
-    const s=suggestReplacement(slot,0,allowed); return s>=0?s:(allowed.includes(0)?0:allowed[0]);
+  // ---- AJÁNLÁS (5. szakasz, R01): előbb szűrés, utána rangsor — recommendations.js ----
+  // A boltszűrő soha nem lazul: ha egy tételhez nincs megfelelő termék a választott boltokban, a tétel üres marad
+  // (missingSlots), és a lista ezt kiírja — más bolt nem tölti ki.
+  const heightOf=o=>{ const h=o&&o.variant&&o.variant.dimensions.height; return h&&h.status==='verified'&&h.value>0?h.value:null; };
+  const wallMountedOf=o=>!!(o&&o.variant&&o.variant.dimensions.wallMounted&&o.variant.dimensions.wallMounted.value);
+  const roomNow=()=>LY.roomBox(len(),wid(),hei());
+  // R03: befér-e (bármelyik 90°-os állásban, ismert magassággal) — ugyanaz a szabály, mint az elhelyezésnél
+  function itemFit(o,slotId){
+    const cat=CAT.categories[(o&&o.category)||slotId]; if(!cat||!cat.plan) return {fits:true,rotated:false,reason:null};
+    const rug=cat.plan==='rug', w=rug?Math.max(o.w,o.d):o.w, d=rug?Math.min(o.w,o.d):o.d;
+    return LY.fitsRoom({w,d,h:heightOf(o)||0,wallMounted:wallMountedOf(o)},roomNow());
   }
+  const recoCtx=slot=>({stores:state.stores,category:CAT.categories[slot.category],keepVid:state.sel[keyOf(slot.id)]||null,
+    verified:o=>!priceDataLoaded||(!isGone(o)&&isVerified(o)),fits:o=>itemFit(o,slot.id).fits});
+  function defaultIdx(slot){ return RECO.recommend(slot,recoCtx(slot)).idx; }
   // C02: a választás termékazonosítóval (változat-id) tárolódik, nem sorszámmal — a sorrend vagy az URL
   // változása így nem cseréli le másik bútorra. state.sel[szoba:stílus:tétel] = változatazonosító.
   const savedIdx=slot=>{ const v=state.sel[keyOf(slot.id)]; if(v==null) return -1; const i=slot.options.findIndex(o=>o.vid===v); return i; };
-  const setSel=(slotId,idx)=>{ const slot=getSlots().find(s=>s.id===slotId); state.sel[keyOf(slotId)]=slot.options[idx].vid; };
+  // how: honnan jött a választás (user / search / budget / cheap) — R05: visszakövethető és visszavonható
+  const setSel=(slotId,idx,how)=>{ const slot=getSlots().find(s=>s.id===slotId), k=keyOf(slotId), cur=selIndex(slotId);
+    const from=cur>=0?slot.options[cur].vid:null; state.sel[k]=slot.options[idx].vid;
+    if(how&&from!==state.sel[k]) state.picked[k]={how,from,at:new Date().toISOString()}; };
+  // A mentett választás csak akkor él, ha átmegy a szűrőn (pl. engedélyezett bolt) — különben az ajánlás, de a mentett
+  // érték megmarad: a bolt visszakapcsolásakor visszajön.
   function selIndex(id){
     const slot=getSlots().find(s=>s.id===id), i=savedIdx(slot);
-    return i>=0?i:defaultIdx(slot,allowedIdxs(slot));
+    return i>=0&&allowedIdxs(slot).includes(i)?i:defaultIdx(slot);
   }
-  function allowedIdxs(slot){
-    // Megszűnt termék csak akkor marad a listában, ha egy mentett terv kifejezetten azt választotta (lásd A05 cseréje).
-    const pinned=savedIdx(slot);
-    const ok=i=>!isGone(slot.options[i])||i===pinned;
-    const a=slot.options.map((o,i)=>i).filter(i=>state.stores.has(slot.options[i].store)&&ok(i));
-    if(a.length) return a;
-    const b=slot.options.map((o,i)=>i).filter(ok);
-    return b.length?b:slot.options.map((o,i)=>i);
-  }
+  function allowedIdxs(slot){ return RECO.filterSlot(slot,recoCtx(slot)).eligible.map(e=>e.idx); }
+  let missingSlots=[];
   function curItems(){
-    return getSlots().map(slot=>{
-      const allowed=allowedIdxs(slot);
-      let sel=selIndex(slot.id);
-      if(!allowed.includes(sel)){
-        // Boltszűrő miatt kiesett a választás: a legolcsóbb ellenőrzött (ha nincs ilyen, a legolcsóbb) lép a helyére.
-        const pool=allowed.filter(i=>isVerified(slot.options[i])); const from=pool.length?pool:allowed;
-        sel=from.reduce((b,i)=>slot.options[i].price<slot.options[b].price?i:b, from[0]);
-        state.sel[keyOf(slot.id)]=slot.options[sel].vid;
-      }
-      const o=slot.options[sel], min=Math.min(...allowed.map(i=>slot.options[i].price));
-      return {...META[slot.id], id:slot.id, ...o, optCount:allowed.length, optIndex:allowed.indexOf(sel), selFull:sel, minPrice:min, isCheapest:o.price===min, options:slot.options, allowed:allowed};
+    const out=[]; missingSlots=[];
+    getSlots().forEach(slot=>{
+      const ctx=recoCtx(slot), rec=RECO.recommend(slot,ctx), allowed=rec.eligible.map(e=>e.idx);
+      if(!allowed.length){ missingSlots.push({id:slot.id,role:slot.role,excluded:rec.reason.excluded}); return; }
+      const i=savedIdx(slot), sel=i>=0&&allowed.includes(i)?i:rec.idx;
+      const o=slot.options[sel], cheap=RECO.cheapest(rec.eligible), min=cheap.o.price, k=keyOf(slot.id);
+      out.push({...META[slot.id], id:slot.id, ...o, optCount:allowed.length, optIndex:allowed.indexOf(sel), selFull:sel, minPrice:min, isCheapest:o.price===min,
+        options:slot.options, allowed, role:slot.role, locked:state.locked.has(k), reco:rec.reason, recoIdx:rec.idx, picked:i===sel?state.picked[k]||null:null, fit:itemFit(o,slot.id)});
     });
+    return out;
   }
-  function fits(it,RL,RS){ if(it.floor==='none') return true; return it.w<=RL-MARGIN&&it.d<=RS-MARGIN; }
+  function fits(it){ return it.fit?it.fit.fits:itemFit(it,it.id).fits; }
   // A single conservative finish map feeds both the plan and the 3D models.
   // Unknown product finishes stay neutral instead of pretending to know an exact colour.
   // ---- KÖLTSÉG (2. szakasz) ----
@@ -240,7 +317,7 @@
   // Feltétel: a bútorelrendezés (state.layoutQty) már ki van számolva.
   function currentCost(){
     const L=len(),W=wid(),H=hei(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100;
-    const items=curItems().filter(it=>fits(it,RL,RS)&&!state.off.has(it.id));
+    const items=curItems().filter(it=>fits(it)&&!state.off.has(it.id));
     return DRPricing.compute({lines:items.map(costInput),mode:state.fulfillment,zone:state.zone,shipping:DRSales.SHIPPING,
       refInfo,paint:{cost:computePaint(L,W,H).cost},priceDate:PRICE_DATE});
   }
@@ -394,6 +471,28 @@
     if(rec&&rec.to&&(rec.to.vid?rec.to.vid===it.vid:rec.to.key===it.key)) h+=`<div class="replace-history">${t('replacedNote').replace('{from}',escapeHtml(rec.from.name)).replace('{when}',fmtDay(rec.at.slice(0,10)))}</div>`;
     return h;
   }
+  // ---- R05: miért ez a termék? — eredet, a vizsgált kör, mi változott a keret miatt, mi bizonytalan ----
+  function whyHtml(it){
+    const r=it.reco||{}, p=it.picked, parts=[], room=ROOM_LOWER[state.room][li()], style=STYLE_LABEL[state.style][li()].toLowerCase();
+    const nameOf=vid=>{ const o=vid&&CAT.variant(vid); return o?escapeHtml(o.name):'—'; };
+    let head;
+    if(p&&p.how!=='user'){
+      head=t('whyHow_'+p.how)+(p.from?` ${t('whyBefore').replace('{name}',nameOf(p.from))}`:'');
+      head+=` <button type="button" class="linkbtn why-undo" data-undo-pick="${it.id}">${t('undo')}</button>`;
+    } else if(p&&p.how==='user') head=t('whyUser');
+    else if(it.selFull!==it.recoIdx) head=t('whySaved');
+    else if(r.code==='primary') head=t('whyPrimary').replace('{style}',style).replace('{room}',room);
+    else {
+      const b=(r.primaryBlocked||[])[0], what=r.primaryName?escapeHtml(r.primaryName):'';
+      head=t('whyAlt').replace('{name}',what)+' '+(b==='store'?t('whyBlk_store').replace('{store}',STORE_LABEL[r.primaryStore]||r.primaryStore):b?t('whyBlk_'+b):'')+' '+t('whyAltRule');
+    }
+    parts.push(head);
+    const exN=Object.values(r.excluded||{}).reduce((a,n)=>a+n,0);
+    parts.push(t('whyExamined').replace('{n}',r.examined||it.optCount)+(exN?' '+t('whyExcluded').replace('{list}',Object.entries(r.excluded).map(([k,n])=>`${n} ${t('ex_'+k)}`).join(', ')):''));
+    const u=RECO.uncertainties(it,priceState(it).kind);
+    if(u.length) parts.push(`<span class="why-unsure">${t('whyUnsure')} ${u.map(x=>t('u_'+x)).join(', ')}.</span>`);
+    return `<details class="why"><summary>${t('whyTitle')}</summary><ul>${parts.map(x=>`<li>${x}</li>`).join('')}</ul></details>`;
+  }
   function priceNoteHtml(it){
     const s=priceState(it),c=s.c||{};
     const sale=c.listPrice&&c.saleUntil&&s.kind==='fresh'?` · <span class="price-sale">${t('pcSale').replace('{price}',fmt(c.listPrice)).replace('{until}',fmtDay(c.saleUntil))}</span>`:'';
@@ -435,60 +534,153 @@
     state.layoutOmit=new Set(drawnList().filter(it=>placed.has(it.id)===false).map(it=>it.id));
     const c=currentCost(); return {furnTotal:c.totals.products,paintTotal:c.totals.paint,grand:c.totals.known};
   }
+  // ---- KERETHEZ IGAZÍTÁS (5. szakasz, R02) ----
+  // Kötelező (a szoba fő funkciója, katalógusadat) / opcionális / zárolt tételek. Sorrend: olcsóbb megfelelő változat →
+  // darabszám → opcionális tétel elhagyása. Kötelező és zárolt tétel nem esik ki; ha nincs megoldás, kiírjuk.
+  // Minden változtatás naplózva és egyenként visszavonható (R05).
+  const minQtyOf=id=>{ const c=CAT.categories[id]||{}; return c.minQty??c.planQty??1; };
+  function withPlan(plan,fn){
+    // Egy feltételezett összeállítás kiértékelése a valódi költség- és elrendezésszámítással, utána minden visszaáll.
+    const keep={sel:{...state.sel},off:new Set(state.off),quantity:{...state.quantity},layoutQty:{...state.layoutQty},layoutOmit:new Set(state.layoutOmit)};
+    try{
+      getSlots().forEach(slot=>{ const i=plan.sel[slot.id]; if(i!=null&&slot.options[i]) state.sel[keyOf(slot.id)]=slot.options[i].vid; });
+      state.off=new Set(plan.off);
+      Object.entries(plan.qty).forEach(([id,n])=>{ if(n!==qtyFor(id)) state.quantity[id]=n; });
+      return fn();
+    } finally { Object.assign(state,keep); }
+  }
+  function evaluatePlan(plan){
+    return withPlan(plan,()=>{ const c=computeCosts(), placed={};
+      curItems().forEach(it=>{ if(!fits(it)||state.off.has(it.id)) return; placed[it.id]=it.plan?(state.layoutQty[it.id]||0):qtyFor(it.id); });
+      return {total:c.grand,placed}; });
+  }
   function autoFit(){
-    state.off=new Set();
-    const PRIO={nappali:['vase','cushion','lamp','curtain','chair','tv','rug','coffee','sofa'],haloszoba:['bedding','lamp','curtain','nightstand','rug','wardrobe','bed'],etkezo:['lamp','curtain','rug','sideboard','dchair','dtable'],konyha:['lamp','curtain','fridge','kcabinet','barstool','island'],dolgozo:['lamp','curtain','rug','shelf','ochair','desk'],gyerek:['lamp','rug','shelf','wardrobe','kdesk','kbed']};
-    const pr=PRIO[state.room];
-    for(const id of pr){ if(computeCosts().grand<=state.budget) break; if(curItems().some(x=>x.id===id)) state.off.add(id); }
+    const items=curItems();
+    const slots=items.map(it=>({id:it.id,role:it.role,locked:it.locked,on:fits(it)&&!state.off.has(it.id),sel:it.selFull,options:it.options,
+      // csere csak megfelelő (R01), ellenőrzött árú és a szobába beférő termékre
+      candidates:it.allowed.filter(i=>{ const o=it.options[i]; return !isGone(o)&&isVerified(o)&&itemFit(o,it.id).fits; }),
+      qty:qtyFor(it.id),minQty:minQtyOf(it.id),qtyLocked:state.quantity[it.id]!=null}));
+    const before={sel:{...state.sel},off:[...state.off],quantity:{...state.quantity},picked:{...state.picked}};
+    const r=RECO.fitBudget({slots,budget:state.budget,evaluate:evaluatePlan});
+    const changes=r.changes.map(c=>({...c,slotName:catName(c.slot)}));
+    // Ha a fő funkció megtartásával nincs megoldás, magától nem változtat semmit: kimondja, és felajánlja a legolcsóbbat.
+    if(r.ok) applyChanges(changes,slots,'budget');
+    state.budgetLog={kind:'budget',at:new Date().toISOString(),before,ok:r.ok,applied:r.ok,over:r.over,total:r.total,startTotal:r.startTotal,budget:state.budget,blockers:r.blockers,changes,slots};
     render();
   }
+  function applyChanges(changes,slots,how){
+    changes.forEach(c=>{ const s=slots.find(x=>x.id===c.slot), k=keyOf(c.slot);
+      if(c.type==='swap'){ c.fromVid=s.options[c.from].vid; c.toVid=s.options[c.to].vid; state.sel[k]=c.toVid; state.picked[k]={how,from:c.fromVid,at:new Date().toISOString()}; }
+      else if(c.type==='qty'){ c.wasSet=state.quantity[c.slot]!=null; state.quantity[c.slot]=c.to; }
+      else if(c.type==='drop') state.off.add(c.slot); });
+  }
+  function undoChange(i){
+    const log=state.budgetLog, c=log&&log.changes[i]; if(!c||c.undone) return;
+    const k=keyOf(c.slot);
+    if(c.type==='swap'){ state.sel[k]=c.fromVid; delete state.picked[k]; }
+    else if(c.type==='qty'){ if(c.wasSet) state.quantity[c.slot]=c.from; else delete state.quantity[c.slot]; }
+    else if(c.type==='drop') state.off.delete(c.slot);
+    c.undone=true; render();
+  }
+  function undoAll(){
+    const log=state.budgetLog; if(!log) return;
+    state.sel=log.before.sel; state.off=new Set(log.before.off); state.quantity=log.before.quantity; state.picked=log.before.picked;
+    state.budgetLog=null; render();
+  }
+  // Egy tétel választásának visszavonása (keresésből, keret-igazításból vagy „legolcsóbb mindenhol”-ból jött csere)
+  function undoPick(id){
+    const k=keyOf(id), p=state.picked[k]; if(!p) return;
+    if(p.from) state.sel[k]=p.from; else delete state.sel[k];
+    delete state.picked[k];
+    if(state.budgetLog) state.budgetLog.changes.forEach(c=>{ if(c.slot===id&&c.type==='swap') c.undone=true; });
+    render();
+  }
+  function budgetLogHtml(){
+    const log=state.budgetLog; if(!log) return '';
+    const head=log.kind==='cheap'?t('logCheapTitle'):log.ok?t('logOkTitle').replace('{saving}',fmt(Math.max(0,log.startTotal-log.total))):t('logFailTitle').replace('{over}',fmt(log.over));
+    const pending=log.kind==='budget'&&!log.applied;
+    const rows=log.changes.map((c,i)=>{
+      const txt=c.type==='swap'?t('logSwap').replace('{cat}',c.slotName).replace('{from}',escapeHtml(c.fromName)).replace('{to}',escapeHtml(c.toName))
+        :c.type==='qty'?t('logQty').replace('{cat}',c.slotName).replace('{from}',c.from).replace('{to}',c.to)
+        :t('logDrop').replace('{cat}',c.slotName).replace('{name}',escapeHtml(c.name||''));
+      return `<li class="${c.undone?'is-undone':''}"><span>${txt}${c.saving?` <b>−${fmt(c.saving)} Ft</b>`:''}</span>${pending?'':c.undone?`<em>${t('logUndone')}</em>`:`<button type="button" class="minibtn log-undo" data-undo="${i}">${t('undo')}</button>`}</li>`; }).join('');
+    const why=!log.ok&&log.kind!=='cheap'?`<p class="log-why">${t('logFailWhy')} ${log.blockers.map(b=>`<b>${catName(b.slot)}</b> (${b.locked?t('roleLocked'):t('roleRequired')}${b.name?': '+escapeHtml(b.name):''})`).join(', ')}.</p>`:'';
+    const none=!log.changes.length?`<p class="log-why">${log.ok?t('logNothing'):t('logNoMove')}</p>`:'';
+    const offer=pending&&log.changes.length?`<p class="log-why">${t('logNotApplied').replace('{total}',fmt(log.total))}</p><button type="button" class="replace-btn" id="logApply">${t('logApply').replace('{total}',fmt(log.total))}</button>`:'';
+    return `<div class="budget-log${log.ok||log.kind==='cheap'?'':' is-fail'}" role="status"><div class="log-head"><b>${head}</b>${log.changes.length&&!pending?`<button type="button" class="minibtn" id="logUndoAll">${t('undoAll')}</button>`:''}<button type="button" class="minibtn" id="logClose" aria-label="${t('slClose')}">✕</button></div>${why}${none}${offer}${rows?`<ul${pending?' class="is-pending"':''}>${rows}</ul>`:''}</div>`;
+  }
 
-  function drawBlock(P,x,y,w,h,fill,stroke,icon,dragId,i){
+  function drawBlock(P,x,y,w,h,fill,stroke,icon,dragId,i,cls){
     const dattr=dragId?` data-drag="${dragId}" data-x="${P+x}" data-y="${P+y}" style="cursor:grab"`:'';
     // A belső .pb csoport animálható (beesés), a külső transform marad a pozícióé.
-    return `<g transform="translate(${P+x},${P+y})"${dattr}><g class="pb" style="--i:${i||0}"><rect width="${w}" height="${h}" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="3"/><text x="${w/2}" y="${h/2}" font-size="44" text-anchor="middle" dominant-baseline="central">${icon}</text></g></g>`;
+    return `<g transform="translate(${P+x},${P+y})"${dattr}${cls?` class="${cls}"`:''}><g class="pb" style="--i:${i||0}"><rect width="${w}" height="${h}" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="3"/><text x="${w/2}" y="${h/2}" font-size="44" text-anchor="middle" dominant-baseline="central">${icon}</text></g></g>`;
+  }
+  // R04: ajtó (zsanér, ajtólap, nyitási ív) a választott falon; a nyitási négyzet tiltott terület
+  function doorSvg(P,door,wallHex){
+    const {wall,offset:o,width:w,zone}=door, R=roomNow(), Wd=R.W, Dp=R.D;
+    const pts=wall==='bottom'?[[o,Dp],[o+w,Dp],[o,Dp-w]]:wall==='top'?[[o,0],[o+w,0],[o,w]]:wall==='left'?[[0,o],[0,o+w],[w,o]]:[[Wd,o],[Wd,o+w],[Wd-w,o]];
+    const [h,c,op]=pts.map(p=>[P+p[0],P+p[1]]), sweep=((c[0]-h[0])*(op[1]-h[1])-(c[1]-h[1])*(op[0]-h[0]))>0?1:0;
+    const gap=wall==='bottom'||wall==='top'?`<rect x="${P+o}" y="${(wall==='top'?P:P+Dp)-6}" width="${w}" height="12" fill="${wallHex}"/>`:`<rect x="${(wall==='left'?P:P+Wd)-6}" y="${P+o}" width="12" height="${w}" fill="${wallHex}"/>`;
+    return `<rect x="${P+zone.x}" y="${P+zone.y}" width="${zone.w}" height="${zone.d}" class="plan-door-zone"/>${gap}`+
+      `<path d="M ${h[0]} ${h[1]} L ${op[0]} ${op[1]} M ${c[0]} ${c[1]} A ${w} ${w} 0 0 ${sweep} ${op[0]} ${op[1]}" fill="none" class="plan-door" stroke-width="3" stroke-dasharray="6 6"/>`;
   }
   function buildPlan(L,W,drawn,wallHex,prevWallHex){
     const roomW=Math.max(L,W)*100,roomH=Math.min(L,W)*100,P=32,vw=roomW+2*P,vh=roomH+2*P;
-    let blocks='',n=0;
-    // The same resolved centimeter coordinates drive the SVG plan and the 3D scene.
-    placements3D(L,W,drawn).forEach(b=>{
+    const lay=runLayout(L,W,drawn);
+    let blocks='',zones='',n=0;
+    // Ugyanazok a cm-koordináták hajtják az alaprajzot és a 3D-jelenetet (layout.js).
+    lay.placed.forEach(b=>{
       const it=drawn.find(x=>x.id===b.productId)||drawn.find(x=>x.plan===b.kind);
       const icon=it?it.icon:(META[b.kind]||{}).icon||'▪';
-      const color=b.color||finishForKind(b.kind,drawn), isRug=!!b.rug;
-      blocks+=drawBlock(P,b.cx-b.w/2,b.cy-b.d/2,b.w,b.d,color,isRug?'#a08a5b':'#3a352d',icon,b.instanceId,n++);
+      const color=it?finishFor(it):finishForKind(b.kind,drawn), isRug=!!b.rug;
+      blocks+=drawBlock(P,b.box.x,b.box.y,b.w,b.d,color,isRug?'#a08a5b':'#3a352d',icon,b.instanceId,n++,[state.selBlock===b.instanceId?'is-selected':'',b.wall?'is-wall':''].filter(Boolean).join(' '));
+      // R04: használati sáv (szék kihúzása, ajtó/fiók nyitása) — piros, ha kevés a hely
+      if(b.clear){ const z=b.clear.zone; zones+=`<rect x="${P+z.x}" y="${P+z.y}" width="${z.w}" height="${z.d}" class="plan-clear${b.clear.have<b.clear.need?' is-short':''}"/>`; }
     });
-    const screen=tvScreen(placements3D(L,W,drawn));
+    const screen=tvScreen(lay.placed);
     if(screen) blocks+=drawBlock(P,screen.cx-screen.w/2,screen.cy-screen.d/2,screen.w,screen.d,String.fromCharCode(35)+'202124',String.fromCharCode(35)+'202124',state.tvPlacement==='wall'?(state.lang==='hu'?'TV: falon':'TV: wall'):(state.lang==='hu'?'TV: bútoron':'TV: stand'),null,n++);
-    const doorX=P+40,doorW=80;
     // Falszínváltáskor az új szín körhullámként terül szét a régi fölött.
     const under=prevWallHex?`<rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="${prevWallHex}" class="plan-wall-old"/>`:'';
     return `<svg class="plan" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
       ${under}<rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="${wallHex}" class="plan-floor${prevWallHex?' wall-reveal':''}"/>
       <rect x="${P}" y="${P}" width="${roomW}" height="${roomH}" fill="none" class="plan-wall" stroke-width="10" pathLength="1000"/>
-      <rect x="${doorX}" y="${P+roomH-5}" width="${doorW}" height="12" fill="${wallHex}"/>
-      <path d="M ${doorX} ${P+roomH} a ${doorW} ${doorW} 0 0 0 ${doorW} ${-doorW}" fill="none" class="plan-door" stroke-width="3" stroke-dasharray="6 6"/>
-      ${blocks}
+      ${doorSvg(P,lay.door,wallHex)}
+      ${zones}${blocks}
       <text x="${vw/2}" y="${P/1.4}" font-size="34" text-anchor="middle" class="plan-dim">${Math.max(L,W).toLocaleString('hu-HU')} m</text>
       <text x="${P/1.4}" y="${vh/2}" font-size="34" text-anchor="middle" class="plan-dim" transform="rotate(-90 ${P/1.4} ${vh/2})">${Math.min(L,W).toLocaleString('hu-HU')} m</text>
     </svg>`;
   }
-  function canPlace(id,cx,cy){
-    const items=placements3D(len(),wid(),drawnList()),it=items.find(x=>x.instanceId===id);
-    if(!it) return false;
-    const rw=Math.max(len(),wid())*100,rh=Math.min(len(),wid())*100;
-    if(cx-it.w/2<6||cy-it.d/2<6||cx+it.w/2>rw-6||cy+it.d/2>rh-6) return false;
-    return !items.some(b=>b.instanceId!==id&&!b.rug&&!it.rug&&Math.abs(b.cx-cx)<(b.w+it.w)/2+5&&Math.abs(b.cy-cy)<(b.d+it.d)/2+5);
+  // R03: minden mozgatás és forgatás ugyanazon a szabályon megy át (layout.js validateMove) — 2D-ben és 3D-ben is.
+  let lastBlock=null;
+  const blockText=r=>t({wall:'blockWall',overlap:'blockOverlap',door:'blockDoor',height:'blockHeight',mount:'blockMount'}[r]||'layoutBlocked');
+  function canPlace(id,cx,cy,rot){
+    const lay=runLayout(len(),wid(),drawnList());
+    lastBlock=LY.validateMove(lay,id,cx,cy,lay.room,state.door,rot);
+    return !lastBlock;
   }
+  function freezeLayout(lay){ lay.placed.forEach(b=>{ state.pos[keyOf(b.instanceId)]={x:b.box.x,y:b.box.y}; if(b.rot) state.rot[keyOf(b.instanceId)]=b.rot; }); }
   function commitPlacement(it){
     if(!canPlace(it.instanceId,it.cx,it.cy)) return false;
-    const resolved=placements3D(len(),wid(),drawnList());
-    const current=resolved.find(b=>b.instanceId===it.instanceId);
+    const lay=runLayout(len(),wid(),drawnList()), current=lay.placed.find(b=>b.instanceId===it.instanceId);
     if(!current) return false;
-    resolved.forEach(b=>state.pos[keyOf(b.instanceId)]={x:b.cx-b.w/2,y:b.cy-b.d/2});
+    freezeLayout(lay);
     state.pos[keyOf(it.instanceId)]={x:it.cx-current.w/2,y:it.cy-current.d/2};
     render();
     return true;
+  }
+  // Forgatás 90°-kal a középpont körül; ha így nem fér el, visszaáll és megmondja, miért.
+  function rotateSelected(){
+    const id=state.selBlock; if(!id) return;
+    const lay=runLayout(len(),wid(),drawnList()), p=lay.placed.find(b=>b.instanceId===id);
+    const status=document.getElementById('layoutStatus');
+    if(!p){ state.selBlock=null; render(); return; }
+    const next=LY.norm(p.rot+90), f=LY.footprint(p.baseW,p.baseD,next), R=lay.room;
+    // a középpont körül forgat; ha a fal útban van, a falon belülre csúsztatja (a többi szabály ugyanúgy érvényes)
+    const cx=Math.max(LY.WALL+f.w/2,Math.min(p.cx,R.W-LY.WALL-f.w/2)), cy=Math.max(LY.WALL+f.d/2,Math.min(p.cy,R.D-LY.WALL-f.d/2));
+    if(!canPlace(id,cx,cy,next)){ status.textContent=t('rotateBlocked').replace('{why}',t('rotWhy_'+lastBlock)||''); return; }
+    freezeLayout(lay);
+    state.rot[keyOf(id)]=next; state.pos[keyOf(id)]={x:cx-f.w/2,y:cy-f.d/2};
+    render();
   }
   function attachDrag(){
     const svg=document.querySelector('svg.plan'); if(!svg) return;
@@ -507,12 +699,17 @@
       });
       const done=()=>{
         if(!cur) return;
-        if(cur.nx!=null){
+        // apró elmozdulás = koppintás: kijelölés (forgatáshoz)
+        const moved=cur.nx!=null&&Math.hypot(cur.nx-cur.ox,cur.ny-cur.oy)>3;
+        if(moved){
           const box=g.querySelector('rect'), w=box?+box.getAttribute('width'):0, h=box?+box.getAttribute('height'):0;
-          const x=cur.nx-P,y=cur.ny-P,L=len(),W=wid(),rw=Math.max(L,W)*100,rh=Math.min(L,W)*100;
+          const x=cur.nx-P,y=cur.ny-P;
           if(!commitPlacement({instanceId:cur.id,cx:x+w/2,cy:y+h/2})) cur.blocked=true;
         }
-        g.style.cursor='grab'; const c=cur; cur=null; if(c.nx!=null) render(); if(c.blocked) document.getElementById('layoutStatus').textContent=t('layoutBlocked');
+        g.style.cursor='grab'; const c=cur; cur=null;
+        if(!moved){ state.selBlock=state.selBlock===c.id?null:c.id; render(); return; }
+        render();   // érvénytelen helynél az eredeti hely áll vissza
+        if(c.blocked) document.getElementById('layoutStatus').textContent=blockText(lastBlock);
       };
       g.addEventListener('pointerup',done);
       g.addEventListener('pointercancel',()=>{ if(cur) cur.nx=null; done(); render(); });
@@ -522,10 +719,10 @@
   function buildTabs(){
     const rt=document.getElementById('roomtabs');
     rt.innerHTML=ROOMS.map(r=>`<div class="tab room ${state.room===r.id?'sel':''}" data-r="${r.id}">${ROOM_LABEL[r.id][li()]}</div>`).join('');
-    rt.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.room=el.dataset.r;state.off=new Set();state.compareSnap=null;restoreNotes=[];render();}));
+    rt.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.room=el.dataset.r;state.off=new Set();state.selBlock=null;state.budgetLog=null;state.compareSnap=null;restoreNotes=[];render();}));
     const stb=document.getElementById('styletabs');
     stb.innerHTML=STYLES.map(s=>`<div class="tab ${state.style===s.id?'sel':''}" data-s="${s.id}">${STYLE_LABEL[s.id][li()]}</div>`).join('');
-    stb.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.style=el.dataset.s;state.off=new Set();state.compareSnap=null;restoreNotes=[];render();}));
+    stb.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{state.style=el.dataset.s;state.off=new Set();state.selBlock=null;state.budgetLog=null;state.compareSnap=null;restoreNotes=[];render();}));
   }
   function applyStatic(){
     document.documentElement.lang=state.lang;
@@ -560,20 +757,26 @@
     applyStatic();
     document.getElementById('styleName').textContent=STYLE_LABEL[state.style][li()];
     document.getElementById('roomName').textContent=ROOM_LOWER[state.room][li()];
-    const q=(state.search||'').trim().toLowerCase();
+    // R06: a listaszűrő CSAK a megjelenítést szűkíti — az összeg, az alaprajz és a 3D minden tételt tartalmaz.
+    const q=RECO.fold((state.search||'').trim());
+    let hiddenN=0;
 
     const listEl=document.getElementById('list'); listEl.innerHTML='';
     let furnArea=0,fitCount=0,onCount=0; const drawn=[];
     list.forEach(it=>{
-      const ok=fits(it,RL,RS); if(ok) fitCount++;
+      const ok=fits(it); if(ok) fitCount++;
       const qty=qtyFor(it.id);
       const on=ok&&!state.off.has(it.id);
       if(on&&it.plan) drawn.push(it);
-      if(q && !(it.name.toLowerCase().includes(q) || catName(it.id).toLowerCase().includes(q))) return;
-      const badge=ok?'':`<span class="badge-nofit">${t('nofit')}</span>`;
+      if(q && !(RECO.fold(it.name).includes(q) || RECO.fold(catName(it.id)).includes(q))){ hiddenN++; return; }
+      const badge=ok?(it.fit.rotated?`<span class="badge-rot" title="${t('rotOnlyTitle')}">${t('rotOnly')}</span>`:'')
+        :`<span class="badge-nofit">${it.fit.reason==='height'?t('nofitHeight'):t('nofit')}</span>`;
+      const roleTag=it.role==='required'?`<span class="role-tag" title="${t('roleRequiredTitle')}">${t('roleRequired')}</span>`:'';
+      const lockBtn=`<button type="button" class="lock-btn${it.locked?' is-on':''}" data-lock="${it.id}" aria-pressed="${it.locked}" title="${t('lockTitle')}">${it.locked?'🔒 '+t('locked'):'🔓 '+t('lock')}</button>`;
       let swap='',cmp='';
       if(it.optCount>1){
-        const cheap=it.isCheapest?`<span class="cheap best">${t('cheapest')}</span>`:`<span class="cheap">${t('cheaperPre')}<b>${fmt(it.minPrice)} Ft</b></span>`;
+        // R05: a „legolcsóbb” csak a vizsgált, megfelelő termékek közül értendő
+        const cheap=it.isCheapest?`<span class="cheap best">${t('cheapestOf').replace('{n}',it.optCount)}</span>`:`<span class="cheap">${t('cheaperPreOf').replace('{n}',it.optCount)}<b>${fmt(it.minPrice)} Ft</b></span>`;
         swap=`<div class="swap"><button class="sbtn" data-id="${it.id}" data-dir="-1">◀</button><span class="sidx">${it.optIndex+1} / ${it.optCount}</span><button class="sbtn" data-id="${it.id}" data-dir="1">▶</button>${cheap}<button class="cmpbtn" data-cmp="${it.id}">${t('prices')} (${it.optCount})</button></div>`;
         if(state.openCmp.has(it.id)){
           const rows=it.allowed.map(idx=>({o:it.options[idx],idx})).sort((a,b)=>a.o.price-b.o.price).map(({o,idx})=>{
@@ -592,8 +795,8 @@
       const vizNote=it.plan&&state.itemColors[it.id]?`<span class="viz-note">${realColor?t('vizColorNote').replace('{c}',escapeHtml(realColor)):t('vizColorNoteNone')}</span>`:'';
       // B01: a darabszám minden tételnél állítható (a bútoroknál a szín is); a megvásárolandó mennyiséget a költségszámítás adja.
       const colorCtl=it.plan?`<label class="item-color"><span>${colorLabel}</span><input class="furn-color" type="color" aria-label="${colorLabel}: ${it.name}" title="${t('vizColorTitle')}" value="${itemColor}" data-id="${it.id}"></label>${vizNote}`:'';
-      const controls=`<div class="item-controls">${colorCtl}<div class="quantity-control"><span>${quantityLabel}</span><button type="button" class="qty-btn" data-id="${it.id}" data-step="-1" aria-label="Kevesebb">−</button><b class="qty-value" data-qty-for="${it.id}">${qty}</b><button type="button" class="qty-btn" data-id="${it.id}" data-step="1" aria-label="Több">+</button></div><button type="button" class="detail-btn" data-detail="${it.id}">${t('details')}</button></div>`;
-      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}">${productPhoto(it)}<div class="info"><div class="name">${it.name}</div><div class="meta"><span class="dims">${dimsText(it)}</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${priceNoteHtml(it)}${replaceNoteHtml(it)}<div class="cost-notes" data-notes-for="${it.id}"></div>${controls}${swap}${cmp}</div><div class="right"><div class="price${isUncertain(it)?' is-uncertain':''}" data-price-for="${it.id}"${isUncertain(it)?` title="${t('pcUncertainTitle')}"`:''}>—</div><div class="unit-price" data-unit-for="${it.id}"></div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
+      const controls=`<div class="item-controls">${colorCtl}<div class="quantity-control"><span>${quantityLabel}</span><button type="button" class="qty-btn" data-id="${it.id}" data-step="-1" aria-label="Kevesebb">−</button><b class="qty-value" data-qty-for="${it.id}">${qty}</b><button type="button" class="qty-btn" data-id="${it.id}" data-step="1" aria-label="Több">+</button></div><button type="button" class="detail-btn" data-detail="${it.id}">${t('details')}</button>${lockBtn}</div>`;
+      el.innerHTML=`<input type="checkbox" class="chk" ${on?'checked':''} ${ok?'':'disabled'} data-id="${it.id}">${productPhoto(it)}<div class="info"><div class="name">${it.name}${roleTag}</div><div class="meta"><span class="dims">${dimsText(it)}</span> · ${catName(it.id)} ${storeBadge(it.store)}${badge}</div>${priceNoteHtml(it)}${replaceNoteHtml(it)}${whyHtml(it)}<div class="cost-notes" data-notes-for="${it.id}"></div>${controls}${swap}${cmp}</div><div class="right"><div class="price${isUncertain(it)?' is-uncertain':''}" data-price-for="${it.id}"${isUncertain(it)?` title="${t('pcUncertainTitle')}"`:''}>—</div><div class="unit-price" data-unit-for="${it.id}"></div><a class="buy" href="${it.url}" target="_blank" rel="noopener">${t('buy')}</a></div>`;
       el.querySelector('.product-photo img')?.addEventListener('error',e=>{
         e.currentTarget.hidden=true;
         el.querySelector('.photo-fallback').hidden=false;
@@ -601,14 +804,22 @@
       },{once:true});
       listEl.appendChild(el);
     });
-    // Keep the visible plan, totals, and 3D scene in agreement when a complete
-    // layout cannot be packed without intersections.
-    const resolved=placements3D(L,W,drawn), placedKinds=new Set(resolved.map(x=>x.productId));
+    // R01: üresen maradt tétel — a választott boltokban nincs megfelelő termék; más bolt nem tölti ki
+    missingSlots.forEach(m=>{
+      const ex=Object.entries(m.excluded||{}).map(([k,n])=>`${n} ${t('ex_'+k)}`).join(', ');
+      const el=document.createElement('div'); el.className='item is-missing';
+      el.innerHTML=`<div class="info"><div class="name">${META[m.id]?META[m.id].icon:''} ${catName(m.id)}${m.role==='required'?`<span class="role-tag">${t('roleRequired')}</span>`:''}</div><div class="missing-note" role="note">${t('missingInStores').replace('{stores}',[...state.stores].map(s=>STORE_LABEL[s]||s).join(', '))}${ex?` <span class="muted">(${t('missingWhy')} ${ex})</span>`:''}${m.role==='required'?` <b>${t('missingRequired')}</b>`:''}</div></div>`;
+      listEl.appendChild(el);
+    });
+    const fnote=document.getElementById('filterNote');
+    if(fnote){ fnote.hidden=!q; if(q) fnote.innerHTML=`${t('filterNote').replace('{shown}',list.length-hiddenN).split('{all}').join(list.length)} <button type="button" class="linkbtn" id="filterToCatalog">${t('searchCatalogFor').replace('{q}',escapeHtml(state.search.trim()))}</button>`; }
+    // Az elrendezés (layout.js) dönti el, mi fér el: a költség, az alaprajz és a 3D ugyanezt használja.
+    const lay=runLayout(L,W,drawn), resolved=lay.placed, placedKinds=new Set(resolved.map(x=>x.productId));
     state.layoutQty={}; resolved.forEach(x=>state.layoutQty[x.productId]=(state.layoutQty[x.productId]||0)+1);
     const rejected=drawn.filter(it=>!placedKinds.has(it.id));
     state.layoutOmit=new Set(rejected.map(it=>it.id));
     drawn.forEach(it=>{ const actual=state.layoutQty[it.id]||0; const qtyEl=listEl.querySelector(`[data-qty-for="${it.id}"]`); if(qtyEl) qtyEl.textContent=actual+' / '+qtyFor(it.id); });
-    rejected.forEach(it=>{ const cb=listEl.querySelector(`.chk[data-id="${it.id}"]`); if(cb){cb.checked=false;cb.disabled=true;cb.closest('.item')?.classList.add('off');const meta=cb.closest('.item')?.querySelector('.meta');if(meta&&!meta.querySelector('.badge-nofit'))meta.insertAdjacentHTML('beforeend',` <span class="badge-nofit">${t('nofit')}</span>`);} });
+    rejected.forEach(it=>{ const cb=listEl.querySelector(`.chk[data-id="${it.id}"]`); if(cb){cb.checked=false;cb.disabled=true;cb.closest('.item')?.classList.add('off');const meta=cb.closest('.item')?.querySelector('.meta');meta?.querySelector('.badge-rot')?.remove();if(meta&&!meta.querySelector('.badge-nofit'))meta.insertAdjacentHTML('beforeend',` <span class="badge-nofit">${t('nofitSpace')}</span>`);} });
 
     const photoRect=el=>(el.closest('.item')?.querySelector('.product-photo')||el).getBoundingClientRect();
     listEl.querySelectorAll('.chk').forEach(c=>c.addEventListener('change',()=>{ if(c.checked){ state.off.delete(c.dataset.id); pendingFly=photoRect(c); } else state.off.add(c.dataset.id); render(); }));
@@ -617,15 +828,18 @@
     listEl.querySelectorAll('.qty-btn').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.id,before=qtyFor(id);state.quantity[id]=Math.max(1,Math.min(8,before+(+b.dataset.step)));if(state.quantity[id]>before) M.flyTo(photoRect(b),document.getElementById('navBagBtn'));syncFurnitureViews();}));
     listEl.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.id,dir=+b.dataset.dir; const slot=getSlots().find(s=>s.id===id); const allowed=allowedIdxs(slot); const cur=selIndex(id); let pos=allowed.indexOf(cur); if(pos<0) pos=0; const next=allowed[(pos+dir+allowed.length)%allowed.length];
       if(isGone(slot.options[cur])&&next!==cur) recordReplacement(id,slot.options[cur],slot.options[next],'gone');
-      setSel(id,next); pendingSwap={id,dir}; render(); }));
+      setSel(id,next,'user'); pendingSwap={id,dir}; render(); }));
     listEl.querySelectorAll('.replace-btn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.id,to=+b.dataset.to; const slot=getSlots().find(s=>s.id===id);
-      recordReplacement(id,slot.options[selIndex(id)],slot.options[to],'gone'); setSel(id,to); pendingSwap={id,dir:1}; render(); }));
+      recordReplacement(id,slot.options[selIndex(id)],slot.options[to],'gone'); setSel(id,to,'user'); pendingSwap={id,dir:1}; render(); }));
+    listEl.querySelectorAll('.lock-btn').forEach(b=>b.addEventListener('click',()=>{ const k=keyOf(b.dataset.lock); state.locked.has(k)?state.locked.delete(k):state.locked.add(k); render(); }));
+    listEl.querySelectorAll('.why-undo').forEach(b=>b.addEventListener('click',()=>undoPick(b.dataset.undoPick)));
+    document.getElementById('filterToCatalog')?.addEventListener('click',()=>openCatalogSearch(state.search.trim()));
     if(pendingSwap){ M.swapIn(listEl.querySelector(`.chk[data-id="${pendingSwap.id}"]`)?.closest('.item'),pendingSwap.dir); pendingSwap=null; }
     listEl.querySelectorAll('.detail-btn').forEach(b=>b.addEventListener('click',()=>openDetails(b.dataset.detail)));
     listEl.querySelectorAll('.cmpbtn').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.cmp; state.openCmp.has(id)?state.openCmp.delete(id):state.openCmp.add(id); render(); }));
     listEl.querySelectorAll('.cmprow').forEach(r=>r.addEventListener('click',()=>{ const id=r.dataset.id,to=+r.dataset.idx,slot=getSlots().find(s=>s.id===id),cur=selIndex(id);
       if(isGone(slot.options[cur])&&to!==cur) recordReplacement(id,slot.options[cur],slot.options[to],'gone');
-      setSel(id,to); render(); }));
+      setSel(id,to,'user'); render(); }));
 
     // B05: egyetlen költségszámítás — a lista, az összegzés és minden más felület ebből dolgozik.
     const cost=currentCost(); lastCost=cost;
@@ -639,8 +853,19 @@
       const ne=listEl.querySelector(`[data-notes-for="${it.id}"]`); if(ne) ne.innerHTML=costNotesHtml(l,cost.accessories.filter(a=>a.for===it.id));
       ne?.closest('.item')?.classList.toggle('is-partial',cost.accessories.some(a=>a.for===it.id));
     });
-    const missing=drawn.reduce((n,it)=>n+qtyFor(it.id)-actualQty(it),0);
-    document.getElementById('layoutStatus').textContent=missing?t('layoutOmitted')+' ('+missing+')':'';
+    // R03–R04: ami nem fért el (okkal), és ahol kevés a használati hely — jól látható, nem csendes
+    const name=id=>catName(String(id).split('~')[0]);
+    const lines=[];
+    if(lay.unplaced.length){ const g={}; lay.unplaced.forEach(u=>{ const k=u.productId+'|'+u.reason; g[k]=g[k]||{id:u.productId,reason:u.reason,n:0}; g[k].n++; });
+      lines.push(`<b>${t('layoutOmittedHead')}</b> `+Object.values(g).map(x=>`${catName(x.id)}${x.n>1?' ×'+x.n:''} — ${t('why_'+x.reason)}${list.find(it=>it.id===x.id&&it.role==='required')?` <b class="core-miss">(${t('roleRequired')}!)</b>`:''}`).join('; ')+'. '+t('layoutOmittedTail')); }
+    if(lay.warnings.length) lines.push(`<span class="warn-clear"><b>${t('clearHead')}</b> `+lay.warnings.map(w=>t('clear_'+(w.kind in {dchair:1,barstool:1,ochair:1}?'chair':'door')).replace('{what}',name(w.instanceId)).replace('{have}',w.have).replace('{need}',w.need)).join('; ')+'.</span>');
+    document.getElementById('layoutStatus').innerHTML=lines.join('<br>');
+    const rb=document.getElementById('rotateBtn'); if(rb){ const sel=resolved.find(p=>p.instanceId===state.selBlock); if(!sel) state.selBlock=null; rb.disabled=!sel; rb.textContent=sel?t('rotateSel').replace('{what}',name(sel.instanceId)):t('rotateHint'); }
+    syncDoorControls();
+    const bl=document.getElementById('budgetLog'); if(bl){ bl.innerHTML=budgetLogHtml();
+      bl.querySelectorAll('.log-undo').forEach(b=>b.addEventListener('click',()=>undoChange(+b.dataset.undo)));
+      bl.querySelector('#logUndoAll')?.addEventListener('click',undoAll);
+      bl.querySelector('#logApply')?.addEventListener('click',()=>{ const log=state.budgetLog; applyChanges(log.changes,log.slots,'budget'); log.applied=true; render(); }); bl.querySelector('#logClose')?.addEventListener('click',()=>{ state.budgetLog=null; render(); }); }
     const paint=computePaint(L,W,H), paintTotal=paint.cost;
     document.getElementById('paintcalc').innerHTML=paint.html;
     const wall=wallHex(),planEl=document.getElementById('plan');
@@ -717,7 +942,7 @@
   bRange.addEventListener('input',()=>{state.budget=+bRange.value;bNum.value=bRange.value;render();});
   bNum.addEventListener('input',()=>{state.budget=+bNum.value||0;bRange.value=Math.min(Math.max(state.budget,+bRange.min),+bRange.max);render();});
   document.getElementById('autofit').addEventListener('click',autoFit);
-  document.getElementById('resetLayout').addEventListener('click',()=>{ Object.keys(state.pos).forEach(k=>{ if(k.startsWith(state.room+':'+state.style+':')) delete state.pos[k]; }); render(); });
+  document.getElementById('resetLayout').addEventListener('click',()=>{ const pre=state.room+':'+state.style+':'; [state.pos,state.rot].forEach(o=>Object.keys(o).forEach(k=>{ if(k.startsWith(pre)) delete o[k]; })); state.selBlock=null; render(); });
   document.getElementById('exportBtn').addEventListener('click',exportOffer);
   document.getElementById('exportBtn2').addEventListener('click',exportOffer);
 
@@ -760,7 +985,7 @@
   // ---- 3D NÉZET ----
   function drawnList(){
     const L=len(),W=wid(),RL=Math.max(L,W)*100,RS=Math.min(L,W)*100; const arr=[];
-    curItems().forEach(it=>{ const ok=fits(it,RL,RS), on=ok&&!state.off.has(it.id); if(on&&it.plan) arr.push(it); });
+    curItems().forEach(it=>{ const ok=fits(it), on=ok&&!state.off.has(it.id); if(on&&it.plan) arr.push(it); });
     return arr;
   }
   function tvScreen(items){
@@ -772,52 +997,24 @@
     if(!stand) return null;
     return {instanceId:stand.instanceId,cx:stand.cx,cy:stand.cy,w:Math.min(118,stand.w),d:5,h:Math.min(68,H-stand.h-6),bottom:stand.h,mode:'stand'};
   }
-  const H3={sofa:80,chair:95,coffee:42,tv:48,rug:2,lamp:150,bed:45,nightstand:45,wardrobe:180,dtable:75,dchair:90,sideboard:80,island:90,barstool:72,kcabinet:120,fridge:180,desk:75,ochair:100,shelf:180,kbed:45,kdesk:65};
-  function placements3D(L,W,drawn){
-    const roomW=Math.max(L,W)*100,roomH=Math.min(L,W)*100;
-    const cX=(x,w)=>Math.max(6,Math.min(x,roomW-w-6)), cY=(y,h)=>Math.max(6,Math.min(y,roomH-h-6));
-    let anchors={}, order=[];
-    if(state.room==='nappali'){ anchors={tv:[(roomW-120)/2,10],sofa:[(roomW-224)/2,roomH-90-10],coffee:[(roomW-110)/2,roomH/2+10],armchair:[12,roomH-96-12],lamp:[12,12]}; order=['rug','sofa','coffee','tv','armchair','lamp']; }
-    else if(state.room==='haloszoba'){ const bed=drawn.find(x=>x.plan==='bed'); const bw=bed?bed.w:160; anchors={bed:[(roomW-bw)/2,12],wardrobe:[roomW-130,roomH-55-10],lamp:[roomW-42,12]}; order=['rug','bed','nightstands','wardrobe','lamp']; }
-    else if(state.room==='etkezo'){ const dt=drawn.find(x=>x.plan==='dtable'); const tw=dt?dt.w:140, th=dt?dt.d:85; anchors={dtable:[(roomW-tw)/2,(roomH-th)/2],sideboard:[roomW-135,roomH-50-10],lamp:[12,12]}; order=['rug','dtable','dchairs','sideboard','lamp']; }
-    else if(state.room==='konyha'){ const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80; anchors={island:[(roomW-iw)/2,(roomH-ih)/2-20],kcabinet:[12,10],fridge:[roomW-66,10],lamp:[12,roomH-52]}; order=['kcabinet','island','barstools','fridge','lamp']; }
-    else if(state.room==='dolgozo'){ const dk=drawn.find(x=>x.plan==='desk'); const dw=dk?dk.w:120, dd=dk?dk.d:60; anchors={desk:[(roomW-dw)/2,10],ochair:[(roomW-70)/2,10+dd+14],shelf:[12,roomH-40-10],lamp:[roomW-42,10]}; order=['rug','desk','ochair','shelf','lamp']; }
-    else { const kd=drawn.find(x=>x.plan==='kdesk'); const kw=kd?kd.w:96; anchors={kbed:[12,12],kdesk:[roomW-kw-12,12],wardrobe:[roomW-130,roomH-55-10],shelf:[12,roomH-40-10],lamp:[(roomW-30)/2,(roomH-40)/2]}; order=['rug','kbed','kdesk','wardrobe','shelf','lamp']; }
-    const out=[]; let activeProduct=null;
-    const push=(id,x,y,w,d,instanceId=id)=>{
-      if(w>roomW-12) return; if(d>roomH-12) return;
-      const rug=META[id]&&META[id].floor==='rug';
-      const stored=state.pos[keyOf(instanceId)]; if(stored){x=stored.x;y=stored.y;}
-      x=cX(x,w); y=cY(y,d);
-      // Preserve the preferred room layout when possible. If it collides, search
-      // the measured floor area on a 10 cm grid and choose the nearest clear spot.
-      const blocked=(a,b)=>!a.rug&&!rug&&Math.abs(a.cx-(b.x+b.w/2))<(a.w+b.w)/2+5&&Math.abs(a.cy-(b.y+b.d/2))<(a.d+b.d)/2+5;
-      const collides=(px,py)=>out.some(a=>blocked(a,{x:px,y:py,w,d}));
-      if(!rug&&collides(x,y)){
-        let best=null,bestDist=Infinity;
-        for(let py=8;py<=roomH-d-8;py+=10) for(let px=8;px<=roomW-w-8;px+=10){
-          if(collides(px,py)) continue;
-          const dist=Math.hypot(px-x,py-y); if(dist<bestDist){best={x:px,y:py};bestDist=dist;}
-        }
-        if(best){x=best.x;y=best.y;}
-      }
-      if(!rug&&collides(x,y)) return; // Never draw an intersecting object.
-      const product=activeProduct;
-      const placed={productId:product.id,kind:id,instanceId,cx:x+w/2,cy:y+d/2,w,d,h:(H3[id]||60),rug:!!rug,color:finishFor(product)};
-      out.push(placed); return placed;
-    };
-    order.forEach(key=>{ const it=drawn.find(x=>x.plan===key); activeProduct=it; if(!it) return;
-      if(key==='nightstands'){ const bed=drawn.find(x=>x.plan==='bed'); const bw=bed?bed.w:160; const bp=state.pos[keyOf('bed')]; const bx=bp?bp.x:(roomW-bw)/2, by=bp?bp.y:12; for(let i=0;i<qtyFor('nightstand');i++){const nx=i%2===0?bx-43-Math.floor(i/2)*42:bx+bw+8+Math.floor(i/2)*42;push('nightstand',nx,by,it.w,it.d,`nightstand~${i+1}`);} return; }
-      if(key==='dchairs'){ const dt=drawn.find(x=>x.plan==='dtable'); const tw=dt?dt.w:140, th=dt?dt.d:85; const tp=state.pos[keyOf('dtable')]; const tx=tp?tp.x:(roomW-tw)/2, ty=tp?tp.y:(roomH-th)/2; const slots=[[tx+tw*.22-22,ty-50],[tx+tw*.78-22,ty-50],[tx+tw*.22-22,ty+th+4],[tx+tw*.78-22,ty+th+4],[tx-50,ty+th*.25-23],[tx-50,ty+th*.75-23],[tx+tw+6,ty+th*.25-23],[tx+tw+6,ty+th*.75-23]]; for(let i=0;i<qtyFor('dchair');i++){const [x,y]=slots[i];push('dchair',x,y,it.w,it.d,`dchair~${i+1}`);} return; }
-      if(key==='barstools'){ const isl=drawn.find(x=>x.plan==='island'); const iw=isl?isl.w:120, ih=isl?isl.d:80; const ip=state.pos[keyOf('island')]; const ix=ip?ip.x:(roomW-iw)/2, iy=ip?ip.y:(roomH-ih)/2-20; for(let i=0;i<qtyFor('barstool');i++)push('barstool',ix+iw*(0.2+0.22*i)-it.w/2,iy+ih+6,it.w,it.d,`barstool~${i+1}`); return; }
-      let w=(key==='rug')?Math.max(it.w,it.d):it.w, d=(key==='rug')?Math.min(it.w,it.d):it.d;
-      let x,y; const cu=state.pos[keyOf(it.id)];
-      if(cu){ x=cu.x; y=cu.y; } else if(key==='rug'){ if(state.room==='haloszoba'){x=(roomW-300)/2;y=roomH*0.5;} else {x=(roomW-w)/2;y=(roomH-d)/2;} } else { [x,y]=anchors[key]; }
-      push(it.id,x,y,w,d,it.id);
-      for(let i=2;i<=qtyFor(it.id);i++){const instanceId=`${it.id}~${i}`,saved=state.pos[keyOf(instanceId)];push(it.id,saved?saved.x:x+(i-1)*(w+12),saved?saved.y:y,w,d,instanceId);}
-    });
-    return out;
+  // R03: az elrendezés a közös layout.js-ből jön; a 2D-alaprajz, a 3D-nézet, a költség (elhelyezett darabszám)
+  // és minden mozgatás ugyanezt az eredményt használja. Gyorsítótár: azonos bemenetre nem számol újra.
+  let layoutCache={key:null,val:null};
+  function layoutItems(drawn){
+    return drawn.map(it=>({id:it.id,plan:it.plan,w:it.w,d:it.d,h:heightOf(it),hKnown:heightOf(it)!=null,wallMounted:wallMountedOf(it),qty:qtyFor(it.id)}));
   }
+  function runLayout(L,W,drawn){
+    const room=LY.roomBox(L,W,hei()), items=layoutItems(drawn), pre=state.room+':'+state.style+':';
+    const pick=o=>Object.fromEntries(Object.entries(o).filter(([k])=>k.startsWith(pre)));
+    const key=JSON.stringify([state.room,room,state.door,items,pick(state.pos),pick(state.rot)]);
+    if(layoutCache.key===key) return layoutCache.val;
+    const r=LY.place({roomType:state.room,room,door:state.door,items,pos:id=>state.pos[keyOf(id)]||null,rot:id=>state.rot[keyOf(id)]??null});
+    r.room=room;
+    layoutCache={key,val:r};
+    return r;
+  }
+  // a színt a hívás pillanatában adjuk (a szín változása nem érinti az elrendezést)
+  function placements3D(L,W,drawn){ return runLayout(L,W,drawn).placed.map(p=>({...p,color:finishFor(drawn.find(x=>x.id===p.productId))})); }
   let R3={};
   function close3D(){ if(R3.stop)R3.stop(); if(R3.dom&&R3.onwheel)R3.dom.removeEventListener('wheel',R3.onwheel); R3={}; document.getElementById('d3Overlay').style.display='none'; }
   function labelFurnitureControls(host){
@@ -905,7 +1102,7 @@
     if(window.HV3D){
       const L=len(),Wd=wid(),Hh=hei();
       const dispose=window.HV3D.mount(cont,{ view, roomW:Math.max(L,Wd), roomD:Math.min(L,Wd), roomH:Hh,
-        wallColor:wallHex(), floorColor:'#cbb48d', items:placements3D(L,Wd,drawnList()), tvScreen:tvScreen(placements3D(L,Wd,drawnList())), onMove:commitPlacement, canMove:canPlace, onBlocked:()=>{document.getElementById('layoutStatus').textContent=t('layoutBlocked');document.getElementById('d3MoveStatus').textContent=t('layoutBlocked');} });
+        wallColor:wallHex(), floorColor:'#cbb48d', items:placements3D(L,Wd,drawnList()), tvScreen:tvScreen(placements3D(L,Wd,drawnList())), onMove:commitPlacement, canMove:(id,cx,cy)=>canPlace(id,cx,cy), onBlocked:()=>{ const m=blockText(lastBlock); document.getElementById('layoutStatus').textContent=m; document.getElementById('d3MoveStatus').textContent=m; } });
       R3={stop:dispose};
       return;
     }
@@ -977,10 +1174,14 @@
     const m=CAT.migratePlan(c);
     // azonosító, ami létezik, de ebben a szobában már nem választható → szintén jelezzük
     getSlotsFor(m.config.room,m.config.style).forEach(slot=>{ const k=m.config.room+":"+m.config.style+":"+slot.id, v=m.config.sel[k];
-      if(v&&!slot.options.some(o=>o.vid===v)){ m.notes.push({key:k,slot:slot.id,code:"notInRoom",was:v}); delete m.config.sel[k]; } });
+      // R06: a keresésből választott, azonos kategóriájú termék is érvényes választás
+      if(v&&!slot.options.some(o=>o.vid===v)&&!(CAT.variant(v)&&CAT.variant(v).category===slot.category)){ m.notes.push({key:k,slot:slot.id,code:"notInRoom",was:v}); delete m.config.sel[k]; } });
     return m;
   }
-  function loadRoom(r){ const c=r.config; document.getElementById('len').value=c.len; document.getElementById('wid').value=c.wid; document.getElementById('hei').value=c.hei; state.room=c.room; state.style=c.style; state.color=c.color; state.budget=c.budget; state.tvPlacement=c.tvPlacement==='wall'?'wall':'stand'; state.quantity=JSON.parse(JSON.stringify(c.quantity||{})); state.itemColors=JSON.parse(JSON.stringify(c.itemColors||{})); document.getElementById('budgetNum').value=c.budget; document.getElementById('budgetRange').value=Math.min(Math.max(c.budget,100000),1200000); const mig=migrateConfig(c); restoreNotes=mig.notes; state.sel=JSON.parse(JSON.stringify(mig.config.sel)); state.replaced=JSON.parse(JSON.stringify(c.replaced||{})); if(c.fulfillment==='pickup'||c.fulfillment==='delivery') state.fulfillment=c.fulfillment; state.zone=c.zone==='A'||c.zone==='B'?c.zone:state.zone; state.compareSnap=r.priceSnap||c.snap||null; state.off=new Set(c.off||[]); state.pos=JSON.parse(JSON.stringify(c.pos||{})); closeHouse(); render(); }
+  function loadRoom(r){ const c=r.config; document.getElementById('len').value=c.len; document.getElementById('wid').value=c.wid; document.getElementById('hei').value=c.hei; state.room=c.room; state.style=c.style; state.color=c.color; state.budget=c.budget; state.tvPlacement=c.tvPlacement==='wall'?'wall':'stand'; state.quantity=JSON.parse(JSON.stringify(c.quantity||{})); state.itemColors=JSON.parse(JSON.stringify(c.itemColors||{})); document.getElementById('budgetNum').value=c.budget; document.getElementById('budgetRange').value=Math.min(Math.max(c.budget,100000),1200000); const mig=migrateConfig(c); restoreNotes=mig.notes; state.sel=JSON.parse(JSON.stringify(mig.config.sel)); state.replaced=JSON.parse(JSON.stringify(c.replaced||{})); if(c.fulfillment==='pickup'||c.fulfillment==='delivery') state.fulfillment=c.fulfillment; state.zone=c.zone==='A'||c.zone==='B'?c.zone:state.zone; state.compareSnap=r.priceSnap||c.snap||null; state.off=new Set(c.off||[]); state.pos=JSON.parse(JSON.stringify(c.pos||{}));
+    // 5. szakasz (opcionális mezők — régebbi mentésben hiányoznak, akkor alapérték)
+    state.rot=JSON.parse(JSON.stringify(c.rot||{})); state.locked=new Set(c.locked||[]); state.door={...LY.DOOR_DEFAULT,...(c.door||{})}; state.picked=JSON.parse(JSON.stringify(c.picked||{})); state.budgetLog=null; state.selBlock=null;
+    closeHouse(); render(); }
   function closeHouse(){ document.getElementById('houseOverlay').style.display='none'; }
   function printHouseShopping(){
     const g={}; let grand=0; const order=STORES;
@@ -1013,10 +1214,11 @@
     // Egy formátum mentéshez és megosztáshoz; a cserék története (A05) is benne van.
     // C06: verziózott formátum (dreamr-plan/2) — minden tétel változatazonosítóval rögzítve.
     const sel=JSON.parse(JSON.stringify(state.sel));
-    getSlots().forEach(slot=>{ sel[keyOf(slot.id)]=slot.options[selIndex(slot.id)].vid; });
+    getSlots().forEach(slot=>{ const i=selIndex(slot.id); if(i>=0) sel[keyOf(slot.id)]=slot.options[i].vid; });
     return {format:'dreamr-plan/2',room:state.room,style:state.style,len:len(),wid:wid(),hei:hei(),color:state.color,budget:state.budget,tvPlacement:state.tvPlacement,
       fulfillment:state.fulfillment,zone:state.zone,
-      quantity:{...state.quantity},itemColors:{...state.itemColors},sel,replaced:JSON.parse(JSON.stringify(state.replaced)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos))};
+      quantity:{...state.quantity},itemColors:{...state.itemColors},sel,replaced:JSON.parse(JSON.stringify(state.replaced)),off:[...state.off],pos:JSON.parse(JSON.stringify(state.pos)),
+      rot:JSON.parse(JSON.stringify(state.rot)),locked:[...state.locked],door:{...state.door},picked:JSON.parse(JSON.stringify(state.picked))};
   }
   function makeShareLink(){
     // A megosztott terv a konfigurációt és egy rövid árpillanatképet visz (URL nélkül, tétel-azonosítóval),
@@ -1275,13 +1477,84 @@
   M.revealOnScroll('.planner-intro,.selectors,.wrap>.cardbox,.grid .cardbox,.list-head,.summary,.disclaimer');
   document.getElementById('langBtn').addEventListener('click',()=>{ state.lang=state.lang==='hu'?'en':'hu'; render(); });
   document.getElementById('searchBox').addEventListener('input',e=>{ state.search=e.target.value; render(); });
+  // „Legolcsóbb mindenhol”: csak a megfelelő (R01), lehetőleg ellenőrzött árú, beférő termékek közül; zárolt tétel marad.
+  // Minden csere naplózva és visszavonható (R05).
   document.getElementById('cheapAll').addEventListener('click',()=>{
-    getSlots().forEach(slot=>{ const all=allowedIdxs(slot), ver=all.filter(i=>!isGone(slot.options[i])&&isVerified(slot.options[i])), allowed=ver.length?ver:all;
-      const best=allowed.reduce((b,i)=>slot.options[i].price<slot.options[b].price?i:b, allowed[0]), cur=selIndex(slot.id);
-      if(isGone(slot.options[cur])&&best!==cur) recordReplacement(slot.id,slot.options[cur],slot.options[best],'gone');
-      setSel(slot.id,best); });
+    const before={sel:{...state.sel},off:[...state.off],quantity:{...state.quantity},picked:{...state.picked}}, changes=[], slots=[];
+    curItems().forEach(it=>{ if(it.locked) return;
+      const ok=it.allowed.filter(i=>itemFit(it.options[i],it.id).fits), ver=ok.filter(i=>!isGone(it.options[i])&&isVerified(it.options[i])), pool=ver.length?ver:ok;
+      if(!pool.length) return;
+      const best=pool.reduce((b,i)=>it.options[i].price<it.options[b].price?i:b, pool[0]), cur=it.selFull;
+      if(best===cur||it.options[best].price>=it.options[cur].price) return;
+      if(isGone(it.options[cur])) recordReplacement(it.id,it.options[cur],it.options[best],'gone');
+      slots.push({id:it.id,options:it.options});
+      changes.push({type:'swap',slot:it.id,role:it.role,from:cur,to:best,fromName:it.options[cur].name,toName:it.options[best].name,saving:it.options[cur].price-it.options[best].price,slotName:catName(it.id)});
+    });
+    applyChanges(changes,slots,'cheap');
+    state.budgetLog={kind:'cheap',at:new Date().toISOString(),before,ok:true,over:0,changes,blockers:[]};
     render();
   });
+  // ---- R06: keresés a teljes engedélyezett katalógusban ----
+  const SEARCH={q:'',category:'',maxW:'',maxD:'',minPrice:'',maxPrice:'',stores:null};
+  function openCatalogSearch(q){
+    if(q!=null) SEARCH.q=q;
+    const allowedStores=STORES.filter(s=>state.stores.has(s));
+    if(!SEARCH.stores||[...SEARCH.stores].some(s=>!state.stores.has(s))) SEARCH.stores=new Set(allowedStores);
+    const slots=getSlots(), cats=[...new Set(CAT.allItems().map(o=>o.category))].filter(c=>!CAT.categories[c].accessoryOnly);
+    const ov=document.getElementById('searchOverlay');
+    const opt=(v,l,sel)=>`<option value="${v}"${sel?' selected':''}>${l}</option>`;
+    ov.innerHTML=`<div class="slbox search-box" role="dialog" aria-label="${t('catSearchTitle')}"><div class="slhead"><h3>${t('catSearchTitle')}</h3><button class="slclose" id="csX" aria-label="${t('slClose')}">✕</button></div>
+      <p class="detail-lead">${t('catSearchLead')}</p>
+      <div class="cs-form">
+        <input id="csQ" class="searchbox" type="search" placeholder="${t('catSearchPh')}" value="${escapeHtml(SEARCH.q)}">
+        <label>${t('csCat')}<select id="csCat">${opt('',t('csAllCats'),!SEARCH.category)}<optgroup label="${ROOM_LABEL[state.room][li()]}">${slots.map(s=>opt(s.category,catName(s.category),SEARCH.category===s.category)).join('')}</optgroup><optgroup label="${t('csOther')}">${cats.filter(c=>!slots.some(s=>s.category===c)).map(c=>opt(c,catName(c),SEARCH.category===c)).join('')}</optgroup></select></label>
+        <label>${t('csMaxW')}<input id="csW" type="number" min="0" step="5" value="${SEARCH.maxW}" placeholder="cm"></label>
+        <label>${t('csMaxD')}<input id="csD" type="number" min="0" step="5" value="${SEARCH.maxD}" placeholder="cm"></label>
+        <label>${t('csMinP')}<input id="csP0" type="number" min="0" step="1000" value="${SEARCH.minPrice}" placeholder="Ft"></label>
+        <label>${t('csMaxP')}<input id="csP1" type="number" min="0" step="1000" value="${SEARCH.maxPrice}" placeholder="Ft"></label>
+        <div class="cs-stores"><span class="flabel">${t('storesLabel')}</span>${allowedStores.map(s=>`<span class="schip ${SEARCH.stores.has(s)?'on':''}" data-cs="${s}">${STORE_LABEL[s]||s}</span>`).join('')}</div>
+      </div>
+      <div id="csInfo" class="cs-info" role="status" aria-live="polite"></div><div id="csResults" class="cs-results"></div>
+      <div class="slbtns"><button class="cl" id="csX2">${t('slClose')}</button></div></div>`;
+    ov.style.display='flex';
+    const close=()=>{ ov.style.display='none'; ov.innerHTML=''; };
+    ov.querySelector('#csX').onclick=close; ov.querySelector('#csX2').onclick=close; ov.onclick=e=>{ if(e.target===ov) close(); };
+    const bind=(id,k)=>ov.querySelector(id).addEventListener('input',e=>{ SEARCH[k]=e.target.value; draw(); });
+    bind('#csQ','q'); bind('#csW','maxW'); bind('#csD','maxD'); bind('#csP0','minPrice'); bind('#csP1','maxPrice');
+    ov.querySelector('#csCat').addEventListener('change',e=>{ SEARCH.category=e.target.value; draw(); });
+    ov.querySelectorAll('[data-cs]').forEach(c=>c.addEventListener('click',()=>{ const s=c.dataset.cs; if(SEARCH.stores.has(s)){ if(SEARCH.stores.size>1) SEARCH.stores.delete(s); } else SEARCH.stores.add(s); c.classList.toggle('on',SEARCH.stores.has(s)); draw(); }));
+    function draw(){
+      const hits=RECO.search(CAT.allItems(),{q:SEARCH.q,stores:SEARCH.stores,category:SEARCH.category,maxW:+SEARCH.maxW||0,maxD:+SEARCH.maxD||0,minPrice:+SEARCH.minPrice||0,maxPrice:+SEARCH.maxPrice||0},
+        {categories:CAT.categories,categoryLabel:c=>catName(c)});
+      const cur=curItems(), MAX=60;
+      ov.querySelector('#csInfo').textContent=t('csCount').replace('{n}',hits.length)+(hits.length>MAX?' '+t('csFirst').replace('{n}',MAX):'');
+      ov.querySelector('#csResults').innerHTML=hits.slice(0,MAX).map(o=>{
+        const slot=slots.find(s=>s.category===o.category), it=slot&&cur.find(x=>x.id===slot.id), isSel=it&&it.vid===o.vid, fit=itemFit(o,o.category);
+        const act=!slot?`<span class="cs-na">${t('csNotRoom')}</span>`:isSel?`<span class="ct cur">${t('cmpSel')}</span>`
+          :it&&it.locked?`<span class="cs-na">${t('csLocked')}</span>`:`<button type="button" class="replace-btn" data-cs-pick="${o.vid}" data-cs-slot="${slot.id}">${t('csPick').replace('{cat}',catName(slot.id))}</button>`;
+        return `<div class="cs-row">${storeBadge(o.store)}<div class="cs-main"><b>${escapeHtml(o.name)}</b><span class="muted">${catName(o.category)} · ${dimsText(o)}${fit.fits?'':' · <span class="badge-nofit">'+t('nofit')+'</span>'}</span></div><span class="cp${isUncertain(o)?' is-uncertain':''}">${fmt(o.price)} Ft</span>${act}</div>`;
+      }).join('')||`<p class="muted">${t('csNone')}</p>`;
+      ov.querySelectorAll('[data-cs-pick]').forEach(b=>b.addEventListener('click',()=>{
+        const id=b.dataset.csSlot, vid=b.dataset.csPick, k=keyOf(id), prev=curItems().find(x=>x.id===id);
+        state.sel[k]=vid; state.picked[k]={how:'search',from:prev?prev.vid:null,at:new Date().toISOString()};
+        state.off.delete(id); pendingSwap={id,dir:1}; close(); render();
+        document.querySelector(`.chk[data-id="${id}"]`)?.closest('.item')?.scrollIntoView({behavior:M.reduced()?'auto':'smooth',block:'center'});
+      }));
+    }
+    draw(); ov.querySelector('#csQ').focus();
+  }
+  document.getElementById('catalogSearchBtn')?.addEventListener('click',()=>openCatalogSearch());
+  // ---- R04: ajtó helye ----
+  function syncDoorControls(){
+    const d=LY.door(roomNow(),state.door), w=document.getElementById('doorWall'), o=document.getElementById('doorOffset'), s=document.getElementById('doorWidth');
+    if(!w) return;
+    w.value=d.wall; if(document.activeElement!==o) o.value=Math.round(d.offset); if(document.activeElement!==s) s.value=d.width;
+    o.max=Math.round((d.wall==='left'||d.wall==='right'?roomNow().D:roomNow().W)-d.width);
+  }
+  ['doorWall','doorOffset','doorWidth'].forEach(id=>document.getElementById(id)?.addEventListener(id==='doorWall'?'change':'input',()=>{
+    state.door={wall:document.getElementById('doorWall').value,offset:+document.getElementById('doorOffset').value||0,width:+document.getElementById('doorWidth').value||80};
+    render(); }));
+  document.getElementById('rotateBtn')?.addEventListener('click',rotateSelected);
 
   render();
 

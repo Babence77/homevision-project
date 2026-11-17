@@ -81,7 +81,8 @@
    "icon": "🟦",
    "floor": "none",
    "plan": null,
-   "planQty": 2
+   "planQty": 2,
+   "minQty": 1
   },
   "vase": {
    "label": {
@@ -111,7 +112,8 @@
    "icon": "🗄️",
    "floor": "furniture",
    "plan": "nightstands",
-   "planQty": 2
+   "planQty": 2,
+   "minQty": 1
   },
   "wardrobe": {
    "label": {
@@ -151,7 +153,8 @@
    "icon": "🪑",
    "floor": "furniture",
    "plan": "dchairs",
-   "planQty": 4
+   "planQty": 4,
+   "minQty": 2
   },
   "sideboard": {
    "label": {
@@ -181,7 +184,8 @@
    "icon": "🪑",
    "floor": "furniture",
    "plan": "barstools",
-   "planQty": 2
+   "planQty": 2,
+   "minQty": 1
   },
   "kcabinet": {
    "label": {
@@ -303,213 +307,253 @@
    {
     "slot": "sofa",
     "pool": "sofa",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "chair",
     "pool": "chair",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "coffee",
     "pool": "coffee",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "tv",
     "pool": "tv",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "rug",
     "pool": "rug",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "lamp",
     "pool": "lamp",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "curtain",
     "pool": "curtain",
-    "primary": "style"
+    "primary": "style",
+    "role": "optional"
    },
    {
     "slot": "cushion",
     "pool": "cushion",
-    "primary": "style"
+    "primary": "style",
+    "role": "optional"
    },
    {
     "slot": "vase",
     "pool": "vase",
-    "primary": "style"
+    "primary": "style",
+    "role": "optional"
    }
   ],
   "haloszoba": [
    {
     "slot": "bed",
     "pool": "bed",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "nightstand",
     "pool": "nightstand",
-    "primary": null
+    "primary": null,
+    "role": "optional"
    },
    {
     "slot": "wardrobe",
     "pool": "wardrobe",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "rug",
     "pool": "rug",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "lamp",
     "pool": "lamp",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "curtain",
     "pool": "curtain",
-    "primary": "style"
+    "primary": "style",
+    "role": "optional"
    },
    {
     "slot": "bedding",
     "pool": "bedding",
-    "primary": null
+    "primary": null,
+    "role": "optional"
    }
   ],
   "etkezo": [
    {
     "slot": "dtable",
     "pool": "dtable",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "dchair",
     "pool": "dchair",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "sideboard",
     "pool": "sideboard",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "rug",
     "pool": "rug",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "lamp",
     "pool": "lamp",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "curtain",
     "pool": "curtain",
-    "primary": "style"
+    "primary": "style",
+    "role": "optional"
    }
   ],
   "konyha": [
    {
     "slot": "island",
     "pool": "island",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "barstool",
     "pool": "barstool",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "kcabinet",
     "pool": "kcabinet",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "fridge",
     "pool": "fridge",
     "primary": null,
-    "limit": 1
+    "limit": 1,
+    "role": "required"
    },
    {
     "slot": "lamp",
     "pool": "lamp",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "curtain",
     "pool": "curtain",
-    "primary": "style"
+    "primary": "style",
+    "role": "optional"
    }
   ],
   "dolgozo": [
    {
     "slot": "desk",
     "pool": "desk",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "ochair",
     "pool": "ochair",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "shelf",
     "pool": "shelf",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "rug",
     "pool": "rug",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "lamp",
     "pool": "lamp",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "curtain",
     "pool": "curtain",
-    "primary": "style"
+    "primary": "style",
+    "role": "optional"
    }
   ],
   "gyerek": [
    {
     "slot": "kbed",
     "pool": "kbed",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "required"
    },
    {
     "slot": "kdesk",
     "pool": "desk",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "wardrobe",
     "pool": "wardrobe",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "shelf",
     "pool": "shelf",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "rug",
     "pool": "rug",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    },
    {
     "slot": "lamp",
     "pool": "lamp",
-    "primary": "roomStyle"
+    "primary": "roomStyle",
+    "role": "optional"
    }
   ]
  },

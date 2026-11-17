@@ -134,7 +134,7 @@ function mount(container, opts) {
     const cx=(pos.x+roomW/2)*100,cy=(pos.z+roomD/2)*100;
     if(pos.distanceTo(drag.start)>0.005) drag.moved=true;
     drag.valid=opts.canMove(drag.item.instanceId,cx,cy);
-    if(drag.valid){drag.root.position.set(pos.x,0,pos.z);syncTV(drag.item.instanceId,pos);}
+    if(drag.valid){drag.root.position.set(pos.x,drag.root.position.y,pos.z);syncTV(drag.item.instanceId,pos);}
     e.stopImmediatePropagation();e.preventDefault();
   }  function finish(e,cancel=false){
     if(!drag) return;if(e.pointerId!==drag.id) return;
@@ -152,15 +152,17 @@ function mount(container, opts) {
   const loading = opts.items.map(it => {
     const X = (it.cx - roomW * 100 / 2) / 100, Z = (it.cy - roomD * 100 / 2) / 100;
     let rotY = 0;
-    if (!NO_FACE.has(it.kind)) { // forgatás a szoba közepe felé, 90°-ra kerekítve
-      rotY = Math.round(Math.atan2(-X, -Z) / (Math.PI / 2)) * (Math.PI / 2);
-    }
+    // 5. szakasz (R03): a forgatás a közös elrendezésből (layout.js) jön. 0°/180° és 90°/270° ugyanazt az alapterületet
+    // adja, így a szoba közepe felé fordulás nem torzít; a 90°-os állás (rot) az alapterület cseréje.
+    const quarter = it.rot != null && it.rot % 180 !== 0;
+    if (!NO_FACE.has(it.kind)) rotY = quarter ? (X > 0 ? -Math.PI / 2 : Math.PI / 2) : (it.rot != null ? (Z > 0 ? Math.PI : 0) : Math.round(Math.atan2(-X, -Z) / (Math.PI / 2)) * (Math.PI / 2));
+    else if (quarter) rotY = Math.PI / 2;
     const place = obj => {
       if (disposed) return;
       obj.rotation.y = rotY;
       // a forgatás után igazítjuk a befoglaló méretet, mert 90°-nál cserélődik a szélesség/mélység
       const wrap = normalize(obj, it.w / 100, Math.max(it.h, 2) / 100, it.d / 100);
-      wrap.position.set(X, 0, Z);
+      wrap.position.set(X, it.wall ? 1.4 : 0, Z);   // falra szerelt elem: 140 cm-es alsó él (layout.js MOUNT_BOTTOM)
       wrap.traverse(o => { if (o.isMesh) {
         o.castShadow = !it.rug; o.receiveShadow = true;
         // Product tint is passed from the same catalog finish used by the 2D plan.
