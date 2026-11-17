@@ -1,0 +1,46 @@
+{
+ "_leiras": "Bolti feedek beállítása (4. szakasz). Egy feed csak akkor fut, ha enabled=true ÉS a usage.agreementRef ki van töltve (írásos hozzáférés, F01). A feed URL-je/kulcsa SOHA nem kerül ide: a futtatókörnyezet titka (GitHub Actions secret), a neve: urlSecret. A kategória- és paramétertérkép a partner mintafájlja alapján véglegesítendő (F02).",
+ "feeds": {
+  "kondela": {
+   "enabled": false,
+   "status": "F01: írásos hozzáférésre és használati keretre vár (Dognet-kampány)",
+   "adapter": "heureka-xml",
+   "store": "kondela",
+   "storeLabel": "KONDELA",
+   "urlSecret": "FEED_KONDELA_URL",
+   "currency": "HUF",
+   "usage": {
+    "agreementRef": null,
+    "imagesAllowed": false,
+    "dimensionsAllowed": false,
+    "linksAllowed": false,
+    "note": "Az engedélyek a partner írásos válasza alapján állítandók; a nyilvános affiliate oldal önmagában nem elég."
+   },
+   "pilot": { "maxVariants": 300, "categories": ["sofa", "chair", "coffee", "tv", "rug", "lamp", "curtain", "cushion", "vase"] },
+   "categoryMap": {
+    "_megjegyzes": "CATEGORYTEXT (pl. „Bútor | Nappali | Kanapék”) → DREAMR kategória. A kulcs részszöveg; a hosszabb egyezés nyer. Ideiglenes: a minta alapján véglegesítendő.",
+    "Kanapé": "sofa", "Ülőgarnitúra": "sofa", "Fotel": "chair", "Dohányzóasztal": "coffee", "TV-állvány": "tv", "TV szekrény": "tv",
+    "Szőnyeg": "rug", "Állólámpa": "lamp", "Függöny": "curtain", "Díszpárna": "cushion", "Váza": "vase"
+   },
+   "params": {
+    "width": ["Szélesség", "Szélesség (cm)"], "depth": ["Mélység", "Mélység (cm)"], "height": ["Magasság", "Magasság (cm)"],
+    "salesUnit": ["Kiszerelés", "Csomag tartalma", "Darabszám a csomagban"], "color": ["Szín"], "material": ["Anyag"]
+   },
+   "limits": { "quarantineMaxRatio": 0.3, "minItems": 1 }
+  },
+  "bonami": {
+   "enabled": false,
+   "status": "Tartalék irány: partnerprogram (a nyilvános adatok szerint CJ Affiliate) — még nincs megkeresve",
+   "adapter": "heureka-xml",
+   "store": "bonami",
+   "storeLabel": "BONAMI",
+   "urlSecret": "FEED_BONAMI_URL",
+   "currency": "HUF",
+   "usage": { "agreementRef": null, "imagesAllowed": false, "dimensionsAllowed": false, "linksAllowed": false },
+   "pilot": { "maxVariants": 300, "categories": ["sofa", "chair", "coffee", "tv", "rug", "lamp", "curtain", "cushion", "vase"] },
+   "categoryMap": {},
+   "params": { "width": ["Szélesség"], "depth": ["Mélység"], "height": ["Magasság"], "salesUnit": ["Kiszerelés"], "color": ["Szín"], "material": ["Anyag"] },
+   "limits": { "quarantineMaxRatio": 0.3, "minItems": 1 }
+  }
+ }
+}

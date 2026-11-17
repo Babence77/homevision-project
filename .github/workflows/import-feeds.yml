@@ -1,0 +1,51 @@
+# DREAMR — bolti feedek napi importja (4. szakasz)
+# Csak az engedélyezett, írásos megállapodással rendelkező feedek futnak (scripts/feeds.config.json).
+# A feed URL-je/kulcsa GitHub-titok (Settings → Secrets and variables → Actions), pl. FEED_KONDELA_URL —
+# soha nem kerül a repóba, a böngészőbe vagy a naplóba (a GitHub is kitakarja).
+# A nyers feed csak a futtató gép ideiglenes tárhelyén létezik; a Gitbe csak az ellenőrzött katalógus
+# és az összesítő jelentés kerül. Hibánál a korábbi katalógus marad, és a futás piros.
+name: Feedek importja
+
+on:
+  schedule:
+    - cron: '30 3 * * *'   # minden nap 03:30 UTC — az árfrissítés (04:00) előtt
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dreamr-data       # közös az árfrissítővel: a két robot nem ír egyszerre
+  cancel-in-progress: false
+
+jobs:
+  import-feeds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tesztek
+        run: node --test test/*.test.mjs
+      - name: Feedek importja
+        id: import
+        continue-on-error: true
+        env:
+          FEED_KONDELA_URL: ${{ secrets.FEED_KONDELA_URL }}
+          FEED_BONAMI_URL: ${{ secrets.FEED_BONAMI_URL }}
+        run: node scripts/import-feeds.mjs
+      - name: Ellenőrzött katalógus és jelentés commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/catalog.json reports/feeds 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Feedimport ($(date -u +%F))"
+          git pull --rebase --autostash
+          git push
+      - name: Hibajelzés
+        if: steps.import.outcome == 'failure'
+        run: |
+          echo "::error::A feedimport hibával zárult — a korábbi katalógus maradt. Részletek a futás összefoglalójában."
+          exit 1

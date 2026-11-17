@@ -11,7 +11,7 @@ export async function readCatalog(file = 'data/catalog.json') {
   const cat = await loadCatalogJSON(file);
   return cat.products.flatMap(p => p.variants.map(v => ({
     id: v.id, key: v.id, name: v.name.hu, store: v.store, price: v.basePrice.amount,
-    url: v.urls.canonical, previousUrls: (v.urls.previous || []).map(x => x.url)
+    url: v.urls.canonical, previousUrls: (v.urls.previous || []).map(x => x.url), feed: p.source?.feed || null
   })));
 }
 

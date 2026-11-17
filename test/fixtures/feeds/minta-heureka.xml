@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- KITALÁLT TESZTADAT. Nem valós bolti feed, nem valós termékek, nem valós árak.
+     A DREAMR feedimport tesztjeihez (4. szakasz); a szerkezet a Heureka-XML formátumot követi. -->
+<SHOP>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-1001</ITEM_ID><ITEMGROUP_ID>MINTA-G10</ITEMGROUP_ID>
+  <PRODUCTNAME>MINTA Lido 3 személyes kanapé, szürke</PRODUCTNAME>
+  <URL>https://minta.example/termek/lido-kanape-szurke</URL>
+  <IMGURL>https://minta.example/kep/lido-szurke.jpg</IMGURL>
+  <PRICE_VAT>199990</PRICE_VAT><CURRENCY>HUF</CURRENCY>
+  <CATEGORYTEXT>Bútor | Nappali | Kanapék</CATEGORYTEXT>
+  <DELIVERY_DATE>0</DELIVERY_DATE>
+  <PARAM><PARAM_NAME>Szélesség</PARAM_NAME><VAL>212 cm</VAL></PARAM>
+  <PARAM><PARAM_NAME>Mélység</PARAM_NAME><VAL>88 cm</VAL></PARAM>
+  <PARAM><PARAM_NAME>Magasság</PARAM_NAME><VAL>84 cm</VAL></PARAM>
+  <PARAM><PARAM_NAME>Szín</PARAM_NAME><VAL>szürke</VAL></PARAM>
+  <PARAM><PARAM_NAME>Anyag</PARAM_NAME><VAL>poliészter szövet</VAL></PARAM>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-2001</ITEM_ID><ITEMGROUP_ID>MINTA-G20</ITEMGROUP_ID>
+  <PRODUCTNAME>MINTA Nora fotel, zöld</PRODUCTNAME>
+  <URL>https://minta.example/termek/nora-fotel-zold</URL>
+  <IMGURL>https://minta.example/kep/nora-zold.jpg</IMGURL>
+  <PRICE_VAT>64990</PRICE_VAT><CURRENCY>HUF</CURRENCY>
+  <CATEGORYTEXT>Bútor | Nappali | Fotelek</CATEGORYTEXT>
+  <PARAM><PARAM_NAME>Szélesség</PARAM_NAME><VAL>72</VAL></PARAM>
+  <PARAM><PARAM_NAME>Mélység</PARAM_NAME><VAL>80</VAL></PARAM>
+  <PARAM><PARAM_NAME>Szín</PARAM_NAME><VAL>zöld</VAL></PARAM>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-2002</ITEM_ID><ITEMGROUP_ID>MINTA-G20</ITEMGROUP_ID>
+  <PRODUCTNAME>MINTA Nora fotel, bézs</PRODUCTNAME>
+  <URL>https://minta.example/termek/nora-fotel-bezs</URL>
+  <PRICE_VAT>64990</PRICE_VAT><CURRENCY>HUF</CURRENCY>
+  <CATEGORYTEXT>Bútor | Nappali | Fotelek</CATEGORYTEXT>
+  <PARAM><PARAM_NAME>Szélesség</PARAM_NAME><VAL>72</VAL></PARAM>
+  <PARAM><PARAM_NAME>Mélység</PARAM_NAME><VAL>80</VAL></PARAM>
+  <PARAM><PARAM_NAME>Szín</PARAM_NAME><VAL>bézs</VAL></PARAM>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-3001</ITEM_ID>
+  <PRODUCTNAME>MINTA Ova dohányzóasztal, tölgy</PRODUCTNAME>
+  <URL>https://minta.example/termek/ova-asztal</URL>
+  <PRICE_VAT>34 990</PRICE_VAT>
+  <CATEGORYTEXT>Bútor | Nappali | Dohányzóasztalok</CATEGORYTEXT>
+  <PARAM><PARAM_NAME>Szélesség (cm)</PARAM_NAME><VAL>1100 mm</VAL></PARAM>
+  <PARAM><PARAM_NAME>Mélység (cm)</PARAM_NAME><VAL>60</VAL></PARAM>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-4001</ITEM_ID>
+  <PRODUCTNAME>MINTA Tera díszpárna, terrakotta</PRODUCTNAME>
+  <URL>https://minta.example/termek/tera-parna</URL>
+  <PRICE_VAT>5980</PRICE_VAT><CURRENCY>HUF</CURRENCY>
+  <CATEGORYTEXT>Lakástextil | Díszpárnák</CATEGORYTEXT>
+  <PARAM><PARAM_NAME>Kiszerelés</PARAM_NAME><VAL>2 db</VAL></PARAM>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-9001</ITEM_ID>
+  <PRODUCTNAME>MINTA hibás: nincs ár</PRODUCTNAME>
+  <URL>https://minta.example/termek/hibas-1</URL>
+  <CATEGORYTEXT>Bútor | Nappali | Kanapék</CATEGORYTEXT>
+  <PARAM><PARAM_NAME>Szélesség</PARAM_NAME><VAL>200</VAL></PARAM><PARAM><PARAM_NAME>Mélység</PARAM_NAME><VAL>90</VAL></PARAM>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-9002</ITEM_ID>
+  <PRODUCTNAME>MINTA hibás: euró ár</PRODUCTNAME>
+  <URL>https://minta.example/termek/hibas-2</URL>
+  <PRICE_VAT>499</PRICE_VAT><CURRENCY>EUR</CURRENCY>
+  <CATEGORYTEXT>Bútor | Nappali | Fotelek</CATEGORYTEXT>
+  <PARAM><PARAM_NAME>Szélesség</PARAM_NAME><VAL>70</VAL></PARAM><PARAM><PARAM_NAME>Mélység</PARAM_NAME><VAL>75</VAL></PARAM>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-9003</ITEM_ID>
+  <PRODUCTNAME>MINTA hibás: nincs méret</PRODUCTNAME>
+  <URL>https://minta.example/termek/hibas-3</URL>
+  <PRICE_VAT>129990</PRICE_VAT><CURRENCY>HUF</CURRENCY>
+  <CATEGORYTEXT>Bútor | Nappali | Kanapék</CATEGORYTEXT>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-9004</ITEM_ID>
+  <PRODUCTNAME>MINTA hibás: ismeretlen kategória</PRODUCTNAME>
+  <URL>https://minta.example/termek/hibas-4</URL>
+  <PRICE_VAT>3990</PRICE_VAT><CURRENCY>HUF</CURRENCY>
+  <CATEGORYTEXT>Konyha | Edények</CATEGORYTEXT>
+ </SHOPITEM>
+ <SHOPITEM>
+  <ITEM_ID>MINTA-1001</ITEM_ID>
+  <PRODUCTNAME>MINTA hibás: ismétlődő azonosító</PRODUCTNAME>
+  <URL>https://minta.example/termek/ismetlodo</URL>
+  <PRICE_VAT>1000</PRICE_VAT><CURRENCY>HUF</CURRENCY>
+  <CATEGORYTEXT>Bútor | Nappali | Kanapék</CATEGORYTEXT>
+ </SHOPITEM>
+</SHOP>

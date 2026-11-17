@@ -7,3 +7,7 @@ Thumbs.db
 # Node (ha később csomagokat használunk)
 node_modules/
 dist/
+
+# Bolti feedek nyers adata és karanténrészletei — korlátozott partneri adat, NEM kerülhet nyilvános Gitbe (4. szakasz, F04)
+.feed-work/
+*.uj

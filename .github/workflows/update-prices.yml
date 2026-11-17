@@ -14,7 +14,7 @@ permissions:
   contents: write           # kell, hogy a robot commitolhasson
 
 concurrency:
-  group: update-prices
+  group: dreamr-data       # közös a feedimporttal: a két robot nem ír egyszerre
   cancel-in-progress: false
 
 jobs:

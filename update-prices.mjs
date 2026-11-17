@@ -51,7 +51,8 @@ async function loadPrevious() {
 const entries = await readCatalog();
 const idByUrl = new Map(); entries.forEach(e => [e.url, ...e.previousUrls].forEach(u => idByUrl.set(u, e.id)));
 const previous = await loadPrevious();
-const catalog = new Map(entries.map(e => [e.id, e]));
+// A bolti feedből érkező termékek árát és készletét maga a feed frissíti (scripts/import-feeds.mjs) — itt kihagyjuk.
+const catalog = new Map(entries.filter(e => !e.feed).map(e => [e.id, e]));
 const startedAt = new Date().toISOString();
 console.log(`Termékek: ${catalog.size}${FAIL_STORE ? `  (PRÓBA: a(z) ${FAIL_STORE} forrása szándékosan elrontva)` : ''}`);
 
